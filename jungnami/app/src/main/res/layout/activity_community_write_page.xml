@@ -73,13 +73,13 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="485dp"
-                android:layout_marginTop="23dp"
-                android:paddingBottom="38dp">
+                android:layout_marginTop="23dp">
 
                 <EditText
                     android:id="@+id/community_act_writepage_posting_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingBottom="55dp"
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:scrollHorizontally="false"
