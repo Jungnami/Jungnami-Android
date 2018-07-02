@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#F3F3F3"/>
+
+    <!--아이템 당 여백 조금 씩 있는 거 처리 어떻게 하는지 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+
+
+        <!--&lt;!&ndash;서클이미지뷰 사용 이렇게 하는건 지 컨펌받기&ndash;&gt;-->
+        <!--<android.support.v4.widget.CircleImageView-->
+        <!--android:id="@+id/rv_item_community_profile_user_img_iv"-->
+        <!--android:layout_width="38dp"-->
+        <!--android:layout_height="38dp"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:layout_marginTop="13dp"-->
+        <!--android:src="@drawable/community_profile_circle" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="dddddddddd"-->
+        <!--android:layout_toRightOf="@id/rv_item_community_profile_user_img_iv"-->
+        <!--/>-->
+
+        <android.support.v4.widget.CircleImageView
+            android:id="@+id/btn_rv_item_community_profile_user_img_iv"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/community_profile_circle"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+
+            android:id="@+id/rv_item_community_profile_user_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userName"
+            android:layout_toRightOf="@+id/btn_rv_item_community_profile_user_img_iv"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/rv_item_community_profile_regist_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_item_community_profile_user_name_tv"
+            android:layout_toRightOf="@+id/btn_rv_item_community_profile_user_img_iv"
+            android:layout_marginLeft="8dp"
+            android:text="registTime" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:src="#ACACAC"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/rv_item_community_post_content_tv"
+        android:layout_width="355dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12.5dp"
+        android:layout_marginLeft="16dp"
+        android:text="글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 "
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:layout_marginLeft="16.93dp"
+        android:layout_marginRight="16.93dp"
+        android:layout_marginTop="13dp"
+        android:orientation="horizontal"
+        >
+
+        <!--이런 하트 버튼도 id를 btn으로 만들어야하는지.-->
+
+        <ImageView
+            android:layout_width="14.72dp"
+            android:layout_height="14.05dp"
+            android:src="@drawable/community_small_heart"
+            android:scaleType="fitXY"
+            android:layout_marginTop="2dp"
+            />
+
+
+        <TextView
+            android:id="@+id/rv_item_community_likes_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="14.05dp"
+            android:textSize="12sp"
+            android:layout_marginLeft="5.35dp"
+            android:text="5,238명"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이 좋아합니다."
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="15.66dp"
+            android:src="@drawable/community_small_chat"/>
+
+        <TextView
+            android:layout_gravity=""
+            android:id="@+id/rv_item_community_comment_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="14.05dp"
+            android:layout_marginLeft="6dp"
+            android:textSize="12sp"
+            android:text="523개"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="11dp"
+        >
+        <ImageView
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:src="#707070"
+
+            />
+
+
+        <ImageButton
+            android:id="@+id/btn_rv_item_community_add_like"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:clickable="true"
+            android:src="@drawable/community_heart_gray" />
+
+        <ImageButton
+            android:id="@+id/btn_rv_item_community_write_comment"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
+            android:layout_toRightOf="@+id/btn_rv_item_community_add_like"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:clickable="true"
+            android:src="@drawable/community_chat_gray" />
+
+        <ImageButton
+            android:id="@+id/btn_rv_item_community_share_post"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:layout_toRightOf="@+id/btn_rv_item_community_write_comment"
+            android:clickable="true"
+            android:src="@drawable/community_share_gray" />
+
+        <ImageButton
+            android:id="@+id/btn_rv_item_community_scrap_post"
+            android:layout_width="27dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/community_scrap"
+            />
+
+
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:src="#707070"
+            />
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>
