@@ -18,6 +18,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+    //아래 16
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
