@@ -81,8 +81,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12.5dp"
         android:layout_marginLeft="16dp"
-        android:text="글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 글 내용 "
+        android:text=" 정치적인 내용은 정치적인 내용이 주류이고 정치적이며 정치적이다. 정치적인 사람은 정치적인 부분에서 굉장히 정치적이며 정치적인 정치를 위한 정치로 발전시킬 수 있는 정치인이다.정치적인 피드를 작성함에 있어 가장 정치적인 것은 이 정치 어플리케이션을 사용하는 것이다. 정치중의 정치는 단연 조정치이며 조정치 노래는 정말 좋다. "
         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/writepage_gif"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,6 +109,7 @@
             android:layout_height="14.05dp"
             android:src="@drawable/community_small_heart"
             android:scaleType="fitXY"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="2dp"
             />
 
@@ -110,6 +120,7 @@
             android:layout_height="14.05dp"
             android:textSize="12sp"
             android:layout_marginLeft="5.35dp"
+            android:layout_gravity="center_vertical"
             android:text="5,238명"
             android:textStyle="bold"/>
 
@@ -117,6 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이 좋아합니다."
+            android:layout_gravity="center_vertical"
             android:textSize="12sp"/>
 
         <ImageView
@@ -124,13 +136,15 @@
             android:layout_height="15dp"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="15.66dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/community_small_chat"/>
 
         <TextView
-            android:layout_gravity=""
+            android:layout_gravity="center"
             android:id="@+id/rv_item_community_comment_num_tv"
             android:layout_width="wrap_content"
             android:layout_height="14.05dp"
+
             android:layout_marginLeft="6dp"
             android:textSize="12sp"
             android:text="523개"
