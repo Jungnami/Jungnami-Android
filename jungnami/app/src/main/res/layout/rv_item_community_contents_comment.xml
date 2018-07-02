@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v4.widget.CircleImageView
+            android:id="@+id/rv_item_community_contents_comment_profile_btn"
+            android:layout_width="38.5dp"
+            android:layout_height="38.5dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="12.5dp"
+            android:src="@drawable/community_profile_circle"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/rv_item_community_contents_comment_name_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="동글 문어"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
+            android:layout_marginTop="12.5dp"
+            android:layout_marginLeft="7.5dp"
+            />
+        
+        <ImageView
+            android:id="@+id/rv_item_community_contents_comment_best"
+            android:layout_width="29dp"
+            android:layout_height="13dp"
+            android:layout_toRightOf="@id/rv_item_community_contents_comment_name_btn"
+            android:layout_marginTop="12.5dp"
+            android:layout_marginLeft="4dp"
+            android:src="@color/colorAccent"
+            />
+
+        <TextView
+            android:id="@+id/rv_item_community_contents_comment_description_"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:text="헐랭"
+            android:textColor="#707070"
+            android:layout_below="@id/rv_item_community_contents_comment_name_btn"
+            android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
+            android:layout_marginLeft="7.5dp"
+            android:layout_marginTop="5dp"/>
+        
+        <ImageView
+            android:id="@+id/rv_item_community_contents_comment_likes_btn"
+            android:layout_width="14.72dp"
+            android:layout_height="14.05dp"
+            android:layout_marginTop="23.5dp"
+            android:layout_marginRight="16.35dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/community_heart_gray"
+            />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="37.5dp">
+
+        <TextView
+            android:id="@+id/rv_item_community_contents_comment_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4시간"
+            android:textSize="11sp"
+            android:layout_marginLeft="63dp"
+            android:layout_marginTop="13dp"
+            android:textColor="#D0D0D2"
+            />
+
+        <TextView
+            android:id="@+id/rv_item_community_contents_comment_likes_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아요 512개"
+            android:textSize="11sp"
+            android:layout_toRightOf="@id/rv_item_community_contents_comment_date_tv"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:textColor="#D0D0D2"
+            />
+
+        <!--답글이 들어왔을 경우 안들어왔을 경우 분기 필요-->
+        <!--답글 O ==> 답글 3개-->
+        <!--답글 X ==> 답글달기-->
+        <TextView
+            android:id="@+id/rv_item_community_contents_comment_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="답글 3개"
+            android:textSize="11sp"
+            android:layout_toRightOf="@id/rv_item_community_contents_comment_likes_num_tv"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:textColor="#D0D0D2"
+            />
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>
