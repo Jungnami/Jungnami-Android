@@ -11,7 +11,7 @@
         android:layout_height="56dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/community_act_writepage_back_iv"
             android:src="@drawable/writepage_x_btn"
             android:layout_width="19.61dp"
@@ -28,7 +28,7 @@
             android:textSize="19sp"
             android:text="게시글 작성하기"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/community_act_writepage_complete_iv"
             android:src="@drawable/writepage_complete"
             android:layout_width="48dp"
@@ -98,7 +98,7 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/border">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/community_act_writepage_upload_pic_iv"
                 android:src="@drawable/writepage_picture"
                 android:layout_width="21dp"
@@ -106,7 +106,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="11dp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/community_act_writepage_upload_gif_iv"
                 android:src="@drawable/writepage_gif"
                 android:layout_width="21dp"
