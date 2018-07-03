@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_community_write_page.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.jetbrains.anko.toast
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -71,12 +70,12 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
                     image = MultipartBody.Part.createFormData("photo", photo.name, photoBody)
 
-                    Glide.with(this).load(data.data).centerCrop().into(write_image)
+                    //Glide.with(this).load(data.data).centerCrop().into(write_image)
 
-                    catch (e: Exception){
-                        toast("이미지 로딩에 오류가 있습니다.")
-                        e.printStackTrace()
-                    }
+                    //catch (e: Exception){
+                        //toast("이미지 로딩에 오류가 있습니다.")
+                        //e.printStackTrace()
+                    //}
                 }
             }
         }
