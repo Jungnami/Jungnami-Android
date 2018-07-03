@@ -20,6 +20,7 @@
             android:name=".CommunityWritePage"
             android:windowSoftInputMode="adjustResize"></activity>
         <activity android:name=".mypage.MyPageActivity"></activity>
+        
     </application>
 
 </manifest>
