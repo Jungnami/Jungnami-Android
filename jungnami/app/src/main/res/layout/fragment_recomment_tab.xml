@@ -23,25 +23,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/recommend_tab_main_content_title_tv"
             android:textSize="16dp"
             android:text="국회의원 아들과 폐지 줍는 부모님?"
             android:layout_marginLeft="17dp"
             android:layout_above="@+id/recommend_tab_main_content_info_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"/>
+            android:layout_marginBottom="6dp"
+            android:textColor="#FFFFFF"/>
         <TextView
-            android:textSize="13dp"
             android:id="@+id/recommend_tab_main_content_info_tv"
             android:text="스토리 · 25분"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="17dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="#EFEFEF"/>
     </RelativeLayout>
+    <com.omega_r.libs.omegarecyclerview.OmegaRecyclerView
+        android:id="@+id/recommend_tab_sub_contents_recycler_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </com.omega_r.libs.omegarecyclerview.OmegaRecyclerView>
 
 
 
