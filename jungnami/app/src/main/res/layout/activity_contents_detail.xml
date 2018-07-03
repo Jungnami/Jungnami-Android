@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true">
 
         <ImageView
-            android:id="@+id/contents_act_detail_like_iv"
+            android:id="@+id/contents_act_detail_like_btn"
             android:src="@drawable/content_heart"
             android:layout_width="22.85dp"
             android:layout_height="21.81dp"
@@ -34,7 +34,7 @@
             android:onClick="onClick"/>
 
         <ImageView
-            android:id="@+id/contents_act_detail_comment_iv"
+            android:id="@+id/contents_act_detail_comment_btn"
             android:src="@drawable/contents_chat_gray"
             android:layout_width="24dp"
             android:layout_height="23dp"
@@ -44,7 +44,7 @@
             android:onClick="onClick"/>
 
         <ImageView
-            android:id="@+id/contents_act_detail_share_iv"
+            android:id="@+id/contents_act_detail_share_btn"
             android:src="@drawable/contents_share_gray"
             android:layout_width="20.75dp"
             android:layout_height="22.01dp"
@@ -53,7 +53,7 @@
             android:layout_marginLeft="95.75dp"/>
 
         <ImageView
-            android:id="@+id/contents_act_detail_scrap_iv"
+            android:id="@+id/contents_act_detail_scrap_btn"
             android:src="@drawable/contents_scrap_full"
             android:layout_width="18.07dp"
             android:layout_height="24.1dp"
@@ -69,7 +69,7 @@
         android:layout_height="56dp">
 
         <ImageView
-            android:id="@+id/contents_act_detail_back_iv"
+            android:id="@+id/contents_act_detail_back_btn"
             android:src="@drawable/contents_backarrow_gray"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -227,7 +227,7 @@
             android:layout_marginLeft="17.93dp"/>
         
         <TextView
-            android:id="@+id/contents_act_detail_like_ppl_list_tv"
+            android:id="@+id/contents_act_detail_like_ppl_list_btn"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:layout_marginLeft="5.35dp"
@@ -252,7 +252,7 @@
             android:layout_marginLeft="18.59dp"/>
 
         <TextView
-            android:id="@+id/contents_act_detail_comment_list_tv"
+            android:id="@+id/contents_act_detail_comment_list_btn"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:layout_marginLeft="2.59dp"
