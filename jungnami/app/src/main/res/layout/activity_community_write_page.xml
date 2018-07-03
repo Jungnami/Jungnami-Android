@@ -11,13 +11,14 @@
         android:layout_height="56dp"
         android:orientation="horizontal">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/community_act_writepage_back_iv"
             android:src="@drawable/writepage_x_btn"
             android:layout_width="19.61dp"
             android:layout_height="19.8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="15.64dp"/>
+            android:layout_marginLeft="15.65dp"
+            android:onClick="onClick"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,17 +26,18 @@
             android:layout_marginTop="16dp"
             android:layout_centerInParent="true"
             android:textColor="#6b6b6b"
-            android:textSize="19sp"
+            android:textSize="16sp"
             android:text="게시글 작성하기"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/community_act_writepage_complete_iv"
             android:src="@drawable/writepage_complete"
             android:layout_width="48dp"
             android:layout_height="33dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="9dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:onClick="onClick"/>
 
     </RelativeLayout>
 
@@ -58,6 +60,8 @@
 
             </RelativeLayout>
 
+        // profile img of user in recyclerview
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -72,20 +76,20 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="485dp"
+                android:layout_height="586dp"
                 android:layout_marginTop="23dp">
 
                 <EditText
                     android:id="@+id/community_act_writepage_posting_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="55dp"
                     android:background="@android:color/transparent"
                     android:gravity="top"
-                    android:scrollHorizontally="false"
                     android:hint="무슨 생각을 하고 계신가요?"
+                    android:paddingBottom="55dp"
+                    android:scrollHorizontally="false"
                     android:textColorHint="#cecece"
-                    android:textSize="17sp"/>
+                    android:textSize="15sp" />
 
             </ScrollView>
 
@@ -98,7 +102,7 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/border">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/community_act_writepage_upload_pic_iv"
                 android:src="@drawable/writepage_picture"
                 android:layout_width="21dp"
@@ -106,7 +110,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="11dp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/community_act_writepage_upload_gif_iv"
                 android:src="@drawable/writepage_gif"
                 android:layout_width="21dp"
@@ -123,6 +127,7 @@
             android:layout_alignParentBottom="true">
 
             <ImageView
+                android:id="@+id/community_act_writepage_gif_bubble_iv"
                 android:src="@drawable/writepage_gif_bubble"
                 android:layout_width="91dp"
                 android:layout_height="match_parent"
