@@ -26,6 +26,7 @@
             android:id="@+id/recommend_tab_main_content_title_tv"
             android:textSize="16dp"
             android:text="국회의원 아들과 폐지 줍는 부모님?"
+            android:fontFamily="@font/nanumbarungothic"
             android:layout_marginLeft="17dp"
             android:layout_above="@+id/recommend_tab_main_content_info_tv"
             android:layout_width="wrap_content"
@@ -35,6 +36,7 @@
         <TextView
             android:id="@+id/recommend_tab_main_content_info_tv"
             android:text="스토리 · 25분"
+            android:fontFamily="@font/nanumbarungothiclight"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="17dp"

@@ -1,4 +1,4 @@
-package sopt_jungnami_android.jungnami
+package sopt_jungnami_android.jungnami.contents
 
 import android.content.Intent
 import android.graphics.Color
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contents_detail.*
+import sopt_jungnami_android.jungnami.CommunityWritePage
+import sopt_jungnami_android.jungnami.R
 
 class ContentsDetail : AppCompatActivity(), View.OnClickListener {
 

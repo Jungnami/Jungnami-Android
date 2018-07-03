@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:textColor="#707070"
         android:textSize="12dp"
-        android:text="문재인 대통령의\n 살아온 일대기와 운명"/>
+        android:text="문재인 대통령의\n 살아온 일대기와 운명"
+        android:fontFamily="@font/nanumbarungothic"/>
     <TextView
         android:id="@+id/recommend_tab_sub_content_info_tv"
         android:layout_width="wrap_content"
@@ -27,5 +28,6 @@
         android:textSize="11dp"
         android:textColor="#C6C6C6"
         android:text="스토리 · 11분"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/nanumbarungothic"/>
 </RelativeLayout>
