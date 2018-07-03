@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -36,9 +37,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
-    implementation "org.jetbrains.anko:anko:0.10.5"
-
+    implementation 'org.jetbrains.anko:anko:0.10.5'
     implementation 'com.github.Omega-R:OmegaRecyclerView:1.7.0@aar'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
 
 }
