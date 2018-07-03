@@ -69,7 +69,6 @@
 
                 <!--이거 그림자 처리 해줘야함-->
                 <View
-                    android:id="@+id/dd"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"

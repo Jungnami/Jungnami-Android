@@ -74,9 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-
-                android:background="#000000"
-
+                android:background="#EBEBEB"
                 ></View>
 
         </RelativeLayout>
@@ -84,8 +82,20 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="사람"
+        android:textColor="#2B2B2B"
+        android:fontFamily="@font/nanumbarungothicbold_normal"
+        android:layout_marginTop="13.5dp"
+        android:layout_marginLeft="19dp"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/following_act_top_bar_rv"
+        android:layout_marginTop="14dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
