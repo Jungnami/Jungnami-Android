@@ -21,34 +21,55 @@
             android:id="@+id/rv_item_community_contents_comment_name_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="7.5dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
             android:text="동글 문어"
             android:textColor="#000000"
-            android:textStyle="bold"
-            android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
-            android:layout_marginTop="12.5dp"
-            android:layout_marginLeft="7.5dp"
-            />
-        
-        <ImageView
-            android:id="@+id/rv_item_community_contents_comment_best"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
             android:layout_width="29dp"
             android:layout_height="13dp"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_name_btn"
-            android:layout_marginTop="12.5dp"
+            android:layout_marginTop="17.5dp"
             android:layout_marginLeft="4dp"
-            android:src="@color/colorAccent"
-            />
+            >
+
+            <ImageView
+                android:id="@+id/rv_item_community_contents_comment_best"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/chat_best_box_blue" />
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="BEST"
+                android:textSize="8sp"
+                android:fontFamily="@font/nanumbarungothicbold_normal"/>
+
+
+
+        </RelativeLayout>
+
 
         <TextView
-            android:id="@+id/rv_item_community_contents_comment_description_"
+            android:id="@+id/rv_item_community_contents_comment_description"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:text="헐랭"
+            android:textSize="13sp"
             android:textColor="#707070"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
             android:layout_below="@id/rv_item_community_contents_comment_name_btn"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
             android:layout_marginLeft="7.5dp"
-            android:layout_marginTop="5dp"/>
+            />
         
         <ImageView
             android:id="@+id/rv_item_community_contents_comment_likes_btn"
@@ -70,12 +91,12 @@
             android:id="@+id/rv_item_community_contents_comment_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4시간"
-            android:textSize="11sp"
             android:layout_marginLeft="63dp"
             android:layout_marginTop="13dp"
+            android:text="4시간"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
             android:textColor="#D0D0D2"
-            />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/rv_item_community_contents_comment_likes_num_tv"
@@ -83,6 +104,7 @@
             android:layout_height="wrap_content"
             android:text="좋아요 512개"
             android:textSize="11sp"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_date_tv"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="13dp"
@@ -95,6 +117,7 @@
         <TextView
             android:id="@+id/rv_item_community_contents_comment_"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
             android:layout_height="wrap_content"
             android:text="답글 3개"
             android:textSize="11sp"
