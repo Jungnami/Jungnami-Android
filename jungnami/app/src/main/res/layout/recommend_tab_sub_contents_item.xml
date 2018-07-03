@@ -4,15 +4,15 @@
     android:layout_height="173dp"
     android:layout_marginBottom="8dp">
     <ImageView
-        android:id="@+id/recommend_tab_sub_content_image_iv"
+        android:id="@+id/recommend_tab_rv_item_sub_content_image_iv"
         android:layout_width="match_parent"
         android:layout_height="109dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/contents_frag_sub_content_image_shape"/>
     <TextView
-        android:id="@+id/recommend_tab_sub_content_title_tv"
-        android:layout_below="@+id/recommend_tab_sub_content_image_iv"
-        android:layout_above="@+id/recommend_tab_sub_content_info_tv"
+        android:id="@+id/recommend_tab_rv_item_sub_content_title_tv"
+        android:layout_below="@+id/recommend_tab_rv_item_sub_content_image_iv"
+        android:layout_above="@+id/recommend_tab_rv_item_sub_content_info_tv"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="6dp"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:text="문재인 대통령의\n 살아온 일대기와 운명"
         android:fontFamily="@font/nanumbarungothic"/>
     <TextView
-        android:id="@+id/recommend_tab_sub_content_info_tv"
+        android:id="@+id/recommend_tab_rv_item_sub_content_info_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="11dp"

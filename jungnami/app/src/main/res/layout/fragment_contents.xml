@@ -22,7 +22,8 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginBottom="18dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="18dp"/>
+                android:layout_marginRight="18dp"
+                android:background="?android:selectableItemBackground"/>
             <RelativeLayout
                 android:background="@drawable/community_frag_bar_search_box_shape"
                 android:layout_centerVertical="true"
@@ -62,7 +63,7 @@
                 android:layout_marginBottom="18dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="16dp"
-                />
+                android:background="?android:selectableItemBackground"/>
         </RelativeLayout>
     </RelativeLayout>
     <LinearLayout
