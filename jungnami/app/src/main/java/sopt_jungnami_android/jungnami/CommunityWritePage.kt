@@ -4,15 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_community_write_page.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.toast
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -26,14 +30,14 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            community_act_writepage_back_iv -> {
+            community_act_writepage_back_btn -> {
                 finish()
             }
-            community_act_writepage_complete_iv -> {
-                community_act_writepage_complete_iv.isSelected = false // 글, 사진, gif 중 어떤 것 하나라도 올라온다면 (조건문 처리)
+            community_act_writepage_complete_btn -> {
+                community_act_writepage_complete_btn.isSelected = false // 글, 사진, gif 중 어떤 것 하나라도 올라온다면 (조건문 처리)
                 finish()
             }
-            community_act_writepage_upload_pic_iv -> {
+            community_act_writepage_upload_pic_btn -> {
                 changeImage()
             }
         }
@@ -72,10 +76,9 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
                     //Glide.with(this).load(data.data).centerCrop().into(write_image)
 
-                    //catch (e: Exception){
-                        //toast("이미지 로딩에 오류가 있습니다.")
-                        //e.printStackTrace()
-                    //}
+                } catch (e: Exception) {
+                    toast("이미지 로딩에 오류가 있습니다.")
+                    e.printStackTrace()
                 }
             }
         }
@@ -84,6 +87,17 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community_write_page)
+        setStatusBarColor()
+    }
+
+    private fun setStatusBarColor(){
+        val view : View? = window.decorView
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (view != null){
+                view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.statusBarColor = Color.parseColor("#FFFFFF")
+            }
+        }
     }
 }
 

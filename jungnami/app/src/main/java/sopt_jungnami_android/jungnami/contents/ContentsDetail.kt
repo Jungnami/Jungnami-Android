@@ -14,14 +14,14 @@ class ContentsDetail : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            contents_act_detail_back_iv -> {
+            contents_act_detail_back_btn -> {
                 finish()
             }
-            contents_act_detail_like_iv -> {
-                contents_act_detail_like_iv.isSelected = true
+            contents_act_detail_like_btn -> {
+                contents_act_detail_like_btn.isSelected = true
                 // 좋아요++ 은 나중에
             }
-            contents_act_detail_comment_iv -> {
+            contents_act_detail_comment_btn -> {
                 val intent = Intent(applicationContext, CommunityWritePage::class.java) // contents_comment 댓글 창 .kt 파일명
                 startActivity(intent)
             }
