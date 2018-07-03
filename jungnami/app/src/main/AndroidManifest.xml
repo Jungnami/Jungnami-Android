@@ -20,7 +20,8 @@
             android:name=".CommunityWritePage"
             android:windowSoftInputMode="adjustResize"></activity>
         <activity android:name=".mypage.MyPageActivity"></activity>
-        
+        <activity android:name=".contents.ContentsDetail" />
+        <activity android:name=".Alarm"></activity>
     </application>
 
 </manifest>
