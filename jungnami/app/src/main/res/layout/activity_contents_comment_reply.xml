@@ -11,10 +11,10 @@
 
 
         <ImageView
-            android:id="@+id/act_contents_comment_reply_backarrow_btn"
+            android:id="@+id/act_contents_comment_reply_x_btn"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/contents_backarrow"
+            android:src="@drawable/writepage_x_btn"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_centerVertical="true"
