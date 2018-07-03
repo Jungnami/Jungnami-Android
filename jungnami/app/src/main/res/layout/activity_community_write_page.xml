@@ -25,9 +25,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_centerInParent="true"
+            android:text="게시글 작성하기"
             android:textColor="#6b6b6b"
             android:textSize="16sp"
-            android:text="게시글 작성하기"/>
+            android:fontFamily="@font/nanumbarungothic_normal"/>
 
         <ImageView
             android:id="@+id/community_act_writepage_complete_iv"
@@ -86,10 +87,12 @@
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:hint="무슨 생각을 하고 계신가요?"
+                    android:fontFamily="@font/nanumbarungothiclight_normal"
                     android:paddingBottom="55dp"
                     android:scrollHorizontally="false"
                     android:textColorHint="#cecece"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    />
 
             </ScrollView>
 

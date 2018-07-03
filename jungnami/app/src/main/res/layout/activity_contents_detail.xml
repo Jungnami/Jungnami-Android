@@ -102,6 +102,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="32.5dp"
                 android:layout_marginBottom="49.18dp"
+                android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="한 국회의원의 부모님은"
                 android:textColor="#dddddd"
                 android:textSize="18sp"
@@ -113,6 +114,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="32.5dp"
                 android:layout_marginBottom="19.18dp"
+                android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="'폐지'를 주우며 다니십니다."
                 android:textColor="#dddddd"
                 android:textSize="18sp"
@@ -195,6 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
+            android:fontFamily="@font/nanumbarungothiclight_normal"
             android:text="국회의원 아들과 폐지 줍는 부모님?"
             android:textColor="#e1e1e1"
             android:textSize="18sp"/>
@@ -204,6 +207,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:layout_marginLeft="18dp"
+            android:fontFamily="@font/nanumbarungothiclight_normal"
             android:text="스토리 * 2018.06.28 오후 12:02"
             android:textColor="#c2c2c2"
             android:textSize="12sp"/>
@@ -227,6 +231,7 @@
             android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:layout_marginLeft="5.35dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
             android:text="5,258명"
             android:textColor="#c3c3c3"
             android:textStyle="bold"
@@ -235,6 +240,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="14dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
             android:text="이 좋아합니다"
             android:textColor="#c3c3c3"
             android:textSize="12sp"/>
@@ -250,6 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:layout_marginLeft="2.59dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
             android:text="523개"
             android:textColor="#e2e2e2"
             android:textStyle="bold"
