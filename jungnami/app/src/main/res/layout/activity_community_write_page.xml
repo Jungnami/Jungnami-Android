@@ -83,16 +83,16 @@
                 <EditText
                     android:id="@+id/community_act_writepage_posting_et"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:hint="무슨 생각을 하고 계신가요?"
+                    android:maxLength="150"
                     android:fontFamily="@font/nanumbarungothiclight_normal"
                     android:paddingBottom="55dp"
                     android:scrollHorizontally="false"
                     android:textColorHint="#cecece"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
             </ScrollView>
 

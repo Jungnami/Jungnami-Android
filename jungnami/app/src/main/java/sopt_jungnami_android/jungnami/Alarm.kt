@@ -5,8 +5,17 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.activity_alarm.*
 
-class Alarm : AppCompatActivity() {
+class Alarm : AppCompatActivity(), View.OnClickListener {
+
+    override fun onClick(v: View?) {
+        when (v) {
+            alarm_back_btn -> {
+                finish()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
