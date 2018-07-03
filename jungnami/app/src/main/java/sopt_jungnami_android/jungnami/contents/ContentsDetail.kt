@@ -17,6 +17,12 @@ class ContentsDetail : AppCompatActivity(), View.OnClickListener {
             contents_act_detail_back_btn -> {
                 finish()
             }
+            contents_act_detail_like_ppl_list_btn -> {
+
+            }
+            contents_act_detail_comment_list_btn -> {
+
+            }
             contents_act_detail_like_btn -> {
                 contents_act_detail_like_btn.isSelected = true
                 // 좋아요++ 은 나중에
@@ -24,6 +30,12 @@ class ContentsDetail : AppCompatActivity(), View.OnClickListener {
             contents_act_detail_comment_btn -> {
                 val intent = Intent(applicationContext, CommunityWritePage::class.java) // contents_comment 댓글 창 .kt 파일명
                 startActivity(intent)
+            }
+            contents_act_detail_share_btn -> {
+
+            }
+            contents_act_detail_scrap_btn -> {
+                contents_act_detail_scrap_btn.isSelected = true
             }
         }
     }
@@ -34,7 +46,7 @@ class ContentsDetail : AppCompatActivity(), View.OnClickListener {
         setStatusBarColor()
     }
 
-    private fun setStatusBarColor(){
+    private fun setStatusBarColor() {
         val view : View? = window.decorView
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (view != null){
