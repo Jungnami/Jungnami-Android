@@ -52,16 +52,14 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:src="@drawable/community_profile_circle"
                 android:id="@+id/rv_item_community_profile_img_iv"
+                android:src="@drawable/community_profile_circle"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="16dp"/>
 
             </RelativeLayout>
-
-        // profile img of user in recyclerview
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -80,19 +78,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp">
 
-                <EditText
-                    android:id="@+id/community_act_writepage_posting_et"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:gravity="top"
-                    android:hint="무슨 생각을 하고 계신가요?"
-                    android:maxLength="150"
-                    android:fontFamily="@font/nanumbarungothiclight_normal"
-                    android:paddingBottom="55dp"
-                    android:scrollHorizontally="false"
-                    android:textColorHint="#cecece"
-                    android:textSize="15sp" />
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/community_act_writepage_posting_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="top"
+                        android:hint="무슨 생각을 하고 계신가요?"
+                        android:maxLength="150"
+                        android:paddingBottom="55dp"
+                        android:scrollHorizontally="false"
+                        android:textColorHint="#cecece"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/community_act_writepage_upload_pic_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="289dp"
+                        android:layout_marginRight="16dp"
+                        android:scaleType="fitXY"/>
+
+                </LinearLayout>
 
             </ScrollView>
 

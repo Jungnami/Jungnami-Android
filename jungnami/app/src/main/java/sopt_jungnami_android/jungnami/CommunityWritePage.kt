@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_community_write_page.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.jetbrains.anko.toast
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -37,9 +36,6 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                 community_act_writepage_complete_btn.isSelected = false// 글, 사진, gif 중 어떤 것 하나라도 올라온다면 (조건문 처리)
                 finish()
             }
-            community_act_writepage_upload_pic_btn -> {
-                changeImage()
-            }
             community_act_writepage_upload_gif_btn -> {
 
             }
@@ -57,40 +53,53 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         if (requestCode == REQ_CODE_SELECT_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 try {
+                    //if(ApplicationController.getInstance().is)
                     this.data = data!!.data
                     Log.v("이미지", this.data.toString())
 
                     val options = BitmapFactory.Options()
 
                     var input: InputStream? = null
+
                     try {
                         input = contentResolver.openInputStream(this.data)
                     } catch (e: FileNotFoundException) {
                         e.printStackTrace()
                     }
 
-                    val bitmap = BitmapFactory.decodeStream(input, null, options)
+                    val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 생성
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
                     val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
-                    val photo = File(this.data.toString())
+                    val photo = File(this.data.toString()) // 가져온 파일의 이름
+
+                    // RequestBody photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray());
+                    // MultipartBody.Part 실제 파일의 이름 전송
 
                     image = MultipartBody.Part.createFormData("photo", photo.name, photoBody)
 
-                    //Glide.with(this).load(data.data).centerCrop().into(write_image)
+                    //body = MultipartBody.Part.createFormData("image", photo.getName(), profile_pic);
+
+                    Glide.with(this).load(data.data).centerCrop().into(community_act_writepage_upload_pic_iv)
 
                 } catch (e: Exception) {
-                    toast("이미지 로딩에 오류가 있습니다.")
                     e.printStackTrace()
                 }
             }
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community_write_page)
         setStatusBarColor()
+        community_act_writepage_upload_pic_btn.setOnClickListener {
+            changeImage()
+        }
+        community_act_writepage_upload_gif_btn.setOnClickListener {
+
+        }
     }
 
     private fun setStatusBarColor(){
