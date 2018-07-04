@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="232dp"
+        android:layout_height="287dp"
+        android:layout_centerInParent="true">
+
+        
+        <RelativeLayout
+            android:layout_marginTop="80dp"
+            android:background="@drawable/sponsoring_frag_box_shape"
+            android:layout_width="232dp"
+            android:layout_height="207dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후원하기"
+                android:fontFamily="@font/nanumbarungothicbold_normal"
+                android:layout_marginTop="44dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"
+                android:textColor="#6B6B6B"
+                />
+            
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="86.13dp"
+                android:layout_marginLeft="26dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나의 코인"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:layout_centerVertical="true"
+                    android:textColor="#757575"/>
+
+s
+                <TextView
+                    android:id="@+id/sponsoring_frag_coin_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100코인"
+                    android:textSize="11sp"
+                    android:textColor="#36C5F1"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="112.13dp"
+                android:layout_marginLeft="26dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="후원 코인"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:layout_centerVertical="true"/>
+
+                <RelativeLayout
+                    android:background="@drawable/sponsoring_frag_edit_box_shape"
+                    android:layout_width="47.27dp"
+                    android:layout_height="21dp"
+                    android:layout_marginRight="21dp"
+                    android:layout_alignParentRight="true"
+                    >
+
+                    <EditText
+                        android:id="@+id/sponsorping_fragment_spon_coin_et"
+                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                        android:background="#00000000"
+                        android:textSize="12dp"
+                        android:hint="입력"
+                        android:textColor="#D8D8D8"
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="9dp"
+                        android:layout_marginLeft="12dp"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            
+            
+            <ImageView
+                android:id="@+id/sponsoring_frag_confirm_btn"
+                android:layout_width="89dp"
+                android:layout_height="31dp"
+                android:src="@drawable/sponsoring_frag_confirm"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="17dp"
+                android:layout_marginBottom="23dp"/>
+
+
+            <ImageView
+                android:id="@+id/sponsoring_frag_cancle_btn"
+                android:layout_width="89dp"
+                android:layout_height="31dp"
+                android:src="@drawable/sponsoring_frag_cancle"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="17dp"
+                android:layout_marginBottom="23dp"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="104dp">
+                    <!--centerHorizontal로 할지(구도 상 이쁘지 않음) 지금처럼 Left margin줄지 결정해야함-->
+
+                    <ImageView
+                        android:id="@+id/sponsopring_fragment_coin_iv"
+                        android:src="@drawable/support_popup_coin_icon"
+                        android:layout_width="105dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginLeft="57dp"/>
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="56dp"
+                        android:src="@drawable/support_popup_blue_circle"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <ImageView
+                        android:src="@drawable/support_popup_character"
+                        android:layout_width="63dp"
+                        android:layout_height="80dp"
+                        android:layout_toRightOf="@id/sponsopring_fragment_coin_iv"
+                        android:layout_marginLeft="3dp"
+                        />
+
+        </RelativeLayout>
+        
+        
+        
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
