@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_community_write_page.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -20,6 +22,9 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
+import android.R
+
+
 
 class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
@@ -35,9 +40,6 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
             community_act_writepage_complete_btn -> {
                 community_act_writepage_complete_btn.isSelected = false// 글, 사진, gif 중 어떤 것 하나라도 올라온다면 (조건문 처리)
                 finish()
-            }
-            community_act_writepage_upload_gif_btn -> {
-
             }
         }
     }
@@ -80,7 +82,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
                     //body = MultipartBody.Part.createFormData("image", photo.getName(), profile_pic);
 
-                    Glide.with(this).load(data.data).centerCrop().into(community_act_writepage_upload_pic_iv)
+                    Glide.with(this).load(data.data).into(community_act_writepage_upload_pic_iv)
 
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -98,7 +100,9 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
             changeImage()
         }
         community_act_writepage_upload_gif_btn.setOnClickListener {
-
+            //val gif = findViewById(R.id.community_act_writepage_upload_gif_iv) as ImageView
+            //val gifImage = GlideDrawableImageViewTarget(gif)
+            //Glide.with(this).load(R.drawable.community_gif_box).into(gifImage)
         }
     }
 
