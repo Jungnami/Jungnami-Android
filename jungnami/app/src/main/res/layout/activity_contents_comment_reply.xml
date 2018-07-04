@@ -4,14 +4,14 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/act_contents_comment_reply_bar"
+        android:id="@+id/contents_comment_reply_act_top_bar"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         >
 
 
         <ImageView
-            android:id="@+id/act_contents_comment_reply_x_btn"
+            android:id="@+id/contents_comment_reply_act_top_bar_close_btn"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/writepage_x_btn"
@@ -34,14 +34,14 @@
 
     <View
         android:id="@+id/act_contents_comment_reply_below_line"
-        android:layout_below="@id/act_contents_comment_reply_bar"
+        android:layout_below="@id/contents_comment_reply_act_top_bar"
         android:layout_width="match_parent"
         android:layout_height="0.25dp"
         android:background="#9B9B9B"
         ></View>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/act_contents_comment_reply_rv"
+        android:id="@+id/contents_comment_reply_act_rv"
         android:layout_below="@id/act_contents_comment_reply_below_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -56,24 +56,47 @@
         ></View>
 
     <RelativeLayout
+        android:id="@+id/contents_comment_reply_act_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true">
 
-        <!--EditText 넣어야하는 부분! -->
 
-        <!--src로 이미지 버튼 추가하기-->
+        <RelativeLayout
+            android:background="@drawable/comment_act_bar_search_box_shape"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="18dp"
+            android:layout_toLeftOf="@id/contents_comment_act_bottom_bar_write_btn"
+            android:layout_marginRight="11.5dp"
+            >
 
+
+            <EditText
+                android:id="@+id/contents_comment_act_bottom_bar_edit_text"
+                android:fontFamily="@font/nanumbarungothiclight"
+                android:background="#00000000"
+                android:textSize="9dp"
+                android:hint="댓글을 입력하세요...."
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16.5dp"/>
+        </RelativeLayout>
 
         <ImageView
-            android:src="@color/colorAccent"
-            android:id="@+id/act_contents_comment_reply_write_btn"
+            android:src="@drawable/contents_right_arrow"
+            android:id="@+id/contents_comment_act_bottom_bar_write_btn"
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp" />
     </RelativeLayout>
+
 
 
 </RelativeLayout>
