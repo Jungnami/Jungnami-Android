@@ -93,7 +93,7 @@
         android:layout_below="@id/act_contents_comment_contents_below_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/act_contents_comment_bottom_bar">
+        android:layout_above="@id/contents_comment_act_bottom_bar">
 
     </android.support.v7.widget.RecyclerView>
 
