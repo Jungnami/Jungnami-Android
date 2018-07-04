@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="56dp"
+    android:layout_height="74dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/mypage_myvotelist_item_picture_iv"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/mypage_profile_circle_img"/>
+    <TextView
+        android:id="@+id/mypage_myvotelist_item_name_tv"
+        android:fontFamily="@font/nanumbarungothic"
+        android:textSize="10dp"
+        android:text="신상진"
+        android:textColor="#707070"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
