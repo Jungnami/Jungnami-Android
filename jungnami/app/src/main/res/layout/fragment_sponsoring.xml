@@ -48,7 +48,6 @@
                     android:layout_centerVertical="true"
                     android:textColor="#757575"/>
 
-s
                 <TextView
                     android:id="@+id/sponsoring_frag_coin_num_tv"
                     android:layout_width="wrap_content"
@@ -130,24 +129,24 @@ s
             android:layout_height="104dp">
                     <!--centerHorizontal로 할지(구도 상 이쁘지 않음) 지금처럼 Left margin줄지 결정해야함-->
 
-                    <ImageView
-                        android:id="@+id/sponsopring_fragment_coin_iv"
-                        android:src="@drawable/support_popup_coin_icon"
-                        android:layout_width="105dp"
-                        android:layout_height="32dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="57dp"/>
+            <ImageView
+                android:id="@+id/sponsopring_fragment_coin_iv"
+                android:src="@drawable/support_popup_coin_icon"
+                android:layout_width="105dp"
+                android:layout_height="32dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="44dp"
+                android:layout_marginLeft="57dp"/>
 
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="56dp"
-                        android:src="@drawable/support_popup_blue_circle"
-                        android:layout_centerHorizontal="true"
-                        />
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="56dp"
+                android:src="@drawable/support_popup_blue_circle"
+                android:layout_centerHorizontal="true"
+                />
 
-                    <ImageView
+            <ImageView
                         android:src="@drawable/support_popup_character"
                         android:layout_width="63dp"
                         android:layout_height="80dp"
