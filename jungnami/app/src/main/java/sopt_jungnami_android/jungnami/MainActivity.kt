@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
+import sopt_jungnami_android.jungnami.rank.RankFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,13 +20,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setStatusBarColor()
         setBottomNavigationClickListener()
-        addFragment(CommunityFragment())
+        addFragment(RankFragment())
 
 
     }
     private fun setBottomNavigationClickListener(){
         main_act_rank_btn.setOnClickListener {
-            toast("1")
+            replaceFragment(RankFragment())
         }
         main_act_list_btn.setOnClickListener {
             toast("2")

@@ -9,9 +9,79 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp">
-
+        <ImageView
+            android:id="@+id/rank_frag_top_bar_mypage_btn"
+            android:src="@drawable/main_my_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
+        <ImageView
+            android:id="@+id/rank_frag_top_bar_search_btn"
+            android:src="@drawable/main_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:elevation="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <RelativeLayout
+            android:id="@+id/rank_frag_likeable_tab_btn"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/rank_frag_likeable_title_tv"
+                android:layout_centerInParent="true"
+                android:text="호감"
+                android:textSize="16dp"
+                android:textColor="#6B6B6B"
+                android:fontFamily="@font/nanumbarungothic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:id="@+id/rank_frag_likeable_underbar_line"
+                android:background="#36C5F1"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="99dp"
+                android:layout_height="3dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rank_frag_unlikeable_tab_btn"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/rank_frag_unlikeable_title_tv"
+                android:layout_centerInParent="true"
+                android:text="비호감"
+                android:textSize="16dp"
+                android:textColor="#D8D8D8"
+                android:fontFamily="@font/nanumbarungothic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:id="@+id/rank_frag_unlikeable_underbar_line"
+                android:visibility="invisible"
+                android:background="#36C5F1"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="99dp"
+                android:layout_height="3dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/rank_frag_fragment_frame_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 
 
