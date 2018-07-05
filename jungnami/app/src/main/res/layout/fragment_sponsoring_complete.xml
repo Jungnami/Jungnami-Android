@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="232dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true">
+
+
+        <RelativeLayout
+            android:layout_marginTop="80dp"
+            android:background="@drawable/sponsoring_frag_box_shape"
+            android:layout_width="232dp"
+            android:layout_height="239dp"
+            >
+            <TextView
+                android:id="@+id/sponsor_complete_frag_complete_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후원 완료!"
+                android:fontFamily="@font/nanumbarungothicbold_normal"
+                android:layout_marginTop="45dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"
+                android:textColor="#36C5F1"
+                />
+            
+            <RelativeLayout
+                android:id="@+id/spon_complete_frag_legislator_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_below="@+id/sponsor_complete_frag_complete_tv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp"
+                >
+
+
+                <TextView
+                    android:id="@+id/spon_complete_frag_legislator_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="김병관"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:textSize="18sp"
+                    android:textColor="#6B6B6B"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/spon_complete_frag_legislator_tv"
+                    android:text=" 님께"
+                    android:textColor="#6B6B6B"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/nanumbarungothiclight"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/spon_complete_frag_coin_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_below="@+id/spon_complete_frag_legislator_rl"
+                android:layout_marginTop="11dp"
+                android:layout_centerHorizontal="true"
+                >
+
+                <TextView
+                    android:id="@+id/spon_complete_frag_coin_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:textSize="18sp"
+                    android:textColor="#36C5F1"
+                    />
+
+                <TextView
+                    android:id="@+id/popopo"
+                    android:layout_toRightOf="@id/spon_complete_frag_coin_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 코인"
+                    android:textColor="#36C5F1"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:layout_centerHorizontal="true"
+
+                    ></TextView>
+
+                <TextView
+                    android:layout_toRightOf="@id/popopo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="을"
+                    android:textColor="#6B6B6B"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:layout_centerHorizontal="true"
+
+                    ></TextView>
+                
+                
+
+
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_below="@id/spon_complete_frag_coin_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="후원하셨습니다."
+                    android:textSize="18sp"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:textColor="#6B6B6B"/>
+            </RelativeLayout>
+            
+            <ImageView
+                android:layout_width="89dp"
+                android:layout_height="31dp"
+                android:src="@drawable/sponsoring_frag_confirm"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp"
+                android:layout_centerHorizontal="true"
+
+                />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp">
+            <!--centerHorizontal로 할지(구도 상 이쁘지 않음) 지금처럼 Left margin줄지 결정해야함-->
+            <!--이 주석을 감싸고 있는 RelativeLayout과 같은 사이즈의 ImageView를 생성하여 GIF파일 적용-->
+            <!--바로 밑에 있는 이미지 뷰는 삭제-->
+
+            <ImageView
+                android:id="@+id/sponsopring_fragment_coin_iv"
+                android:src="@drawable/support_popup_coin_icon"
+                android:layout_width="105dp"
+                android:layout_height="32dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="44dp"
+                android:layout_marginLeft="57dp"/>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="56dp"
+                android:src="@drawable/support_popup_blue_circle"
+                android:layout_centerHorizontal="true"
+                />
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
