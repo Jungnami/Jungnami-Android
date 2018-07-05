@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="75dp"
+    android:background="#FFFFFF"
+    android:id="@+id/search_result_rv_item_background_rl">
+
+    <TextView
+        android:id="@+id/search_result_rv_item_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumbarungothic_normal"
+        android:textSize="13sp"
+        android:text="1"
+        android:textColor="#36C5F1"
+        android:layout_marginTop="31dp"
+        android:layout_marginLeft="12dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/search_result_rv_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="43.88dp">
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="56.02dp"
+        android:layout_height="56.02dp"
+        android:background="#E1241A"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/search_result_rv_item_legislator_iv"
+            android:layout_centerInParent="true"
+            android:layout_width="52.47dp"
+            android:layout_height="52.47dp"
+            android:background="#000000"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/search_result_rv_item_legislator_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumbarungothic_normal"
+        android:text="김성태"
+        android:textSize="14sp"
+        android:textColor="#262626"
+        android:layout_toRightOf="@id/search_result_rv_rl"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="14dp"/>
+
+    <TextView
+        android:id="@+id/search_result_rv_item_legislator_rank_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumbarungothic_normal"
+        android:text="호감 192위 / 비호감 59위"
+        android:textSize="12sp"
+        android:textColor="#36C5F1"
+        android:layout_toRightOf="@id/search_result_rv_rl"
+        android:layout_marginTop="1dp"
+        android:layout_below="@id/search_result_rv_item_legislator_name_tv"
+        android:layout_marginLeft="14dp"
+        />
+
+    <TextView
+        android:id="@+id/search_result_rv_item_legislator_belong_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumbarungothiclight_normal"
+        android:text="서울 강서구 을"
+        android:textSize="12sp"
+        android:textColor="#6B6B6B"
+        android:layout_toRightOf="@id/search_result_rv_rl"
+        android:layout_below="@id/search_result_rv_item_legislator_rank_tv"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="14dp"
+        />
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
