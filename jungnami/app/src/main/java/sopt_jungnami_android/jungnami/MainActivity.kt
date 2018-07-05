@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
+import sopt_jungnami_android.jungnami.legislator_list.LegislatorListFragment
 import sopt_jungnami_android.jungnami.rank.RankFragment
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(RankFragment())
         }
         main_act_list_btn.setOnClickListener {
-            toast("2")
+            replaceFragment(LegislatorListFragment())
         }
         main_act_community_btn.setOnClickListener {
             replaceFragment(CommunityFragment())

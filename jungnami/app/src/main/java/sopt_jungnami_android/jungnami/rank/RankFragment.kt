@@ -18,6 +18,10 @@ class RankFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         addFragment()
+        rank_frag_likeable_tab_btn.setOnClickListener {
+
+            replaceFragment(LikeableTab())
+        }
         rank_frag_unlikeable_tab_btn.setOnClickListener {
             replaceFragment(UnlikeableTab())
         }
