@@ -11,9 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_community_write_page.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -22,7 +20,6 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
-import android.R
 
 
 
