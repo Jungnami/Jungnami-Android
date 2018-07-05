@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LegislatorList">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        
+        <ImageView
+            android:id="@+id/legislator_act_back_btn"
+            android:src="@drawable/back_arrow"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"/>
+        
+        <TextView
+            android:id="@+id/legislator_act_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="정당"
+            android:textSize="16sp"
+            android:textColor="#6b6b6b"
+            />
+        
+        <ImageView
+            android:id="@+id/legislator_act_search"
+            android:src="@drawable/legislator_search"
+            android:layout_width="17.5dp"
+            android:layout_height="17.5dp"
+            android:layout_marginTop="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15.5dp"/>
+        
+    </RelativeLayout>
+
+
+
+</LinearLayout>
