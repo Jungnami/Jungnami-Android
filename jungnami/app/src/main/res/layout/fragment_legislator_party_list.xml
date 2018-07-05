@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="8dp">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp">
+
+        <ImageView
+            android:id="@+id/legislator_frag_party_color_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#1783dc"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp">
+
+            <ImageView
+                android:id="@+id/legislator_frag_party_logo_iv"
+                android:src="@drawable/partylist_deomindang_img"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_centerVertical="true"/>
+            
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="13dp">
+
+            <ImageView
+                android:id="@+id/legislator_frag_party_ppl_iv"
+                android:src="@drawable/partylist_blue_character"
+                android:layout_width="40dp"
+                android:layout_height="61dp"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="63.27dp"
+            android:layout_marginTop="17dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="국회의석:"
+                android:textSize="14sp"
+                android:textColor="#ffffff"/>
+
+            <TextView
+                android:id="@+id/legislator_frag_party_totalchair_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="130석"
+                android:textSize="14sp"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="63.27dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/legislator_frag_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="2014년 3월 26일"
+                android:textSize="11sp"
+                android:textColor="#f7f7f7"
+                android:gravity="right"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_legislator_party"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

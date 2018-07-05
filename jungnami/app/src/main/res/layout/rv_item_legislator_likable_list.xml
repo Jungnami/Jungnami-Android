@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/rv_item_legislator_likable_rank_num_tv"
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginLeft="22dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="1"
+            android:textColor="#36c5f1"
+            android:textSize="13sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="24.43dp">
+
+        <ImageView
+            android:id="@+id/rv_item_legislator_profile_img_iv"
+            android:src="@drawable/partylist_legislator_profile_circle"
+            android:layout_width="49.14dp"
+            android:layout_height="49.14dp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="27.43dp">
+
+        <TextView
+            android:id="@+id/rv_item_legislator_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="임수영"
+            android:textSize="15sp"
+            android:textColor="#6b6b6b"/>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="41dp">
+
+            <TextView
+                android:id="@+id/rv_item_legislator_likable_district_rank_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="1위"
+                android:textSize="13sp"
+                android:textColor="#36c5f1"
+                />
+
+            <TextView
+                android:id="@+id/rv_item_legislator_likable_district_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="서울 서초구 갑"
+                android:textSize="13sp"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18.6dp">
+
+            <ImageView
+                android:id="@+id/rv_item_legislator_likable_vote_btn"
+                android:src="@drawable/main_good_btn_blue"
+                android:layout_width="26.7dp"
+                android:layout_height="26.7dp"
+                android:layout_marginTop="23.65dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
