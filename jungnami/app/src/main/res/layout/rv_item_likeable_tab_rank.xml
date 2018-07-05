@@ -75,16 +75,16 @@
             android:layout_height="48dp" />
     </RelativeLayout>
     <ImageView
-        android:src="@drawable/main_vote_circle_gray"
+        android:src="@drawable/main_good_btn_background_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="14dp"
         />
     <ImageView
         android:id="@+id/likeable_tab_rv_item_isvote_btn"
-        android:src="@drawable/main_vote_icon"
+        android:src="@drawable/main_good_btn_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
