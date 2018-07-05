@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".legislator_list.PartyTab">
+
+    <ScrollView
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="#F7F7F7"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/party_tab_blue_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:background="@drawable/party_blue_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/party_tab_blue_character"
+                    android:src="@drawable/party_blue_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginRight="33dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
+                <ImageView
+                    android:id="@+id/party_tab_blue_logo"
+                    android:layout_toRightOf="@+id/party_tab_blue_character"
+                    android:src="@drawable/party_blue_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"/>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/party_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/party_tab_red_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:background="@drawable/party_red_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/party_tab_red_character"
+                    android:src="@drawable/party_red_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
+                <ImageView
+                    android:id="@+id/party_tab_red_logo"
+                    android:layout_toRightOf="@+id/party_tab_red_character"
+                    android:src="@drawable/party_red_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="31dp"/>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/party_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/party_tab_mint_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:background="@drawable/party_mint_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/party_tab_mint_character"
+                    android:src="@drawable/party_mint_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
+                <ImageView
+                    android:id="@+id/party_tab_mint_logo"
+                    android:src="@drawable/party_mint_logo"
+                    android:layout_toRightOf="@+id/party_tab_mint_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"/>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/party_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/party_tab_yellow_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:background="@drawable/party_yellow_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/party_tab_yellow_character"
+                    android:src="@drawable/party_yellow_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
+                <ImageView
+                    android:id="@+id/party_tab_yellow_logo"
+                    android:src="@drawable/party_yellow_logo"
+                    android:layout_toRightOf="@+id/party_tab_yellow_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/party_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/party_tab_orange_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:background="@drawable/party_orange_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/party_tab_orange_character"
+                    android:src="@drawable/party_orange_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginRight="36dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
+                <ImageView
+                    android:id="@+id/party_tab_orange_logo"
+                    android:src="@drawable/party_orange_logo"
+                    android:layout_toRightOf="@+id/party_tab_orange_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"/>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/party_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/party_tab_indigo_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:background="@drawable/party_indigo_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/party_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -84,7 +84,7 @@
         />
     <ImageView
         android:id="@+id/unlikeable_tab_rv_item_isvote_btn"
-        android:src="@drawable/main_bad_btn_red"
+        android:src="@drawable/legislatorpage_bad_btn_red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
