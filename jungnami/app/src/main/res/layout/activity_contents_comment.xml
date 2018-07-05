@@ -117,7 +117,7 @@
 
 
             <RelativeLayout
-                android:background="#000000"
+                android:background="@drawable/contents_comment_act_bar_search_box_shape"
                 android:layout_centerVertical="true"
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"

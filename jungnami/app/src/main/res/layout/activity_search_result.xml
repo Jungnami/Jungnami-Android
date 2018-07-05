@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        
+        <ImageView
+            android:id="@+id/search_result_act_back_btn"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/contents_backarrow"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            />
+
+
+        <TextView
+            android:id="@+id/search_result_act_legislator_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="김성태"
+            android:fontFamily="@font/nanumbarungothic"
+            android:textSize="16sp"
+            android:textColor="#2B2B2B"/>
+
+        <ImageView
+            android:id="@+id/search_result_act_search_btn"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/main_search"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            />
+        
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEBEB"
+            ></View>
+        
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
