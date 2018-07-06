@@ -9,9 +9,11 @@
         android:id="@+id/main_act_fragment_fl"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottom_navigation">
     </FrameLayout>
     <RelativeLayout
+        android:id="@+id/main_bottom_navigation"
         android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="55dp"
