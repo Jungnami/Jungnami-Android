@@ -18,11 +18,13 @@
         </activity>
         <activity
             android:name=".CommunityWritePage"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".mypage.MyPageActivity"></activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".mypage.MyPageActivity" />
         <activity android:name=".contents.ContentsDetail" />
-        <activity android:name=".Alarm"></activity>
-        <!--<activity android:name=".LegislatorList"></activity>-->
+        <activity android:name=".Alarm" />
+        <!-- <activity android:name=".LegislatorList"></activity> -->
+        <activity android:name=".userpage.UserPageActivity" />
+        <activity android:name=".LegislatorPageActivity"></activity>
     </application>
 
 </manifest>
