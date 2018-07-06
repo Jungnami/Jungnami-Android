@@ -5,12 +5,22 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 
-class LegislatorList : AppCompatActivity() {
+class LegislatorList : AppCompatActivity(), View.OnClickListener {
+
+    override fun onClick(v: View?) {
+        when(v) {
+            legislator_act_back_btn -> {
+                finish()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_list)
+        setStatusBarColor()
     }
 
     private fun setStatusBarColor(){

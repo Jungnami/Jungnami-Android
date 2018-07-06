@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@drawable/contents_popup_kakao_blue"
+        android:drawable="@drawable/contents_popup_facebook_blue"
         android:state_selected="true"/>
 
     <item
-        android:drawable="@drawable/contents_popup_kakao_gray"
+        android:drawable="@drawable/contents_popup_facebook_gray"
         android:state_selected="false"/>
 
 </selector>

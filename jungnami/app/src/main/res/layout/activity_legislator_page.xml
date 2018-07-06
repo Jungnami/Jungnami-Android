@@ -179,7 +179,8 @@
                             android:id="@+id/legislator_page_act_sponsor_btn"
                             android:src="@drawable/legislator_page_sponsor"
                             android:layout_width="80.39dp"
-                            android:layout_height="28.16dp" />
+                            android:layout_height="28.16dp"
+                            android:layout_marginLeft="8dp"/>
 
                     </LinearLayout>
 
