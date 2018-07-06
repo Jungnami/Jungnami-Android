@@ -1,9 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- written by SooYoung -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LegislatorPageActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/legislator_page_act_back_btn"
+                android:src="@drawable/back_arrow"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"/>
+            
+            <ImageView
+                android:id="@+id/legislator_page_act_search_btn"
+                android:src="@drawable/community_search"
+                android:layout_width="17.5dp"
+                android:layout_height="17.5dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18.5dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:layout_marginTop="56dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="117dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="15.4dp">
+
+            <RelativeLayout
+                android:layout_width="87.5dp"
+                android:layout_height="87.5dp">
+
+                <ImageView
+                    android:id="@+id/legislator_page_act_party_color_iv"
+                    android:src="@drawable/legislatorprofile_image_circle_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                
+                <ImageView
+                    android:id="@+id/legislator_page_act_profile_img_iv"
+                    android:src="@drawable/legislatorpage_profile_circle"
+                    android:layout_width="81.59dp"
+                    android:layout_height="81.59dp"
+                    android:layout_centerInParent="true"/>
+                
+            </RelativeLayout>
+            
+            <ImageView
+                android:id="@+id/legislator_page_act_top3_iv"
+                android:src="@drawable/legislatorpage_gold_medal_icon"
+                android:layout_width="23dp"
+                android:layout_height="24.17dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginLeft="62.85dp" />
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:text="김병관"
+                    android:textSize="22sp"
+                    android:textColor="#343434"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic_normal"
+                            android:text="호감 1위 "
+                            android:textSize="15sp"
+                            android:textColor="#36c5f1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic_normal"
+                            android:text="/"
+                            android:textSize="15sp"
+                            android:textColor="#36c5f1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic_normal"
+                            android:text=" 비호감 35위 "
+                            android:textSize="15sp"
+                            android:textColor="#36c5f1"/>
+                        
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                        android:text="더불어 민주당"
+                        android:textSize="12sp"
+                        android:textColor="#9e9e9e"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/legislator_page_act_like_btn"
+                            android:src="@drawable/legislator_page_like"
+                            android:layout_width="60dp"
+                            android:layout_height="28dp" />
+
+                        <ImageView
+                            android:id="@+id/legislator_page_act_ulike_btn"
+                            android:src="@drawable/legislator_page_unlike"
+                            android:layout_width="70dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="7dp"/>
+
+                        <ImageView
+                            android:id="@+id/legislator_page_act_sponsor_btn"
+                            android:src="@drawable/legislator_page_sponsor"
+                            android:layout_width="80.39dp"
+                            android:layout_height="28.16dp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="240dp"
+        android:background="#f3f3f3"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginTop="248dp"
+        android:background="@drawable/border">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:text="관련된 컨텐츠"
+            android:textSize="16sp"
+            android:textColor="#2b2b2b"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="316dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="160dp"
+            android:layout_height="174dp"
+            android:layout_marginHorizontal="9.12dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/legislator_act_legislator_search_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/legislator_list_act_search_bar"
+                android:background="@drawable/community_frag_bar_search_box_shape"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/legislator_list_act_search_iv"
+                    android:src="@drawable/community_search"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginRight="8dp"/>
+
+                <EditText
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:background="#00000000"
+                    android:textSize="12dp"
+                    android:hint="'국회의원의 이름을 검색해보세요.'"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/legislator_list_act_search_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/legislator_list_act_search_cancle_btn"
+                android:text="취소"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/nanumbarungothiclight_normal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
