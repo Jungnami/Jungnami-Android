@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setBottomNavigationClickListener(){
         main_act_rank_btn.setOnClickListener {
+            it.isSelected = true
             replaceFragment(RankFragment())
         }
         main_act_list_btn.setOnClickListener {

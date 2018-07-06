@@ -38,7 +38,8 @@
             android:id="@+id/rank_frag_likeable_tab_btn"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackground">
             <TextView
                 android:id="@+id/rank_frag_likeable_title_tv"
                 android:layout_centerInParent="true"
@@ -60,7 +61,8 @@
             android:id="@+id/rank_frag_unlikeable_tab_btn"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackground">
             <TextView
                 android:id="@+id/rank_frag_unlikeable_title_tv"
                 android:layout_centerInParent="true"
