@@ -70,7 +70,7 @@
             android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
             android:layout_marginLeft="7.5dp"
             />
-        
+
         <ImageView
             android:id="@+id/rv_item_community_contents_comment_likes_btn"
             android:layout_width="14.72dp"
@@ -82,7 +82,7 @@
             />
 
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="37.5dp">
