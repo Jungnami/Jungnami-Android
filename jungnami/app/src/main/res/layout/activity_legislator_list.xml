@@ -110,4 +110,58 @@
 
     </FrameLayout>
 
+    <RelativeLayout
+        android:id="@+id/legislator_act_legislator_search_rl"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/legislator_list_act_search_bar"
+                android:background="@drawable/community_frag_bar_search_box_shape"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/legislator_list_act_search_iv"
+                    android:src="@drawable/community_search"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/legislator_list_act_search_iv"
+                    android:background="#00000000"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/legislator_list_act_search_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/nanumbarungothiclight_normal"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </RelativeLayout>

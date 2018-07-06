@@ -34,6 +34,13 @@
             android:layout_height="52.93dp"
             android:layout_centerInParent="true"/>
 
+        <ImageView
+            android:id="@+id/rv_item_legislator_profile_img_btn"
+            android:src="@drawable/legislatorpage_profile_circle"
+            android:layout_width="49.14dp"
+            android:layout_height="49.14dp"
+            android:layout_centerInParent="true"/>
+
 
     </RelativeLayout>
 
