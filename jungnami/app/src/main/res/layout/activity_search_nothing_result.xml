@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--written by Tak HyeongMin-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal">
-        
+
         <ImageView
-            android:id="@+id/search_result_act_back_btn"
+            android:id="@+id/search_nothing_result_act_back_btn"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:scaleType="fitXY"
@@ -21,7 +23,6 @@
             />
 
         <RelativeLayout
-            android:id="@+id/search_result_act_search_bar"
             android:background="@drawable/community_frag_bar_search_box_shape"
             android:layout_width="match_parent"
             android:layout_height="31dp"
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true">
                 <ImageView
-                    android:id="@+id/search_result_act_search_iv"
+                    android:id="@+id/search_nothing_result_act_search_iv"
                     android:src="@drawable/community_search"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
@@ -43,9 +44,9 @@
                     android:layout_marginRight="8dp"/>
 
                 <TextView
-                    android:id="@+id/search_result_act_search_reult_tv"
+                    android:id="@+id/search_nothing_result_act_search_result_tv"
                     android:visibility="visible"
-                    android:layout_toRightOf="@+id/search_result_act_search_iv"
+                    android:layout_toRightOf="@+id/search_nothing_result_act_search_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -61,37 +62,48 @@
 
 
                 <EditText
-                    android:id="@+id/search_result_act_search_hint_et"
+                    android:id="@+id/search_nothing_result_act_search_hint_et"
                     android:background="#00000000"
                     android:visibility="gone"
-                    android:hint="아진짜 미치겠네 이거 왜이러는 거야 ㅠㅜㅠ"
-                    android:layout_toRightOf="@+id/search_result_act_search_iv"
+                    android:hint="'국회의원의 이름을 검색해 보세요'"
+                    android:layout_toRightOf="@+id/search_nothing_result_act_search_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:layout_centerVertical="true"
                     android:textColor="#2B2B2B"
                     android:fontFamily="@font/nanumbarungothic_normal"
-                     />
+                    />
 
 
             </RelativeLayout>
 
 
         </RelativeLayout>
-        
+
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#EBEBEB"
             ></View>
-        
+
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색 결과 없음"
+            android:textColor="#D8D8D8"
+            android:textSize="24sp"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 </LinearLayout>
