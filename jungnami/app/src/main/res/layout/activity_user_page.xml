@@ -12,37 +12,42 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.design.widget.AppBarLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:background="#FFFFFF">
+            android:layout_height="134dp"
+            android:background="#FFFFF2">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="98dp">
                 <ImageView
                     android:id="@+id/userpage_act_top_bar_back_btn"
                     android:src="@drawable/mypage_back_arrow_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_centerVertical="true"
+                    android:layout_marginTop="18.5dp"
                     android:layout_alignParentLeft="true"
                     android:background="?android:selectableItemBackground"/>
             </RelativeLayout>
-        </android.support.design.widget.AppBarLayout>
+            <RelativeLayout
+                android:background="#FFFFFF"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"></RelativeLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userpage_act_user_picture"
+                android:src="@drawable/alarm_none_profile_woman_image"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+        </RelativeLayout>
         <LinearLayout
+            android:layout_marginTop="11dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="164dp"
+            android:layout_height="92dp"
             android:background="#FFFFFF">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userpage_act_user_picture_iv"
-                android:src="@color/colorAccent"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="11dp"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
