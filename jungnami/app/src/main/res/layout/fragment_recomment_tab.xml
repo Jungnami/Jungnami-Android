@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".contents.RecommentTab"
     android:layout_marginVertical="9dp"
-    android:layout_marginHorizontal="16dp">
+    android:layout_marginHorizontal="16dp"
+    android:background="#FFFFFF">
     <RelativeLayout
-        android:id="@+id/recommend_tab_"
+        android:id="@+id/recommend_tab_main_contetn_lr"
         android:layout_width="match_parent"
         android:layout_height="225dp">
         <ImageView
@@ -47,6 +48,7 @@
     </RelativeLayout>
     <com.omega_r.libs.omegarecyclerview.OmegaRecyclerView
         android:id="@+id/recommend_tab_sub_contents_recycler_rv"
+        android:layout_below="@+id/recommend_tab_main_contetn_lr"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

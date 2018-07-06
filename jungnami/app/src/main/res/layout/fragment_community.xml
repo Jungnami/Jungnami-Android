@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".community.CommunityFragment">
+    tools:context=".community.CommunityFragment"
+    android:background="#FFFFFF">
     <RelativeLayout
         android:id="@+id/community_frag_top_box_rl"
         android:background="#FFFFFF"
@@ -46,8 +47,8 @@
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:background="#00000000"
                     android:textSize="12dp"
-                    android:hint="'최형윤'바로를 검색해보세요."
-                    android:layout_centerVertical="true"
+                    android:hint="'최형윤 바로'를 검색해보세요."
+                    android:gravity="left|center"
                     android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -74,82 +75,95 @@
             android:layout_alignParentBottom="true"
             android:background="#6B6B6B"/>
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/community_frag_no_login_status_rl"
-        android:background="#F8F8F8"
-        android:layout_below="@+id/community_frag_top_box_rl"
-        android:layout_width="match_parent"
-        android:layout_height="68dp">
-        <ImageView
-            android:id="@+id/community_frag_character_iv"
-            android:src="@drawable/community_character"
-            android:layout_width="49dp"
-            android:layout_height="55dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="16dp"/>
-        <RelativeLayout
-            android:background="@drawable/community_frag_login_message_box_shape"
-            android:layout_toRightOf="@+id/community_frag_character_iv"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginRight="48dp"
-            android:layout_marginTop="13dp">
-            <LinearLayout
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="13dp"
-                    android:text="글 작성은 "
-                    android:textColor="#757575"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="13dp"
-                    android:text="로그인 후 "
-                    android:textColor="#36C5F1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="13dp"
-                    android:text="이용해 주세요."
-                    android:textColor="#757575"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </RelativeLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/community_frag_yes_login_status_rl"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#FFFFFF">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/community_frag_my_picture_iv"
-            android:layout_centerVertical="true"
-            android:src="@drawable/my_page"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:layout_marginHorizontal="16dp"/>
-        <TextView
-            android:fontFamily="@font/nanumbarungothiclight"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/community_frag_my_picture_iv"
-            android:textColor="#CECECE"
-            android:text="무슨 생각을 하고 계신가요?"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"/>
-    </RelativeLayout>
-    <com.omega_r.libs.omegarecyclerview.OmegaRecyclerView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@id/community_frag_top_box_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    </com.omega_r.libs.omegarecyclerview.OmegaRecyclerView>
+        <RelativeLayout
+            android:id="@+id/community_frag_no_login_status_rl"
+            android:background="#F8F8F8"
+            android:layout_width="match_parent"
+            android:layout_height="68dp">
+            <ImageView
+                android:id="@+id/community_frag_character_iv"
+                android:src="@drawable/community_character"
+                android:layout_width="49dp"
+                android:layout_height="55dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="16dp"/>
+            <RelativeLayout
+                android:background="@drawable/community_frag_login_message_box_shape"
+                android:layout_toRightOf="@+id/community_frag_character_iv"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="13dp">
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textSize="13dp"
+                        android:text="글 작성은 "
+                        android:textColor="#757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textSize="13dp"
+                        android:text="로그인 후 "
+                        android:textColor="#36C5F1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textSize="13dp"
+                        android:text="이용해 주세요."
+                        android:textColor="#757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/community_frag_yes_login_status_rl"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#FFFFFF">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/community_frag_my_picture_iv"
+                android:layout_centerVertical="true"
+                android:src="@drawable/my_page"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginHorizontal="16dp"/>
+            <TextView
+                android:fontFamily="@font/nanumbarungothiclight"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/community_frag_my_picture_iv"
+                android:textColor="#CECECE"
+                android:text="무슨 생각을 하고 계신가요?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"/>
+        </RelativeLayout>
+        <com.omega_r.libs.omegarecyclerview.OmegaRecyclerView
+            android:id="@+id/community_frag_peed_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.omega_r.libs.omegarecyclerview.OmegaRecyclerView>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/community_frag_is_display_search_rl"
+        android:layout_below="@+id/community_frag_top_box_rl"
+        android:visibility="visible"
+        android:background="#77000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="1dp">
+    </RelativeLayout>
 </RelativeLayout>

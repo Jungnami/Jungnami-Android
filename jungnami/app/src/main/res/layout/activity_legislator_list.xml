@@ -132,7 +132,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/legislator_list_act_search_iv"
+                    android:id="@+id/rank_frag_top_bar_search_iv"
                     android:src="@drawable/community_search"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
@@ -147,7 +147,7 @@
                     android:textSize="12dp"
                     android:hint="'국회의원의 이름을 검색해보세요.'"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/legislator_list_act_search_iv"
+                    android:layout_toRightOf="@+id/rank_frag_top_bar_search_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"/>
