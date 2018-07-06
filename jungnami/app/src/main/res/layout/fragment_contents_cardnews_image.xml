@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contents_frag_cardnews_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/contents_opacity_gray">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp">
+        
+        <ImageView
+            android:id="@+id/contents_frag_cardnews_list_image_iv"
+            android:background="@drawable/ic_launcher_background"
+            android:layout_width="match_parent"
+            android:layout_height="412dp" />
+        
+    </RelativeLayout>
+
+</RelativeLayout>
