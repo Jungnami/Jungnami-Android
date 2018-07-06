@@ -11,13 +11,14 @@
         android:layout_centerInParent="true">
         
         <ImageView
-            android:src="@drawable/contents_popup_box"
+            android:background="@drawable/contents_popup_box"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"/>
         
         <ImageView
             android:id="@+id/contents_popup_kakao_btn"
-            android:src="@drawable/contents_popup_kakao_blue"
+            android:src="@drawable/contents_popup_kakao"
             android:layout_width="294dp"
             android:layout_height="31dp"
             android:layout_marginTop="28dp"
@@ -25,7 +26,7 @@
 
         <ImageView
             android:id="@+id/contents_popup_facebook_btn"
-            android:src="@drawable/contents_popup_facebook_blue"
+            android:src="@drawable/contents_popup_facebook"
             android:layout_width="294dp"
             android:layout_height="31dp"
             android:layout_alignParentBottom="true"
