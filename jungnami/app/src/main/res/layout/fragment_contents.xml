@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".contents.ContentsFragment">
+    tools:context=".contents.ContentsFragment"
+    android:background="#FFFFFF">
+
     <RelativeLayout
         android:id="@+id/contents_frag_top_box_rl"
         android:background="#FFFFFF"
@@ -46,8 +48,8 @@
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:background="#00000000"
                     android:textSize="12dp"
-                    android:hint="'최형윤'바로를 검색해보세요."
-                    android:layout_centerVertical="true"
+                    android:hint="'최형윤 바로'를 검색해보세요."
+                    android:gravity="left|center"
                     android:layout_toRightOf="@+id/contents_frag_top_bar_search_box_search_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -68,85 +70,103 @@
                 android:background="?android:selectableItemBackground"/>
         </RelativeLayout>
     </RelativeLayout>
+
     <LinearLayout
-        android:id="@+id/contents_frag_top_navi_ll"
-        android:elevation="1dp"
-        android:background="#FFFFFF"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@+id/contents_frag_top_box_rl"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingHorizontal="16dp">
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:fontFamily="@font/nanumbarungothic"
-                android:textSize="14dp"
-                android:textColor="#36C5F1"
-                android:text="추천"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <View
-                android:visibility="visible"
-                android:id="@+id/contents_frag_top_navi_recommend_underline"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:background="#36C5F1"
-                android:layout_width="46dp"
-                android:layout_height="3dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:fontFamily="@font/nanumbarungothic"
-
-                android:textSize="14dp"
-                android:textColor="#D8D8D8"
-                android:text="TMI"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <View
-                android:visibility="gone"
-                android:id="@+id/contents_frag_top_navi_tmi_underline"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:background="#D8D8D8"
-                android:layout_width="46dp"
-                android:layout_height="3dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:fontFamily="@font/nanumbarungothic"
-                android:textSize="14dp"
-                android:textColor="#D8D8D8"
-                android:text="스토리"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <View
-                android:visibility="gone"
-                android:id="@+id/contents_frag_top_navi_story_underline"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:background="#D8D8D8"
-                android:layout_width="46dp"
-                android:layout_height="3dp"/>
-        </RelativeLayout>
-    </LinearLayout>
-    <FrameLayout
-        android:id="@+id/contents_frag_fragment_fl"
-        android:layout_below="@+id/contents_frag_top_navi_ll"
-        android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </FrameLayout>
+        <LinearLayout
+            android:id="@+id/contents_frag_top_navi_ll"
+            android:elevation="1dp"
+            android:background="#FFFFFF"
+            android:orientation="horizontal"
+            android:layout_below="@+id/contents_frag_top_box_rl"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingHorizontal="16dp">
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="14dp"
+                    android:textColor="#36C5F1"
+                    android:text="추천"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:visibility="visible"
+                    android:id="@+id/contents_frag_top_navi_recommend_underline"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#36C5F1"
+                    android:layout_width="46dp"
+                    android:layout_height="3dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/nanumbarungothic"
+
+                    android:textSize="14dp"
+                    android:textColor="#D8D8D8"
+                    android:text="TMI"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:visibility="gone"
+                    android:id="@+id/contents_frag_top_navi_tmi_underline"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#D8D8D8"
+                    android:layout_width="46dp"
+                    android:layout_height="3dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:textSize="14dp"
+                    android:textColor="#D8D8D8"
+                    android:text="스토리"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:visibility="gone"
+                    android:id="@+id/contents_frag_top_navi_story_underline"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#D8D8D8"
+                    android:layout_width="46dp"
+                    android:layout_height="3dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/contents_frag_fragment_fl"
+            android:layout_below="@+id/contents_frag_top_navi_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/contents_frag_is_display_search_rl"
+        android:layout_below="@+id/contents_frag_top_box_rl"
+        android:visibility="gone"
+        android:background="#77000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="1dp">
+    </RelativeLayout>
 
 </RelativeLayout>
