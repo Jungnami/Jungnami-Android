@@ -29,14 +29,16 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     lateinit var data : Uri
     private var image : MultipartBody.Part? = null
 
+
+
+
     override fun onClick(v: View?) {
         when(v) {
             community_act_writepage_back_btn -> {
                 finish()
             }
             community_act_writepage_complete_btn -> {
-                community_act_writepage_complete_btn.isSelected = false// 글, 사진, gif 중 어떤 것 하나라도 올라온다면 (조건문 처리)
-                finish()
+
             }
         }
     }
@@ -86,7 +88,6 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

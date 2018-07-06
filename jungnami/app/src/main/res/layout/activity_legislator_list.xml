@@ -9,10 +9,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        android:background="@drawable/border"
+        >
         
         <ImageView
-            android:id="@+id/legislator_act_back_btn"
+            android:id="@+id/legislator_list_act_back_btn"
             android:src="@drawable/back_arrow"
             android:layout_width="16dp"
             android:layout_height="16dp"
@@ -20,7 +22,7 @@
             android:layout_marginLeft="16dp"/>
         
         <TextView
-            android:id="@+id/legislator_act_category"
+            android:id="@+id/legislator_list_act_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -49,13 +51,13 @@
         android:elevation="1dp">
 
         <RelativeLayout
-            android:id="@+id/legislator_act_likeable_tab_btn"
+            android:id="@+id/legislator_list_act_likeable_tab_btn"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/legislator_act_likeable_title_tv"
+                android:id="@+id/legislator_list_act_likeable_title_tv"
                 android:layout_centerInParent="true"
                 android:text="호감"
                 android:textSize="16dp"
@@ -65,7 +67,7 @@
                 android:layout_height="wrap_content" />
 
             <View
-                android:id="@+id/legislator_act_likable_underbar_line"
+                android:id="@+id/legislator_list_act_likable_underbar_line"
                 android:background="#36C5F1"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
@@ -75,13 +77,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/legislator_act_unlikeable_tab_btn"
+            android:id="@+id/legislator_list_act_unlikeable_tab_btn"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/legislator_act_unlikeable_title_tv"
+                android:id="@+id/legislator_list_act_unlikeable_title_tv"
                 android:layout_centerInParent="true"
                 android:text="비호감"
                 android:textSize="16dp"
@@ -91,7 +93,7 @@
                 android:layout_height="wrap_content" />
 
             <View
-                android:id="@+id/legislator_act_unlikeable_underbar_line"
+                android:id="@+id/legislator_list_act_unlikeable_underbar_line"
                 android:visibility="invisible"
                 android:background="#36C5F1"
                 android:layout_centerHorizontal="true"
@@ -112,23 +114,31 @@
 
     <RelativeLayout
         android:visibility="gone"
-        android:id="@+id/legislator_act_legislator_search_rl"
+        android:id="@+id/legislator_list_act_is_display_search_box_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:background="#77000000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
         <LinearLayout
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:id="@+id/legislator_list_act_search_bar"
+                android:id="@+id/legislator_list_act_is_display_act_search_bar"
                 android:background="@drawable/community_frag_bar_search_box_shape"
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1">
 
                 <ImageView
@@ -142,26 +152,27 @@
                     android:layout_marginRight="8dp"/>
 
                 <EditText
-                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:id="@+id/legislator_list_act_search_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/nanumbarungothiclight_normal"
                     android:background="#00000000"
                     android:textSize="12dp"
                     android:hint="'국회의원의 이름을 검색해보세요.'"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/legislator_list_act_search_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"/>
+                    android:gravity="left|center"
+                    android:layout_toRightOf="@+id/legislator_list_act_search_iv" />
 
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/legislator_list_act_search_cancel_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/legislator_list_act_search_cancle_btn"
-                android:text="취소"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp"
-                android:fontFamily="@font/nanumbarungothiclight_normal" />
+                android:fontFamily="@font/nanumbarungothiclight_normal"
+                android:text="취소" />
 
         </LinearLayout>
 
