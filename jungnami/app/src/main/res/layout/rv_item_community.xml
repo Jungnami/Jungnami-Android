@@ -1,218 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    >
+    android:background="#ffffff">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="#F3F3F3"/>
 
-    <!--아이템 당 여백 조금 씩 있는 거 처리 어떻게 하는지 -->
     <RelativeLayout
+        android:id="@+id/contents_comment_rv_item_top_bar_rl"
         android:layout_width="match_parent"
-        android:layout_height="72dp">
+        android:layout_height="63dp"
+        >
 
-
-
-        <!--&lt;!&ndash;서클이미지뷰 사용 이렇게 하는건 지 컨펌받기&ndash;&gt;-->
-        <!--<android.support.v4.widget.CircleImageView-->
-        <!--android:id="@+id/rv_item_community_profile_user_img_iv"-->
-        <!--android:layout_width="38dp"-->
-        <!--android:layout_height="38dp"-->
-        <!--android:layout_marginLeft="14dp"-->
-        <!--android:layout_marginTop="13dp"-->
-        <!--android:src="@drawable/community_profile_circle" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="dddddddddd"-->
-        <!--android:layout_toRightOf="@id/rv_item_community_profile_user_img_iv"-->
-        <!--/>-->
-
-        <android.support.v4.widget.CircleImageView
-            android:id="@+id/rv_item_community_profile_user_img_iv_btn"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/contents_comment_rv_item_profile_image_iv"
             android:layout_width="38dp"
             android:layout_height="38dp"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="14dp"
-            android:layout_marginTop="13dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/community_profile_circle"
-            android:scaleType="fitXY"
-            />
+            android:scaleType="fitXY"/>
 
         <TextView
-
-            android:id="@+id/rv_item_community_profile_user_name_tv"
+            android:id="@+id/contents_comment_rv_item_profile_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="userName"
-            android:layout_toRightOf="@+id/rv_item_community_profile_user_img_iv_btn"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:textStyle="bold"
-            />
+            android:text="동굴문어"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:layout_toRightOf="@id/contents_comment_rv_item_profile_image_iv"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"/>
 
         <TextView
-            android:id="@+id/rv_item_community_profile_regist_time_tv"
+            android:id="@+id/contents_comment_rv_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rv_item_community_profile_user_name_tv"
-            android:layout_toRightOf="@+id/rv_item_community_profile_user_img_iv_btn"
+            android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:text="1시간 전"
+            android:textSize="11sp"
+            android:layout_below="@id/contents_comment_rv_item_profile_name_tv"
+            android:layout_toRightOf="@id/contents_comment_rv_item_profile_image_iv"
             android:layout_marginLeft="8dp"
-            android:text="registTime" />
-
+            android:layout_marginTop="1dp"/>
 
     </RelativeLayout>
 
-    <ImageView
+    <View
+        android:layout_below="@+id/contents_comment_rv_item_top_bar_rl"
         android:layout_width="match_parent"
+        android:layout_marginLeft="14.5dp"
+        android:layout_marginRight="14.5dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="0.25dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
-        android:src="#ACACAC"
-        android:layout_gravity="center"/>
+        android:background="#EBEBEB"
+        ></View>
 
     <TextView
-        android:id="@+id/rv_item_community_post_content_tv"
-        android:layout_width="355dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/contents_comment_rv_item_contents_tv"
         android:layout_marginTop="12.5dp"
-        android:layout_marginLeft="16dp"
-        android:text=" 정치적인 내용은 정치적인 내용이 주류이고 정치적이며 정치적이다. 정치적인 사람은 정치적인 부분에서 굉장히 정치적이며 정치적인 정치를 위한 정치로 발전시킬 수 있는 정치인이다.정치적인 피드를 작성함에 있어 가장 정치적인 것은 이 정치 어플리케이션을 사용하는 것이다. 정치중의 정치는 단연 조정치이며 조정치 노래는 정말 좋다. "
+        android:layout_below="@+id/contents_comment_rv_item_top_bar_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:fontFamily="@font/nanumbarungothic_normal"
+        android:textSize="13sp"
+        android:text="대한민국 정치의 가장 큰 문제점을 찾았습니다. 다들 권력을 쥐고 나서야 강압적 또는 선심쓰듯 대국민 통합을 외치는 겁니다."
         />
 
+    <!--이메일 없으면 gone 처리 필요-->
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/writepage_gif"/>
+        android:id="@+id/contents_comment_rv_item_contents_iv"
+        android:visibility="visible"
+        android:src="@drawable/community_frag_bar_search_box_shape"
+        android:layout_below="@id/contents_comment_rv_item_contents_tv"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        />
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/contents_comment_rv_item_rl"
         android:layout_width="match_parent"
-        android:layout_height="19dp"
-        android:layout_marginLeft="16.93dp"
-        android:layout_marginRight="16.93dp"
-        android:layout_marginTop="13dp"
-        android:orientation="horizontal"
-        >
-
-        <!--이런 하트 버튼도 id를 btn으로 만들어야하는지.-->
+        android:layout_height="18dp"
+        android:layout_below="@+id/contents_comment_rv_item_contents_iv"
+        android:layout_marginTop="13dp">
 
         <ImageView
+            android:id="@+id/contents_comment_rv_item_small_heart"
             android:layout_width="14.72dp"
             android:layout_height="14.05dp"
             android:src="@drawable/community_small_heart"
-            android:scaleType="fitXY"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="2dp"
+            android:layout_marginLeft="16.93dp"
+            android:layout_centerVertical="true"
+
             />
 
-
         <TextView
-            android:id="@+id/rv_item_community_likes_num_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="14.05dp"
+            android:id="@+id/contents_comment_rv_item_heart_num_btn"
+            android:layout_toRightOf="@+id/contents_comment_rv_item_small_heart"
+            android:text="5,258명"
+            android:textStyle="bold"
             android:textSize="12sp"
-            android:layout_marginLeft="5.35dp"
-            android:layout_gravity="center_vertical"
-            android:text="5,238명"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:layout_marginLeft="5.38dp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            />
 
         <TextView
+            android:id="@+id/contents_comment_rv_item_heart_num_des_tv"
+            android:layout_toRightOf="@+id/contents_comment_rv_item_heart_num_btn"
+            android:text="이 좋아합니다"
+            android:textSize="12sp"
+            android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:text="이 좋아합니다."
-            android:layout_gravity="center_vertical"
-            android:textSize="12sp"/>
+            />
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="15.66dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/community_small_chat"/>
+            android:id="@+id/contents_comment_rv_item_chat_iv"
+            android:layout_toRightOf="@+id/contents_comment_rv_item_heart_num_des_tv"
+            android:src="@drawable/community_small_chat"
+            android:layout_centerVertical="true"
+            android:layout_width="13.38dp"
+            android:layout_height="12.66dp"
+            android:layout_marginLeft="15.66dp"/>
 
         <TextView
-            android:layout_gravity="center"
-            android:id="@+id/rv_item_community_comment_num_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="14.05dp"
-
-            android:layout_marginLeft="6dp"
-            android:textSize="12sp"
+            android:id="@+id/contents_comment_rv_item_chat_num_des_btn"
+            android:layout_toRightOf="@+id/contents_comment_rv_item_chat_iv"
             android:text="523개"
+            android:textSize="12sp"
             android:textStyle="bold"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
+        android:layout_below="@+id/contents_comment_rv_item_rl"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="11dp"
-        >
-        <ImageView
+        android:layout_marginTop="14dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:background="#707070"
             android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
-            android:layout_height="0.25dp"
-            android:src="#707070"
+            ></View>
 
+        <ImageView
+            android:id="@+id/contents_comment_tv_item_bottom_bar_heart_btn"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/community_rv_item_heart_btn"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
+            />
+
+        <ImageView
+            android:id="@+id/contents_comment_tv_item_bottom_bar_chat_btn"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/contents_comment_tv_item_bottom_bar_heart_btn"
+            android:src="@drawable/community_rv_item_chat_btn"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
             />
 
 
         <ImageView
-            android:id="@+id/rv_item_community_add_like_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="13dp"
-            android:clickable="true"
-            android:src="@drawable/community_heart_gray" />
-
-        <ImageView
-            android:id="@+id/rv_item_community_write_comment_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
-            android:layout_toRightOf="@+id/rv_item_community_add_like_btn"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="13dp"
-            android:clickable="true"
-            android:src="@drawable/community_chat_gray" />
-
-        <ImageView
-            android:id="@+id/rv_item_community_share_post_btn_"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="13dp"
-            android:layout_toRightOf="@+id/rv_item_community_write_comment_btn"
-            android:clickable="true"
-            android:src="@drawable/community_share_gray" />
-
-        <ImageView
-            android:id="@+id/rv_item_community_scrap_post_btn_"
-            android:layout_width="27dp"
-            android:layout_height="23dp"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:layout_marginTop="14dp"
+            android:id="@+id/contents_comment_tv_item_bottom_bar_scrap_btn"
             android:layout_marginRight="14dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:src="@drawable/community_scrap"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
             />
-
 
         <ImageView
-            android:layout_alignParentBottom="true"
+            android:id="@+id/contents_comment_tv_item_bottom_bar_share_btn"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/contents_comment_tv_item_bottom_bar_chat_btn"
+            android:src="@drawable/community_rv_item_share_btn"
+            android:layout_width="24dp"
+            android:layout_height="23dp"
+            />
+
+
+
+
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
-            android:src="#707070"
-            />
+            android:background="#707070"
+            android:layout_alignParentBottom="true"
+            ></View>
+
+
+
     </RelativeLayout>
-</LinearLayout>
+
+
+
+
+</RelativeLayout>
