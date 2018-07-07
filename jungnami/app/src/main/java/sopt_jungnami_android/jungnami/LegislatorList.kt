@@ -11,7 +11,7 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            legislator_act_back_btn -> {
+            legislator_list_act_back_btn -> {
                 finish()
             }
         }
