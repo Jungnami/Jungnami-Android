@@ -69,10 +69,11 @@
                 android:id="@+id/likeable_tab_rv_item_vote_count_bar"
                 android:background="@drawable/in_likeable_tab_rv_item_vote_count_bar_shape"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="1dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_width="200dp"
-                android:layout_height="20dp"/>
+                android:layout_height="15dp"/>
 
         </LinearLayout>
 

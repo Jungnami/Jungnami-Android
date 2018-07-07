@@ -83,6 +83,10 @@
                         android:layout_gravity="left" />
                 </LinearLayout>
             </RelativeLayout>
+            <View
+                android:background="#FFFFFF"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
             <RelativeLayout
                 android:background="#90CAF9"
                 android:layout_weight="1"

@@ -1,6 +1,7 @@
 package sopt_jungnami_android.jungnami.coinpage
 
 import android.graphics.Color
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,6 +15,7 @@ class CoinPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin_page)
+        setStatusBarColor()
         addFragment()
 
         coinpage_act_coin_charge_tab_btn.setOnClickListener {
@@ -55,5 +57,15 @@ class CoinPageActivity : AppCompatActivity() {
         val transaction = fm.beginTransaction()
         transaction.replace(R.id.coinpage_act_fragment_frame_fl, fragment)
         transaction.commit()
+    }
+
+    private fun setStatusBarColor(){
+        val view : View? = window.decorView
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (view != null){
+                view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.statusBarColor = Color.parseColor("#FFFFFF")
+            }
+        }
     }
 }
