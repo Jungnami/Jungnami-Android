@@ -221,7 +221,8 @@
             android:layout_height="0.25dp"
             android:background="#858585"/>
         <RelativeLayout
-            android:background="#FFFFFF"
+            android:id="@+id/mypage_act_mycoin_check_btn"
+            android:background="?android:selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="38dp">
             <LinearLayout
@@ -254,6 +255,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="16dp"/>
             <TextView
+                android:id="@+id/mypage_act_mycoin_count_tv"
                 android:layout_marginRight="9dp"
                 android:layout_toLeftOf="@id/mypage_act_mycoin_right_page_iv"
                 android:layout_centerVertical="true"

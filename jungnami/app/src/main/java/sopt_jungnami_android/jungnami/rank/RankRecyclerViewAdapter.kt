@@ -38,7 +38,8 @@ class RankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankIt
         //requestOptions.placeholder()
         //requestOptions.error()
 //        Glide.with(ctx).setDefaultRequestOptions(requestOptions).load(dataList[position].picture_url).into(holder.picture)
-        holder.vote_bar.layoutParams.width = 250
+        holder.picture.setImageResource(R.drawable.legislator_noneprofile_woman_image)
+        holder.vote_bar.layoutParams.width = 400
         holder.name.text = dataList[position].name
         holder.party_name.text = " _${dataList[position].party_name}"
         holder.vote_count.text = dataList[position].vote_count.toString()
