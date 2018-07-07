@@ -24,8 +24,13 @@ class LikeableTab : Fragment() {
         super.onActivityCreated(savedInstanceState)
         getRankItemDataAtServer()
         setRecyclerViewAdapter()
-
         set1stVS2stRankView()
+
+
+    }
+
+    private fun setViewClickListener(){
+
     }
 
     private fun setRecyclerViewAdapter() {

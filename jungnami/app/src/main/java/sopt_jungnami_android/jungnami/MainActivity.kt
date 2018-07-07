@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
 import sopt_jungnami_android.jungnami.legislator_list.LegislatorListFragment
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setBottomNavigationClickListener(){
+    private fun setBottomNavigationClickListener() {
         main_act_rank_btn.setOnClickListener {
             it.isSelected = true
             replaceFragment(RankFragment())
@@ -43,7 +41,8 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(ContentsFragment())
         }
     }
-    fun addFragment(fragment: Fragment) : Unit{
+
+    fun addFragment(fragment: Fragment): Unit {
         val fm = supportFragmentManager
         val transaction = fm.beginTransaction()
         transaction.add(R.id.main_act_fragment_fl, fragment)
@@ -57,10 +56,10 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun setStatusBarColor(){
-        val view : View? = window.decorView
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (view != null){
+    private fun setStatusBarColor() {
+        val view: View? = window.decorView
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (view != null) {
                 view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 window.statusBarColor = Color.parseColor("#FFFFFF")
             }
