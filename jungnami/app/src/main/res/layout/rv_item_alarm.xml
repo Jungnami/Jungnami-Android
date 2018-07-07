@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/rv_alarm_item_user_img_iv"
+            android:id="@+id/rv_alarm_item_user_img_btn"
             android:src="@drawable/alarm_none_profile_man_image"
             android:layout_width="56.5dp"
             android:layout_height="56.5dp"
@@ -95,7 +95,7 @@
             
             <ImageView
                 android:id="@+id/rv_alarm_item_follow_btn"
-                android:src="@drawable/alarm_follow_blue"
+                android:src="@drawable/alarm_following_gray"
                 android:layout_width="66dp"
                 android:layout_height="25dp"
                 />
