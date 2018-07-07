@@ -29,37 +29,53 @@
         android:layout_toRightOf="@id/likeable_tab_rv_item_ranking_number_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/likeable_tab_rv_item_vote_count_bar"
-            android:background="@drawable/in_likeable_tab_rv_item_vote_count_bar_shape"
-            android:layout_marginLeft="24dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_width="200dp"
-            android:layout_height="20dp">
-            <TextView
-                android:id="@+id/likeable_tab_rv_item_name_party_tv"
-                android:text="홍길동 _숭구리당당"
-                android:textColor="#FFFFFF"
-                android:textSize="12dp"
-                android:layout_marginLeft="28dp"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+            <LinearLayout
+                android:layout_marginLeft="55dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/likeable_tab_rv_item_name_tv"
+                    android:text="홍길동"
+                    android:textColor="#6B6B6B"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/likeable_tab_rv_item_party_tv"
+                    android:text=" _숭구리당당"
+                    android:textColor="#6B6B6B"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/likeable_tab_rv_item_vote_count_tv"
+                    android:text="27만표"
+                    android:textColor="#6B6B6B"
+                    android:textSize="10dp"
+                    android:layout_marginLeft="6dp"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/likeable_tab_rv_item_vote_count_bar"
+                android:background="@drawable/in_likeable_tab_rv_item_vote_count_bar_shape"
+                android:layout_marginLeft="24dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:fontFamily="@font/nanumbarungothiclight"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/likeable_tab_rv_item_vote_count_tv"
-                android:text="125000표"
-                android:textColor="#FFFFFF"
-                android:textSize="10dp"
-                android:layout_marginRight="4dp"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/nanumbarungothiclight"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
+                android:layout_width="200dp"
+                android:layout_height="20dp"/>
+
+        </LinearLayout>
+
         <ImageView
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"

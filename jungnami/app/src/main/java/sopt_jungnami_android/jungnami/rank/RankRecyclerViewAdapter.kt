@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
@@ -40,7 +39,8 @@ class RankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankIt
         //requestOptions.error()
 //        Glide.with(ctx).setDefaultRequestOptions(requestOptions).load(dataList[position].picture_url).into(holder.picture)
         holder.vote_bar.layoutParams.width = 250
-        holder.name_and_party.text = "${dataList[position].name} _${dataList[position].party_name}"
+        holder.name.text = dataList[position].name
+        holder.party_name.text = " _${dataList[position].party_name}"
         holder.vote_count.text = dataList[position].vote_count.toString()
 
 //        when (dataList[position].is_voted){
@@ -55,7 +55,8 @@ class RankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankIt
         val rank_number : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_ranking_number_tv) as TextView
         val picture : ImageView = itemView.findViewById(R.id.likeable_tab_rv_item_picture_iv) as ImageView
         val vote_bar : RelativeLayout = itemView.findViewById(R.id.likeable_tab_rv_item_vote_count_bar) as RelativeLayout
-        val name_and_party : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_name_party_tv) as TextView
+        val name : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_name_tv) as TextView
+        val party_name : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_party_tv) as  TextView
         val vote_count : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_vote_count_tv) as TextView
         val is_voted_image : ImageView = itemView.findViewById(R.id.likeable_tab_rv_item_is_voted_btn) as ImageView
     }
