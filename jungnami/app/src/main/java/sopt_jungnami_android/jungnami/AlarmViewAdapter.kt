@@ -1,6 +1,5 @@
 package sopt_jungnami_android.jungnami
 
-import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -27,10 +26,22 @@ class AlarmViewAdapter (private var alarmItems : ArrayList<AlarmData>) : Recycle
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
         holder.alarmProfileimg.setImageResource(alarmItems[position].profileimg)
         holder.alarmMenuimg.setImageResource(alarmItems[position].menuimg)
-        if (alarmItems[position].menuimg == R.drawable.alarm_follow) {
-            when(alarmItems[position].followimg) {
-                //0 -> null
-                1 -> holder.alarmFollowimg.setImageResource(R.drawable.alarm_following_gray)
+        when(alarmItems[position].menuimg) {
+            R.drawable.alarm_community -> {
+                holder.alarmFollowimg.visibility = View.INVISIBLE
+            }
+            R.drawable.alarm_contents -> {
+                holder.alarmFollowimg.visibility = View.INVISIBLE
+            }
+            R.drawable.alarm_follow -> {
+                when(alarmItems[position].followimg) {
+                    "팔로우" -> {
+                        holder.alarmFollowimg.setImageResource(R.drawable.alarm_follow_blue)
+                    }
+                    "팔로잉" -> {
+                        holder.alarmFollowimg.setImageResource(R.drawable.alarm_following_gray)
+                    }
+                }
             }
         }
         holder.alarmName.text = alarmItems[position].name
