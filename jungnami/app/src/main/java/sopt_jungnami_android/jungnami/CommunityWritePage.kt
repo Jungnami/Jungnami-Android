@@ -9,13 +9,19 @@ import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_community_write_page.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.toast
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -29,16 +35,61 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     lateinit var data : Uri
     private var image : MultipartBody.Part? = null
 
+    var isWritePageCompleteSelected : Boolean = false
+
     override fun onClick(v: View?) {
         when(v) {
             community_act_writepage_back_btn -> {
                 finish()
             }
-            community_act_writepage_complete_btn -> {
-                community_act_writepage_complete_btn.isSelected = false// 글, 사진, gif 중 어떤 것 하나라도 올라온다면 (조건문 처리)
-                finish()
-            }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_community_write_page)
+        setStatusBarColor()
+
+        val editTextContent = findViewById<EditText>(R.id.community_act_writepage_posting_et)
+
+        editTextContent.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (editTextContent.text.toString().isNotBlank()) {
+                    isWritePageCompleteSelected = true
+                    checkUploadedContent()
+                    if (editTextContent.text.toString().length >= 150) {
+                        Toast.makeText(applicationContext, "글자 수가 150자를 초과하였습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else {
+                    isWritePageCompleteSelected = false
+                    checkUploadedContent()
+                }
+            }
+        })
+
+        community_act_writepage_complete_btn.setOnClickListener {
+            // 통신
+        }
+        community_act_writepage_upload_pic_btn.setOnClickListener {
+            changeImage()
+        }
+        community_act_writepage_upload_gif_btn.setOnClickListener {
+            //val imageViewGIF = findViewById<ImageView>(R.id.community_act_writepage_upload_gif_iv)
+            //val gifImage = GlideDrawableImageViewTarget(imageViewGIF)
+            //Glide.with(this).load(R.drawable.community_gif_box).into(gifImage)
+        }
+    }
+
+    private fun checkUploadedContent(){
+        community_act_writepage_complete_btn.isSelected = isWritePageCompleteSelected
     }
 
     fun changeImage() {
@@ -80,26 +131,16 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                     //body = MultipartBody.Part.createFormData("image", photo.getName(), profile_pic);
 
                     Glide.with(this).load(data.data).into(community_act_writepage_upload_pic_iv)
+                    isWritePageCompleteSelected = true
+                    checkUploadedContent()
 
                 } catch (e: Exception) {
+                    toast("잘못된 파일 형식입니다!")
+                    isWritePageCompleteSelected = false
+                    checkUploadedContent()
                     e.printStackTrace()
                 }
             }
-        }
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_community_write_page)
-        setStatusBarColor()
-        community_act_writepage_upload_pic_btn.setOnClickListener {
-            changeImage()
-        }
-        community_act_writepage_upload_gif_btn.setOnClickListener {
-            //val gif = findViewById(R.id.community_act_writepage_upload_gif_iv) as ImageView
-            //val gifImage = GlideDrawableImageViewTarget(gif)
-            //Glide.with(this).load(R.drawable.community_gif_box).into(gifImage)
         }
     }
 

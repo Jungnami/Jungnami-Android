@@ -18,10 +18,21 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var isFavorSelected : Boolean = true
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_list)
         setStatusBarColor()
+
+        legislator_list_act_likeable_tab_btn.setOnClickListener {
+            isFavorSelected = true
+        }
+        legislator_list_act_unlikeable_tab_btn.setOnClickListener {
+            isFavorSelected = false
+        }
     }
+
+
 
     private fun setStatusBarColor(){
         val view : View? = window.decorView
