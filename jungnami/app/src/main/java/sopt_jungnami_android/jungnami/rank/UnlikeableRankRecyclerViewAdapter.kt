@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
-class RankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankItemData>) : RecyclerView.Adapter<RankRecyclerViewAdapter.Holder>() {
+class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankItemData>) : RecyclerView.Adapter<UnlikeableRankRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_likeable_tab_rank, parent, false)
         return Holder(view)
@@ -42,7 +42,8 @@ class RankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankIt
         holder.vote_bar.layoutParams.width = 400
         holder.name.text = dataList[position].name
         holder.party_name.text = " _${dataList[position].party_name}"
-        holder.vote_count.text = dataList[position].vote_count.toString()
+        val vote_count : String = String.format("%,d", dataList[position].vote_count)
+        holder.vote_count.text = "${vote_count}표"
 
 //        when (dataList[position].is_voted){
 //            0 -> holder.is_voted_image.setImageResource(R.drawable.legislatorpage_good_btn_gray)

@@ -83,6 +83,10 @@
                         android:layout_gravity="left" />
                 </LinearLayout>
             </RelativeLayout>
+            <View
+                android:background="#FFFFFF"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
             <RelativeLayout
                 android:background="#E57373"
                 android:layout_weight="1"
@@ -101,7 +105,7 @@
                     android:layout_width="104dp"
                     android:layout_height="16dp">
                     <TextView
-                        android:id="@+id/likeable_tab_2st_vote_count_tv"
+                        android:id="@+id/unlikeable_tab_2st_vote_count_tv"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="8dp"
@@ -156,5 +160,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/unlikeable_tab_rank_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
