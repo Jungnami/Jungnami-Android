@@ -232,9 +232,9 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true">
                 <ImageView
-                    android:src="#000000"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"/>
+                    android:src="@drawable/mypage_coin_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_gravity="center"
                     android:fontFamily="@font/nanumbarungothic"
@@ -280,9 +280,9 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true">
                 <ImageView
-                    android:src="#000000"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"/>
+                    android:src="@drawable/mypage_good_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_gravity="center"
                     android:fontFamily="@font/nanumbarungothic"
