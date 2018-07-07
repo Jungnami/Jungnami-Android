@@ -23,8 +23,11 @@ class MainActivity : AppCompatActivity() {
         setBottomNavigationClickListener()
         addFragment(RankFragment())
 
+        //FirebaseConnection().onTokenRefresh()
+
 
     }
+
     private fun setBottomNavigationClickListener(){
         main_act_rank_btn.setOnClickListener {
             it.isSelected = true
