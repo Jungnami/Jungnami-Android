@@ -27,6 +27,12 @@ class Alarm : AppCompatActivity(), View.OnClickListener {
         setStatusBarColor()
 
         alarmItems = ArrayList()
+        alarmItems.add(AlarmData(R.drawable.alarm_none_profile_man_image, R.drawable.alarm_community, "남윤환", "님이 회원님의 게시글을 좋아합니다.", "2시간", "팔로우"))
+        alarmItems.add(AlarmData(R.drawable.alarm_none_profile_woman_image, R.drawable.alarm_contents, "탁형민", "님이 댓글에 좋아요를 누르셨습니다.", "2시간", "팔로잉"))
+        alarmItems.add(AlarmData(R.drawable.alarm_none_profile_woman_image, R.drawable.alarm_follow, "임수영", "님이 팔로우 했습니다.", "1시간", "팔로잉"))
+
+        alarmAdapter = AlarmViewAdapter(alarmItems)
+        // alarmAdapter.setOnItemClickListener(this)
     }
 
     private fun setStatusBarColor(){

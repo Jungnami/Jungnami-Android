@@ -6,5 +6,5 @@ class AlarmData (
         var name : String,
         var state : String,
         var date : String,
-        var followimg : Int
+        var followimg : String
 )
