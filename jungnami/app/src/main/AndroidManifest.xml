@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +26,8 @@
         <activity android:name=".Alarm" />
         <!-- <activity android:name=".LegislatorList"></activity> -->
         <activity android:name=".userpage.UserPageActivity" />
-        <activity android:name=".LegislatorPageActivity"></activity>
+        <activity android:name=".LegislatorPageActivity" />
+        <activity android:name=".coinpage.CoinPageActivity"></activity>
     </application>
 
 </manifest>

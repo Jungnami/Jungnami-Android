@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".coinpage.CoinPageActivity"
+    android:background="#FFFFFF">
+
+    <!--made by YunHwan-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+            <ImageView
+                android:id="@+id/coinpage_act_cancel_btn"
+                android:src="@drawable/coinpage_x_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="?android:selectableItemBackground"/>
+            <TextView
+                android:textSize="16dp"
+                android:fontFamily="@font/nanumbarungothic"
+                android:textColor="#2B2B2B"
+                android:text="충전"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:elevation="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#FFFFFF">
+            <RelativeLayout
+                android:id="@+id/coinpage_act_coin_charge_tab_btn"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:selectableItemBackground">
+                <TextView
+                    android:id="@+id/coinpage_act_coin_charge_title_tv"
+                    android:layout_centerInParent="true"
+                    android:text="코인 충전"
+                    android:textSize="16dp"
+                    android:textColor="#6B6B6B"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:id="@+id/coinpage_act_coin_charge_underbar_line"
+                    android:background="#36C5F1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="99dp"
+                    android:layout_height="3dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/coinpage_act_vote_charge_tab_btn"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:selectableItemBackground">
+                <TextView
+                    android:id="@+id/coinpage_act_vote_charge_title_tv"
+                    android:layout_centerInParent="true"
+                    android:text="투표권 충전"
+                    android:textSize="16dp"
+                    android:textColor="#D8D8D8"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:id="@+id/coinpage_act_vote_charge_underbar_line"
+                    android:visibility="invisible"
+                    android:background="#36C5F1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="99dp"
+                    android:layout_height="3dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <FrameLayout
+            android:id="@+id/coinpage_act_fragment_frame_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>
