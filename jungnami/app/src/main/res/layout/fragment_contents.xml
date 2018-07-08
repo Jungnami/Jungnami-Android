@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="56dp">
         <RelativeLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true"-->
             <ImageView
                 android:id="@+id/contents_frag_top_bar_my_page_btn"
                 android:src="@drawable/my_page"
@@ -86,10 +86,12 @@
             android:layout_height="40dp"
             android:paddingHorizontal="16dp">
             <RelativeLayout
+                android:id="@+id/contents_frag_recommend_btn"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/contents_frag_recommend_tv"
                     android:fontFamily="@font/nanumbarungothic"
                     android:textSize="14dp"
                     android:textColor="#36C5F1"
@@ -107,12 +109,13 @@
                     android:layout_height="3dp"/>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/contents_frag_tmi_btn"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
                     android:fontFamily="@font/nanumbarungothic"
-
+                    android:id="@+id/contents_frag_tmi_tv"
                     android:textSize="14dp"
                     android:textColor="#D8D8D8"
                     android:text="TMI"
@@ -129,10 +132,12 @@
                     android:layout_height="3dp"/>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/contents_frag_story_btn"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/contents_frag_story_tv"
                     android:fontFamily="@font/nanumbarungothic"
                     android:textSize="14dp"
                     android:textColor="#D8D8D8"

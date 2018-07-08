@@ -3,181 +3,194 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".community.CommunityFragment"
     android:background="#FFFFFF"
     android:focusableInTouchMode="true">
+
     <RelativeLayout
         android:id="@+id/community_frag_top_box_rl"
-        android:layout_alignParentTop="true"
-        android:background="#FFFFFF"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        android:background="#FFFFFF">
         <RelativeLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/community_frag_top_bar_my_page_btn"
-                android:src="@drawable/my_page"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginBottom="18dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="18dp"/>
+                android:layout_marginRight="18dp"
+                android:layout_marginTop="14dp"
+                android:src="@drawable/my_page"
+                android:background="?android:selectableItemBackground"/>
+
             <RelativeLayout
-                android:background="@drawable/community_frag_bar_search_box_shape"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/community_frag_top_bar_bell_btn"
                 android:layout_toRightOf="@+id/community_frag_top_bar_my_page_btn"
-                android:layout_toLeftOf="@id/community_frag_top_bar_bell_btn">
+                android:background="@drawable/community_frag_bar_search_box_shape">
+
                 <ImageView
                     android:id="@+id/community_frag_top_bar_search_box_search_iv"
-                    android:src="@drawable/community_search"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_marginVertical="8dp"
-                    android:layout_marginRight="8dp"/>
+                    android:src="@drawable/community_search" />
+
                 <EditText
-                    android:fontFamily="@font/nanumbarungothiclight"
-                    android:background="#00000000"
-                    android:textSize="12dp"
-                    android:hint="'최형윤 바로'를 검색해보세요."
-                    android:gravity="left|center"
-                    android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"
+                    android:background="#00000000"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:gravity="left|center"
+                    android:hint="'최형윤 바로'를 검색해보세요."
+                    android:textSize="12dp" />
             </RelativeLayout>
 
             <ImageView
                 android:id="@+id/community_frag_top_bar_bell_btn"
-                android:src="@drawable/community_bell"
                 android:layout_width="18dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="14dp"
                 android:layout_marginBottom="18dp"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="16dp"
-                />
+                android:layout_marginTop="14dp"
+                android:src="@drawable/community_bell"
+                android:background="?android:selectableItemBackground"/>
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.75dp"
             android:layout_alignParentBottom="true"
-            android:background="#6B6B6B"/>
+            android:background="#6B6B6B" />
     </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_below="@+id/community_frag_top_box_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/community_frag_top_box_rl"
         android:fillViewport="true">
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_below="@id/community_frag_top_box_rl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/community_frag_top_box_rl"
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/community_frag_no_login_status_rl"
-                android:background="#F8F8F8"
                 android:layout_width="match_parent"
-                android:layout_height="68dp">
+                android:layout_height="68dp"
+                android:background="#F8F8F8">
+
                 <ImageView
                     android:id="@+id/community_frag_character_iv"
-                    android:src="@drawable/community_character"
                     android:layout_width="49dp"
                     android:layout_height="55dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="16dp"/>
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/community_character" />
+
                 <RelativeLayout
-                    android:background="@drawable/community_frag_login_message_box_shape"
-                    android:layout_toRightOf="@+id/community_frag_character_iv"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_marginRight="48dp"
-                    android:layout_marginTop="13dp">
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/community_frag_character_iv"
+                    android:background="@drawable/community_frag_login_message_box_shape">
+
                     <LinearLayout
-                        android:layout_centerInParent="true"
-                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:textSize="13dp"
                             android:text="글 작성은 "
                             android:textColor="#757575"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="13dp" />
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:textSize="13dp"
                             android:text="로그인 후 "
                             android:textColor="#36C5F1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="13dp" />
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:textSize="13dp"
                             android:text="이용해 주세요."
                             android:textColor="#757575"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="13dp" />
                     </LinearLayout>
                 </RelativeLayout>
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/community_frag_what_do_u_think_box"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="#FFFFFF">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/community_frag_my_picture_iv"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/my_page"
                     android:layout_width="38dp"
                     android:layout_height="38dp"
-                    android:layout_marginHorizontal="16dp"/>
-                <TextView
-                    android:id="@+id/community_frag_write_feed_btn"
-                    android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/community_frag_my_picture_iv"
-                    android:textColor="#CECECE"
-                    android:text="무슨 생각을 하고 계신가요?"
+                    android:layout_marginHorizontal="16dp"
+                    android:src="@drawable/my_page" />
+
+                <TextView
+                    android:background="?android:selectableItemBackground"
+                    android:id="@+id/community_frag_write_feed_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"/>
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/community_frag_my_picture_iv"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:text="무슨 생각을 하고 계신가요?"
+                    android:textColor="#CECECE"
+                    android:textSize="15dp" />
             </RelativeLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/community_frag_peed_list_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:descendantFocusability="blocksDescendants">
-            </android.support.v7.widget.RecyclerView>
+                android:descendantFocusability="blocksDescendants"></android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 
-
     <RelativeLayout
         android:id="@+id/community_frag_is_display_search_rl"
-        android:layout_below="@+id/community_frag_top_box_rl"
-        android:visibility="gone"
-        android:background="#77000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="1dp">
-    </RelativeLayout>
+        android:layout_below="@+id/community_frag_top_box_rl"
+        android:background="#77000000"
+        android:elevation="1dp"
+        android:visibility="gone"></RelativeLayout>
+
 </RelativeLayout>

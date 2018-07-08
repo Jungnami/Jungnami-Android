@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
+import org.jetbrains.anko.support.v4.toast
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
@@ -25,7 +26,6 @@ class LikeableTab : Fragment() {
         getRankItemDataAtServer()
         setRecyclerViewAdapter()
         set1stVS2stRankView()
-
 
     }
 
