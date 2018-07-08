@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/contents_popup_opacity_gray"
     >
 
 
@@ -138,7 +139,7 @@
                 android:layout_width="105dp"
                 android:layout_height="32dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="44dp"
+                android:layout_marginBottom="24dp"
                 android:layout_marginLeft="57dp"/>
 
             <ImageView
