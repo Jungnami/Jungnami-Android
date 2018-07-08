@@ -16,15 +16,22 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp">
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/coinpage_act_cancel_btn"
-                android:src="@drawable/coinpage_x_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="?android:selectableItemBackground"/>
+                android:padding="6dp"
+                android:background="?android:selectableItemBackground">
+                <ImageView
+                    android:src="@drawable/coinpage_x_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
             <TextView
                 android:textSize="16dp"
                 android:fontFamily="@font/nanumbarungothic"

@@ -17,15 +17,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <ImageView
+                <RelativeLayout
                     android:id="@+id/mypage_act_top_bar_back_btn"
-                    android:src="@drawable/mypage_back_arrow_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="6dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:background="?android:selectableItemBackground"/>
+                    android:background="?android:selectableItemBackground">
+                    <ImageView
+                        android:src="@drawable/mypage_back_arrow_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
                 <TextView
                     android:fontFamily="@font/nanumbarungothic"
                     android:textSize="16dp"
@@ -271,7 +277,8 @@
             android:layout_height="0.25dp"
             android:background="#858585"/>
         <RelativeLayout
-            android:background="#FFFFFF"
+            android:id="@+id/mypage_act_myvote_check_btn"
+            android:background="?android:selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="38dp">
             <LinearLayout
