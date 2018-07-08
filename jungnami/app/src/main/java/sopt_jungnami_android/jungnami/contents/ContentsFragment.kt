@@ -3,6 +3,8 @@ package sopt_jungnami_android.jungnami.contents
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
 
@@ -19,6 +22,8 @@ class ContentsFragment : Fragment() {
 //    made by Yunhwan
 
     var current_tab_idx : Int = 0
+    lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
+    lateinit var contentsDataList : ArrayList<ContentItemData>
     
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +34,14 @@ class ContentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
+        //요청
+        requestDataToServer()
+        //메인 컨텐츠
+        setMainContentView()
+        //서브 컨텐츠
+        changeRecyclerViewData()
+
+
     }
     private fun setClickListener(){
         contents_frag_top_bar_my_page_btn.setOnClickListener {
@@ -47,15 +60,34 @@ class ContentsFragment : Fragment() {
         contents_frag_story_btn.setOnClickListener {
             checkSelectedTabView(2)
         }
+        //메인 컨텐츠 클릭 리스터
+        contents_frag_main_content_lr.setOnClickListener {
+            startActivity<ContentsDetail>()
+        }
 
+    }
+
+    private fun setMainContentView(){
+        val mainContent = contentsDataList[0]
+        contentsDataList.removeAt(0)
+
+        contents_frag_main_content_title_tv.text = mainContent.title
+        contents_frag_main_content_info_tv.text = mainContent.category
+//        contents_frag_main_content_image_iv.setImageResource()
     }
 
     private fun requestDataToServer(){
-
+        contentsDataList = ArrayList()
+        contentsDataList.add(ContentItemData("국회의원 아들과 폐지 줍는 부모님???", "image", "스토리"))
+        contentsDataList.add(ContentItemData("문재인 대통령의\n살아온 일대기와 운명", "image", "스토리"))
+        contentsDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
+        contentsDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
     }
 
     private fun changeRecyclerViewData(){
-
+        contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, contentsDataList)
+        contents_frag_sub_contents_recycler_rv.layoutManager = GridLayoutManager(context!!,2)
+        contents_frag_sub_contents_recycler_rv.adapter = contentsRecyclerViewAdapter
     }
 
 

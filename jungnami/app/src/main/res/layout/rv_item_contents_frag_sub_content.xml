@@ -3,31 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="173dp"
     android:layout_marginBottom="8dp">
-    <ImageView
-        android:id="@+id/contents_frag_rv_item_sub_content_image_iv"
+    <RelativeLayout
+        android:id="@+id/contents_frag_rv_item_root_layout_rl"
         android:layout_width="match_parent"
-        android:layout_height="109dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/contents_frag_sub_content_image_shape"/>
-    <TextView
-        android:id="@+id/recommend_tab_rv_item_sub_content_title_tv"
-        android:layout_below="@+id/contents_frag_rv_item_sub_content_image_iv"
-        android:layout_above="@+id/contents_frag_rv_item_sub_content_info_tv"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="6dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#707070"
-        android:textSize="12dp"
-        android:text="문재인 대통령의\n 살아온 일대기와 운명"
-        android:fontFamily="@font/nanumbarungothic"/>
-    <TextView
-        android:id="@+id/contents_frag_rv_item_sub_content_info_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="11dp"
-        android:textColor="#C6C6C6"
-        android:text="스토리 · 11분"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/nanumbarungothic"/>
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/contents_frag_rv_item_sub_content_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/contents_frag_sub_content_image_shape"/>
+        <TextView
+            android:id="@+id/contents_frag_rv_item_sub_content_title_tv"
+            android:layout_below="@+id/contents_frag_rv_item_sub_content_image_iv"
+            android:layout_above="@+id/contents_frag_rv_item_sub_content_info_tv"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#707070"
+            android:textSize="12dp"
+            android:text="문재인 대통령의\n 살아온 일대기와 운명"
+            android:fontFamily="@font/nanumbarungothic"/>
+        <TextView
+            android:id="@+id/contents_frag_rv_item_sub_content_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11dp"
+            android:textColor="#C6C6C6"
+            android:text="스토리 · 11분"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/nanumbarungothic"/>
+    </RelativeLayout>
+
 </RelativeLayout>
