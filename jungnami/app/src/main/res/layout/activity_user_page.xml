@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,13 +10,16 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="134dp"
             android:background="#FFFFF2">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="98dp">
+
                 <ImageView
                     android:id="@+id/userpage_act_top_bar_back_btn"
                     android:src="@drawable/mypage_back_arrow_gray"
@@ -28,12 +29,15 @@
                     android:layout_marginTop="18.5dp"
                     android:layout_alignParentLeft="true"
                     android:background="?android:selectableItemBackground"/>
+
             </RelativeLayout>
+
             <RelativeLayout
                 android:background="#FFFFFF"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"></RelativeLayout>
+                android:layout_height="36dp"/>
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userpage_act_user_picture"
                 android:src="@drawable/alarm_none_profile_woman_image"
@@ -41,24 +45,29 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="72dp"
                 android:layout_height="72dp" />
+
         </RelativeLayout>
+
         <LinearLayout
             android:layout_marginTop="11dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="92dp"
             android:background="#FFFFFF">
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="86dp">
+
                 <RelativeLayout
                     android:layout_width="142dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="3dp"
                     android:background="@drawable/mypage_act_box_shape">
+
                     <TextView
                         android:id="@+id/userpage_act_user_id_tv"
                         android:text="예쁜문어"
@@ -68,18 +77,23 @@
                         android:textSize="12dp"
                         android:textColor="#707070"
                         android:fontFamily="@font/nanumbarungothic"/>
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="38dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mypage_act_box_shape">
+
                     <ImageView
                         android:id="@+id/userpage_act_user_setting_btn"
                         android:src="@drawable/otheruserpage_follow_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true" />
+
                 </RelativeLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -94,6 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
+
                     <TextView
                         android:id="@+id/userpage_act_scrap_count_tv"
                         android:layout_width="wrap_content"
@@ -102,6 +117,7 @@
                         android:textSize="13dp"
                         android:textColor="#2B2B2B"
                         android:layout_centerHorizontal="true"/>
+
                     <TextView
                         android:layout_below="@+id/userpage_act_scrap_count_tv"
                         android:text="스크랩"
@@ -110,6 +126,7 @@
                         android:textSize="9dp"
                         android:textColor="#C6C6C6"
                         android:layout_centerHorizontal="true"/>
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -124,6 +141,7 @@
                         android:textSize="13dp"
                         android:textColor="#2B2B2B"
                         android:layout_centerHorizontal="true"/>
+
                     <TextView
                         android:layout_below="@+id/userpage_act_myfeed_count_tv"
                         android:text="피드"
@@ -132,12 +150,14 @@
                         android:textSize="9dp"
                         android:textColor="#C6C6C6"
                         android:layout_centerHorizontal="true"/>
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
+
                     <TextView
                         android:id="@+id/userpage_act_following_count_tv"
                         android:layout_width="wrap_content"
@@ -146,6 +166,7 @@
                         android:textSize="13dp"
                         android:textColor="#2B2B2B"
                         android:layout_centerHorizontal="true"/>
+
                     <TextView
                         android:layout_below="@+id/userpage_act_following_count_tv"
                         android:text="팔로잉"
@@ -154,12 +175,14 @@
                         android:textSize="9dp"
                         android:textColor="#C6C6C6"
                         android:layout_centerHorizontal="true"/>
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
+
                     <TextView
                         android:id="@+id/userpage_act_follower_count_tv"
                         android:layout_width="wrap_content"
@@ -168,6 +191,7 @@
                         android:textSize="13dp"
                         android:textColor="#2B2B2B"
                         android:layout_centerHorizontal="true"/>
+
                     <TextView
                         android:layout_below="@+id/userpage_act_follower_count_tv"
                         android:text="팔로워"
@@ -177,18 +201,24 @@
                         android:textColor="#C6C6C6"
                         android:layout_centerHorizontal="true"
                         android:textAlignment="center"/>
+
                 </RelativeLayout>
+
             </LinearLayout>
+
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:background="#858585"/>
+
         <LinearLayout
             android:background="#FFFFFF"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="38dp">
+
             <TextView
                 android:id="@+id/userpage_act_scrap_tab_btn"
                 android:gravity="center"
@@ -198,10 +228,12 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
             <View
                 android:background="#858585"
                 android:layout_width="0.25dp"
                 android:layout_height="match_parent"/>
+
             <TextView
                 android:id="@+id/userpage_act_scrap_myfeed_btn"
                 android:gravity="center"
@@ -211,15 +243,20 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:background="#858585"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/userpage_act_scrap_and_feed_list_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
+
 </RelativeLayout>

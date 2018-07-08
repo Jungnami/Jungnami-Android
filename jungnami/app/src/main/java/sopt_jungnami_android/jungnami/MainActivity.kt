@@ -13,19 +13,14 @@ import sopt_jungnami_android.jungnami.legislator_list.LegislatorListFragment
 import sopt_jungnami_android.jungnami.rank.RankFragment
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setStatusBarColor()
         setBottomNavigationClickListener()
         addFragment(RankFragment())
-
         //FirebaseConnection().onTokenRefresh()
-
-
     }
-
     private fun setBottomNavigationClickListener() {
 //        activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 //        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
