@@ -1,25 +1,27 @@
 package sopt_jungnami_android.jungnami.rank
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import kotlinx.android.synthetic.main.activity_legislator_list.*
+import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.fragment_rank.*
 import org.jetbrains.anko.support.v4.startActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
+//made by yun hwan
 class RankFragment : Fragment() {
-    var isSelectedLikeableTab : Boolean = true
+    var isSelectedLikeableTab: Boolean = true
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+
         return inflater.inflate(R.layout.fragment_rank, container, false)
     }
 
@@ -30,7 +32,7 @@ class RankFragment : Fragment() {
 
     }
 
-    private fun setViewClickListener(){
+    private fun setViewClickListener() {
         //탭 이동 리스터
         rank_frag_likeable_tab_btn.setOnClickListener {
             isSelectedLikeableTab = true
@@ -49,21 +51,28 @@ class RankFragment : Fragment() {
         //상단바 검색창 없애기
         rank_frag_search_view_blind_box_rl.setOnClickListener {
             rank_frag_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
         rank_frag_top_bar_search_cancel_btn.setOnClickListener {
             rank_frag_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
         //상단바 검색 창 띄우기
         rank_frag_top_bar_search_btn.setOnClickListener {
             rank_frag_is_display_search_box_rl.visibility = View.VISIBLE
             rank_frag_top_bar_search_et.requestFocus()
-            //activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(rank_frag_top_bar_search_et,InputMethodManager.SHOW_IMPLICIT)
+            //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
         }
+
     }
 
-    private fun checkSelectedTabView(){
-        if (isSelectedLikeableTab){
+    private fun checkSelectedTabView() {
+        if (isSelectedLikeableTab) {
             rank_frag_likeable_title_tv.setTextColor(Color.parseColor("#6B6B6B"))
             rank_frag_likeable_underbar_line.visibility = View.VISIBLE
 
@@ -78,11 +87,12 @@ class RankFragment : Fragment() {
         }
     }
 
-    private fun addFragment(){
+    private fun addFragment() {
         val transaction = childFragmentManager.beginTransaction()
         transaction.add(R.id.rank_frag_fragment_frame_fl, LikeableTab()).commit()
     }
-    private fun replaceFragment(fragment: Fragment){
+
+    private fun replaceFragment(fragment: Fragment) {
         val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.rank_frag_fragment_frame_fl, fragment).commit()
     }
