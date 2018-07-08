@@ -60,14 +60,6 @@
                     android:layout_centerInParent="true"/>
                 
             </RelativeLayout>
-            
-            <ImageView
-                android:id="@+id/legislator_page_act_top3_iv"
-                android:src="@drawable/legislatorpage_gold_medal_icon"
-                android:layout_width="23dp"
-                android:layout_height="24.17dp"
-                android:layout_marginTop="59dp"
-                android:layout_marginLeft="62.85dp" />
 
         </RelativeLayout>
         
@@ -81,13 +73,33 @@
                 android:orientation="vertical"
                 android:layout_marginTop="30dp">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbarungothic_normal"
-                    android:text="김병관"
-                    android:textSize="22sp"
-                    android:textColor="#343434"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="김병관"
+                        android:textSize="22sp"
+                        android:textColor="#343434"/>
+                    
+                    <ImageView
+                        android:id="@+id/legislator_page_act_like_top3_iv"
+                        android:src="@drawable/legislatorpage_gold_medal_icon"
+                        android:layout_width="26.13dp"
+                        android:layout_height="34.13dp"
+                        android:layout_marginLeft="64.25dp"/>
+
+                    <ImageView
+                        android:id="@+id/legislator_page_act_unlike_top3_iv"
+                        android:src="@drawable/legislatorpage_bomb_icon"
+                        android:layout_width="26.13dp"
+                        android:layout_height="34.13dp"
+                        android:layout_marginLeft="97.56dp"/>
+                    
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -154,20 +166,20 @@
 
                         <ImageView
                             android:id="@+id/legislator_page_act_like_btn"
-                            android:src="@drawable/legislator_page_like"
+                            android:src="@drawable/legislatorpage_good_btn_blue"
                             android:layout_width="60dp"
                             android:layout_height="28dp" />
 
                         <ImageView
-                            android:id="@+id/legislator_page_act_ulike_btn"
-                            android:src="@drawable/legislator_page_unlike"
+                            android:id="@+id/legislator_page_act_unlike_btn"
+                            android:src="@drawable/legislatorpage_bad_btn_blue"
                             android:layout_width="70dp"
                             android:layout_height="28dp"
                             android:layout_marginLeft="7dp"/>
 
                         <ImageView
                             android:id="@+id/legislator_page_act_sponsor_btn"
-                            android:src="@drawable/legislator_page_sponsor"
+                            android:src="@drawable/legislatorpage_support_btn_blue"
                             android:layout_width="80.39dp"
                             android:layout_height="28.16dp"
                             android:layout_marginLeft="8dp"/>

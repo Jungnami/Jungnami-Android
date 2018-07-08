@@ -81,7 +81,9 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         })
 
         community_act_writepage_complete_btn.setOnClickListener {
-            // 통신
+            if (community_act_writepage_complete_btn.isSelected){
+                // 이동, 통신
+            }
         }
         community_act_writepage_upload_pic_btn.setOnClickListener {
             changeImage()

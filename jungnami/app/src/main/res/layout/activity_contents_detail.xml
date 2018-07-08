@@ -65,16 +65,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <ImageView
             android:id="@+id/contents_act_detail_back_btn"
-            android:src="@drawable/contents_backarrow_gray"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginTop="18dp"
             android:layout_marginLeft="20dp"
-            android:onClick="onClick"/>
+            android:layout_marginTop="18dp"
+            android:onClick="onClick"
+            android:src="@drawable/contents_backarrow_gray" />
 
     </RelativeLayout>
 
@@ -84,6 +86,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:background="@drawable/contents_opacity_gray">
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="605dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+        </android.support.v4.view.ViewPager>
 
     </FrameLayout>
 
@@ -232,13 +242,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="438dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-    </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
