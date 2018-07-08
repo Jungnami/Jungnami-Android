@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".contents.RecommentTab"
+    tools:context=".contents.ContentsInnerFragemnt"
     android:layout_marginVertical="9dp"
     android:layout_marginHorizontal="16dp"
     android:background="#FFFFFF">
@@ -40,13 +40,13 @@
             android:textSize="13dp"
             android:textColor="#EFEFEF"/>
     </RelativeLayout>
-    <com.omega_r.libs.omegarecyclerview.OmegaRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recommend_tab_sub_contents_recycler_rv"
         android:layout_below="@+id/recommend_tab_main_contetn_lr"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.omega_r.libs.omegarecyclerview.OmegaRecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
 
 

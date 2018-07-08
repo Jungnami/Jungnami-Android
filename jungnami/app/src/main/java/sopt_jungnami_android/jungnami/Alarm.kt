@@ -8,23 +8,16 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_alarm.*
 import sopt_jungnami_android.jungnami.data.AlarmData
 
-class Alarm : AppCompatActivity(), View.OnClickListener {
+class Alarm : AppCompatActivity(){
 
     lateinit var alarmItems : ArrayList<AlarmData>
     lateinit var alarmAdapter : AlarmViewAdapter
-
-    override fun onClick(v: View?) {
-        when (v) {
-            alarm_back_btn -> {
-                finish()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
         setStatusBarColor()
+        setClickListener()
 
         alarmItems = ArrayList()
         alarmItems.add(AlarmData(R.drawable.alarm_none_profile_man_image, R.drawable.alarm_community, "남윤환", "님이 회원님의 게시글을 좋아합니다.", "2시간", "팔로우"))
@@ -33,6 +26,13 @@ class Alarm : AppCompatActivity(), View.OnClickListener {
 
         alarmAdapter = AlarmViewAdapter(alarmItems)
         // alarmAdapter.setOnItemClickListener(this)
+    }
+
+
+    private fun setClickListener(){
+        alarm_back_btn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setStatusBarColor(){
