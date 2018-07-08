@@ -15,18 +15,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/community_frag_top_bar_my_page_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginBottom="18dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="18dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/my_page"
-                android:background="?android:selectableItemBackground"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="6dp"
+                android:background="?android:selectableItemBackground">
+                <ImageView
+                    android:src="@drawable/my_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -58,18 +61,23 @@
                     android:textSize="12dp" />
             </RelativeLayout>
 
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/community_frag_top_bar_bell_btn"
-                android:layout_width="18dp"
-                android:layout_height="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="18dp"
-                android:layout_marginLeft="18dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/community_bell"
-                android:background="?android:selectableItemBackground"/>
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="10dp"
+                android:padding="6dp"
+                android:background="?android:selectableItemBackground">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/community_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
         </RelativeLayout>
 
         <View
