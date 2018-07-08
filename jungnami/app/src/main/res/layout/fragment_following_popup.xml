@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/contents_popup_opacity_gray">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/sponsoring_frag_box_shape">
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="38dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="팔로우를 취소 하시겠습니까?"
+                android:textSize="14sp"
+                android:textColor="#2B2B2B"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:layout_centerHorizontal="true"/>
+            
+            <ImageView
+                android:id="@+id/following_popup_frag_yes_btn"
+                android:layout_width="72dp"
+                android:layout_height="26.39dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/following_popup_frag_yes_btn"/>
+
+            <ImageView
+                android:id="@+id/following_popup_frag_no_btn"
+                android:layout_width="72dp"
+                android:layout_height="26.39dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/following_popup_frag_no_btn"/>
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
