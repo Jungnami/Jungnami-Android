@@ -175,6 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="225dp">
             <ImageView
+                android:id="@+id/contents_frag_main_content_image_iv"
                 android:src="#E2E2E2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -184,7 +185,7 @@
                 android:text="국회의원 아들과 폐지 줍는 부모님?"
                 android:fontFamily="@font/nanumbarungothic"
                 android:layout_marginLeft="17dp"
-                android:layout_above="@+id/recommend_tab_main_content_info_tv"
+                android:layout_above="@+id/contents_frag_main_content_info_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
@@ -202,7 +203,7 @@
                 android:textColor="#EFEFEF"/>
         </RelativeLayout>
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recommend_tab_sub_contents_recycler_rv"
+            android:id="@+id/contents_frag_sub_contents_recycler_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp">
