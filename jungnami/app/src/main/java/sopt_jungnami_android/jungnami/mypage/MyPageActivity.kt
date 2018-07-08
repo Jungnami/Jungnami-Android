@@ -17,8 +17,19 @@ class MyPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_page)
         setStatusBarColor()
 
+        setClickListener()
+
+    }
+
+    private fun setClickListener(){
         mypage_act_mycoin_check_btn.setOnClickListener {
-            startActivity<CoinPageActivity>()
+            startActivity<CoinPageActivity>("target" to "coin")
+        }
+        mypage_act_myvote_check_btn.setOnClickListener {
+            startActivity<CoinPageActivity>("target" to "vote")
+        }
+        mypage_act_top_bar_back_btn.setOnClickListener {
+            finish()
         }
     }
 

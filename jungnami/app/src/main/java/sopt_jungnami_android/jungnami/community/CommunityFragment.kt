@@ -30,13 +30,15 @@ class CommunityFragment : Fragment() {
 
     }
     private fun setClickedListener(){
+        //종
         community_frag_top_bar_bell_btn.setOnClickListener {
             toast("종")
         }
+        //마이페이지
         community_frag_top_bar_my_page_btn.setOnClickListener {
             startActivity<MyPageActivity>()
         }
-
+        //내 피드 작성
         community_frag_write_feed_btn.setOnClickListener {
             startActivity<CommunityWritePage>()
         }

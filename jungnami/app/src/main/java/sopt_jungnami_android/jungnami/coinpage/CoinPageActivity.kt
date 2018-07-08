@@ -16,8 +16,24 @@ class CoinPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin_page)
         setStatusBarColor()
-        addFragment()
+        setInitTab(intent.getStringExtra("target"))
+        checkSelectedTabView()
+        setClickListener()
+    }
 
+    private fun setInitTab(targetTabName : String){
+        when(targetTabName){
+            "coin" -> {
+                isCoinChargeSelected = true
+                addFragment(CoinChargeFragment())
+            }
+            "vote" -> {
+                isCoinChargeSelected = false
+                addFragment(VoteChargeFragment())
+            }
+        }
+    }
+    private fun setClickListener(){
         coinpage_act_coin_charge_tab_btn.setOnClickListener {
             isCoinChargeSelected = true
             checkSelectedTabView()
@@ -28,7 +44,9 @@ class CoinPageActivity : AppCompatActivity() {
             checkSelectedTabView()
             replaceFragment(VoteChargeFragment())
         }
-
+        coinpage_act_cancel_btn.setOnClickListener {
+            finish()
+        }
     }
     private fun checkSelectedTabView(){
         if (isCoinChargeSelected){
@@ -45,10 +63,10 @@ class CoinPageActivity : AppCompatActivity() {
     }
 
 
-    private fun addFragment(){
+    private fun addFragment(fragment: Fragment){
         val fm = supportFragmentManager
         val transaction = fm.beginTransaction()
-        transaction.add(R.id.coinpage_act_fragment_frame_fl, CoinChargeFragment())
+        transaction.add(R.id.coinpage_act_fragment_frame_fl, fragment)
         transaction.commit()
     }
 
