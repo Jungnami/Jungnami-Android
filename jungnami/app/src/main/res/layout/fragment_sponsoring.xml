@@ -79,7 +79,7 @@
 
                 <RelativeLayout
                     android:background="@drawable/sponsoring_frag_edit_box_shape"
-                    android:layout_width="47.27dp"
+                    android:layout_width="95.27dp"
                     android:layout_height="21dp"
                     android:layout_marginRight="21dp"
                     android:layout_alignParentRight="true"
@@ -89,13 +89,16 @@
                         android:id="@+id/sponsorping_fragment_spon_coin_et"
                         android:fontFamily="@font/nanumbarungothiclight_normal"
                         android:background="#00000000"
+                        android:gravity="right"
                         android:textSize="12dp"
                         android:hint="입력"
-                        android:textColor="#D8D8D8"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#757575"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_width="match_parent"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="9dp"
+                        android:layout_marginRight="4dp"
                         android:layout_marginLeft="12dp"/>
                 </RelativeLayout>
 
@@ -103,20 +106,20 @@
             
             
             <ImageView
-                android:id="@+id/sponsoring_frag_confirm_btn"
+                android:id="@+id/sponsoring_frag_cancle_btn"
                 android:layout_width="89dp"
                 android:layout_height="31dp"
-                android:src="@drawable/sponsoring_frag_confirm"
+                android:src="@drawable/sponsoring_frag_cancle"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="17dp"
                 android:layout_marginBottom="23dp"/>
 
 
             <ImageView
-                android:id="@+id/sponsoring_frag_cancle_btn"
+                android:id="@+id/sponsoring_frag_confirm_btn"
                 android:layout_width="89dp"
                 android:layout_height="31dp"
-                android:src="@drawable/sponsoring_frag_cancle"
+                android:src="@drawable/sponsoring_frag_confirm"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="17dp"
