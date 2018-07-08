@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setBottomNavigationClickListener() {
+//        activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+//        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         main_act_rank_btn.setOnClickListener {
             it.isSelected = true
             replaceFragment(RankFragment())

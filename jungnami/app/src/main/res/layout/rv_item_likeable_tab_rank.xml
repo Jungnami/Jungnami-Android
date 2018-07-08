@@ -92,22 +92,24 @@
             android:layout_width="48dp"
             android:layout_height="48dp" />
     </RelativeLayout>
-    <ImageView
-        android:src="@drawable/main_good_btn_background_circle"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
         android:layout_marginRight="14dp"
-        />
-    <ImageView
-        android:id="@+id/likeable_tab_rv_item_is_voted_btn"
-        android:src="@drawable/main_good_btn_blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        />
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:src="@drawable/main_good_btn_background_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+        <ImageView
+            android:id="@+id/likeable_tab_rv_item_is_voted_btn"
+            android:src="@drawable/main_good_btn_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>
