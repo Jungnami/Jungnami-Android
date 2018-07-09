@@ -42,6 +42,7 @@ class LegislatorListFragment : Fragment() {
             replaceFragment(RegionTab())
             checkSelectedTabView()
         }
+
         //마이페이지로 이동
         legislator_list_frag_top_bar_mypage_btn.setOnClickListener {
             startActivity<MyPageActivity>()

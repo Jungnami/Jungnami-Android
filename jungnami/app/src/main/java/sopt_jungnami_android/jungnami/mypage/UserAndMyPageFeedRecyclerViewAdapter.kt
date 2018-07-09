@@ -11,7 +11,7 @@ import sopt_jungnami_android.jungnami.data.FeedItemData
 
 class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<FeedItemData>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_feed, parent, false)
+        val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_userpage_feed, parent, false)
         return Holder(view)
     }
 
@@ -24,6 +24,6 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : Arr
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val profile_name : TextView = itemView.findViewById(R.id.contents_comment_rv_item_profile_name_tv) as TextView
+        val profile_name : TextView = itemView.findViewById(R.id.userpage_feed_rv_item_profile_name_btn) as TextView
     }
 }
