@@ -150,9 +150,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/userpage_act_following_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:background="?android:selectableItemBackground">
 
                         <TextView
                             android:id="@+id/userpage_act_following_count_tv"
@@ -175,9 +177,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/userpage_act_follower_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:background="?android:selectableItemBackground">
 
                         <TextView
                             android:id="@+id/userpage_act_follower_count_tv"
