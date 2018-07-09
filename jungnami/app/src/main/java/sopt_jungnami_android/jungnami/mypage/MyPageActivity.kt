@@ -91,6 +91,14 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
             setFeedRecyclerViewAdapter()
             checkSelectedTabView()
         }
+        //팔로잉 팔로워
+        mypage_act_following_btn.setOnClickListener {
+            startActivity<FollowingActivity>()
+        }
+        mypage_act_follower_btn.setOnClickListener {
+            startActivity<FollowerActivity>()
+        }
+
     }
     private fun checkSelectedTabView(){
         if (isSelectScrap) {

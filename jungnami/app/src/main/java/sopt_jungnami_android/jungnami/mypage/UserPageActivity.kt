@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
+import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
@@ -87,6 +88,14 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
             isSelectScrap = false
             setFeedRecyclerViewAdapter()
             checkSelectedTabView()
+        }
+        //팔로잉 팔로워
+
+        userpage_act_following_btn.setOnClickListener {
+            startActivity<FollowingActivity>()
+        }
+        userpage_act_follower_btn.setOnClickListener {
+            startActivity<FollowerActivity>()
         }
     }
 
