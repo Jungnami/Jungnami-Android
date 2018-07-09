@@ -7,47 +7,53 @@
     tools:context=".legislator_list.PartyTab">
     <!-- made by Yun Hwan-->
     <ScrollView
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="9dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp">
+
         <LinearLayout
-            android:background="#F7F7F7"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#F7F7F7"
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/party_tab_blue_btn"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="9dp">
+
                 <ImageView
-                    android:background="@drawable/party_blue_box"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/party_blue_box" />
+
                 <ImageView
                     android:id="@+id/party_tab_blue_character"
-                    android:src="@drawable/party_blue_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="26dp"
                     android:layout_marginRight="33dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true" />
+                    android:src="@drawable/party_blue_character" />
+
                 <ImageView
                     android:id="@+id/party_tab_blue_logo"
-                    android:layout_toRightOf="@+id/party_tab_blue_character"
-                    android:src="@drawable/party_blue_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"/>
+                    android:layout_marginTop="22dp"
+                    android:layout_toRightOf="@+id/party_tab_blue_character"
+                    android:src="@drawable/party_blue_logo" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/party_right_arrow"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -55,33 +61,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="9dp">
+
                 <ImageView
-                    android:background="@drawable/party_red_box"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/party_red_box" />
+
                 <ImageView
                     android:id="@+id/party_tab_red_character"
-                    android:src="@drawable/party_red_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true" />
+                    android:src="@drawable/party_red_character" />
+
                 <ImageView
                     android:id="@+id/party_tab_red_logo"
-                    android:layout_toRightOf="@+id/party_tab_red_character"
-                    android:src="@drawable/party_red_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="31dp"/>
+                    android:layout_marginTop="31dp"
+                    android:layout_toRightOf="@+id/party_tab_red_character"
+                    android:src="@drawable/party_red_logo" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/party_right_arrow"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -89,33 +99,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="9dp">
+
                 <ImageView
-                    android:background="@drawable/party_mint_box"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/party_mint_box" />
+
                 <ImageView
                     android:id="@+id/party_tab_mint_character"
-                    android:src="@drawable/party_mint_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="19dp"
                     android:layout_marginRight="35dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true" />
+                    android:src="@drawable/party_mint_character" />
+
                 <ImageView
                     android:id="@+id/party_tab_mint_logo"
-                    android:src="@drawable/party_mint_logo"
-                    android:layout_toRightOf="@+id/party_tab_mint_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"/>
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/party_tab_mint_character"
+                    android:src="@drawable/party_mint_logo" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/party_right_arrow"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -123,33 +137,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="9dp">
+
                 <ImageView
-                    android:background="@drawable/party_yellow_box"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/party_yellow_box" />
+
                 <ImageView
                     android:id="@+id/party_tab_yellow_character"
-                    android:src="@drawable/party_yellow_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="23dp"
                     android:layout_marginRight="35dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true" />
+                    android:src="@drawable/party_yellow_character" />
+
                 <ImageView
                     android:id="@+id/party_tab_yellow_logo"
-                    android:src="@drawable/party_yellow_logo"
-                    android:layout_toRightOf="@+id/party_tab_yellow_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/party_tab_yellow_character"
+                    android:src="@drawable/party_yellow_logo" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/party_right_arrow"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -157,51 +175,144 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="9dp">
+
                 <ImageView
-                    android:background="@drawable/party_orange_box"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/party_orange_box" />
+
                 <ImageView
                     android:id="@+id/party_tab_orange_character"
-                    android:src="@drawable/party_orange_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="11dp"
                     android:layout_marginRight="36dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true" />
+                    android:src="@drawable/party_orange_character" />
+
                 <ImageView
                     android:id="@+id/party_tab_orange_logo"
-                    android:src="@drawable/party_orange_logo"
-                    android:layout_toRightOf="@+id/party_tab_orange_character"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"/>
+                    android:layout_marginTop="24dp"
+                    android:layout_toRightOf="@+id/party_tab_orange_character"
+                    android:src="@drawable/party_orange_logo" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/party_right_arrow"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/party_tab_indigo_btn"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="9dp">
                 <ImageView
-                    android:background="@drawable/party_indigo_box"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/party_indigo_box" />
+                <ImageView
+                    android:id="@+id/party_tab_indigo_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="46dp"
+                    android:src="@drawable/party_indigo_character" />
 
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/party_right_arrow"
+                    android:id="@+id/party_tab_indigo_logo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:layout_toRightOf="@+id/party_tab_indigo_character"
+                    android:src="@drawable/party_indigo_logo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/party_tab_green_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#3EA437" />
+                <ImageView
+                    android:id="@+id/party_tab_green_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="59dp"
+                    android:src="@drawable/party_green_character" />
+
+                <ImageView
+                    android:id="@+id/party_tab_green_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/party_tab_green_character"
+                    android:src="@drawable/party_green_logo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/party_tab_gray_btn"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="9dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#B7B7B7" />
+                <ImageView
+                    android:id="@+id/party_tab_gray_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginRight="68dp"
+                    android:src="@drawable/party_gray_character" />
+
+                <ImageView
+                    android:id="@+id/party_tab_gray_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_toRightOf="@+id/party_tab_gray_character"
+                    android:src="@drawable/party_gray_logo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/party_right_arrow" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

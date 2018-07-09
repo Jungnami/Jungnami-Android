@@ -45,8 +45,8 @@
         <ImageView
             android:id="@+id/contents_act_detail_share_btn"
             android:src="@drawable/contents_share_gray"
-            android:layout_width="20.75dp"
-            android:layout_height="22.01dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16.4dp"
             android:layout_marginLeft="95.75dp"/>
@@ -54,8 +54,8 @@
         <ImageView
             android:id="@+id/contents_act_detail_scrap_btn"
             android:src="@drawable/content_scrap"
-            android:layout_width="18.07dp"
-            android:layout_height="24.1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15.9dp"
             android:layout_alignParentRight="true"
@@ -66,15 +66,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
         <ImageView
             android:id="@+id/contents_act_detail_back_btn"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="18dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginLeft="10dp"
             android:onClick="onClick"
             android:src="@drawable/contents_backarrow_gray" />
 
