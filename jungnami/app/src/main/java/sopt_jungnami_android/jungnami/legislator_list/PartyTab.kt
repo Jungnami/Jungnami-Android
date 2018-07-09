@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_party_tab.*
 import org.jetbrains.anko.support.v4.startActivity
+import sopt_jungnami_android.jungnami.LegislatorList
 import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.mypage.UserPageActivity
 
 class PartyTab : Fragment() {
 
@@ -25,7 +27,10 @@ class PartyTab : Fragment() {
 
     private fun setClickListener(){
         party_tab_blue_btn.setOnClickListener {
-            startActivity<LegislatorPageActivity>("party_name" to "blue")
+            startActivity<LegislatorList>("party_name" to "blue")
+        }
+        party_tab_red_btn.setOnClickListener {
+            startActivity<UserPageActivity>()
         }
     }
 

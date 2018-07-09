@@ -1,20 +1,20 @@
 package sopt_jungnami_android.jungnami.legislator_list
 
-import android.content.Context
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.fragment_legislator_list.*
 import org.jetbrains.anko.support.v4.startActivity
 
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
-import sopt_jungnami_android.jungnami.rank.LikeableTab
+import sopt_jungnami_android.jungnami.mypage.UserPageActivity
 
+//made by Yunhwan
 class LegislatorListFragment : Fragment() {
     var isSelectedPartyTab : Boolean = true
 
@@ -27,7 +27,7 @@ class LegislatorListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         addFragment()
-
+        setClickListener()
     }
     private fun setClickListener(){
         //tab 이동 리스터
@@ -53,7 +53,7 @@ class LegislatorListFragment : Fragment() {
         legislator_list_frag_is_display_blind_panel_rl.setOnClickListener {
             legislator_list_frag_is_display_search_box_rl.visibility = View.GONE
         }
-//        legislator_list_frag_top_bar_search_cancel_btn
+
     }
 
 

@@ -11,9 +11,9 @@ import android.widget.TextView
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
 
-class MyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<ContentItemData>) : RecyclerView.Adapter<MyPageScrapRecyclerViewAdapter.Holder>() {
+class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<ContentItemData>) : RecyclerView.Adapter<UserAndMyPageScrapRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents_frag_sub_content, parent, false)
+        val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents, parent, false)
         return Holder(view)
     }
 
