@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.FollowingData
 
@@ -27,8 +28,13 @@ class FollowingAdapter (private var followingItems : ArrayList<FollowingData>, p
 
         val followingViewHolder : FollowingViewHolder = holder as FollowingViewHolder
 
-        followingViewHolder.userImage.setImageResource(followingItems[position].userImg)
-        followingViewHolder.userNickName.setText(followingItems[position].userNickName)
+        Glide.with(context)
+                .load(followingItems[position].followingImgURL)
+                .into(holder.userImage)
+
+//        followingViewHolder.userImage.setImageResource(followingItems[position].followingImgURL)
+        followingViewHolder.userNickName.text = followingItems[position].followingNickname
+//        followingViewHolder.userNickName.setText(followingItems[position].followingNickname)
     }
 
 
