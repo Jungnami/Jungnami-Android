@@ -45,8 +45,9 @@
             android:text="1시간 전"
             android:textColor="#707070"
             android:textSize="11sp" />
-
+    <!--이것도 공유하기 일 시 gone처리-->
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:background="#707070"
@@ -60,6 +61,7 @@
     <!--텍스트 없으면 gone 처리 필요-->
     <TextView
         android:id="@+id/userpage_feed_rv_item_contents_tv"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -74,6 +76,7 @@
     <!--이미지 없으면 gone처리 필요-->
     <ImageView
         android:id="@+id/userpage_feed_rv_item_contents_iv"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="380dp"
         android:layout_marginLeft="20dp"
@@ -91,7 +94,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <View
@@ -176,34 +179,6 @@
             android:src="@color/colorAccent"
             android:visibility="visible" />
 
-        <RelativeLayout
-            android:id="@+id/userpage_feed_rv_item_bottom_bar_rl"
-            android:layout_width="match_parent"
-            android:layout_height="47.52dp"
-            android:layout_alignParentBottom="true">
-
-            <ImageView
-                android:id="@+id/userpage_feed_rv_item_shared_likes_btn"
-                android:layout_width="21.94dp"
-                android:layout_height="20.94dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:src="@drawable/community_rv_item_heart_btn" />
-
-            <ImageView
-                android:id="@+id/userpage_feed_rv_item_shared_chat_btn"
-                android:layout_width="21.94dp"
-                android:layout_height="20.94dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:layout_toRightOf="@+id/userpage_feed_rv_item_shared_likes_btn"
-                android:src="@drawable/community_rv_item_chat_btn" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_alignParentTop="true"
-                android:background="#707070"></View>
 
 
         </RelativeLayout>
@@ -211,14 +186,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_above="@+id/userpage_feed_rv_item_bottom_bar_rl">
+            >
 
             <ImageView
                 android:id="@+id/userpage_feed_rv_item_bottom_bar_small_heart_iv"
                 android:layout_width="14.13dp"
                 android:layout_height="13.49dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="11.45dp"
+                android:layout_marginLeft="22.47dp"
                 android:src="@drawable/community_small_heart" />
 
             <TextView
@@ -264,13 +239,12 @@
 
 
         </RelativeLayout>
-    </RelativeLayout>
 
-    <!--공유하기면 gone 처리-->
+
+    <!--공유하기면 gone 처리-->3
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp">
+        android:layout_height="44dp">
         <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
@@ -280,22 +254,21 @@
 
         <ImageView
             android:id="@+id/userpage_feed_and_scrap_rv_item_bottom_bar_heart_btn"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginLeft="23dp"
             android:layout_centerVertical="true"
             android:src="@drawable/community_rv_item_heart_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
+            android:layout_width="22dp"
+            android:layout_height="21dp"
             />
 
         <ImageView
             android:id="@+id/userpage_feed_and_scrap_rv_item_bottom_bar_chat_btn"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="18dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/userpage_feed_and_scrap_rv_item_bottom_bar_heart_btn"
             android:src="@drawable/community_rv_item_chat_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
+            android:layout_width="22dp"
+            android:layout_height="21dp"
             />
 
         <View
