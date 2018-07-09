@@ -84,7 +84,7 @@
             android:layout_height="164dp"
             android:background="#FFFFFF">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:src="@color/colorAccent"
+                android:src="@drawable/legislator_noneprofile_woman_image"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center"
@@ -363,8 +363,8 @@
             android:id="@+id/mypage_act_recyclerview_list_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="10dp">
+            android:layout_marginTop="10dp"
+            android:nestedScrollingEnabled="false">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 </RelativeLayout>

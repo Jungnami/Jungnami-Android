@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff">
-
-
     <RelativeLayout
         android:id="@+id/contents_comment_rv_item_top_bar_rl"
         android:layout_width="match_parent"
         android:layout_height="63dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/contents_comment_rv_item_profile_image_iv"
+            android:id="@+id/userpage_feed_rv_item_shared_profile_image_btn"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginTop="14dp"
@@ -24,10 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="동굴문어"
-            android:textSize="13sp"
+            android:textSize="12dp"
             android:textColor="#000000"
             android:fontFamily="@font/nanumbarungothic_normal"
-            android:layout_toRightOf="@id/contents_comment_rv_item_profile_image_iv"
+            android:layout_toRightOf="@id/userpage_feed_rv_item_shared_profile_image_btn"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="8dp"/>
 
@@ -37,34 +36,30 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumbarungothiclight_normal"
             android:text="1시간 전"
-            android:textSize="11sp"
+            android:textSize="9dp"
             android:layout_below="@id/contents_comment_rv_item_profile_name_tv"
-            android:layout_toRightOf="@id/contents_comment_rv_item_profile_image_iv"
+            android:layout_toRightOf="@id/userpage_feed_rv_item_shared_profile_image_btn"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="1dp"/>
-
+            android:layout_marginTop="5dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_height="0.25dp"
+            android:background="#EBEBEB"
+            ></View>
     </RelativeLayout>
 
-    <View
-        android:layout_below="@+id/contents_comment_rv_item_top_bar_rl"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="14.5dp"
-        android:layout_marginRight="14.5dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="0.25dp"
-        android:background="#EBEBEB"
-        ></View>
 
     <TextView
         android:id="@+id/contents_comment_rv_item_contents_tv"
-        android:layout_marginTop="12.5dp"
-        android:layout_below="@+id/contents_comment_rv_item_top_bar_rl"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
-        android:layout_marginRight="17dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/nanumbarungothic_normal"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:text="대한민국 정치의 가장 큰 문제점을 찾았습니다. 다들 권력을 쥐고 나서야 강압적 또는 선심쓰듯 대국민 통합을 외치는 겁니다."
         />
 
@@ -72,33 +67,27 @@
     <ImageView
         android:id="@+id/contents_comment_rv_item_contents_iv"
         android:visibility="visible"
-        android:src="@drawable/community_frag_bar_search_box_shape"
-        android:layout_below="@id/contents_comment_rv_item_contents_tv"
+        android:src="#F3F3F3"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="13dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
-        android:layout_width="380dp"
-        android:layout_height="380dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
     <RelativeLayout
         android:id="@+id/contents_comment_rv_item_rl"
         android:layout_width="match_parent"
-        android:layout_height="18dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/contents_comment_rv_item_contents_iv"
-        android:layout_marginTop="13dp">
-
+        android:layout_marginTop="15dp">
         <ImageView
             android:id="@+id/contents_comment_rv_item_small_heart"
-            android:layout_width="14.72dp"
-            android:layout_height="14.05dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/community_small_heart"
-            android:layout_marginLeft="16.93dp"
-            android:layout_centerVertical="true"
-
+            android:layout_marginLeft="16dp"
             />
 
         <TextView
@@ -106,19 +95,19 @@
             android:layout_toRightOf="@+id/contents_comment_rv_item_small_heart"
             android:text="5,258명"
             android:textStyle="bold"
-            android:textSize="12sp"
+            android:textSize="11dp"
             android:fontFamily="@font/nanumbarungothic_normal"
-            android:layout_marginLeft="5.38dp"
+            android:layout_marginLeft="6dp"
             android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             />
 
         <TextView
             android:id="@+id/contents_comment_rv_item_heart_num_des_tv"
             android:layout_toRightOf="@+id/contents_comment_rv_item_heart_num_btn"
             android:text="이 좋아합니다"
-            android:textSize="12sp"
+            android:textSize="11dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
@@ -130,15 +119,15 @@
             android:layout_toRightOf="@+id/contents_comment_rv_item_heart_num_des_tv"
             android:src="@drawable/community_small_chat"
             android:layout_centerVertical="true"
-            android:layout_width="13.38dp"
-            android:layout_height="12.66dp"
-            android:layout_marginLeft="15.66dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/contents_comment_rv_item_chat_num_des_btn"
             android:layout_toRightOf="@+id/contents_comment_rv_item_chat_iv"
-            android:text="523개"
-            android:textSize="12sp"
+            android:text="523"
+            android:textSize="11dp"
             android:textStyle="bold"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
@@ -146,18 +135,27 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             />
+        <TextView
+            android:layout_toRightOf="@+id/contents_comment_rv_item_chat_num_des_btn"
+            android:text="개"
+            android:textSize="11dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_below="@+id/contents_comment_rv_item_rl"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_marginTop="14dp">
         <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
-            android:background="#707070"
+            android:background="#C2C2C2"
             android:layout_alignParentTop="true"
             ></View>
 
@@ -167,8 +165,8 @@
             android:layout_marginTop="13dp"
             android:layout_centerVertical="true"
             android:src="@drawable/community_rv_item_heart_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
 
         <ImageView
@@ -177,19 +175,19 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/contents_comment_tv_item_bottom_bar_heart_btn"
             android:src="@drawable/community_rv_item_chat_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
 
 
         <ImageView
             android:id="@+id/contents_comment_tv_item_bottom_bar_scrap_btn"
-            android:layout_marginRight="14dp"
+            android:layout_marginRight="16dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/community_scrap"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
 
         <ImageView
@@ -198,26 +196,12 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/contents_comment_tv_item_bottom_bar_chat_btn"
             android:src="@drawable/community_rv_item_share_btn"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
-
-
-
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.25dp"
-            android:background="#707070"
-            android:layout_alignParentBottom="true"
-            ></View>
-
-
-
     </RelativeLayout>
-
-
-
-
-</RelativeLayout>
+    <View
+        android:background="#F3F3F3"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"/>
+</LinearLayout>

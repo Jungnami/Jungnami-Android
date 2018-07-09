@@ -224,6 +224,7 @@
                         android:id="@+id/contents_frag_sub_contents_recycler_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false"
                         android:layout_marginHorizontal="16dp"
                         android:descendantFocusability="blocksDescendants">
 
@@ -236,7 +237,8 @@
                     android:background="#77000000"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:elevation="1dp">
+                    android:elevation="1dp"
+                    android:nestedScrollingEnabled="false">
                 </RelativeLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

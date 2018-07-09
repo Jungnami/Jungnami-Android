@@ -21,11 +21,14 @@ class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : Ar
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         //마진 동적 설정
+        val dp = ctx.resources.displayMetrics.density
         val rootLayoutParams : RelativeLayout.LayoutParams = holder.root_layout.layoutParams as RelativeLayout.LayoutParams
         if ((position%2) == 0){
-            rootLayoutParams.rightMargin = 6
+            rootLayoutParams.rightMargin = (6*dp).toInt()
+            rootLayoutParams.leftMargin = (16*dp).toInt()
         } else {
-            rootLayoutParams.leftMargin = 6
+            rootLayoutParams.leftMargin = (6*dp).toInt()
+            rootLayoutParams.rightMargin = (16*dp).toInt()
         }
         holder.root_layout.layoutParams = rootLayoutParams
         holder.title.text = dataList[position].title
