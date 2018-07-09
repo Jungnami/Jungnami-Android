@@ -27,13 +27,11 @@ class FollowerAdapter (private var followerItems : ArrayList<FollowerData>, priv
         val followerViewHolder : FollowerViewHolder = holder as FollowerViewHolder
         followerViewHolder.userImage.setImageResource(followerItems[position].userImage)
         followerViewHolder.nickName.setText(followerItems[position].nickName)
-        followerViewHolder.userName.setText(followerItems[position].userName)
     }
 
     class FollowerViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
         var userImage : ImageView = itemView!!.findViewById(R.id.rv_item_follower_profile_image_btn)
-        var userName : TextView = itemView!!.findViewById(R.id.rv_item_follower_name_btn)
         var nickName : TextView = itemView!!.findViewById(R.id.rv_item_follower_nickname_btn)
 
     }

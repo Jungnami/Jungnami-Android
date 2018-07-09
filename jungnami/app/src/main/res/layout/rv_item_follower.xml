@@ -14,7 +14,7 @@
         android:scaleType="fitXY" />
 
     <TextView
-        android:id="@+id/rv_item_follower_name_btn"
+        android:id="@+id/rv_item_follower_nickname_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -22,23 +22,10 @@
         android:text="강지희"
         android:textColor="#2B2B2B"
         android:layout_toRightOf="@+id/rv_item_follower_profile_image_btn"
-        android:layout_marginTop="15dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="22dp"
         />
 
-    <TextView
-        android:id="@+id/rv_item_follower_nickname_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="쁜쁜"
-        android:textSize="12sp"
-        android:textColor="#757575"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/nanumbarungothicbold_normal"
-        android:layout_below="@id/rv_item_follower_name_btn"
-        android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@id/rv_item_follower_profile_image_btn"
-        />
 
     <ImageView
         android:layout_width="66dp"
