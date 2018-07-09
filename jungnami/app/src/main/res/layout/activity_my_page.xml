@@ -360,9 +360,11 @@
             android:layout_height="0.25dp"
             android:background="#858585"/>
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/mypage_act_scrap_and_feed_list_rv"
+            android:id="@+id/mypage_act_recyclerview_list_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="10dp">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 </RelativeLayout>
