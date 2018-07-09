@@ -10,8 +10,16 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.FeedItemData
 
 class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<FeedItemData>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
+    lateinit var onItemClick : View.OnClickListener
+    fun setOnItemClickListener(l : View.OnClickListener){
+        onItemClick = l
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_userpage_feed, parent, false)
+        view.setOnClickListener(onItemClick)
+
         return Holder(view)
     }
 

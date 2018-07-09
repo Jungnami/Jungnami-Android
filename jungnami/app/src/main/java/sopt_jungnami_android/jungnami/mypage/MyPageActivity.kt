@@ -9,13 +9,22 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_my_page.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.FeedItemData
 
-class MyPageActivity : AppCompatActivity() {
+class MyPageActivity : AppCompatActivity(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        if (isSelectScrap){
+            val index : Int = mypage_act_recyclerview_list_rv.getChildAdapterPosition(v)
+            //val data_id : Int = legislatorRankDataList[index].l_id
+            toast("눌림")
+        }
+    }
+
     var isSelectScrap : Boolean = true
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
@@ -47,11 +56,13 @@ class MyPageActivity : AppCompatActivity() {
     }
     private fun setFeedRecyclerViewAdapter(){
         userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
+        userAndMyPageFeedRecyclerViewAdapter.setOnItemClickListener(this)
         mypage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(this)
         mypage_act_recyclerview_list_rv.adapter = userAndMyPageFeedRecyclerViewAdapter
     }
     private fun setScrapRecyclerViewAdapter(){
         userAndMyPageScrapRecyclerViewAdapter = UserAndMyPageScrapRecyclerViewAdapter(this, dataList = contentDataList)
+        userAndMyPageScrapRecyclerViewAdapter.setOnItemClickListener(this)
         mypage_act_recyclerview_list_rv.layoutManager = GridLayoutManager(this, 2)
         mypage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter
     }

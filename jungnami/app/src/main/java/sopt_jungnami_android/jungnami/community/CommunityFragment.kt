@@ -31,7 +31,7 @@ class CommunityFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setClickedListener()
 
-        community_frag_no_login_status_rl.visibility = View.GONE
+        community_frag_no_login_status_rl.visibility = View.VISIBLE
         recquestDataToServer()
         setRecyclerViewAdapter()
     }

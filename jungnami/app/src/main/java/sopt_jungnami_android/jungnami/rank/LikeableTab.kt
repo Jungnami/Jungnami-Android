@@ -9,13 +9,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
-class LikeableTab : Fragment() {
+class LikeableTab : Fragment(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        //클릭 시 처리 로직
+        val index : Int = likeable_tab_rank_list_rv.getChildAdapterPosition(v)
+//        val l_id : Int = legislatorRankDataList[index].l_id
+        startActivity<LegislatorPageActivity>()
+    }
+
     lateinit var legislatorRankDataList: ArrayList<RankItemData>
     lateinit var likeableRankRecyclerViewAdapter: LikeableRankRecyclerViewAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_likeable_tab, container, false)
@@ -29,12 +39,11 @@ class LikeableTab : Fragment() {
 
     }
 
-    private fun setViewClickListener(){
-
-    }
 
     private fun setRecyclerViewAdapter() {
         likeableRankRecyclerViewAdapter = LikeableRankRecyclerViewAdapter(context!!, legislatorRankDataList)
+        //클릭 리스너 등록
+        likeableRankRecyclerViewAdapter.setOnItemClickListener(this)
         likeable_tab_rank_list_rv.layoutManager = LinearLayoutManager(context)
         likeable_tab_rank_list_rv.adapter = likeableRankRecyclerViewAdapter
     }
