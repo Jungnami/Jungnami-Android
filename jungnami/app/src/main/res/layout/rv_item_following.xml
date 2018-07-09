@@ -14,7 +14,7 @@
         android:scaleType="fitXY" />
 
     <TextView
-        android:id="@+id/act_following_rv_item_name_btn"
+        android:id="@+id/act_following_rv_item_nick_name_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -24,20 +24,6 @@
         android:layout_toRightOf="@+id/act_following_rv_item_profile_btn"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="22dp"
-        />
-
-    <TextView
-        android:id="@+id/act_following_rv_item_nickname_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="쁜쁜"
-        android:textSize="12sp"
-        android:textColor="#757575"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/nanumbarungothicbold_normal"
-        android:layout_below="@id/act_following_rv_item_name_btn"
-        android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@id/act_following_rv_item_profile_btn"
         />
 
 
