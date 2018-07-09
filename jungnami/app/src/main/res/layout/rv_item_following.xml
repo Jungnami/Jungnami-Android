@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/act_following_rv_item_profile_btn"
         android:layout_width="51dp"
         android:layout_height="51dp"
@@ -11,7 +11,7 @@
         android:layout_marginBottom="11dp"
         android:layout_centerVertical="true"
         android:src="@color/colorAccent"
-        android:scaleType="fitXY" />
+        />
 
     <TextView
         android:id="@+id/act_following_rv_item_nick_name_btn"
