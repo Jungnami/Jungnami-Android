@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import kotlinx.android.synthetic.main.activity_coin_page.*
 import sopt_jungnami_android.jungnami.R
-
+//made by YunHwan
 class CoinPageActivity : AppCompatActivity() {
     var isCoinChargeSelected : Boolean = true
 
