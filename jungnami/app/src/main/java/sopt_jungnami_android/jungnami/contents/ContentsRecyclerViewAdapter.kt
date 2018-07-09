@@ -1,7 +1,6 @@
 package sopt_jungnami_android.jungnami.contents
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,7 @@ import sopt_jungnami_android.jungnami.data.ContentItemData
 class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<ContentItemData>) : RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view =  LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents_frag_sub_content, parent, false)
+        val view =  LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents, parent, false)
         return Holder(view)
     }
 

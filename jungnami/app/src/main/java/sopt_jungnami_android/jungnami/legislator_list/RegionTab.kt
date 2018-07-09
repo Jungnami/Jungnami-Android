@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_region_tab.*
 import org.jetbrains.anko.support.v4.startActivity
+import sopt_jungnami_android.jungnami.LegislatorList
 import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 
@@ -25,7 +26,7 @@ class RegionTab : Fragment() {
 
     private fun setClickListener(){
         resion_tab_map_seoul_btn.setOnClickListener {
-            startActivity<LegislatorPageActivity>("region_name" to "seoul")
+            startActivity<LegislatorList>("region_name" to "seoul")
         }
     }
 }

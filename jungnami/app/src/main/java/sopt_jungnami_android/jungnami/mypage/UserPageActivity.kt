@@ -2,35 +2,46 @@ package sopt_jungnami_android.jungnami.mypage
 
 import android.graphics.Color
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import kotlinx.android.synthetic.main.activity_my_page.*
-import org.jetbrains.anko.startActivity
-import sopt_jungnami_android.jungnami.Alarm
+import kotlinx.android.synthetic.main.activity_user_page.*
 import sopt_jungnami_android.jungnami.R
-import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.FeedItemData
 
-class MyPageActivity : AppCompatActivity() {
+
+//made by Yun Hwan
+class UserPageActivity : AppCompatActivity() {
+
     var isSelectScrap : Boolean = true
-    lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
-    lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
     lateinit var contentDataList : ArrayList<ContentItemData>
     lateinit var feedDataList : ArrayList<FeedItemData>
+    lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
+    lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_page)
+        setContentView(R.layout.activity_user_page)
         setStatusBarColor()
 
         setClickListener()
-
+        //스크렙, 피드 리사이클러뷰 세팅
         requestScrapDataToServer()
         requestFeedDataToServer()
         setScrapRecyclerViewAdapter()
+    }
+    private fun setFeedRecyclerViewAdapter(){
+        userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
+        userpage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(this)
+        userpage_act_recyclerview_list_rv.adapter = userAndMyPageFeedRecyclerViewAdapter
+    }
+    private fun setScrapRecyclerViewAdapter(){
+        userAndMyPageScrapRecyclerViewAdapter = UserAndMyPageScrapRecyclerViewAdapter(this, dataList = contentDataList)
+        userpage_act_recyclerview_list_rv.layoutManager = GridLayoutManager(this, 2)
+        userpage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter
     }
     private fun requestScrapDataToServer(){
         contentDataList = ArrayList()
@@ -45,52 +56,32 @@ class MyPageActivity : AppCompatActivity() {
         feedDataList.add(FeedItemData("오징어"))
         feedDataList.add(FeedItemData("꼴뚜기"))
     }
-    private fun setFeedRecyclerViewAdapter(){
-        userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
-        mypage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(this)
-        mypage_act_recyclerview_list_rv.adapter = userAndMyPageFeedRecyclerViewAdapter
-    }
-    private fun setScrapRecyclerViewAdapter(){
-        userAndMyPageScrapRecyclerViewAdapter = UserAndMyPageScrapRecyclerViewAdapter(this, dataList = contentDataList)
-        mypage_act_recyclerview_list_rv.layoutManager = GridLayoutManager(this, 2)
-        mypage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter
-    }
-
     private fun setClickListener(){
-        mypage_act_mycoin_check_btn.setOnClickListener {
-            startActivity<CoinPageActivity>("target" to "coin")
-        }
-        mypage_act_myvote_check_btn.setOnClickListener {
-            startActivity<CoinPageActivity>("target" to "vote")
-        }
-        mypage_act_top_bar_back_btn.setOnClickListener {
+        userpage_act_top_bar_back_btn.setOnClickListener {
             finish()
         }
-        mypage_act_top_bar_bell_btn.setOnClickListener {
-            startActivity<Alarm>()
-        }
-        // tab 이동 관련
-        mypage_act_scrap_tab_btn.setOnClickListener {
+        //tab 이동 관련
+        userpage_act_scrap_tab_btn.setOnClickListener {
             isSelectScrap = true
             setScrapRecyclerViewAdapter()
             checkSelectedTabView()
         }
-        mypage_act_feed_tab_btn.setOnClickListener {
+        userpage_act_feed_tab_btn.setOnClickListener {
             isSelectScrap = false
             setFeedRecyclerViewAdapter()
             checkSelectedTabView()
         }
     }
+
     private fun checkSelectedTabView(){
         if (isSelectScrap) {
-            mypage_act_scrap_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
-            mypage_act_feed_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
+            userpage_act_scrap_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
+            userpage_act_feed_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
         } else {
-            mypage_act_scrap_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
-            mypage_act_feed_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
+            userpage_act_scrap_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
+            userpage_act_feed_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
         }
     }
-
     private fun setStatusBarColor(){
         val view : View? = window.decorView
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

@@ -9,7 +9,7 @@ import android.widget.TextView
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.FeedItemData
 
-class MyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<FeedItemData>) : RecyclerView.Adapter<MyPageFeedRecyclerViewAdapter.Holder>() {
+class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<FeedItemData>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_feed, parent, false)
         return Holder(view)
