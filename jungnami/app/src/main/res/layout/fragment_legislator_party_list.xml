@@ -19,14 +19,14 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp">
+            android:layout_marginTop="10.73dp"
+            android:layout_marginLeft="22.39dp">
 
             <ImageView
                 android:id="@+id/legislator_frag_party_logo_iv"
-                android:src="@drawable/partylist_deomindang_img"
-                android:layout_width="51dp"
-                android:layout_height="51dp"
-                android:layout_centerVertical="true"/>
+                android:src="@drawable/party_blue_logo"
+                android:layout_width="105.88dp"
+                android:layout_height="36.56dp" />
             
         </RelativeLayout>
         
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="63.27dp"
-            android:layout_marginTop="17dp"
+            android:layout_centerVertical="true"
             android:orientation="horizontal">
 
             <TextView
@@ -71,26 +71,6 @@
                 android:textColor="#ffffff"/>
 
         </LinearLayout>
-        
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="63.27dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp">
-
-            <TextView
-                android:id="@+id/legislator_frag_date_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="2014년 3월 26일"
-                android:textSize="11sp"
-                android:textColor="#f7f7f7"
-                android:gravity="right"/>
-
-        </RelativeLayout>
 
     </RelativeLayout>
     

@@ -222,6 +222,7 @@
                 android:textSize="13sp"/>
 
             <TextView
+                android:id="@+id/contents_act_detail_cardnews_slash_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
