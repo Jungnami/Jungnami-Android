@@ -8,8 +8,7 @@
     <RelativeLayout
         android:id="@+id/contents_comment_rv_item_top_bar_rl"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
-        >
+        android:layout_height="63dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/contents_comment_rv_item_profile_image_iv"
@@ -18,8 +17,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginLeft="14dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/community_profile_circle"
-            android:scaleType="fitXY"/>
+            android:src="@drawable/community_profile_circle"/>
 
         <TextView
             android:id="@+id/contents_comment_rv_item_profile_name_tv"
