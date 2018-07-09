@@ -29,6 +29,7 @@
         <activity android:name=".LegislatorPageActivity" />
         <activity android:name=".coinpage.CoinPageActivity"></activity>
         <activity android:name=".mypage.FollowerActivity" />
+        <activity android:name=".mypage.FollowingActivity"/>
     </application>
 
 </manifest>
