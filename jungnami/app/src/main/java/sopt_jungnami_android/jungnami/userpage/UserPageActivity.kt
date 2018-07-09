@@ -10,6 +10,8 @@ import sopt_jungnami_android.jungnami.R
 
 class UserPageActivity : AppCompatActivity() {
 
+    var isSelectScrap : Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_page)
@@ -31,6 +33,25 @@ class UserPageActivity : AppCompatActivity() {
     private fun setClickListener(){
         userpage_act_top_bar_back_btn.setOnClickListener {
             finish()
+        }
+        //tab 이동 관련
+        userpage_act_scrap_tab_btn.setOnClickListener {
+            isSelectScrap = true
+            checkSelectedTabView()
+        }
+        userpage_act_feed_tab_btn.setOnClickListener {
+            isSelectScrap = false
+            checkSelectedTabView()
+        }
+    }
+
+    private fun checkSelectedTabView(){
+        if (isSelectScrap) {
+            userpage_act_scrap_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
+            userpage_act_feed_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
+        } else {
+            userpage_act_scrap_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
+            userpage_act_feed_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
         }
     }
 }

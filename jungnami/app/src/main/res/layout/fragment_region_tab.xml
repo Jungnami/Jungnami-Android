@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context=".legislator_list.RegionTab"
     android:background="#FFFFFF">
+    <!-- made by Yun Hwan-->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

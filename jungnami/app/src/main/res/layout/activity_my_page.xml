@@ -338,20 +338,22 @@
                 android:textSize="12dp"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="?android:selectableItemBackground"/>
             <View
                 android:background="#858585"
                 android:layout_width="0.25dp"
                 android:layout_height="match_parent"/>
             <TextView
-                android:id="@+id/mypage_act_scrap_myfeed_btn"
+                android:id="@+id/mypage_act_feed_tab_btn"
                 android:gravity="center"
                 android:text="내 피드"
                 android:textColor="#D6D6D6"
                 android:textSize="12dp"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="?android:selectableItemBackground"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
