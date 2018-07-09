@@ -28,14 +28,12 @@ class FollowingAdapter (private var followingItems : ArrayList<FollowingData>, p
         val followingViewHolder : FollowingViewHolder = holder as FollowingViewHolder
 
         followingViewHolder.userImage.setImageResource(followingItems[position].userImg)
-        followingViewHolder.nickName.setText(followingItems[position].userNickName)
-        followingViewHolder.userName.setText(followingItems[position].userName)
+        followingViewHolder.userNickName.setText(followingItems[position].userNickName)
     }
 
 
     class FollowingViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var userImage : ImageView = itemView!!.findViewById(R.id.act_following_rv_item_profile_btn)
-        var userName : TextView = itemView!!.findViewById(R.id.act_following_rv_item_name_btn)
-        var nickName : TextView = itemView!!.findViewById(R.id.act_following_rv_item_nickname_btn)
+        var userNickName : TextView = itemView!!.findViewById(R.id.act_following_rv_item_nick_name_btn)
     }
 }
