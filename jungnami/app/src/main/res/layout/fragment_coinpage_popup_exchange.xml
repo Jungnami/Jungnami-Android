@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--Written by SooYoung-->
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent"
@@ -38,7 +41,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="43.36dp"
+            android:layout_marginTop="44dp"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="전환하기"
@@ -77,6 +80,7 @@
                     android:layout_marginRight="24dp">
 
                     <TextView
+                        android:id="@+id/coinpage_frag_popup_exchange_coin_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumbarungothic_normal"
@@ -115,6 +119,7 @@
                     android:layout_marginRight="24dp">
 
                     <TextView
+                        android:id="@+id/coinpage_frag_popup_exchange_vote_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumbarungothic_normal"
@@ -136,14 +141,14 @@
             android:layout_marginHorizontal="16dp">
             
             <ImageView
-                android:id="@+id/coinpage_exchange_popup_check_btn"
-                android:src="@drawable/coinpage_popup_check_btn_blue"
+                android:id="@+id/coinpage_exchange_popup_cancel_btn"
+                android:src="@drawable/coinpage_popup_cancle_btn_blue"
                 android:layout_width="89dp"
                 android:layout_height="31dp" />
 
             <ImageView
-                android:id="@+id/coinpage_exchange_popup_cancel_btn"
-                android:src="@drawable/coinpage_popup_cancle_btn_blue"
+                android:id="@+id/coinpage_exchange_popup_check_btn"
+                android:src="@drawable/coinpage_popup_check_btn_blue"
                 android:layout_width="89dp"
                 android:layout_height="31dp"
                 android:layout_alignParentRight="true"/>
