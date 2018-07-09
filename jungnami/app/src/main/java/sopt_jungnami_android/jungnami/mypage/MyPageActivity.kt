@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_my_page.*
 import org.jetbrains.anko.startActivity
+import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
 
 class MyPageActivity : AppCompatActivity() {
+    var isSelectScrap : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,27 @@ class MyPageActivity : AppCompatActivity() {
         }
         mypage_act_top_bar_back_btn.setOnClickListener {
             finish()
+        }
+        mypage_act_top_bar_bell_btn.setOnClickListener {
+            startActivity<Alarm>()
+        }
+        // tab 이동 관련
+        mypage_act_scrap_tab_btn.setOnClickListener {
+            isSelectScrap = true
+            checkSelectedTabView()
+        }
+        mypage_act_feed_tab_btn.setOnClickListener {
+            isSelectScrap = false
+            checkSelectedTabView()
+        }
+    }
+    private fun checkSelectedTabView(){
+        if (isSelectScrap) {
+            mypage_act_scrap_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
+            mypage_act_feed_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
+        } else {
+            mypage_act_scrap_tab_btn.setTextColor(Color.parseColor("#D6D6D6"))
+            mypage_act_feed_tab_btn.setTextColor(Color.parseColor("#36C5F1"))
         }
     }
 

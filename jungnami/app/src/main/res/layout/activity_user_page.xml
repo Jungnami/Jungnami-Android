@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".userpage.UserPageActivity"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    tools:context=".userpage.UserPageActivity">
     <!--made by YounHwan-->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,45 +22,45 @@
 
                 <ImageView
                     android:id="@+id/userpage_act_top_bar_back_btn"
-                    android:src="@drawable/mypage_back_arrow_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="18.5dp"
-                    android:layout_alignParentLeft="true"
-                    android:background="?android:selectableItemBackground"/>
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/mypage_back_arrow_gray" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="#FFFFFF"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"/>
+                android:layout_height="36dp"
+                android:layout_alignParentBottom="true"
+                android:background="#FFFFFF" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userpage_act_user_picture"
-                android:src="@drawable/alarm_none_profile_woman_image"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_width="72dp"
-                android:layout_height="72dp" />
+                android:src="@drawable/alarm_none_profile_woman_image" />
 
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_marginTop="11dp"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="92dp"
-            android:background="#FFFFFF">
+            android:layout_marginTop="11dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="86dp">
+                android:layout_marginHorizontal="86dp"
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="142dp"
@@ -70,13 +70,13 @@
 
                     <TextView
                         android:id="@+id/userpage_act_user_id_tv"
-                        android:text="예쁜문어"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/nanumbarungothic"
                         android:gravity="center"
-                        android:textSize="12dp"
+                        android:text="예쁜문어"
                         android:textColor="#707070"
-                        android:fontFamily="@font/nanumbarungothic"/>
+                        android:textSize="12dp" />
 
                 </RelativeLayout>
 
@@ -87,10 +87,10 @@
 
                     <ImageView
                         android:id="@+id/userpage_act_user_setting_btn"
-                        android:src="@drawable/otheruserpage_follow_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/otheruserpage_follow_btn" />
 
                 </RelativeLayout>
 
@@ -113,19 +113,19 @@
                         android:id="@+id/userpage_act_scrap_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:text="73"
-                        android:textSize="13dp"
                         android:textColor="#2B2B2B"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="13dp" />
 
                     <TextView
-                        android:layout_below="@+id/userpage_act_scrap_count_tv"
-                        android:text="스크랩"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9dp"
+                        android:layout_below="@+id/userpage_act_scrap_count_tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="스크랩"
                         android:textColor="#C6C6C6"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="9dp" />
 
                 </RelativeLayout>
 
@@ -133,23 +133,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
+
                     <TextView
                         android:id="@+id/userpage_act_myfeed_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:text="16"
-                        android:textSize="13dp"
                         android:textColor="#2B2B2B"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="13dp" />
 
                     <TextView
-                        android:layout_below="@+id/userpage_act_myfeed_count_tv"
-                        android:text="피드"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9dp"
+                        android:layout_below="@+id/userpage_act_myfeed_count_tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="피드"
                         android:textColor="#C6C6C6"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="9dp" />
 
                 </RelativeLayout>
 
@@ -162,19 +163,19 @@
                         android:id="@+id/userpage_act_following_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:text="100"
-                        android:textSize="13dp"
                         android:textColor="#2B2B2B"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="13dp" />
 
                     <TextView
-                        android:layout_below="@+id/userpage_act_following_count_tv"
-                        android:text="팔로잉"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9dp"
+                        android:layout_below="@+id/userpage_act_following_count_tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="팔로잉"
                         android:textColor="#C6C6C6"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="9dp" />
 
                 </RelativeLayout>
 
@@ -187,20 +188,20 @@
                         android:id="@+id/userpage_act_follower_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:text="120"
-                        android:textSize="13dp"
                         android:textColor="#2B2B2B"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="13dp" />
 
                     <TextView
-                        android:layout_below="@+id/userpage_act_follower_count_tv"
-                        android:text="팔로워"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9dp"
-                        android:textColor="#C6C6C6"
+                        android:layout_below="@+id/userpage_act_follower_count_tv"
                         android:layout_centerHorizontal="true"
-                        android:textAlignment="center"/>
+                        android:text="팔로워"
+                        android:textAlignment="center"
+                        android:textColor="#C6C6C6"
+                        android:textSize="9dp" />
 
                 </RelativeLayout>
 
@@ -211,51 +212,52 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
-            android:background="#858585"/>
+            android:background="#858585" />
 
         <LinearLayout
-            android:background="#FFFFFF"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="38dp">
+            android:layout_height="38dp"
+            android:background="#FFFFFF"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/userpage_act_scrap_tab_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="스크랩"
                 android:textColor="#36C5F1"
                 android:textSize="12dp"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:background="?android:selectableItemBackground"/>
 
             <View
-                android:background="#858585"
                 android:layout_width="0.25dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="#858585" />
 
             <TextView
-                android:id="@+id/userpage_act_scrap_myfeed_btn"
+                android:id="@+id/userpage_act_feed_tab_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="피드"
                 android:textColor="#D6D6D6"
                 android:textSize="12dp"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:background="?android:selectableItemBackground"/>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
-            android:background="#858585"/>
+            android:background="#858585" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/userpage_act_scrap_and_feed_list_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

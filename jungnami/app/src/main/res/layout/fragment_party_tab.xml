@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".legislator_list.PartyTab">
-
+    <!-- made by Yun Hwan-->
     <ScrollView
         android:layout_marginLeft="16dp"
         android:layout_marginTop="9dp"
