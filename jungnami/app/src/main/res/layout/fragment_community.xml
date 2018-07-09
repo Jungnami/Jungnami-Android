@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.75dp"
             android:layout_alignParentBottom="true"
-            android:background="#6B6B6B" />
+            android:background="#F3F3F3" />
     </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -152,33 +152,45 @@
                     </LinearLayout>
                 </RelativeLayout>
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/community_frag_what_do_u_think_box"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="#FFFFFF">
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/community_frag_what_do_u_think_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:background="#FFFFFF">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/community_frag_my_picture_iv"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginHorizontal="16dp"
-                    android:src="@drawable/my_page" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/community_frag_my_picture_iv"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="16dp"
+                        android:src="@drawable/my_page" />
 
-                <TextView
-                    android:background="?android:selectableItemBackground"
-                    android:id="@+id/community_frag_write_feed_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/community_frag_my_picture_iv"
-                    android:fontFamily="@font/nanumbarungothiclight"
-                    android:text="무슨 생각을 하고 계신가요?"
-                    android:textColor="#CECECE"
-                    android:textSize="15dp" />
-            </RelativeLayout>
+                    <TextView
+                        android:background="?android:selectableItemBackground"
+                        android:id="@+id/community_frag_write_feed_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/community_frag_my_picture_iv"
+                        android:fontFamily="@font/nanumbarungothiclight"
+                        android:text="무슨 생각을 하고 계신가요?"
+                        android:textColor="#CECECE"
+                        android:textSize="15dp" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/community_frag_what_do_u_think_box"
+                    android:background="#F3F3F3"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+            </LinearLayout>
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/community_frag_feed_list_rv"

@@ -8,13 +8,26 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_user_page.*
+import kotlinx.android.synthetic.main.fragment_likeable_tab.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.toast
+import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.FeedItemData
 
 
 //made by Yun Hwan
-class UserPageActivity : AppCompatActivity() {
+class UserPageActivity : AppCompatActivity(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        if (isSelectScrap){
+            val index : Int = userpage_act_recyclerview_list_rv.getChildAdapterPosition(v)
+//        val l_id : Int = legislatorRankDataList[index].l_id
+            //startActivity<LegislatorPageActivity>()
+            toast("클릭됨 인덱스 : $index")
+        }
+    }
 
     var isSelectScrap : Boolean = true
     lateinit var contentDataList : ArrayList<ContentItemData>
@@ -35,11 +48,15 @@ class UserPageActivity : AppCompatActivity() {
     }
     private fun setFeedRecyclerViewAdapter(){
         userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
+        userAndMyPageFeedRecyclerViewAdapter.setOnItemClickListener(this)
+
         userpage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(this)
         userpage_act_recyclerview_list_rv.adapter = userAndMyPageFeedRecyclerViewAdapter
     }
     private fun setScrapRecyclerViewAdapter(){
         userAndMyPageScrapRecyclerViewAdapter = UserAndMyPageScrapRecyclerViewAdapter(this, dataList = contentDataList)
+        userAndMyPageScrapRecyclerViewAdapter.setOnItemClickListener(this)
+
         userpage_act_recyclerview_list_rv.layoutManager = GridLayoutManager(this, 2)
         userpage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter
     }

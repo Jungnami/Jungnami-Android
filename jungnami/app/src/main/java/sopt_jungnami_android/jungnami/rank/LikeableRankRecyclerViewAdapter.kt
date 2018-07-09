@@ -14,8 +14,18 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
 class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<RankItemData>) : RecyclerView.Adapter<LikeableRankRecyclerViewAdapter.Holder>() {
+
+    //클릭 리스너
+    lateinit var onItemClick : View.OnClickListener
+
+    fun setOnItemClickListener(l : View.OnClickListener){
+        onItemClick = l
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_likeable_tab_rank, parent, false)
+        //클릭 리스너
+        view.setOnClickListener(onItemClick)
         return Holder(view)
     }
 
