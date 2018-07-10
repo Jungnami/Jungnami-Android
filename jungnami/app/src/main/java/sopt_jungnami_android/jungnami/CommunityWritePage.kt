@@ -1,6 +1,7 @@
 package sopt_jungnami_android.jungnami
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -20,10 +21,17 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import kotlinx.android.synthetic.main.activity_community_write_page.*
+import okhttp3.Callback
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Response
+import sopt_jungnami_android.jungnami.Get.GetCommunityPostingResponse
+import sopt_jungnami_android.jungnami.Network.ApplicationController
+import sopt_jungnami_android.jungnami.Network.NetworkService
+import sopt_jungnami_android.jungnami.data.CommunityPostingPrepareData
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -33,6 +41,10 @@ import java.util.*
 // Written by SooYoung
 
 class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
+
+    lateinit var networkService: NetworkService
+//    lateinit var CommunityPostingItems: ArrayList<CommunityPostingPrepareData>
+    var context : Context = this
 
     private val REQ_CODE_SELECT_IMAGE = 100
     lateinit var data: Uri
@@ -53,7 +65,13 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community_write_page)
+        networkService = ApplicationController.instance.networkService
+        getCommunityPostingResponse()
+
+
         setStatusBarColor()
+
+
 
         val editTextContent = findViewById<EditText>(R.id.community_act_writepage_posting_et)
 
@@ -111,6 +129,28 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         handler.postDelayed({
             community_act_writepage_gif_bubble_iv.setImageBitmap(null)
         }, 2000)
+    }
+
+    fun getCommunityPostingResponse() {
+        val getCommunityPostingResponse = networkService.getCommunityPostingResponse()
+        getCommunityPostingResponse.enqueue(object : retrofit2.Callback<GetCommunityPostingResponse>{
+            override fun onFailure(call: Call<GetCommunityPostingResponse>?, t: Throwable?) {
+                toast("error!")
+                Log.v("111","이런젠장")
+            }
+
+            override fun onResponse(call: Call<GetCommunityPostingResponse>?, response: Response<GetCommunityPostingResponse>?) {
+                if (response!!.isSuccessful) {
+                    Log.v("222", "이런")
+                    var imgurl = response!!.body()!!.data.img_url
+                    Glide.with(context).load(imgurl).into(rv_item_community_profile_img_iv)
+
+                }
+
+                Log.v("333", "니니ㅣ")
+            }
+
+        })
     }
 
     private fun checkUploadedContent() {
