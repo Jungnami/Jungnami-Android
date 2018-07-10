@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".Alarm">
 
     <!-- Written By SooYoung -->
@@ -17,18 +18,17 @@
         <ImageView
             android:id="@+id/alarm_back_btn"
             android:src="@drawable/alarm_x_btn"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="26dp"
-            android:layout_marginLeft="15.65dp" />
-        
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="6dp"
+            android:background="?android:selectableItemBackground"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="24dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="알림"
             android:textSize="16sp"

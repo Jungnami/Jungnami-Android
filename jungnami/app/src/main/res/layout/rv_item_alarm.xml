@@ -3,11 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="73dp"
-    android:id="@+id/rv_alarm_item_click_btn">
+    android:id="@+id/rv_alarm_item_click_btn"
+    android:background="?android:selectableItemBackground">
 
     <RelativeLayout
-        android:layout_width="74dp"
+        android:layout_width="77dp"
         android:layout_height="match_parent">
+
+        <!--여기서부터 수정...-->
 
         <ImageView
             android:id="@+id/rv_alarm_item_user_img_btn"
