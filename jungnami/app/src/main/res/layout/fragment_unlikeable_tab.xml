@@ -187,11 +187,5 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
-    <ImageView
-        android:id="@+id/unlikeable_icon_with_animation_iv"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:src="@drawable/vote_animation_icon_red"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 </RelativeLayout>

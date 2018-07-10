@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.request.RequestOptions
 import org.jetbrains.anko.toast
+import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
@@ -56,6 +57,7 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         holder.vote_count.text = "${vote_count}표"
 
         holder.vote_btn.setOnClickListener {
+            (ctx as MainActivity).setAnimRankTabIcon(false)
             ctx.toast("unlikeable!!!")
         }
 
@@ -63,7 +65,6 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
 //            0 -> holder.is_voted_image.setImageResource(R.drawable.legislatorpage_good_btn_gray)
 //            1 -> holder.is_voted_image.setImageResource(R.drawable.legislatorpage_good_btn_blue)
 //        }
-
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){

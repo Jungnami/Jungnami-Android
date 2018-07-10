@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import kotlinx.android.synthetic.main.fragment_unlikeable_tab.*
+import kotlinx.android.synthetic.main.rv_item_unlikeable_tab_rank.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import sopt_jungnami_android.jungnami.LegislatorPageActivity
@@ -19,12 +20,11 @@ import sopt_jungnami_android.jungnami.data.RankItemData
 
 class UnlikeableTab : Fragment() , View.OnClickListener{
     override fun onClick(v: View?) {
-
         //클릭 시 처리 로직
         val index : Int = unlikeable_tab_rank_list_rv.getChildAdapterPosition(v)
 //        val l_id : Int = legislatorRankDataList[index].l_id
 
-        //startActivity<LegislatorPageActivity>()
+        startActivity<LegislatorPageActivity>()
     }
 
     lateinit var legislatorRankDataList : ArrayList<RankItemData>
@@ -43,9 +43,6 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         getRankItemDataAtServer()
         setRecyclerViewAdapter()
         set1stVS2stRankView()
-    }
-    fun testFun(){
-        toast("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
     }
 
     private fun setClickListener(){

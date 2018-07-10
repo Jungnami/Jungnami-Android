@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.request.RequestOptions
 import org.jetbrains.anko.toast
+import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
@@ -57,6 +58,7 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         holder.vote_count.text = "${vote_count}표"
 
         holder.vote_btn.setOnClickListener {
+            (ctx as MainActivity).setAnimRankTabIcon(true)
             ctx.toast("likeable!!!")
         }
 
