@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import kotlinx.android.synthetic.main.fragment_unlikeable_tab.*
 import kotlinx.android.synthetic.main.rv_item_unlikeable_tab_rank.*
@@ -43,6 +45,8 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         getRankItemDataAtServer()
         setRecyclerViewAdapter()
         set1stVS2stRankView()
+
+        setRankVoteCountProgressbarAnimation()
     }
 
     private fun setClickListener(){
@@ -53,7 +57,32 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
             startActivity<LegislatorPageActivity>("l_id" to 22)
         }
     }
-
+    private fun setRankVoteCountProgressbarAnimation(){
+        val animOf1st: Animation = AnimationUtils.loadAnimation(context!!, R.anim.rank_1st_progress_anim)
+        val animOf2st: Animation = AnimationUtils.loadAnimation(context!!, R.anim.rank_2st_progress_anim)
+        animOf1st.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+            override fun onAnimationEnd(animation: Animation?) {
+                unlikeable_tab_1st_vote_count_tv.visibility = View.VISIBLE
+            }
+            override fun onAnimationStart(animation: Animation?) {
+                unlikeable_tab_1st_vote_count_bar.visibility = View.VISIBLE
+            }
+        })
+        animOf2st.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+            override fun onAnimationEnd(animation: Animation?) {
+                unlikeable_tab_2st_vote_count_tv.visibility = View.VISIBLE
+            }
+            override fun onAnimationStart(animation: Animation?) {
+                unlikeable_tab_2st_vote_count_bar.visibility = View.VISIBLE
+            }
+        })
+        unlikeable_tab_1st_vote_count_bar.startAnimation(animOf1st)
+        unlikeable_tab_2st_vote_count_bar.startAnimation(animOf2st)
+    }
     private fun setRecyclerViewAdapter(){
         unlikeableRankRecyclerViewAdapter = UnlikeableRankRecyclerViewAdapter(activity!!, legislatorRankDataList)
         unlikeableRankRecyclerViewAdapter.setOnItemClickListener(this)
