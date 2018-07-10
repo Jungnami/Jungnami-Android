@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.request.RequestOptions
+import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
@@ -55,6 +56,10 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         val vote_count : String = String.format("%,d", dataList[position].vote_count)
         holder.vote_count.text = "${vote_count}표"
 
+        holder.vote_btn.setOnClickListener {
+            ctx.toast("likeable!!!")
+        }
+
 //        when (dataList[position].is_voted){
 //            0 -> holder.is_voted_image.setImageResource(R.drawable.legislatorpage_good_btn_gray)
 //            1 -> holder.is_voted_image.setImageResource(R.drawable.legislatorpage_good_btn_blue)
@@ -70,6 +75,6 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         val name : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_name_tv) as TextView
         val party_name : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_party_tv) as  TextView
         val vote_count : TextView = itemView.findViewById(R.id.likeable_tab_rv_item_vote_count_tv) as TextView
-        val is_voted_image : ImageView = itemView.findViewById(R.id.likeable_tab_rv_item_is_voted_btn) as ImageView
+        val vote_btn : RelativeLayout = itemView.findViewById(R.id.likeable_tab_rv_item_isvoted_btn) as RelativeLayout
     }
 }

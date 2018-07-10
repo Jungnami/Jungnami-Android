@@ -24,6 +24,11 @@
                 android:background="?android:selectableItemBackground"
                 android:padding="6dp"
                 android:src="@drawable/mypage_back_arrow_gray" />
+            <ImageView
+                android:src="@drawable/app_logo"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView

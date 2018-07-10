@@ -16,10 +16,13 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
-
-class ContentsFragment : Fragment() {
-
 //    made by Yunhwan
+class ContentsFragment : Fragment(), View.OnClickListener {
+
+    override fun onClick(v: View?) {
+        val index : Int = contents_frag_sub_contents_recycler_rv.getChildAdapterPosition(v)
+        startActivity<ContentsDetail>()
+    }
 
     var current_tab_idx : Int = 0
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
@@ -86,6 +89,7 @@ class ContentsFragment : Fragment() {
 
     private fun changeRecyclerViewData(){
         contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, contentsDataList)
+        contentsRecyclerViewAdapter.setOnItemClickListener(this)
         contents_frag_sub_contents_recycler_rv.layoutManager = GridLayoutManager(context!!,2)
         contents_frag_sub_contents_recycler_rv.adapter = contentsRecyclerViewAdapter
     }

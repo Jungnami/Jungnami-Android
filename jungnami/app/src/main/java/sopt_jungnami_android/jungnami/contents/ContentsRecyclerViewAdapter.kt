@@ -12,9 +12,13 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
 
 class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<ContentItemData>) : RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
-
+    lateinit var onItemClick : View.OnClickListener
+    fun setOnItemClickListener(l : View.OnClickListener){
+        onItemClick = l
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view =  LayoutInflater.from(ctx).inflate(R.layout.rv_item_contents, parent, false)
+        view.setOnClickListener(onItemClick)
         return Holder(view)
     }
 
