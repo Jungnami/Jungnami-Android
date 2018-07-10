@@ -6,68 +6,11 @@
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".contents.ContentsDetail">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="54.5dp"
-        android:layout_marginLeft="15.5dp"
-        android:background="#ececec">
-
-    </View>
-
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="54.5dp"
-        android:layout_alignParentBottom="true">
-
-        <ImageView
-            android:id="@+id/contents_act_detail_like_btn"
-            android:src="@drawable/content_heart"
-            android:layout_width="22.85dp"
-            android:layout_height="21.81dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="17.19dp"
-            android:layout_marginLeft="15.57dp"
-            android:onClick="onClick"/>
-
-        <ImageView
-            android:id="@+id/contents_act_detail_comment_btn"
-            android:src="@drawable/contents_chat_gray"
-            android:layout_width="24dp"
-            android:layout_height="23dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="58dp"
-            android:onClick="onClick"/>
-
-        <ImageView
-            android:id="@+id/contents_act_detail_share_btn"
-            android:src="@drawable/contents_share_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16.4dp"
-            android:layout_marginLeft="95.75dp"/>
-
-        <ImageView
-            android:id="@+id/contents_act_detail_scrap_btn"
-            android:src="@drawable/content_scrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15.9dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15.93dp"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+        android:id="@+id/contents_detail_top_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentTop="true">
-
         <ImageView
             android:id="@+id/contents_act_detail_back_btn"
             android:layout_centerVertical="true"
@@ -75,173 +18,156 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:layout_marginLeft="10dp"
-            android:onClick="onClick"
             android:src="@drawable/contents_backarrow_gray" />
-
     </RelativeLayout>
-
-    <FrameLayout
-        android:id="@+id/contents_act_fragment_cardnews_fl"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/contents_detail_act_viewpager_vp"
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/contents_opacity_gray">
+        android:layout_below="@id/contents_detail_top_bar"
+        android:layout_above="@id/contents_detail_bottom_bar">
 
-        <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="605dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true">
-
-        </android.support.v4.view.ViewPager>
-
-    </FrameLayout>
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="394dp"-->
-        <!--android:layout_marginTop="56dp">-->
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="331dp"-->
-            <!--android:layout_marginTop="63dp">-->
-
-            <!--<ImageView-->
-                <!--android:background="@drawable/ic_launcher_background"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
-
-        <!--</RelativeLayout>-->
-
-    <!--</RelativeLayout>-->
-
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/contents_act_detail_news_title_txt"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="53dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_marginBottom="158dp"-->
-        <!--android:layout_marginLeft="18dp">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:fontFamily="@font/nanumbarungothiclight_normal"-->
-            <!--android:text="'버스왕'이라 불리운 사나이"-->
-            <!--android:textColor="#e1e1e1"-->
-            <!--android:textSize="21sp"/>-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:fontFamily="@font/nanumbarungothiclight_normal"-->
-            <!--android:text="스토리 · 2018.06.28 오후 12:02"-->
-            <!--android:textColor="#c2c2c2"-->
-            <!--android:textSize="12sp"/>-->
-
-    <!--</RelativeLayout>-->
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="14.2dp"
+    </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:id="@+id/contents_detail_bottom_bar"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="69.95dp">
-
-        <ImageView
-            android:src="@drawable/contents_smallheart_gray"
-            android:layout_width="14.72dp"
-            android:layout_height="14.05dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="17.93dp"/>
-        
-        <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="14dp"
             android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_marginLeft="38dp">
-
-            <TextView
-                android:id="@+id/contents_act_detail_like_ppl_list_btn"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="14dp"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="5,258명"
-                android:textColor="#c3c3c3"
-                android:textStyle="bold"
-                android:textSize="12sp"/>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/contents_smallheart_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="16dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="18dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="14dp"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="이 좋아합니다"
-                android:textColor="#c3c3c3"
-                android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/contents_act_detail_like_count_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="5,258명"
+                        android:textColor="#c3c3c3"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="이 좋아합니다"
+                        android:textColor="#c3c3c3"
+                        android:textSize="12dp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+                </LinearLayout>
 
-            <ImageView
-                android:src="@drawable/contents_smallchat_gray"
-                android:layout_width="14.82dp"
-                android:layout_height="14.2dp"
-                android:layout_marginLeft="165.59dp"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/contents_act_detail_comment_list_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="14dp"
-                android:layout_marginLeft="2.59dp"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="523개"
-                android:textColor="#e2e2e2"
-                android:textStyle="bold"
-                android:textSize="12sp"/>
+                    <ImageView
+                        android:src="@drawable/contents_smallchat_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/contents_act_detail_comment_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="523개"
+                        android:textColor="#e2e2e2"
+                        android:textStyle="bold"
+                        android:textSize="12dp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
-            android:orientation="horizontal"
-            android:visibility="visible">
+                </LinearLayout>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/contents_act_detail_cardnews_at_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothiclight_normal"
-                android:text="1"
-                android:textColor="#ffffff"
-                android:textSize="13sp"/>
-
-            <TextView
-                android:id="@+id/contents_act_detail_cardnews_slash_tv"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:fontFamily="@font/nanumbarungothiclight_normal"
-                android:text="/"
-                android:textColor="#ffffff"
-                android:textSize="13sp"/>
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
-            <TextView
-                android:id="@+id/contents_act_detail_cardnews_all_tv"
+                <TextView
+                    android:id="@+id/contents_act_detail_image_count_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbarungothiclight"
+                    android:text="1/20"
+                    android:textColor="#ffffff"
+                    android:textSize="13dp"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:background="#ececec">
+        </View>
+
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="54dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:gravity="center_vertical"
+                android:layout_alignParentBottom="true">
+                <ImageView
+                    android:id="@+id/contents_act_detail_like_btn"
+                    android:src="@drawable/content_heart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="16dp"/>
+
+                <ImageView
+                    android:id="@+id/contents_act_detail_comment_btn"
+                    android:src="@drawable/contents_chat_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="16dp"/>
+
+                <ImageView
+                    android:id="@+id/contents_act_detail_share_btn"
+                    android:src="@drawable/contents_share_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"/>
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/contents_act_detail_scrap_btn"
+                android:src="@drawable/content_scrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothiclight_normal"
-                android:text="20"
-                android:textColor="#ffffff"
-                android:textSize="13sp"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
+                android:layout_marginRight="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

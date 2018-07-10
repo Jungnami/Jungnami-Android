@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".rank.UnlikeableTab"
-    android:orientation="vertical"
     android:background="#FFFFFF">
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/unlikeable_tab_refresh_srl"
         android:layout_width="match_parent"
@@ -187,4 +187,11 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+    <ImageView
+        android:id="@+id/unlikeable_icon_with_animation_iv"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:src="@drawable/vote_animation_icon_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
