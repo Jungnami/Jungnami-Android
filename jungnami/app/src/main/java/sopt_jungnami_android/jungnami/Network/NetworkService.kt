@@ -24,9 +24,19 @@ interface NetworkService {
     fun getCommunityFeed(
     ) : Call<GetCommunityFeedResponse>
 
+
+
     // 호감/비호감 순위
     @GET("ranking/list/{islike}")
     fun getRanking(
             @Path("islike") islike : Int
     ) : Call<GetRankingResponse>
+
+
+    // 커뮤니티 글 작성화면 made by SooYoung
+//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+//    @GET("board/post")
+//    fun getCommunityPostingResponse(
+//
+//    ) : Call<GetCommunityPostingResponse>
 }
