@@ -8,13 +8,12 @@
         android:id="@+id/search_result_rv_item_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="@font/nanumbarungothic_normal"
-        android:textSize="13sp"
         android:text="1"
         android:textColor="#36C5F1"
-        android:layout_marginTop="31dp"
-        android:layout_marginLeft="12dp"
-        />
+        android:textSize="13sp" />
 
     <RelativeLayout
         android:id="@+id/search_result_rv_rl"
@@ -26,16 +25,17 @@
 
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/search_result_rv_item_legislator_color_iv"
         android:layout_width="56.02dp"
         android:layout_height="56.02dp"
-        android:background="#E1241A"/>
+        android:src="#E1241A"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/search_result_rv_item_legislator_iv"
             android:layout_centerInParent="true"
             android:layout_width="52.47dp"
             android:layout_height="52.47dp"
-            android:background="#000000"/>
+            android:src="#000000"/>
 
     </RelativeLayout>
 
