@@ -10,12 +10,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import kotlinx.android.synthetic.main.fragment_unlikeable_tab.*
 import kotlinx.android.synthetic.main.rv_item_unlikeable_tab_rank.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import sopt_jungnami_android.jungnami.Get.GetRankingResponse
 import sopt_jungnami_android.jungnami.LegislatorPageActivity
+import sopt_jungnami_android.jungnami.Network.ApplicationController
+import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 
@@ -28,25 +38,72 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
 
         startActivity<LegislatorPageActivity>()
     }
+    private var mainimg_1st: ImageView? = null
+    private var mainimg_2st: ImageView? = null
+
+    lateinit var networkService: NetworkService
 
     lateinit var legislatorRankDataList : ArrayList<RankItemData>
     lateinit var unlikeableRankRecyclerViewAdapter: UnlikeableRankRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_unlikeable_tab, container, false)
+        val view = inflater.inflate(R.layout.fragment_unlikeable_tab, container, false)
+        mainimg_1st = view.findViewById(R.id.unlikeable_tab_1st_picture_iv) as ImageView
+        mainimg_2st = view.findViewById(R.id.unlikeable_tab_2st_picture_iv) as ImageView
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
-
+        unlikeable_tab_root_rl_to_refreshing.visibility = View.INVISIBLE
+        unlikeable_tab_refresh_srl.isRefreshing = true
         getRankItemDataAtServer()
-        setRecyclerViewAdapter()
-        set1stVS2stRankView()
+    }
 
+    private fun initSettingView() {
+        set1stVS2stRankView()
+        unlikeable_tab_refresh_srl.isRefreshing = false
+        unlikeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
+        setRecyclerViewAdapter()
         setRankVoteCountProgressbarAnimation()
+    }
+
+    private fun refreshView() {
+        set1stVS2stRankView()
+        setRecyclerViewAdapter()
+        likeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
+        setRankVoteCountProgressbarAnimation()
+    }
+    //서버에서 데이터 받기
+    private fun getRankItemDataAtServer() {
+        networkService = ApplicationController.instance.networkService
+        legislatorRankDataList = ArrayList()
+
+        unlikeable_tab_refresh_srl.isRefreshing = true
+
+        val getUnlikeableRankingResponse = networkService.getRanking(0)
+        getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
+            override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
+                toast("응답 실패")
+            }
+
+            override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
+                if (response!!.isSuccessful) {
+                    legislatorRankDataList = response.body()!!.data
+                    if (legislatorRankDataList.size > 1) {
+                        legislatorRankDataList = legislatorRankDataList.take(10) as ArrayList<RankItemData>
+                        initSettingView()
+
+
+                    } else {
+                        toast("데이터 수 부족")
+                    }
+                }
+            }
+        })
+
     }
 
     private fun setClickListener(){
@@ -95,30 +152,57 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         setVoteBarColor(rank1.party_name, unlikeable_tab_1st_vote_count_bar)
         setVoteBarColor(rank2.party_name, unlikeable_tab_2st_vote_count_bar)
 
+        //1등 셋팅
+        val requestOptions = RequestOptions()
+        if (rank1.mainimg != "0") {
+            requestOptions.centerCrop()
+            Glide.with(context!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(legislatorRankDataList[0].mainimg)
+                    .into(mainimg_1st!!)
+        }
         unlikeable_tab_1st_name_tv.text = rank1.l_name
         unlikeable_tab_1st_party_name_tv.text = rank1.party_name
-        var vote_count : String = String.format("%,d",rank1.score)
+        var vote_count: String = String.format("%,d", rank1.score)
         unlikeable_tab_1st_vote_count_tv.text = "${vote_count}표"
+
+        //2등 셋팅
+        if (rank2.mainimg != "0") {
+            requestOptions.centerCrop()
+            Glide.with(context!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(legislatorRankDataList[1].mainimg)
+                    .into(mainimg_2st!!)
+        }
+
 
         unlikeable_tab_2st_name_tv.text = rank2.l_name
         unlikeable_tab_2st_party_name_tv.text = rank2.party_name
-        vote_count = String.format("%,d",rank2.score)
+        vote_count = String.format("%,d", rank2.score)
         unlikeable_tab_2st_vote_count_tv.text = "${vote_count}표"
 
+        val dp = context!!.resources.displayMetrics.density
+        val params1: RelativeLayout.LayoutParams = unlikeable_tab_1st_vote_count_bar.layoutParams as RelativeLayout.LayoutParams
+        params1.width = (130 * dp).toInt()
+        unlikeable_tab_1st_vote_count_bar.layoutParams = params1
+        val params2: RelativeLayout.LayoutParams = unlikeable_tab_2st_vote_count_bar.layoutParams as RelativeLayout.LayoutParams
+        params2.width = (130 * legislatorRankDataList[1].width * dp).toInt()
+        unlikeable_tab_2st_vote_count_bar.layoutParams = params2
+
     }
-    private fun setVoteBarColor(party_name : String, viewItem: View){
+    private fun setVoteBarColor(party_name: String, viewItem: View) {
         when (party_name) {
             "더불어민주당" -> viewItem.background.setColorFilter(Color.parseColor("#1783DC"), PorterDuff.Mode.SRC_IN)
             "자유한국당" -> viewItem.background.setColorFilter(Color.parseColor("#E1241A"), PorterDuff.Mode.SRC_IN)
             "바른미래당" -> viewItem.background.setColorFilter(Color.parseColor("#14CDCC"), PorterDuff.Mode.SRC_IN)
             "정의당" -> viewItem.background.setColorFilter(Color.parseColor("#FCDC00"), PorterDuff.Mode.SRC_IN)
             "민중당" -> viewItem.background.setColorFilter(Color.parseColor("#EC8C0D"), PorterDuff.Mode.SRC_IN)
+            "대한애국당" -> viewItem.background.setColorFilter(Color.parseColor("#123167"), PorterDuff.Mode.SRC_IN)
+            "민주평화당" -> viewItem.background.setColorFilter(Color.parseColor("#3EA437"), PorterDuff.Mode.SRC_IN)
+            "무소속" -> viewItem.background.setColorFilter(Color.parseColor("#B7B7B7"), PorterDuff.Mode.SRC_IN)
+            else -> viewItem.background.setColorFilter(Color.parseColor("#B7B7B7"), PorterDuff.Mode.SRC_IN)
         }
     }
 
-    private fun getRankItemDataAtServer(){
-        legislatorRankDataList = ArrayList()
-
-    }
 
 }

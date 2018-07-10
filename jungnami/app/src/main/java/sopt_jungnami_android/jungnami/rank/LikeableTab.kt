@@ -149,7 +149,6 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     private fun setRecyclerViewAdapter() {
         likeableRankRecyclerViewAdapter = LikeableRankRecyclerViewAdapter(activity!!, legislatorRankDataList)
-        //클릭 리스너 등록
         likeableRankRecyclerViewAdapter.setOnItemClickListener(this)
         likeable_tab_rank_list_rv.layoutManager = LinearLayoutManager(context)
         likeable_tab_rank_list_rv.adapter = likeableRankRecyclerViewAdapter

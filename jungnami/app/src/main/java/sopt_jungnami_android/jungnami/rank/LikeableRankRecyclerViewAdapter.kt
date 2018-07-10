@@ -20,7 +20,6 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
 
     //클릭 리스너
     lateinit var onItemClick : View.OnClickListener
-
     fun setOnItemClickListener(l : View.OnClickListener){
         onItemClick = l
     }
@@ -28,6 +27,7 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_likeable_tab_rank, parent, false)
         //클릭 리스너
+
         view.setOnClickListener(onItemClick)
         return Holder(view)
     }
@@ -45,18 +45,21 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
                 holder.rank_number.setTextColor(Color.parseColor("#36C5F1"))
             }
         }
-        holder.rank_number.text = rank_number.toString()
+        holder.rank_number.text = rank_number
         //이미지 로드
-        val requestOptions = RequestOptions()
-        requestOptions.placeholder(R.drawable.legislator_noneprofile_woman_image)
-        requestOptions.error(R.drawable.legislator_noneprofile_woman_image)
-        Glide.with(ctx)
-                .setDefaultRequestOptions(requestOptions)
-                .load(dataList[position].profileimg)
-                .thumbnail(0.1f)
-                .into(holder.picture)
+        if (dataList[position].profileimg != "0"){
+            val requestOptions = RequestOptions()
+            requestOptions.placeholder(R.drawable.legislator_noneprofile_woman_image)
+            requestOptions.error(R.drawable.legislator_noneprofile_woman_image)
+            Glide.with(ctx)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(dataList[position].profileimg)
+                    .thumbnail(0.1f)
+                    .into(holder.picture)
+        }
 
-        holder.vote_bar.layoutParams.width = 400
+        val dp = ctx.resources.displayMetrics.density
+        holder.vote_bar.layoutParams.width = (200 * dataList[position].width * dp).toInt()
         holder.name.text = dataList[position].l_name
         holder.party_name.text = " _${dataList[position].party_name}"
         val vote_count : String = String.format("%,d", dataList[position].score)
