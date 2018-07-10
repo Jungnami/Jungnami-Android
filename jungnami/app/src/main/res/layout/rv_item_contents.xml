@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="173dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:background="?android:selectableItemBackground">
     <RelativeLayout
         android:id="@+id/contents_frag_rv_item_root_layout_rl"
         android:layout_width="match_parent"

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="80dp"
+    android:background="?android:selectableItemBackground">
     <ImageView
         android:id="@+id/likeable_tab_rv_item_ranking_img_iv"
         android:src="@drawable/main_gold_medal_icon"
@@ -93,18 +94,19 @@
             android:layout_height="48dp" />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/likeable_tab_rv_item_isvoted_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="14dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:background="?android:selectableItemBackground">
         <ImageView
             android:src="@drawable/main_good_btn_background_circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
         <ImageView
-            android:id="@+id/likeable_tab_rv_item_is_voted_btn"
             android:src="@drawable/main_good_btn_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
