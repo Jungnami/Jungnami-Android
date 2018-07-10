@@ -7,10 +7,14 @@
     android:layout_marginTop="8dp">
 
     <RelativeLayout
-        android:id="@+id/legislator_frag_party_color_iv"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:background="#1783dc">
+        android:layout_height="68dp">
+
+        <ImageView
+            android:id="@+id/legislator_frag_party_color_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#1783dc"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -46,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="15.27dp"
             android:layout_centerInParent="true"
             android:orientation="horizontal">
 

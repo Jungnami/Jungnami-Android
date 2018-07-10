@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--Written by SooYoung-->
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LegislatorList">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#ffffff">
+        android:layout_height="56dp">
         
         <ImageView
             android:id="@+id/legislator_list_act_back_btn"
             android:src="@drawable/back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:padding="6dp"/>
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"/>
         
         <TextView
             android:id="@+id/legislator_list_act_category"
@@ -39,11 +32,11 @@
         <ImageView
             android:id="@+id/legislator_list_act_search"
             android:src="@drawable/legislator_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_width="17.5dp"
+            android:layout_height="17.5dp"
+            android:layout_marginTop="21dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="15.5dp"/>
         
     </RelativeLayout>
 
@@ -52,15 +45,13 @@
         android:layout_height="40dp"
         android:layout_marginTop="56dp"
         android:orientation="horizontal"
-        android:elevation="1dp"
-        android:background="#ffffff">
+        android:elevation="1dp">
 
         <RelativeLayout
             android:id="@+id/legislator_list_act_likeable_tab_btn"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:selectableItemBackground">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/legislator_list_act_likeable_title_tv"
@@ -86,8 +77,7 @@
             android:id="@+id/legislator_list_act_unlikeable_tab_btn"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:selectableItemBackground">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/legislator_list_act_unlikeable_title_tv"

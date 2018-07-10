@@ -13,23 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
-        android:background="#ffffff">
+        android:background="@drawable/border">
 
         <ImageView
             android:id="@+id/community_act_writepage_back_btn"
             android:src="@drawable/writepage_x_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:padding="6dp"
-            android:onClick="onClick"
-            android:background="?android:selectableItemBackground"/>
+            android:layout_width="19.61dp"
+            android:layout_height="19.8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15.65dp"
+            android:onClick="onClick"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="16dp"
             android:layout_centerInParent="true"
             android:text="게시글 작성하기"
             android:textColor="#6b6b6b"
@@ -39,27 +37,19 @@
         <ImageView
             android:id="@+id/community_act_writepage_complete_btn"
             android:src="@drawable/writepage_complete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="33dp"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="9dp"
             android:layout_marginRight="16dp"
-            android:layout_centerVertical="true"
-            android:onClick="onClick"
-            android:background="?android:selectableItemBackground"/>
+            android:onClick="onClick"/>
 
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.25dp"
-        android:layout_marginTop="56dp"
-        android:background="#707070"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56.25dp"
-        android:background="#ffffff">
+        android:layout_marginTop="56dp">
 
         <RelativeLayout
             android:layout_width="69dp"
@@ -101,7 +91,6 @@
                         android:id="@+id/community_act_writepage_posting_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
                         android:background="@android:color/transparent"
                         android:gravity="top"
                         android:hint="무슨 생각을 하고 계신가요?"
@@ -124,37 +113,30 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/community_act_writepage_upload_ll"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:background="@drawable/border">
 
             <ImageView
                 android:id="@+id/community_act_writepage_upload_pic_btn"
                 android:src="@drawable/writepage_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="11dp" />
 
             <ImageView
                 android:id="@+id/community_act_writepage_upload_gif_btn"
                 android:src="@drawable/writepage_gif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="18dp"/>
+                android:layout_marginLeft="50dp"/>
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.25dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:background="#707070"/>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -165,8 +147,8 @@
             <ImageView
                 android:id="@+id/community_act_writepage_gif_bubble_iv"
                 android:src="@drawable/writepage_gif_bubble"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="91dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 />
 
