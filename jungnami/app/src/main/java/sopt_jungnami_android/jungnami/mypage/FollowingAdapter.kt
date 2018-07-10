@@ -29,12 +29,11 @@ class FollowingAdapter (private var followingItems : ArrayList<FollowingData>, p
         val followingViewHolder : FollowingViewHolder = holder as FollowingViewHolder
 
         Glide.with(context)
-                .load(followingItems[position].followingImgURL)
+                .load(followingItems[position].following_img_url)
                 .into(holder.userImage)
 
-//        followingViewHolder.userImage.setImageResource(followingItems[position].followingImgURL)
-        followingViewHolder.userNickName.text = followingItems[position].followingNickname
-//        followingViewHolder.userNickName.setText(followingItems[position].followingNickname)
+
+        followingViewHolder.userNickName.text = followingItems[position].following_nickname
     }
 
 
