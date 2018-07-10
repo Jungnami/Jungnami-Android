@@ -19,7 +19,7 @@ class Alarm : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
         setStatusBarColor()
-        setClickListener()
+        setOnClickListener()
 
         alarmItems = ArrayList()
         alarmItems.add(AlarmData(R.drawable.alarm_none_profile_man_image, R.drawable.alarm_community, "남윤환", "님이 회원님의 게시글을 좋아합니다.", "2시간", "팔로우"))
@@ -33,7 +33,7 @@ class Alarm : AppCompatActivity(){
     }
 
 
-    private fun setClickListener(){
+    private fun setOnClickListener(){
         alarm_back_btn.setOnClickListener {
             finish()
         }
