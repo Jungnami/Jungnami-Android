@@ -2,8 +2,8 @@ package sopt_jungnami_android.jungnami.mypage
 
 import android.graphics.Color
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -38,7 +38,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         setClickListener()
 
         requestScrapDataToServer()
-        requestFeedDataToServer()
+//        requestFeedDataToServer()
+//        커뮤니티 피드받아오기 할 때 주석처리 by 형민
         setScrapRecyclerViewAdapter()
     }
     private fun requestScrapDataToServer(){
@@ -48,12 +49,13 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
         contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
     }
-    private fun requestFeedDataToServer(){
-        feedDataList = ArrayList()
-        feedDataList.add(FeedItemData("문어"))
-        feedDataList.add(FeedItemData("오징어"))
-        feedDataList.add(FeedItemData("꼴뚜기"))
-    }
+    //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
+//    private fun requestFeedDataToServer(){
+//        feedDataList = ArrayList()
+//        feedDataList.add(FeedItemData("문어"))
+//        feedDataList.add(FeedItemData("오징어"))
+//        feedDataList.add(FeedItemData("꼴뚜기"))
+//    }
     private fun setFeedRecyclerViewAdapter(){
         userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
         userAndMyPageFeedRecyclerViewAdapter.setOnItemClickListener(this)
