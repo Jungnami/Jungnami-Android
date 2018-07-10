@@ -6,15 +6,26 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_my_page.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import sopt_jungnami_android.jungnami.Alarm
+import sopt_jungnami_android.jungnami.Get.GetMyPageResponse
+import sopt_jungnami_android.jungnami.Network.ApplicationController
+import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.FeedItemData
+import sopt_jungnami_android.jungnami.data.MyPageData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -30,36 +41,76 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
     lateinit var contentDataList : ArrayList<ContentItemData>
     lateinit var feedDataList : ArrayList<FeedItemData>
+
+    lateinit var myPageDataList: MyPageData
+    lateinit var networkService : NetworkService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
         setStatusBarColor()
 
         setClickListener()
+        requestMyPageDataToServer()
 
-        requestScrapDataToServer()
+//        requestScrapDataToServer()
 //        requestFeedDataToServer()
 //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
-        setScrapRecyclerViewAdapter()
+        //setScrapRecyclerViewAdapter()
     }
-    private fun requestScrapDataToServer(){
-        contentDataList = ArrayList()
-        contentDataList.add(ContentItemData("국회의원 아들과 폐지 줍는 부모님???", "image", "스토리"))
-        contentDataList.add(ContentItemData("문재인 대통령의\n살아온 일대기와 운명", "image", "스토리"))
-        contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
-        contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
-    }
-    //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
-//    private fun requestFeedDataToServer(){
-//        feedDataList = ArrayList()
-//        feedDataList.add(FeedItemData("문어"))
-//        feedDataList.add(FeedItemData("오징어"))
-//        feedDataList.add(FeedItemData("꼴뚜기"))
+//    private fun requestScrapDataToServer(){
+//        contentDataList = ArrayList()
+//        contentDataList.add(ContentItemData("국회의원 아들과 폐지 줍는 부모님???", "image", "스토리"))
+//        contentDataList.add(ContentItemData("문재인 대통령의\n살아온 일대기와 운명", "image", "스토리"))
+//        contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
+//        contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
 //    }
+    //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
+    private fun requestMyPageDataToServer(){
+        feedDataList = ArrayList()
+        val my_id = SharedPreferenceController.getMyId(applicationContext)
+        networkService = ApplicationController.instance.networkService
+
+        val getMyPageResponse = networkService.getMyPageResponse("407144669799202")
+        getMyPageResponse.enqueue(object : Callback<GetMyPageResponse>{
+            override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
+                Log.e("실패", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetMyPageResponse>?, response: Response<GetMyPageResponse>?) {
+                if (response!!.isSuccessful){
+                    myPageDataList = response!!.body()!!.data
+
+                    //나중에 백그라운드로
+                    setMyInfoView()
+
+                }
+            }
+        })
+    }
+    private fun setMyInfoView(){
+        val requestOptions = RequestOptions()
+        if (myPageDataList.img != "0") {
+            requestOptions.centerCrop()
+            Glide.with(applicationContext!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(myPageDataList.img)
+                    .into(mypage_act_my_picture_iv)
+        }
+
+        mypage_act_user_name_tv.text = myPageDataList.nickname
+        mypage_act_scrap_count_tv.text = myPageDataList.scrapcnt.toString()
+        mypage_act_myfeed_count_tv.text = myPageDataList.boardcnt.toString()
+        mypage_act_following_count_tv.text = myPageDataList.followingcnt.toString()
+        mypage_act_follower_count_tv.text = myPageDataList.followercnt.toString()
+
+        mypage_act_mycoin_count_tv.text = "${myPageDataList.coin} 코인"
+        mypage_act_votingcnt_tv.text = "${myPageDataList.votingcnt}개"
+    }
     private fun setFeedRecyclerViewAdapter(){
         userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
         userAndMyPageFeedRecyclerViewAdapter.setOnItemClickListener(this)
-        mypage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(this)
+        mypage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(applicationContext)
         mypage_act_recyclerview_list_rv.adapter = userAndMyPageFeedRecyclerViewAdapter
     }
     private fun setScrapRecyclerViewAdapter(){

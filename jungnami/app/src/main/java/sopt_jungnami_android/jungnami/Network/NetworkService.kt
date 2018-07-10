@@ -1,12 +1,9 @@
 package sopt_jungnami_android.jungnami.Network
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import sopt_jungnami_android.jungnami.Get.GetCommunityFeedResponse
-import sopt_jungnami_android.jungnami.Get.GetFollowingResponse
-import sopt_jungnami_android.jungnami.Get.GetRankingResponse
+import retrofit2.http.*
+import sopt_jungnami_android.jungnami.Get.*
+import sopt_jungnami_android.jungnami.Post.PostCompletingVote
 
 interface NetworkService {
 
@@ -26,17 +23,37 @@ interface NetworkService {
 
 
 
-    // 호감/비호감 순위
+    // 호감/비호감 순위 윤환
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("ranking/list/{islike}")
     fun getRanking(
             @Path("islike") islike : Int
     ) : Call<GetRankingResponse>
 
+    // rank탭 투표하기 윤환
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("legislator/voting")
+    fun getMyVotingCount() : Call<GetVotingResponse>
+    //투표 완료하기 윤환
+    @FormUrlEncoded
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("legislator/voting")
+    fun postCompletingVote(
+            @Field("l_id") l_id : Int,
+            @Field("islike") islike : Int
+    ) : Call<PostCompletingVote>
+
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("user/mypage/{mypage_id}")
+    fun getMyPageResponse(
+            @Path("mypage_id") mypage_id : String
+    ) : Call<GetMyPageResponse>
+
+
 
     // 커뮤니티 글 작성화면 made by SooYoung
-//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
-//    @GET("board/post")
-//    fun getCommunityPostingResponse(
-//
-//    ) : Call<GetCommunityPostingResponse>
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("board/post")
+    fun getCommunityPostingResponse(
+    ) : Call<GetCommunityPostingResponse>
 }

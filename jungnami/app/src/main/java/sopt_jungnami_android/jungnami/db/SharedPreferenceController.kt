@@ -6,8 +6,9 @@ object SharedPreferenceController {
 
     private val USER_NAME = "MYKEY"
     //private val authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q"
-    private val kakaoKey = "authorization"
-
+    private val kakaoKey = "kakao_Key"
+    //807465239
+    private val my_id = "my_id"
 
     fun setAuthorization(context: Context, authorization : String){
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
@@ -21,6 +22,17 @@ object SharedPreferenceController {
         return pref.getString(kakaoKey, "")
     }
 
+    fun setMyId(context: Context, id : String){
+        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
+        val editor = pref.edit()
+        editor.putString(my_id, id)
+        editor.commit()
+    }
+
+    fun getMyId(context: Context) : String {
+        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
+        return pref.getString(my_id, "")
+    }
 
     fun clearSPC(context: Context){
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
