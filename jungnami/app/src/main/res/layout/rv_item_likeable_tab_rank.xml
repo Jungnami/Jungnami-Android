@@ -27,6 +27,7 @@
         android:layout_marginRight="16dp"/>
 
     <RelativeLayout
+        android:id="@+id/likeable_item_progress_bar_root_rl"
         android:layout_toRightOf="@id/likeable_tab_rv_item_ranking_number_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

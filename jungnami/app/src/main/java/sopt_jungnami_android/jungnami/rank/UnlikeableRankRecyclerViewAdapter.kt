@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.MainActivity
@@ -43,14 +44,21 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
                 holder.rank_number.setTextColor(Color.parseColor("#36C5F1"))
             }
         }
-        holder.rank_number.text = rank_number.toString()
-        //이미지 로드
-        val requestOptions = RequestOptions()
-        //requestOptions.placeholder()
-        //requestOptions.error()
-//        Glide.with(ctx).setDefaultRequestOptions(requestOptions).load(dataList[position].picture_url).into(holder.picture)
-        holder.picture.setImageResource(R.drawable.legislator_noneprofile_woman_image)
-        holder.vote_bar.layoutParams.width = 400
+        holder.rank_number.text = rank_number
+
+        if (dataList[position].profileimg != "0"){
+            val requestOptions = RequestOptions()
+            requestOptions.placeholder(R.drawable.legislator_noneprofile_woman_image)
+            requestOptions.error(R.drawable.legislator_noneprofile_woman_image)
+            Glide.with(ctx)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(dataList[position].profileimg)
+                    .thumbnail(0.1f)
+                    .into(holder.picture)
+        }
+
+        val dp = ctx.resources.displayMetrics.density
+        holder.vote_bar.layoutParams.width = (200 * dataList[position].width * dp).toInt()
         holder.name.text = dataList[position].l_name
         holder.party_name.text = " _${dataList[position].party_name}"
         val vote_count : String = String.format("%,d", dataList[position].score)
@@ -58,7 +66,6 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
 
         holder.vote_btn.setOnClickListener {
             (ctx as MainActivity).setAnimRankTabIcon(false)
-            ctx.toast("unlikeable!!!")
         }
 
 //        when (dataList[position].is_voted){
