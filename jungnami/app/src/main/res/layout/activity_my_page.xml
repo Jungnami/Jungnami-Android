@@ -92,6 +92,7 @@
                     android:layout_height="164dp"
                     android:background="#FFFFFF">
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/mypage_act_my_picture_iv"
                         android:src="@drawable/legislator_noneprofile_woman_image"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
@@ -110,7 +111,7 @@
                             android:layout_marginRight="3dp"
                             android:background="@drawable/mypage_act_box_shape">
                             <TextView
-                                android:id="@+id/mypage_act_user_id_tv"
+                                android:id="@+id/mypage_act_user_name_tv"
                                 android:text="쁜쁜"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -323,6 +324,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="16dp"/>
                     <TextView
+                        android:id="@+id/mypage_act_votingcnt_tv"
                         android:layout_marginRight="9dp"
                         android:layout_toLeftOf="@id/mypage_act_myvote_right_page_iv"
                         android:layout_centerVertical="true"

@@ -22,3 +22,5 @@ class ExampleInstrumentedTest {
         assertEquals("sopt_jungnami_android.jungnami", appContext.packageName)
     }
 }
+
+
