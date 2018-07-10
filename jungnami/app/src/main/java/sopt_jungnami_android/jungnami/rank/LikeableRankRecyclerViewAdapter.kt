@@ -1,7 +1,10 @@
 package sopt_jungnami_android.jungnami.rank
 
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
+import android.support.v4.app.DialogFragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -66,8 +69,8 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         holder.vote_count.text = "${vote_count}표"
 
         holder.vote_btn.setOnClickListener {
-            (ctx as MainActivity).setAnimRankTabIcon(true)
-            ctx.toast("likeable!!!")
+            val dialog : Dialog = VoteAgreeDialog(ctx,true)
+            dialog.show()
         }
 
 //        when (dataList[position].is_voted){

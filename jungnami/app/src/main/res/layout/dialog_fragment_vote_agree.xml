@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="28dp">
+        <TextView
+            android:textColor="#2B2B2B"
+            android:text="투표하시겠습니까?"
+            android:textSize="16dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"/>
+        <TextView
+            android:id="@+id/vote_agree_dialog_myvote_count_tv"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#757575"
+            android:text="나의 보유 투표권 : 20개"
+            android:textSize="15dp"
+            android:fontFamily="@font/nanumbarungothiclight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"/>
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/vote_agree_dialog_yes_btn"
+                android:src="@drawable/community_popup_yes_blue_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="9dp"/>
+            <ImageView
+                android:id="@+id/vote_agree_dialog_no_btn"
+                android:src="@drawable/community_popup_no_gray_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
