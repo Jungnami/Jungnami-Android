@@ -33,12 +33,21 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setClickListener()
+        
         getRankItemDataAtServer()
         setRecyclerViewAdapter()
         set1stVS2stRankView()
 
     }
-
+    private fun setClickListener(){
+        likeable_tab_1st_btn.setOnClickListener {
+            startActivity<LegislatorPageActivity>("l_id" to 11)
+        }
+        likeable_tab_2st_btn.setOnClickListener {
+            startActivity<LegislatorPageActivity>("l_id" to 22)
+        }
+    }
 
     private fun setRecyclerViewAdapter() {
         likeableRankRecyclerViewAdapter = LikeableRankRecyclerViewAdapter(context!!, legislatorRankDataList)
