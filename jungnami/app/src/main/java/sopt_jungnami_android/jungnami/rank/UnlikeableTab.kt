@@ -95,14 +95,14 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         setVoteBarColor(rank1.party_name, unlikeable_tab_1st_vote_count_bar)
         setVoteBarColor(rank2.party_name, unlikeable_tab_2st_vote_count_bar)
 
-        unlikeable_tab_1st_name_tv.text = rank1.name
+        unlikeable_tab_1st_name_tv.text = rank1.l_name
         unlikeable_tab_1st_party_name_tv.text = rank1.party_name
-        var vote_count : String = String.format("%,d",rank1.vote_count)
+        var vote_count : String = String.format("%,d",rank1.score)
         unlikeable_tab_1st_vote_count_tv.text = "${vote_count}표"
 
-        unlikeable_tab_2st_name_tv.text = rank2.name
+        unlikeable_tab_2st_name_tv.text = rank2.l_name
         unlikeable_tab_2st_party_name_tv.text = rank2.party_name
-        vote_count = String.format("%,d",rank2.vote_count)
+        vote_count = String.format("%,d",rank2.score)
         unlikeable_tab_2st_vote_count_tv.text = "${vote_count}표"
 
     }
@@ -118,11 +118,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
 
     private fun getRankItemDataAtServer(){
         legislatorRankDataList = ArrayList()
-        legislatorRankDataList.add(RankItemData(1,"non","김병관","자유한국당",270000,1))
-        legislatorRankDataList.add(RankItemData(2,"non","홍길동","숭구리당",320000,1))
-        legislatorRankDataList.add(RankItemData(3,"non","익명1","바른미래당",310000,1))
-        legislatorRankDataList.add(RankItemData(4,"non","익명2","정의당",2000,1))
-        legislatorRankDataList.add(RankItemData(5,"non","익명3","민중당",1000,1))
+
     }
 
 }

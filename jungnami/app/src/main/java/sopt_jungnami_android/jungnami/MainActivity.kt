@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity() {
         when (selected_idx) {
             0 -> {
                 chagneNonSelectedTabView(current_tab_idx)
+
                 current_tab_idx = 0
                 chagneSelectedTabView(current_tab_idx)
             }
