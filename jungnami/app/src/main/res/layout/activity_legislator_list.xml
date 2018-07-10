@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--Written by SooYoung-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -117,6 +120,14 @@
         android:id="@+id/legislator_list_act_legislator_search_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/legislator_list_act_is_display_blind_panel_rl"
+            android:background="#77000000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
