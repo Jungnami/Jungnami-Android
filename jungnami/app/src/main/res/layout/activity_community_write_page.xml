@@ -64,7 +64,7 @@
             android:layout_width="69dp"
             android:layout_height="match_parent">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/rv_item_community_profile_img_iv"
                 android:src="@drawable/community_profile_circle"
                 android:layout_width="38dp"
@@ -123,7 +123,7 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/community_act_writepage_upload_ll"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -144,9 +144,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="18dp"/>
+                android:layout_marginLeft="50dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

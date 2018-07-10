@@ -1,12 +1,12 @@
 package sopt_jungnami_android.jungnami
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.activity_alarm.*
 import sopt_jungnami_android.jungnami.data.AlarmData
 
@@ -14,6 +14,8 @@ class Alarm : AppCompatActivity(){
 
     lateinit var alarmItems : ArrayList<AlarmData>
     lateinit var alarmAdapter : AlarmViewAdapter
+
+    var context : Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +29,9 @@ class Alarm : AppCompatActivity(){
         alarmItems.add(AlarmData(R.drawable.alarm_none_profile_woman_image, R.drawable.alarm_follow, "임수영", "님이 팔로우 했습니다.", "1시간", "팔로잉"))
 
         alarmAdapter = AlarmViewAdapter(alarmItems)
-//        alarmAdapter.setOnItemClickListener()
-//        rv_alarm.layoutManager = LinearLayoutManager(baseContext)
-//        rv_alarm.adapter = alarmAdapter
+//        alarmAdapter.setOnItemClickListener(this)
+        rv_alarm.layoutManager = LinearLayoutManager(this)
+        rv_alarm.adapter = alarmAdapter
     }
 
 
