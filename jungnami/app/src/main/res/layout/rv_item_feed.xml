@@ -94,7 +94,7 @@
         <TextView
             android:id="@+id/contents_comment_rv_item_heart_num_btn"
             android:layout_toRightOf="@+id/contents_comment_rv_item_small_heart"
-            android:text="5,258명"
+            android:text="5,258"
             android:textStyle="bold"
             android:textSize="11dp"
             android:fontFamily="@font/nanumbarungothic_normal"
@@ -107,7 +107,7 @@
         <TextView
             android:id="@+id/contents_comment_rv_item_heart_num_des_tv"
             android:layout_toRightOf="@+id/contents_comment_rv_item_heart_num_btn"
-            android:text="이 좋아합니다"
+            android:text="명이 좋아합니다"
             android:textSize="11dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
             android:layout_marginLeft="16dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/contents_comment_tv_item_bottom_bar_heart_btn"
-            android:src="@drawable/community_rv_item_chat_btn"
+            android:src="@drawable/community_chat_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -196,7 +196,7 @@
             android:layout_marginLeft="16dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/contents_comment_tv_item_bottom_bar_chat_btn"
-            android:src="@drawable/community_rv_item_share_btn"
+            android:src="@drawable/community_share_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

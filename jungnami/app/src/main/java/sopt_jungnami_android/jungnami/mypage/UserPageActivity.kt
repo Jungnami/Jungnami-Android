@@ -8,12 +8,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_user_page.*
-import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
-import sopt_jungnami_android.jungnami.Alarm
-import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.FeedItemData
@@ -44,7 +40,7 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         setClickListener()
         //스크렙, 피드 리사이클러뷰 세팅
         requestScrapDataToServer()
-        requestFeedDataToServer()
+//        requestFeedDataToServer()
         setScrapRecyclerViewAdapter()
     }
     private fun setFeedRecyclerViewAdapter(){
@@ -68,12 +64,13 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
         contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
     }
-    private fun requestFeedDataToServer(){
-        feedDataList = ArrayList()
-        feedDataList.add(FeedItemData("문어"))
-        feedDataList.add(FeedItemData("오징어"))
-        feedDataList.add(FeedItemData("꼴뚜기"))
-    }
+    //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
+//    private fun requestFeedDataToServer(){
+//        feedDataList = ArrayList()
+//        feedDataList.add(FeedItemData("문어"))
+//        feedDataList.add(FeedItemData("오징어"))
+//        feedDataList.add(FeedItemData("꼴뚜기"))
+//    }
     private fun setClickListener(){
         userpage_act_top_bar_back_btn.setOnClickListener {
             finish()

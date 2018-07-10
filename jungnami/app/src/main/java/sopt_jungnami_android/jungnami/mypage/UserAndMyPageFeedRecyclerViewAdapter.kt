@@ -27,7 +27,8 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : Arr
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        holder.profile_name.text = dataList[position].profile_name
+        //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
+//        holder.profile_name.text = dataList[position].profile_name
 
     }
 
