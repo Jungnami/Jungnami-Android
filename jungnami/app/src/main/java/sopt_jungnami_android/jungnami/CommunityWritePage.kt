@@ -21,7 +21,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import kotlinx.android.synthetic.main.activity_community_write_page.*
-import okhttp3.Callback
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -31,19 +30,17 @@ import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetCommunityPostingResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
-import sopt_jungnami_android.jungnami.data.CommunityPostingPrepareData
+import sopt_jungnami_android.jungnami.Post.PostCommunityPostingResponse
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
-import java.util.*
 
 // Written by SooYoung
 
 class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
     lateinit var networkService: NetworkService
-//    lateinit var CommunityPostingItems: ArrayList<CommunityPostingPrepareData>
     var context : Context = this
 
     private val REQ_CODE_SELECT_IMAGE = 100
@@ -68,10 +65,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         getCommunityPostingResponse()
 
-
         setStatusBarColor()
-
-
 
         val editTextContent = findViewById<EditText>(R.id.community_act_writepage_posting_et)
 
@@ -100,7 +94,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
         community_act_writepage_complete_btn.setOnClickListener {
             if (community_act_writepage_complete_btn.isSelected){
-                // 이동, 통신
+                postCommunityPostingResponse()
             }
         }
         community_act_writepage_upload_pic_btn.setOnClickListener {
@@ -136,20 +130,33 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         getCommunityPostingResponse.enqueue(object : retrofit2.Callback<GetCommunityPostingResponse>{
             override fun onFailure(call: Call<GetCommunityPostingResponse>?, t: Throwable?) {
                 toast("error!")
-                Log.v("111","이런젠장")
             }
 
             override fun onResponse(call: Call<GetCommunityPostingResponse>?, response: Response<GetCommunityPostingResponse>?) {
                 if (response!!.isSuccessful) {
-                    Log.v("222", "이런")
                     var imgurl = response!!.body()!!.data.img_url
                     Glide.with(context).load(imgurl).into(rv_item_community_profile_img_iv)
 
                 }
+            }
+        })
+    }
 
-                Log.v("333", "니니ㅣ")
+    fun postCommunityPostingResponse() {
+        val posting_content = RequestBody.create(MediaType.parse("text/plain"), community_act_writepage_posting_et.text.toString())
+
+        //val posting_shared = RequestBody.create(MediaType.parse("text/plain"), )
+
+        val postingcomplete = networkService.postCommunityPostingRequest(posting_content, image, posting_shared)
+        postingcomplete.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
+            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+                if(response!!.isSuccessful)
+                    finish()
             }
 
+            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+                toast("Error!")
+            }
         })
     }
 
@@ -159,7 +166,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
     fun Gone(v: View?){
         val gif = findViewById<ImageView>(R.id.community_act_writepage_upload_gif_iv)
-        gif.visibility = View.GONE
+        gif.visibility = View.INVISIBLE
     }
 
     fun Visible(v: View?){
@@ -198,9 +205,8 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                     val photo = File(this.data.toString()) // 가져온 파일의 이름
 
                     // RequestBody photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray());
-                    // MultipartBody.Part 실제 파일의 이름 전송
 
-                    image = MultipartBody.Part.createFormData("photo", photo.name, photoBody)
+                    image = MultipartBody.Part.createFormData("image", photo.name, photoBody) // 실제 파일의 이름 전송
 
                     //body = MultipartBody.Part.createFormData("image", photo.getName(), profile_pic);
 
