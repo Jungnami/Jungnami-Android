@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         main_act_rank_btn.isSelected = true
         setBottomNavigationClickListener()
         addFragment(RankFragment())
+        main_act_likeable_icon_with_animation_iv.visibility = View.GONE
+        main_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
         //FirebaseConnection().onTokenRefresh()
     }
     private fun setBottomNavigationClickListener() {
@@ -43,6 +47,44 @@ class MainActivity : AppCompatActivity() {
             checkSelectedTabView(3)
             replaceFragment(ContentsFragment())
         }
+    }
+
+    fun setAnimRankTabIcon(isLikeable : Boolean){
+        if(isLikeable) {
+            val anim : Animation = AnimationUtils.loadAnimation(this,R.anim.expand_anim)
+            anim.setAnimationListener(object : Animation.AnimationListener{
+                override fun onAnimationRepeat(animation: Animation?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    main_act_likeable_icon_with_animation_iv.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    main_act_likeable_icon_with_animation_iv.visibility = View.VISIBLE
+                }
+            })
+            main_act_likeable_icon_with_animation_iv.startAnimation(anim)
+        } else {
+
+            val anim : Animation = AnimationUtils.loadAnimation(this,R.anim.expand_anim)
+            anim.setAnimationListener(object : Animation.AnimationListener{
+                override fun onAnimationRepeat(animation: Animation?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    main_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    main_act_unlikeable_icon_with_animation_iv.visibility = View.VISIBLE
+                }
+            })
+            main_act_unlikeable_icon_with_animation_iv.startAnimation(anim)
+        }
+
     }
 
     private fun addFragment(fragment: Fragment): Unit {
