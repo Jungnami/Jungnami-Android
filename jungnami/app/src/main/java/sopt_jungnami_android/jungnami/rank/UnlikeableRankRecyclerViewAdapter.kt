@@ -33,11 +33,11 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val rank_number = dataList[position].rank_number
+        val rank_number = dataList[position].ranking
         when (rank_number){
-            1 -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_red)
-            2 -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_orange)
-            3 -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_yellow)
+            "1" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_red)
+            "2" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_orange)
+            "3" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_yellow)
             else -> {
                 holder.rank_number_cover_img.visibility = View.INVISIBLE
                 holder.rank_number.setTextColor(Color.parseColor("#36C5F1"))
@@ -51,9 +51,9 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
 //        Glide.with(ctx).setDefaultRequestOptions(requestOptions).load(dataList[position].picture_url).into(holder.picture)
         holder.picture.setImageResource(R.drawable.legislator_noneprofile_woman_image)
         holder.vote_bar.layoutParams.width = 400
-        holder.name.text = dataList[position].name
+        holder.name.text = dataList[position].l_name
         holder.party_name.text = " _${dataList[position].party_name}"
-        val vote_count : String = String.format("%,d", dataList[position].vote_count)
+        val vote_count : String = String.format("%,d", dataList[position].score)
         holder.vote_count.text = "${vote_count}표"
 
         holder.vote_btn.setOnClickListener {

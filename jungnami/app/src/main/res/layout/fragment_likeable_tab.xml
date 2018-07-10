@@ -1,196 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".rank.LikeableTab"
+    android:background="#FFFFFF"
     android:orientation="vertical"
-    android:background="#FFFFFF">
+    tools:context=".rank.LikeableTab">
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/likeable_tab_refresh_srl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v4.widget.NestedScrollView
+
+        <RelativeLayout
+            android:id="@+id/likeable_tab_root_rl_to_refreshing"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:focusableInTouchMode="true">
 
-                <RelativeLayout
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginHorizontal="16dp">
-                    <LinearLayout
-                        android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <RelativeLayout
-                            android:id="@+id/likeable_tab_1st_btn"
-                            android:background="?android:selectableItemBackground"
-                            android:layout_weight="1"
+                        android:layout_height="230dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <ImageView
-                                android:id="@+id/likeable_tab_1st_picture_iv"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/likeable_tab_1st_btn"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="#BBDEFB"/>
-                            <RelativeLayout
-                                android:id="@+id/likeable_tab_1st_vote_count_bar"
-                                android:visibility="invisible"
-                                android:background="@drawable/in_rank_tab_1st_vote_count_bar_shape"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginBottom="16dp"
-                                android:layout_width="130dp"
-                                android:layout_height="16dp">
-                                <TextView
-                                    android:visibility="gone"
-                                    android:id="@+id/likeable_tab_1st_vote_count_tv"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="8dp"
-                                    android:textSize="8dp"
-                                    android:text="715000 표"
-                                    android:fontFamily="@font/nanumbarungothiclight"
-                                    android:textColor="#E2E2E2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-                            </RelativeLayout>
-                            <LinearLayout
-                                android:layout_alignParentLeft="true"
-                                android:layout_above="@+id/likeable_tab_1st_vote_count_bar"
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginBottom="5dp">
-                                <TextView
-                                    android:text="1위"
-                                    android:textSize="11dp"
-                                    android:textColor="#FFFFFF"
-                                    android:fontFamily="@font/nanumbarungothic"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="left"
-                                    android:layout_marginBottom="4dp"/>
-                                <TextView
-                                    android:id="@+id/likeable_tab_1st_name_tv"
-                                    android:text="홍길동"
-                                    android:textSize="17dp"
-                                    android:textColor="#F7F7F7"
-                                    android:fontFamily="@font/nanumbarungothic"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="left"/>
-                                <TextView
-                                    android:id="@+id/likeable_tab_1st_party_name_tv"
-                                    android:text="숭구리당"
-                                    android:textSize="10dp"
-                                    android:textColor="#E2E2E2"
-                                    android:fontFamily="@font/nanumbarungothiclight"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="left" />
-                            </LinearLayout>
-                        </RelativeLayout>
-                        <View
-                            android:background="#FFFFFF"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"/>
-                        <RelativeLayout
-                            android:id="@+id/likeable_tab_2st_btn"
-                            android:background="?android:selectableItemBackground"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <ImageView
-                                android:id="@+id/likeable_tab_2st_picture_iv"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="#90CAF9"/>
-                            <RelativeLayout
-                                android:id="@+id/likeable_tab_2st_vote_count_bar"
-                                android:visibility="invisible"
-                                android:background="@drawable/in_rank_tab_2st_vote_count_bar_shape"
-                                android:layout_alignParentRight="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginBottom="16dp"
-                                android:layout_width="104dp"
-                                android:layout_height="16dp">
-                                <TextView
-                                    android:visibility="gone"
-                                    android:id="@+id/likeable_tab_2st_vote_count_tv"
+                                android:layout_weight="1"
+                                android:background="?android:selectableItemBackground">
+
+                                <ImageView
+                                    android:id="@+id/likeable_tab_1st_picture_iv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="#BBDEFB" />
+
+                                <RelativeLayout
+                                    android:id="@+id/likeable_tab_1st_vote_count_bar"
+                                    android:layout_width="150dp"
+                                    android:layout_height="16dp"
+                                    android:layout_alignParentBottom="true"
                                     android:layout_alignParentLeft="true"
-                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="16dp"
+                                    android:layout_marginRight="6dp"
+                                    android:background="@drawable/in_rank_tab_1st_vote_count_bar_shape"
+                                    android:visibility="visible">
+
+                                    <TextView
+                                        android:id="@+id/likeable_tab_1st_vote_count_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="8dp"
+                                        android:fontFamily="@font/nanumbarungothiclight"
+                                        android:text="715000 표"
+                                        android:textColor="#E2E2E2"
+                                        android:textSize="8dp"
+                                        android:visibility="gone" />
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_above="@+id/likeable_tab_1st_vote_count_bar"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginBottom="5dp"
                                     android:layout_marginLeft="8dp"
-                                    android:textSize="8dp"
-                                    android:text="222000 표"
-                                    android:fontFamily="@font/nanumbarungothiclight"
-                                    android:textColor="#E2E2E2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:layout_marginBottom="4dp"
+                                        android:fontFamily="@font/nanumbarungothic"
+                                        android:text="1위"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="11dp" />
+
+                                    <TextView
+                                        android:id="@+id/likeable_tab_1st_name_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:fontFamily="@font/nanumbarungothic"
+                                        android:text="홍길동"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/likeable_tab_1st_party_name_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:fontFamily="@font/nanumbarungothiclight"
+                                        android:text="숭구리당"
+                                        android:textColor="#E2E2E2"
+                                        android:textSize="10dp" />
+                                </LinearLayout>
                             </RelativeLayout>
-                            <LinearLayout
-                                android:layout_alignParentRight="true"
-                                android:layout_above="@+id/likeable_tab_2st_vote_count_bar"
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:layout_marginBottom="5dp">
-                                <TextView
-                                    android:text="2위"
-                                    android:textSize="11dp"
-                                    android:textColor="#FFFFFF"
-                                    android:fontFamily="@font/nanumbarungothic"
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="#FFFFFF" />
+
+                            <RelativeLayout
+                                android:id="@+id/likeable_tab_2st_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="?android:selectableItemBackground">
+
+                                <ImageView
+                                    android:id="@+id/likeable_tab_2st_picture_iv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#90CAF9" />
+
+                                <RelativeLayout
+                                    android:id="@+id/likeable_tab_2st_vote_count_bar"
+                                    android:layout_width="150dp"
+                                    android:layout_height="16dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginBottom="16dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:background="@drawable/in_rank_tab_2st_vote_count_bar_shape"
+                                    android:visibility="visible">
+
+                                    <TextView
+                                        android:id="@+id/likeable_tab_2st_vote_count_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="8dp"
+                                        android:fontFamily="@font/nanumbarungothiclight"
+                                        android:text="222000 표"
+                                        android:textColor="#E2E2E2"
+                                        android:textSize="8dp"
+                                        android:visibility="gone" />
+                                </RelativeLayout>
+
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:layout_marginBottom="4dp"/>
-                                <TextView
-                                    android:id="@+id/likeable_tab_2st_name_tv"
-                                    android:text="김병욱"
-                                    android:textSize="17dp"
-                                    android:textColor="#F7F7F7"
-                                    android:fontFamily="@font/nanumbarungothic"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right"/>
-                                <TextView
-                                    android:id="@+id/likeable_tab_2st_party_name_tv"
-                                    android:text="더불어민주당"
-                                    android:textSize="10dp"
-                                    android:textColor="#E2E2E2"
-                                    android:fontFamily="@font/nanumbarungothiclight"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="right" />
-                            </LinearLayout>
-                        </RelativeLayout>
-                    </LinearLayout>
-                    <ImageView
-                        android:src="@drawable/main_fight_icon"
-                        android:layout_centerInParent="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/likeable_tab_rank_list_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:descendantFocusability="blocksDescendants"
-                    android:nestedScrollingEnabled="false">
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+                                    android:layout_above="@+id/likeable_tab_2st_vote_count_bar"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginRight="8dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="right"
+                                        android:layout_marginBottom="4dp"
+                                        android:fontFamily="@font/nanumbarungothic"
+                                        android:text="2위"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="11dp" />
+
+                                    <TextView
+                                        android:id="@+id/likeable_tab_2st_name_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="right"
+                                        android:fontFamily="@font/nanumbarungothic"
+                                        android:text="김병욱"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/likeable_tab_2st_party_name_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="right"
+                                        android:fontFamily="@font/nanumbarungothiclight"
+                                        android:text="더불어민주당"
+                                        android:textColor="#E2E2E2"
+                                        android:textSize="10dp" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/main_fight_icon" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/likeable_tab_rank_list_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:descendantFocusability="blocksDescendants"
+                        android:nestedScrollingEnabled="false"></android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </RelativeLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

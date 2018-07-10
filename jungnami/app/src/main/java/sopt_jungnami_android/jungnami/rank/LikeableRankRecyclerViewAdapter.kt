@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.MainActivity
@@ -34,11 +35,11 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val rank_number = dataList[position].rank_number
+        val rank_number = dataList[position].ranking
         when (rank_number){
-            1 -> holder.rank_number_cover_img.setImageResource(R.drawable.main_gold_medal_icon)
-            2 -> holder.rank_number_cover_img.setImageResource(R.drawable.main_silver_medal_icon)
-            3 -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bronze_medal_icon)
+            "1" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_gold_medal_icon)
+            "2" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_silver_medal_icon)
+            "3" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bronze_medal_icon)
             else -> {
                 holder.rank_number_cover_img.visibility = View.INVISIBLE
                 holder.rank_number.setTextColor(Color.parseColor("#36C5F1"))
@@ -47,14 +48,18 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         holder.rank_number.text = rank_number.toString()
         //이미지 로드
         val requestOptions = RequestOptions()
-        //requestOptions.placeholder()
-        //requestOptions.error()
-//        Glide.with(ctx).setDefaultRequestOptions(requestOptions).load(dataList[position].picture_url).into(holder.picture)
-        holder.picture.setImageResource(R.drawable.legislator_noneprofile_woman_image)
+        requestOptions.placeholder(R.drawable.legislator_noneprofile_woman_image)
+        requestOptions.error(R.drawable.legislator_noneprofile_woman_image)
+        Glide.with(ctx)
+                .setDefaultRequestOptions(requestOptions)
+                .load(dataList[position].profileimg)
+                .thumbnail(0.1f)
+                .into(holder.picture)
+
         holder.vote_bar.layoutParams.width = 400
-        holder.name.text = dataList[position].name
+        holder.name.text = dataList[position].l_name
         holder.party_name.text = " _${dataList[position].party_name}"
-        val vote_count : String = String.format("%,d", dataList[position].vote_count)
+        val vote_count : String = String.format("%,d", dataList[position].score)
         holder.vote_count.text = "${vote_count}표"
 
         holder.vote_btn.setOnClickListener {
