@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--written by Tak HyeongMin-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,18 +11,18 @@
 
         <android.support.v4.widget.CircleImageView
             android:id="@+id/rv_item_community_contents_comment_profile_btn"
-            android:layout_width="38.5dp"
-            android:layout_height="38.5dp"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
             android:layout_marginLeft="17dp"
-            android:layout_marginTop="12.5dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/community_profile_circle"
-            android:scaleType="fitXY"/>
+            />
 
         <TextView
             android:id="@+id/rv_item_community_contents_comment_name_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7.5dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
             android:fontFamily="@font/nanumbarungothicbold_normal"
@@ -34,7 +35,7 @@
             android:layout_width="29dp"
             android:layout_height="13dp"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_name_btn"
-            android:layout_marginTop="17.5dp"
+            android:layout_marginTop="17dp"
             android:layout_marginLeft="4dp"
             >
 
@@ -68,15 +69,15 @@
             android:fontFamily="@font/nanumbarungothicbold_normal"
             android:layout_below="@id/rv_item_community_contents_comment_name_btn"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
-            android:layout_marginLeft="7.5dp"
+            android:layout_marginLeft="7dp"
             />
         
         <ImageView
             android:id="@+id/rv_item_community_contents_comment_likes_btn"
-            android:layout_width="14.72dp"
-            android:layout_height="14.05dp"
-            android:layout_marginTop="23.5dp"
-            android:layout_marginRight="16.35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/community_heart_gray"
             />
@@ -131,5 +132,12 @@
 
 
     </RelativeLayout>
+    <View
+        android:background="#9B9B9B"
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        ></View>
 
 </LinearLayout>
