@@ -6,8 +6,7 @@
     <RelativeLayout
         android:id="@+id/contents_comment_act_top_bar"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        >
+        android:layout_height="46dp">
 
 
         <ImageView

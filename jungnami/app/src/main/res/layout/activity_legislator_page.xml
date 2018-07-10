@@ -194,22 +194,22 @@
                         <ImageView
                             android:id="@+id/legislator_page_act_like_btn"
                             android:src="@drawable/legislatorpage_good_btn_blue"
-                            android:layout_width="wrap_content"
+                            android:layout_width="57dp"
                             android:layout_height="wrap_content" />
 
                         <ImageView
                             android:id="@+id/legislator_page_act_unlike_btn"
                             android:src="@drawable/legislatorpage_bad_btn_blue"
-                            android:layout_width="wrap_content"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"/>
 
                         <ImageView
                             android:id="@+id/legislator_page_act_sponsor_btn"
                             android:src="@drawable/legislatorpage_support_btn_blue"
-                            android:layout_width="wrap_content"
+                            android:layout_width="74dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"/>
+                            android:layout_marginLeft="7dp"/>
 
                     </LinearLayout>
 

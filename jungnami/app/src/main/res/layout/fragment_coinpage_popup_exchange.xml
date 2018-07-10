@@ -10,164 +10,170 @@
 
     <RelativeLayout
         android:layout_width="232dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="187dp"
-        android:layout_centerHorizontal="true">
-
-        <ImageView
-            android:src="@drawable/coinpage_popup_character"
-            android:layout_width="63dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="6dp"
-            />
-
-        <ImageView
-            android:src="@drawable/coinpage_popup_coin"
-            android:layout_width="105dp"
-            android:layout_height="32dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="56dp"/>
-
-    </RelativeLayout>
-    
-    <RelativeLayout
-        android:layout_width="232dp"
-        android:layout_height="207dp"
-        android:layout_marginTop="266.36dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/sponsoring_frag_box_shape">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/nanumbarungothic_normal"
-            android:text="전환하기"
-            android:textSize="18sp"
-            android:textColor="#6b6b6b" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="86.13dp"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="27dp">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothiclight_normal"
-                        android:text="차감 코인"
-                        android:textSize="11sp"
-                        android:textColor="#757575"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="24dp">
-
-                    <TextView
-                        android:id="@+id/coinpage_frag_popup_exchange_coin_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic_normal"
-                        android:text="-28코인"
-                        android:textSize="11sp"
-                        android:textColor="#36c5f1"/>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="27dp">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothiclight_normal"
-                        android:text="투표권 개수"
-                        android:textSize="11sp"
-                        android:textColor="#757575"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="24dp">
-
-                    <TextView
-                        android:id="@+id/coinpage_frag_popup_exchange_vote_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothic_normal"
-                        android:text="28개"
-                        android:textSize="11sp"
-                        android:textColor="#36c5f1"/>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        android:layout_height="287dp"
+        android:layout_centerInParent="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="23dp"
-            android:layout_marginHorizontal="16dp">
-            
-            <ImageView
-                android:id="@+id/coinpage_exchange_popup_cancel_btn"
-                android:src="@drawable/coinpage_popup_cancle_btn_blue"
-                android:layout_width="89dp"
-                android:layout_height="31dp" />
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true">
 
             <ImageView
-                android:id="@+id/coinpage_exchange_popup_check_btn"
-                android:src="@drawable/coinpage_popup_check_btn_blue"
-                android:layout_width="89dp"
-                android:layout_height="31dp"
-                android:layout_alignParentRight="true"/>
-            
+                android:src="@drawable/coinpage_popup_character"
+                android:layout_width="63dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="6dp"
+                />
+
+            <ImageView
+                android:src="@drawable/coinpage_popup_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="56dp"/>
+
         </RelativeLayout>
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="232dp"
+            android:layout_height="207dp"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/sponsoring_frag_box_shape">
 
-    <RelativeLayout
-        android:layout_width="232dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="243dp"
-        android:layout_centerHorizontal="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="전환하기"
+                android:textSize="18sp"
+                android:textColor="#6b6b6b" />
 
-        <ImageView
-            android:src="@drawable/coinpage_popup_good_icon"
-            android:layout_width="48dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="86.13dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothiclight_normal"
+                            android:text="차감 코인"
+                            android:textSize="11sp"
+                            android:textColor="#757575"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="24dp">
+
+                        <TextView
+                            android:id="@+id/coinpage_frag_popup_exchange_coin_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic_normal"
+                            android:text="-28코인"
+                            android:textSize="11sp"
+                            android:textColor="#36c5f1"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="27dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothiclight_normal"
+                            android:text="투표권 개수"
+                            android:textSize="11sp"
+                            android:textColor="#757575"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="24dp">
+
+                        <TextView
+                            android:id="@+id/coinpage_frag_popup_exchange_vote_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothic_normal"
+                            android:text="28개"
+                            android:textSize="11sp"
+                            android:textColor="#36c5f1"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="23dp"
+                android:layout_marginHorizontal="16dp">
+
+                <ImageView
+                    android:id="@+id/coinpage_exchange_popup_cancel_btn"
+                    android:src="@drawable/coinpage_popup_cancle_btn_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/coinpage_exchange_popup_check_btn"
+                    android:src="@drawable/coinpage_popup_check_btn_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_centerInParent="true" />
+            android:layout_marginTop="55dp"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:src="@drawable/coinpage_popup_good_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
