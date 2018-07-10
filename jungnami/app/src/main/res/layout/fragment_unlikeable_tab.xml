@@ -30,11 +30,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <RelativeLayout
-                            android:background="#EF5350"
+                            android:id="@+id/unlikeable_tab_1st_btn"
+                            android:background="?android:selectableItemBackground"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <ImageView
+                                android:src="#EF5350"
                                 android:id="@+id/unlikeable_tab_1st_picture_iv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
@@ -100,14 +102,16 @@
                             android:layout_width="1dp"
                             android:layout_height="match_parent"/>
                         <RelativeLayout
-                            android:background="#E57373"
+                            android:id="@+id/unlikeable_tab_2st_btn"
+                            android:background="?android:selectableItemBackground"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <ImageView
                                 android:id="@+id/unlikeable_tab_2st_picture_iv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                android:src="#E57373"/>
                             <RelativeLayout
                                 android:id="@+id/unlikeable_tab_2st_vote_count_bar"
                                 android:background="@drawable/in_rank_tab_2st_vote_count_bar_shape"

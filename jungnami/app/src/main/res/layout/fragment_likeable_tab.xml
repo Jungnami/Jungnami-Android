@@ -31,14 +31,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <RelativeLayout
-                            android:background="#BBDEFB"
+                            android:id="@+id/likeable_tab_1st_btn"
+                            android:background="?android:selectableItemBackground"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <ImageView
                                 android:id="@+id/likeable_tab_1st_picture_iv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                android:src="#BBDEFB"/>
                             <RelativeLayout
                                 android:id="@+id/likeable_tab_1st_vote_count_bar"
                                 android:background="@drawable/in_rank_tab_1st_vote_count_bar_shape"
@@ -101,14 +103,16 @@
                             android:layout_width="1dp"
                             android:layout_height="match_parent"/>
                         <RelativeLayout
-                            android:background="#90CAF9"
+                            android:id="@+id/likeable_tab_2st_btn"
+                            android:background="?android:selectableItemBackground"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <ImageView
                                 android:id="@+id/likeable_tab_2st_picture_iv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                android:background="#90CAF9"/>
                             <RelativeLayout
                                 android:id="@+id/likeable_tab_2st_vote_count_bar"
                                 android:background="@drawable/in_rank_tab_2st_vote_count_bar_shape"
