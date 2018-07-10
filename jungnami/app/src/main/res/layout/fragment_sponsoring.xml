@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--written by Tak HyeongMin-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,7 +37,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="86.13dp"
+                android:layout_marginTop="86dp"
                 android:layout_marginLeft="26dp"
                 >
 
@@ -66,7 +67,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="112.13dp"
+                android:layout_marginTop="112dp"
                 android:layout_marginLeft="26dp"
                 >
 
@@ -80,7 +81,7 @@
 
                 <RelativeLayout
                     android:background="@drawable/sponsoring_frag_edit_box_shape"
-                    android:layout_width="95.27dp"
+                    android:layout_width="95dp"
                     android:layout_height="21dp"
                     android:layout_marginRight="21dp"
                     android:layout_alignParentRight="true"
@@ -108,8 +109,8 @@
             
             <ImageView
                 android:id="@+id/sponsoring_frag_cancle_btn"
-                android:layout_width="89dp"
-                android:layout_height="31dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/sponsoring_frag_cancle"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="17dp"
@@ -118,8 +119,8 @@
 
             <ImageView
                 android:id="@+id/sponsoring_frag_confirm_btn"
-                android:layout_width="89dp"
-                android:layout_height="31dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/sponsoring_frag_confirm"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
@@ -136,15 +137,15 @@
             <ImageView
                 android:id="@+id/sponsopring_fragment_coin_iv"
                 android:src="@drawable/support_popup_coin_icon"
-                android:layout_width="105dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="24dp"
                 android:layout_marginLeft="57dp"/>
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
                 android:src="@drawable/support_popup_blue_circle"
                 android:layout_centerHorizontal="true"
@@ -152,8 +153,8 @@
 
             <ImageView
                         android:src="@drawable/support_popup_character"
-                        android:layout_width="63dp"
-                        android:layout_height="80dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/sponsopring_fragment_coin_iv"
                         android:layout_marginLeft="3dp"
                         />

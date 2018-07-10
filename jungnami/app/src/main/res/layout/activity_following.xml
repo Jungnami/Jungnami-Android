@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--wrriten by HyeongMin-->
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="98.5dp"
-        >
+        android:layout_height="100dp">
 
-        <ImageView
-            android:id="@+id/following_act_top_bar_close_btn"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginLeft="18.65dp"
-            android:src="@drawable/alarm_x_btn"
-            />
+        <RelativeLayout
+            android:id="@+id/following_act_top_bar_rl"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="팔로잉"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="16sp"
-            android:textColor="#2B2B2B"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
-            />
+            <ImageView
+                android:id="@+id/following_act_top_bar_close_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="6dp"
+                android:src="@drawable/alarm_x_btn"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="43dp"
+                android:layout_height="19dp"
+                android:text="팔로잉"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textColor="#2B2B2B"
+                android:fontFamily="@font/nanumbarungothicbold_normal"
+                />
+
+
+        </RelativeLayout>
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/following_act_top_bar_close_btn">
+            android:layout_below="@id/following_act_top_bar_rl">
 
             <RelativeLayout
                 android:background="@drawable/community_frag_bar_search_box_shape"
-                android:layout_centerVertical="true"
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginLeft="18.65dp"
+                android:layout_marginLeft="19dp"
                 >
 
                 <ImageView
                     android:id="@+id/following_act_top_bar_search_box_search_iv"
                     android:src="@drawable/community_search"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginVertical="8dp"
@@ -66,19 +72,17 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"/>
             </RelativeLayout>
-
-
-
-            <!--이거 그림자 처리 해줘야함-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:background="#EBEBEB"
-                ></View>
-
         </RelativeLayout>
 
+
+
+        <!--이거 그림자 처리 해줘야함-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#EBEBEB"
+            ></View>
 
     </RelativeLayout>
 
@@ -89,9 +93,11 @@
         android:text="사람"
         android:textColor="#2B2B2B"
         android:fontFamily="@font/nanumbarungothicbold_normal"
-        android:layout_marginTop="13.5dp"
-        android:layout_marginLeft="19dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="16dp"
         />
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/following_act_top_bar_rv"
@@ -99,6 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
+
 
 
 

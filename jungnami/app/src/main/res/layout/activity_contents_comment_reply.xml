@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--wrriten by HyeongMin-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,11 +13,12 @@
 
         <ImageView
             android:id="@+id/contents_comment_reply_act_top_bar_close_btn"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/writepage_x_btn"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="10dp"
+            android:padding="6dp"
             android:layout_centerVertical="true"
             />
 
@@ -71,7 +73,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginLeft="18dp"
             android:layout_toLeftOf="@id/contents_comment_act_bottom_bar_write_btn"
-            android:layout_marginRight="11.5dp"
+            android:layout_marginRight="11dp"
             >
 
 
@@ -84,7 +86,7 @@
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16.5dp"/>
+                android:layout_marginLeft="16dp"/>
         </RelativeLayout>
 
         <ImageView

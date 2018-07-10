@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="73dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rv_item_follower_profile_image_btn"
         android:layout_width="51dp"
         android:layout_height="51dp"
-        android:layout_marginTop="11dp"
         android:layout_marginLeft="19dp"
-        android:layout_marginBottom="11dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/contents_dot_indicater_gray"
+        android:src="@drawable/community_profile_circle"
         />
 
     <TextView
@@ -23,13 +21,13 @@
         android:textColor="#2B2B2B"
         android:layout_toRightOf="@+id/rv_item_follower_profile_image_btn"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="16dp"
         />
 
 
     <ImageView
-        android:layout_width="66dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_centerVertical="true"

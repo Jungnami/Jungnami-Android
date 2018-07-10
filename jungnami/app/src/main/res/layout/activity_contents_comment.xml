@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--wrriten by HyeongMin-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,36 +13,37 @@
 
         <ImageView
             android:id="@+id/contents_comment_act_backarrow_btn"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/writepage_x_btn"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            />
+            android:layout_marginLeft="10dp"
+            android:padding="6dp"
+            android:src="@drawable/writepage_x_btn"
+            android:background="?android:selectableItemBackground"/>
 
         <ImageView
             android:id="@+id/contents_comment_act_heart_iv"
-            android:layout_width="14.72dp"
-            android:layout_height="14.05dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
 
-            android:layout_marginLeft="11.93dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/contents_comment_act_backarrow_btn"
+            android:background="?android:selectableItemBackground"
             android:src="@drawable/community_heart_gray" />
 
         <TextView
             android:id="@+id/contents_comment_act_likes_num_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5,258명"
-            android:textSize="12sp"
-            android:textColor="#444444"
-            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/contents_comment_act_heart_iv"
-            android:layout_marginLeft="5.38dp"
-            android:layout_centerVertical="true"/>
+            android:text="5,258명"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/contents_comment_act_likes_subtitle_tv"
@@ -56,10 +58,10 @@
         
         <ImageView
             android:id="@+id/contents_comment_act_chat_iv"
-            android:layout_width="13.38dp"
-            android:layout_height="12.66dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/community_chat_gray"
-            android:layout_marginLeft="16.66dp"
+            android:layout_marginLeft="16dp"
             android:layout_toRightOf="@id/contents_comment_act_likes_subtitle_tv"
             android:layout_centerVertical="true"
             />
@@ -68,14 +70,14 @@
             android:id="@+id/contents_comment_act_chat_num_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5.96dp"
-            android:layout_toRightOf="@id/contents_comment_act_chat_iv"
             android:layout_centerVertical="true"
-            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/contents_comment_act_chat_iv"
+            android:text="523개"
             android:textColor="#444444"
             android:textSize="12sp"
-            android:text="523개"
-            />
+            android:textStyle="bold"
+            android:background="?android:selectableItemBackground"/>
 
     </RelativeLayout>
     
@@ -125,7 +127,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="18dp"
                 android:layout_toLeftOf="@id/contents_comment_act_bottom_bar_write_btn"
-                android:layout_marginRight="11.5dp"
+                android:layout_marginRight="11dp"
                 >
 
 
@@ -138,7 +140,7 @@
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="16.5dp"/>
+                    android:layout_marginLeft="16dp"/>
             </RelativeLayout>
 
             <ImageView

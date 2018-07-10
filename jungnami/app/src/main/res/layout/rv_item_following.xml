@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Written By TakHyeongMin-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="73dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/act_following_rv_item_profile_btn"
         android:layout_width="51dp"
         android:layout_height="51dp"
-        android:layout_marginTop="11dp"
         android:layout_marginLeft="19dp"
-        android:layout_marginBottom="11dp"
         android:layout_centerVertical="true"
-        android:src="@color/colorAccent"
+        android:src="@drawable/community_profile_circle"
         />
 
     <TextView
@@ -19,17 +18,17 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:fontFamily="@font/nanumbarungothicbold_normal"
-        android:text="김지희"
+        android:text="강지희"
         android:textColor="#2B2B2B"
         android:layout_toRightOf="@+id/act_following_rv_item_profile_btn"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="16dp"
         />
 
 
     <ImageView
-        android:layout_width="66dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_centerVertical="true"
