@@ -43,6 +43,7 @@
                                 android:src="#BBDEFB"/>
                             <RelativeLayout
                                 android:id="@+id/likeable_tab_1st_vote_count_bar"
+                                android:visibility="invisible"
                                 android:background="@drawable/in_rank_tab_1st_vote_count_bar_shape"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentBottom="true"
@@ -50,6 +51,7 @@
                                 android:layout_width="130dp"
                                 android:layout_height="16dp">
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/likeable_tab_1st_vote_count_tv"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
@@ -115,6 +117,7 @@
                                 android:background="#90CAF9"/>
                             <RelativeLayout
                                 android:id="@+id/likeable_tab_2st_vote_count_bar"
+                                android:visibility="invisible"
                                 android:background="@drawable/in_rank_tab_2st_vote_count_bar_shape"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentBottom="true"
@@ -122,6 +125,7 @@
                                 android:layout_width="104dp"
                                 android:layout_height="16dp">
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/likeable_tab_2st_vote_count_tv"
                                     android:layout_alignParentLeft="true"
                                     android:layout_centerVertical="true"

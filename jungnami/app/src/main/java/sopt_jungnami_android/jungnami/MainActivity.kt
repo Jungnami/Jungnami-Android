@@ -15,7 +15,7 @@ import sopt_jungnami_android.jungnami.legislator_list.LegislatorListFragment
 import sopt_jungnami_android.jungnami.rank.RankFragment
 
 class MainActivity : AppCompatActivity() {
-    var current_tab_idx : Int = 0
+    var current_tab_idx: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +24,11 @@ class MainActivity : AppCompatActivity() {
         main_act_rank_btn.isSelected = true
         setBottomNavigationClickListener()
         addFragment(RankFragment())
-        main_act_likeable_icon_with_animation_iv.visibility = View.GONE
-        main_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
+        main_act_likeable_icon_with_animation_iv.visibility = View.INVISIBLE
+        main_act_unlikeable_icon_with_animation_iv.visibility = View.INVISIBLE
         //FirebaseConnection().onTokenRefresh()
     }
+
     private fun setBottomNavigationClickListener() {
 //        activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 //        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
@@ -49,12 +50,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setAnimRankTabIcon(isLikeable : Boolean){
-        if(isLikeable) {
-            val anim : Animation = AnimationUtils.loadAnimation(this,R.anim.expand_anim)
-            anim.setAnimationListener(object : Animation.AnimationListener{
+    fun setAnimRankTabIcon(isLikeable: Boolean) {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this, R.anim.expand_anim)
+        anim.interpolator = interpolator
+        if (isLikeable) {
+            anim.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(animation: Animation?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onAnimationEnd(animation: Animation?) {
@@ -67,11 +69,8 @@ class MainActivity : AppCompatActivity() {
             })
             main_act_likeable_icon_with_animation_iv.startAnimation(anim)
         } else {
-
-            val anim : Animation = AnimationUtils.loadAnimation(this,R.anim.expand_anim)
-            anim.setAnimationListener(object : Animation.AnimationListener{
+            anim.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(animation: Animation?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onAnimationEnd(animation: Animation?) {
@@ -100,7 +99,8 @@ class MainActivity : AppCompatActivity() {
 //        transaction.addToBackStack(null) //백키 눌렀을때 순차대로
         transaction.commit()
     }
-    private fun chagneNonSelectedTabView(idx : Int){
+
+    private fun chagneNonSelectedTabView(idx: Int) {
         when (idx) {
             0 -> main_act_rank_btn.isSelected = false
             1 -> main_act_list_btn.isSelected = false
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun chagneSelectedTabView(idx : Int){
+    private fun chagneSelectedTabView(idx: Int) {
         when (idx) {
             0 -> main_act_rank_btn.isSelected = true
             1 -> main_act_list_btn.isSelected = true
@@ -117,7 +117,8 @@ class MainActivity : AppCompatActivity() {
             3 -> main_act_content_btn.isSelected = true
         }
     }
-    private fun checkSelectedTabView(selected_idx : Int){
+
+    private fun checkSelectedTabView(selected_idx: Int) {
         when (selected_idx) {
             0 -> {
                 chagneNonSelectedTabView(current_tab_idx)
@@ -143,7 +144,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun setStatusBarColor() {
         val view: View? = window.decorView
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -151,6 +151,21 @@ class MainActivity : AppCompatActivity() {
                 view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 window.statusBarColor = Color.parseColor("#FFFFFF")
             }
+        }
+    }
+
+    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) : android.view.animation.Interpolator {
+        private var mAmplitude = 1.0
+        private var mFrequency = 10.0
+
+        init {
+            mAmplitude = amplitude
+            mFrequency = frequency
+        }
+
+        override fun getInterpolation(time: Float): Float {
+            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1).toFloat()
         }
     }
 }
