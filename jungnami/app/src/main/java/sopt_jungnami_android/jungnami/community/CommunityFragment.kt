@@ -90,7 +90,7 @@ class CommunityFragment : Fragment() {
         }
         //내 피드 작성
         community_frag_write_feed_btn.setOnClickListener {
-            startActivity<CommunityWritePage>()
+            startActivity<CommunityWritePage>("isShared" to 0)
         }
 
     }
