@@ -1,5 +1,7 @@
 package sopt_jungnami_android.jungnami
 
+import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,29 +9,81 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
+import org.jetbrains.anko.startActivity
 import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
+import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
+import sopt_jungnami_android.jungnami.legislator_list.SearchResultRecyclerAdapter
 
-class PartyDistrictLegislatorListViewAdapter(private var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PartyDistrictLegislatorListViewAdapter(private var context: Context, private var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val legislatorView : View = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_legislator_rank_list, parent, false)
+        val legislatorView : View = LayoutInflater.from(parent!!.context).inflate(R.layout.rv_item_legislator_rank_list, parent, false)
         return PartyDistrictLegislatorListViewHolder(legislatorView)
     }
 
     override fun getItemCount(): Int = legislatorItems.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        var partyDistrictLegislatorListViewHolder : PartyDistrictLegislatorListViewAdapter.PartyDistrictLegislatorListViewHolder = holder as PartyDistrictLegislatorListViewAdapter.PartyDistrictLegislatorListViewHolder
+        var searchResultRecyclerViewHolder : SearchResultRecyclerAdapter.SearchResultRecyclerViewHolder = holder as SearchResultRecyclerAdapter.SearchResultRecyclerViewHolder
 
+        var l_id = legislatorItems[position].id
+
+        partyDistrictLegislatorListViewHolder.legislator_rvlayout.setOnClickListener {
+            context.startActivity<LegislatorPageActivity>("l_id" to l_id)
+        }
+
+        if (position % 2 == 0) {
+            partyDistrictLegislatorListViewHolder.legislator_rvlayout.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        }else {
+            partyDistrictLegislatorListViewHolder.legislator_rvlayout.setBackgroundColor(Color.parseColor("#F9F9FB"))
+        }
+
+        when (legislatorItems[position].party_name) {
+            "더불어민주당" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Blue)
+            }
+            "자유한국당" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Red)
+            }
+            "바른미래당" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Mint)
+            }
+            "정의당" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Yellow)
+            }
+            "민중당"-> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Orange)
+            }
+            "대한애국당" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Navy)
+            }
+            "민주평화당" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Green)
+            }
+            "무소속" -> {
+                partyDistrictLegislatorListViewHolder.legislator_partycolor.setImageResource(R.color.Gray)
+            }
+        }
+        Glide.with(context).load(legislatorItems[position].imgurl).into(holder.legislator_profileIMG)
+        partyDistrictLegislatorListViewHolder.legislator_name.text = legislatorItems[position].name
+        partyDistrictLegislatorListViewHolder.legislator_rank.text = legislatorItems[position].rank.toString()
+        partyDistrictLegislatorListViewHolder.legislator_rankInAll.text = legislatorItems[position].rankInAll
+        partyDistrictLegislatorListViewHolder.legislator_position.text = legislatorItems[position].position
+        // 호감, 비호감 탭 시 이미지 바꾸기. when문 사용
+        partyDistrictLegislatorListViewHolder.legislator_votebtn.setImageResource(R.drawable.main_good_btn_blue)
     }
 
-    inner class PartyDistrictLegislatorListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val legislator_rvlayout: LinearLayout = itemView.findViewById(R.id.rv_item_legislator_background_ll) as LinearLayout
-        val legislator_rank : TextView = itemView.findViewById(R.id.rv_item_legislator_rank_num_tv) as TextView
-        val legislator_partycolor: CircleImageView = itemView.findViewById(R.id.rv_item_legislator_party_color_img_iv) as CircleImageView
-        val legislator_profileIMG: ImageView = itemView.findViewById(R.id.rv_item_legislator_profile_img_iv) as ImageView
-        val legislator_name: TextView = itemView.findViewById(R.id.rv_item_legislator_name_tv) as TextView
-        val legislator_rankInAll: TextView = itemView.findViewById(R.id.rv_item_legislator_likable_district_rankinall_tv) as TextView
-        val legislator_position: TextView = itemView.findViewById(R.id.rv_item_legislator_likable_position_tv) as TextView
-        val legislator_votebtn: ImageView = itemView.findViewById(R.id.rv_item_legislator_vote_btn) as ImageView
+    class PartyDistrictLegislatorListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val legislator_rvlayout: LinearLayout = itemView!!.findViewById(R.id.rv_item_legislator_background_ll) as LinearLayout
+        val legislator_rank : TextView = itemView!!.findViewById(R.id.rv_item_legislator_rank_num_tv) as TextView
+        val legislator_partycolor: CircleImageView = itemView!!.findViewById(R.id.rv_item_legislator_party_color_img_iv) as CircleImageView
+        val legislator_profileIMG: ImageView = itemView!!.findViewById(R.id.rv_item_legislator_profile_img_iv) as ImageView
+        val legislator_name: TextView = itemView!!.findViewById(R.id.rv_item_legislator_name_tv)
+        val legislator_rankInAll: TextView = itemView!!.findViewById(R.id.rv_item_legislator_likable_district_rankinall_tv) as TextView
+        val legislator_position: TextView = itemView!!.findViewById(R.id.rv_item_legislator_likable_position_tv) as TextView
+        val legislator_votebtn: ImageView = itemView!!.findViewById(R.id.rv_item_legislator_vote_btn) as ImageView
     }
 }

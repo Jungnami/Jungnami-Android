@@ -25,9 +25,9 @@
                 android:src="@drawable/party_blue_logo"
                 android:layout_width="105.88dp"
                 android:layout_height="36.56dp" />
-            
+
         </RelativeLayout>
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -137,7 +137,7 @@
         </LinearLayout>
 
     </RelativeLayout>
-    
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_legislator"
         android:layout_width="match_parent"
