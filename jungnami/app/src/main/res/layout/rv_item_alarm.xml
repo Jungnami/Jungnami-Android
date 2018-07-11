@@ -15,10 +15,10 @@
         <ImageView
             android:id="@+id/rv_alarm_item_user_img_btn"
             android:src="@drawable/alarm_none_profile_man_image"
-            android:layout_width="56.5dp"
-            android:layout_height="56.5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="13dp"/>
+            android:layout_marginLeft="16dp"/>
 
         <RelativeLayout
             android:layout_width="24dp"
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10.05dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="28dp">
             
             <ImageView

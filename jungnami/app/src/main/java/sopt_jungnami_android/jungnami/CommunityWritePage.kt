@@ -26,6 +26,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.toast
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetCommunityPostingResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
@@ -51,6 +52,8 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     var isIMG: Boolean = false
     var isGIF: Boolean = false
 
+    var isShared : Int = 0
+
     override fun onClick(v: View?) {
         when (v) {
             community_act_writepage_back_btn -> {
@@ -64,6 +67,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_community_write_page)
         networkService = ApplicationController.instance.networkService
         getCommunityPostingResponse()
+        isShared = intent.getIntExtra("isShared", 0)
 
         setStatusBarColor()
 
@@ -94,7 +98,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
         community_act_writepage_complete_btn.setOnClickListener {
             if (community_act_writepage_complete_btn.isSelected){
-                //postCommunityPostingResponse()
+                postCommunityPostingResponse()
             }
         }
         community_act_writepage_upload_pic_btn.setOnClickListener {
@@ -136,29 +140,31 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                 if (response!!.isSuccessful) {
                     var imgurl = response!!.body()!!.data.img_url
                     Glide.with(context).load(imgurl).into(rv_item_community_profile_img_iv)
-
                 }
             }
         })
     }
 
-//    fun postCommunityPostingResponse() {
-//        val posting_content = RequestBody.create(MediaType.parse("text/plain"), community_act_writepage_posting_et.text.toString())
-//
-//        //val posting_shared = RequestBody.create(MediaType.parse("text/plain"), )
-//
-//        val postingcomplete = networkService.postCommunityPostingRequest(posting_content, image, posting_shared)
-//        postingcomplete.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
-//            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
-//                if(response!!.isSuccessful)
-//                    finish()
-//            }
-//
-//            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
-//                toast("Error!")
-//            }
-//        })
-//    }
+    fun postCommunityPostingResponse() {
+        var content: String = community_act_writepage_posting_et.text.toString()
+        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(content, image, 0)
+        postCommunityPostingResponse.enqueue(object: Callback<PostCommunityPostingResponse>{
+            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+                toast("Error!")
+            }
+            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+                if(response!!.isSuccessful){
+                    if(isShared==0){
+                        finish()
+                        Log.v("success", "내가 쓴 글")
+                    }
+                }
+                else{
+                    Log.v("success", "타인이 쓴 글")
+                }
+            }
+        })
+    }
 
     private fun checkUploadedContent() {
         community_act_writepage_complete_btn.isSelected = isText || isIMG || isGIF
