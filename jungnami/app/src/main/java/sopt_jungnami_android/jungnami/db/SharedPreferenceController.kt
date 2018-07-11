@@ -5,7 +5,6 @@ import android.content.Context
 object SharedPreferenceController {
 
     private val USER_NAME = "MYKEY"
-    //private val authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q"
     private val kakaoKey = "kakao_Key"
     //807465239
     private val my_id = "my_id"

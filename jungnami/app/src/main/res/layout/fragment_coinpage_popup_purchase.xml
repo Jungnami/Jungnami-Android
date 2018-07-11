@@ -2,18 +2,19 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/contents_popup_opacity_gray">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="232dp"
         android:layout_height="287dp"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent">
 
             <ImageView
                 android:src="@drawable/coinpage_popup_character"
@@ -70,7 +71,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
-                            android:text="1000원"
+                            android:text="-원"
                             android:textSize="15sp"
                             android:textColor="#757575"/>
 
@@ -87,7 +88,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
-                            android:text="10코인"
+                            android:text="-코인"
                             android:textSize="15sp"
                             android:textColor="#757575"/>
 
@@ -136,21 +137,23 @@
                         android:orientation="horizontal">
 
                         <RelativeLayout
+                            android:id="@+id/coinpage_frag_popup_purchase_check_box_btn"
                             android:layout_width="12dp"
                             android:layout_height="12dp"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/border">
+                            android:background="@drawable/dialog_check_box_shape">
 
                             <ImageView
+                                android:visibility="invisible"
                                 android:id="@+id/coinpage_frag_popup_purchase_check_btn"
-                                android:visibility="gone"
                                 android:src="@drawable/coin_check_icon"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
 
-                        </RelativeLayout>
 
+                        </RelativeLayout>
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -173,13 +176,13 @@
                 android:layout_marginHorizontal="16dp">
 
                 <ImageView
-                    android:id="@+id/coinpage_exchange_popup_cancel_btn"
+                    android:id="@+id/coinpage_purchase_popup_cancel_btn"
                     android:src="@drawable/coinpage_popup_cancle_btn_blue"
                     android:layout_width="89dp"
                     android:layout_height="31dp" />
 
                 <ImageView
-                    android:id="@+id/coinpage_exchange_popup_check_btn"
+                    android:id="@+id/coinpage_purchase_popup_check_btn"
                     android:src="@drawable/coinpage_popup_check_btn_blue"
                     android:layout_width="89dp"
                     android:layout_height="31dp"

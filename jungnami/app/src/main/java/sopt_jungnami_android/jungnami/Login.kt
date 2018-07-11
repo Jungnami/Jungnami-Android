@@ -41,26 +41,28 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         if (KakaoSDK.getAdapter() == null) {
             KakaoSDK.init(KakaoSDKAdapter(ctx = this))
         }
-
         callback = SessionCallback()
         Session.getCurrentSession().addCallback(callback)
         Session.getCurrentSession().checkAndImplicitOpen()
         setStatusBarColor()
 
-
         setClickListener()
-
-        //Log.e("해시키!!!", getHashKey(context = applicationContext))
     }
 
     private fun setClickListener() {
         kakao_custom_login_btn.setOnClickListener {
             kakao_login_btn.performClick()
         }
+        login_pass_btn.setOnClickListener {
+            SharedPreferenceController.clearSPC(context = applicationContext)
+            startActivity<MainActivity>()
+            finish()
+        }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -87,6 +89,7 @@ class Login : AppCompatActivity() {
         override fun onSessionOpened() {
             val fcmToken : String = FirebaseInstanceId.getInstance().token.toString()
             val accessToken : String = Session.getCurrentSession().tokenInfo.accessToken
+
             requestLoginToServer(accessToken, fcmToken)
         }
     }

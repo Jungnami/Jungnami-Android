@@ -34,6 +34,12 @@ interface NetworkService {
     fun postCommunityLike(
             @Body postCommunityLikeRequset: PostCommunityLikeRequset
     ) : Call<postCommunityLikeResponse>
+    // 정당에서 검색하기 by Tak
+    @GET("search/legislatorparty/{p_name}/{l_name}")
+    fun getPartySearchLegislator(
+            @Path("p_name") p_name : String,
+            @Path("l_name") l_name : String
+    ) : Call<GetRankingSearchLegislatorResponse>
 //형민이 라인 종료!
 
 
@@ -89,7 +95,23 @@ interface NetworkService {
             @Field("accessToken") accessToken : String,
             @Field("fcmToken") fcmToken : String
     ) : Call<PostLoginResponse>
+    //코인 페이지
+    @GET("user/coin")
+    fun getCoinInfoResponse(
+            @Header("authorization") tokenValue : String?
+    ) : Call<GetCoinInfoResponse>
+    //투표수 페이지
+    @GET("user/vote")
+    fun getVotePageInfoResponse(
+            @Header("authorization") tokenValue : String?
+    ) : Call<GetVotePageInfoResponse>
 
+    @FormUrlEncoded
+    @POST("user/addcoin")
+    fun postCoinChargeCompletionResponse(
+            @Header("authorization") tokenValue : String?,
+            @Field("coin") coin : Int
+    ): Call<PostCoinChargeCompletionResponse>
 //윤환 라인 종료!
 
 

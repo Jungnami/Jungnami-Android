@@ -40,7 +40,7 @@
                 <TextView
                     android:id="@+id/coincharge_frag_my_coin_tv"
                     android:textColor="#36C5F1"
-                    android:text="72코인"
+                    android:text="-코인"
                     android:fontFamily="@font/nanumbarungothic"
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
