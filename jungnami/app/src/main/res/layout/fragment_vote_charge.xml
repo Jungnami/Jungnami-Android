@@ -129,15 +129,17 @@
                 android:textColor="#6B6B6B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
             <EditText
                 android:id="@+id/votecharge_frag_vote_count_input_et"
-                android:textColor="#9B9B9B"
-                android:textSize="15dp"
-                android:hint="투표권(갯수)"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#36C5F1"
+                android:hint="투표권(갯수)"
+                android:inputType="number"
+                android:textColor="#9B9B9B"
                 android:textColorHint="#9B9B9B"
-                android:backgroundTint="#36C5F1" />
+                android:textSize="15dp" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -161,6 +163,7 @@
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout
+        android:id="@+id/votecharge_frag_exchange_btn_tv"
         android:background="@drawable/coin_page_vote_charge_bottom_box_shape"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

@@ -33,11 +33,11 @@ import sopt_jungnami_android.jungnami.data.VotingCountData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 // made by YunHwan
-class PurcharseCompleteCoinDialog(val ctx : Context) : Dialog(ctx) {
+class ExchangeCompleteCoinDialog(val ctx : Context) : Dialog(ctx) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.fragment_coinpage_popup_purchase_complete)
+        setContentView(R.layout.fragment_coinpage_popup_exchange_complete)
         setClickListener()
 
     }
@@ -46,7 +46,7 @@ class PurcharseCompleteCoinDialog(val ctx : Context) : Dialog(ctx) {
 //            (ctx as CoinPageActivity).finish()
 //            ctx.startActivity<CoinPageActivity>("target" to "coin")
             dismiss()
-            (ctx as CoinPageActivity).refreshCoinPage()
+            (ctx as CoinPageActivity).refreshVotePage()
 
         }
     }

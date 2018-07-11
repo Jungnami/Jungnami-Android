@@ -62,6 +62,13 @@ class CoinPageActivity : AppCompatActivity() {
         }
     }
 
+    fun refreshCoinPage(){
+        replaceFragment(CoinChargeFragment())
+    }
+    fun refreshVotePage(){
+        replaceFragment(VoteChargeFragment())
+    }
+
 
     private fun addFragment(fragment: Fragment){
         val fm = supportFragmentManager

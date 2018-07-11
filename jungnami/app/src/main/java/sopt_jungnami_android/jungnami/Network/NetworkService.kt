@@ -112,6 +112,12 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Field("coin") coin : Int
     ): Call<PostCoinChargeCompletionResponse>
+    @FormUrlEncoded
+    @POST("user/addvote")
+    fun postCoinExchangeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Field("coin") coin : Int
+    ): Call<PostCoinExchangeResponse>
 //윤환 라인 종료!
 
 

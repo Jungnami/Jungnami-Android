@@ -1,5 +1,8 @@
 package sopt_jungnami_android.jungnami.coinpage
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -30,10 +33,16 @@ class VoteChargeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         getVoteChargePageDataFromServer()
+
+        setClickListener()
     }
 
-    private fun requestVoteChargeToServer(){
-
+    private fun setClickListener(){
+        votecharge_frag_exchange_btn_tv.setOnClickListener {
+            val exchangeDialog : Dialog = ExchangeCoinDialog(activity!!, votecharge_frag_vote_count_input_et.text.toString())
+            exchangeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            exchangeDialog.show()
+        }
     }
 
 
@@ -53,8 +62,4 @@ class VoteChargeFragment : Fragment() {
        })
 
     }
-
-
-
-
 }

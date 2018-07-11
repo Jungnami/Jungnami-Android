@@ -39,7 +39,6 @@ class PurcharseCoinDialog(val ctx : Context, val won: String, val coin : String)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        //setStatusBarColor()
         setContentView(R.layout.fragment_coinpage_popup_purchase)
         setView()
         setClickListener()
@@ -53,7 +52,7 @@ class PurcharseCoinDialog(val ctx : Context, val won: String, val coin : String)
             if (isAgree) {
                 requestCoinPurchaseToServer()
             } else {
-                ctx.toast("체크박스 동의해라 마!")
+                ctx.toast("약관에 동의해주세요.")
             }
 
         }
@@ -73,15 +72,7 @@ class PurcharseCoinDialog(val ctx : Context, val won: String, val coin : String)
         coinpage_frag_popup_purchase_money_tv.text = "${won}원"
         coinpage_frag_popup_purchase_coin_tv.text= "${coin}코인"
     }
-    private fun setStatusBarColor(){
-        val view : View? = window.decorView
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (view != null){
-                view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                window.statusBarColor = Color.parseColor("#FFFFFF")
-            }
-        }
-    }
+
     private fun requestCoinPurchaseToServer(){
         val total_coin : Int = coin.toInt()
         networkService = ApplicationController.instance.networkService
