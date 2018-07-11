@@ -38,8 +38,8 @@
             </intent-filter>
         </activity>
 
-        <!--<activity android:name=".SearchPartyActivity"/>-->
-
+        <activity android:name=".legislator_list.SearchPartyActivity"/>
+        <activity android:name="legislator_list.SearchRigionActivity"/>
 
         <!--카카오톡 로그인-->
         <meta-data
