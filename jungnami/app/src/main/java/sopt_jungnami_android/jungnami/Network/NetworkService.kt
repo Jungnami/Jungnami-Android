@@ -21,6 +21,11 @@ interface NetworkService {
     fun getCommunityFeed(
     ) : Call<GetCommunityFeedResponse>
 
+    @GET("search/legislator/{l_name}")
+    fun getRankingSearchLegislator(
+            @Path("l_name") l_name : String
+    ) : Call<GetRankingSearchLegislatorResponse>
+
 
 
     // 호감/비호감 순위 윤환
@@ -56,4 +61,13 @@ interface NetworkService {
     @GET("board/post")
     fun getCommunityPostingResponse(
     ) : Call<GetCommunityPostingResponse>
+    // 커뮤니티 글 작성 완료 made by SooYoung
+    @Headers("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA5MjUzMzQ0LCJpYXQiOjE1MzExNTMyMzIsImV4cCI6MTUzMzc0NTIzMn0.5qInI1D3Ikz0AHeMAfH8w-tIwFrvKF4TT0vd47zSiQ4")
+    @Multipart
+    @POST("board/postcomplete")
+    fun postCommunityPostingRequest(
+            @Part ("content") posting_content: RequestBody,
+            @Part posting_image: MultipartBody.Part?,
+            @Part ("shared") posting_shared: RequestBody
+    ) : Call<PostCommunityPostingResponse>
 }
