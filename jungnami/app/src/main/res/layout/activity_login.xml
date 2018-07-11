@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="#FFFFFF">
 
     <!--Written by SooYoung-->
 
     <RelativeLayout
+        android:id="@+id/login_character_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -22,19 +24,27 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <com.kakao.usermgmt.LoginButton
+        android:id="@+id/kakao_login_btn"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="221dp"
-        android:layout_centerHorizontal="true">
+        android:visibility="gone">
 
+    </com.kakao.usermgmt.LoginButton>
+
+    <RelativeLayout
+        android:layout_below="@+id/login_character_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
         <ImageView
-            android:id="@+id/kakao_login_btn"
+            android:id="@+id/kakao_custom_login_btn"
             android:src="@drawable/kakao_account_login_btn_medium_narrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
     </RelativeLayout>
     
     <RelativeLayout

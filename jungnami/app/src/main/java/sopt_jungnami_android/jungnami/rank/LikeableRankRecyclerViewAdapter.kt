@@ -14,6 +14,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.R
@@ -71,6 +72,7 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         holder.vote_btn.setOnClickListener {
             val dialog : Dialog = VoteAgreeDialog(ctx,1, dataList[position].l_id)
             dialog.show()
+
         }
 
 //        when (dataList[position].is_voted){
