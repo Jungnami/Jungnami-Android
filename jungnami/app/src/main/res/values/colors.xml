@@ -3,4 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--더불어민주당-->
+    <color name="Blue">#1783DC</color>
+    <!--자유한국당-->
+    <color name="Red">#E1241A</color>
+    <!--바른미래당-->
+    <color name="Mint">#14CDCC</color>
+    <!--정의당-->
+    <color name="Yellow">#FCDC00</color>
+    <!--민중당-->
+    <color name="Orange">#EC8C0D</color>
+    <!--대한애국당-->
+    <color name="Navy">#123167</color>
+    <!--민주평화당-->
+    <color name="Green">#3EA437</color>
+    <!--무소속-->
+    <color name="Gray">#B7B7B7</color>
+
+
+
+
+
 </resources>

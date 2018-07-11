@@ -89,6 +89,7 @@
         ></View>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_result_act_search_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
