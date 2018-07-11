@@ -40,6 +40,12 @@ interface NetworkService {
             @Path("p_name") p_name : String,
             @Path("l_name") l_name : String
     ) : Call<GetRankingSearchLegislatorResponse>
+    // 지역에서 검색하기 by Tak
+    @GET("search/legislatorregion/{city}/{l_name}")
+    fun getRegionSearchLegislator(
+            @Path("city") city : String,
+            @Path("l_name") l_name : String
+    ) : Call<GetRankingSearchLegislatorResponse>
 //형민이 라인 종료!
 
 
