@@ -26,7 +26,7 @@ class RegionTab : Fragment() {
 
     private fun setClickListener(){
         resion_tab_map_seoul_btn.setOnClickListener {
-            startActivity<LegislatorList>("region_name" to "seoul")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "seoul")
         }
     }
 }

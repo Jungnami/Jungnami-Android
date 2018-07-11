@@ -27,7 +27,7 @@ class PartyTab : Fragment() {
 
     private fun setClickListener(){
         party_tab_blue_btn.setOnClickListener {
-            startActivity<LegislatorList>("party_name" to "blue")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "blue")
         }
         party_tab_red_btn.setOnClickListener {
             startActivity<UserPageActivity>()
