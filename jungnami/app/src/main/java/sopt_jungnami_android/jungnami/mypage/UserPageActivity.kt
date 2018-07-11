@@ -73,11 +73,11 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     private fun requestPageDataToServer(){
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
-        val my_id = SharedPreferenceController.getMyId(applicationContext)
-        toast("마이 아이디 : ${my_id}")
+        //여기
+        val user_id = SharedPreferenceController.getMyId(applicationContext)
         networkService = ApplicationController.instance.networkService
 
-        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!),"407144669799202")
+        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!), user_id)
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse> {
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())

@@ -38,6 +38,8 @@
             </intent-filter>
         </activity>
 
+        <!--<activity android:name=".SearchPartyActivity"/>-->
+
 
         <!--카카오톡 로그인-->
         <meta-data
