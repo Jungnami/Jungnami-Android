@@ -89,9 +89,26 @@
         ></View>
 
     <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/search_result_act_search_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/search_result_act_search_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="검색 결과 없음"
+            android:textColor="#D8D8D8"
+            android:textSize="24sp" />
+    </RelativeLayout>
 
 
 </LinearLayout>

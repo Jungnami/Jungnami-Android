@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
+import sopt_jungnami_android.jungnami.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
 
@@ -25,6 +27,16 @@ class SearchResultRecyclerAdapter (private var legislatorResultItems : ArrayList
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var searchResultRecyclerViewHolder : SearchResultRecyclerViewHolder = holder as SearchResultRecyclerViewHolder
+
+        var l_id = legislatorResultItems[position].id
+
+
+
+        searchResultRecyclerViewHolder.legislatorRelativeLayout.setOnClickListener {
+            context.startActivity<LegislatorPageActivity>("l_id" to l_id)
+        }
+
+
 
         if (position % 2 == 0) {
 
@@ -89,7 +101,7 @@ class SearchResultRecyclerAdapter (private var legislatorResultItems : ArrayList
     }
 
     class SearchResultRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        var legislatorRelativeLayout : RelativeLayout = itemView!!.findViewById(R.id.search_result_rv_item_background_rl)
         var legislatorIndex : TextView = itemView!!.findViewById(R.id.search_result_rv_item_num)
         var legislatorImage : ImageView = itemView!!.findViewById(R.id.search_result_rv_item_legislator_iv)
         var legislatorName : TextView = itemView!!.findViewById(R.id.search_result_rv_item_legislator_name_tv)

@@ -17,7 +17,6 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
-import java.net.URLEncoder
 
 class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -43,17 +42,15 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
         getRankingSearchLegislator()
 
-//    ###########  인텐트로 검색스트링 값 받아야한다.######//    ###########  인텐트로 검색스트링 값 받아야한다.######//    ###########  인텐트로 검색스트링 값 받아야한다.######
-
-//        var searchString = "나경원"
     }
 
     fun getRankingSearchLegislator(){
-        val searchString = "김"
-        search_result_act_search_reult_tv.text = searchString
-        val searchString2
-                = URLEncoder.encode(searchString, "UTF-8")
-        val getRankingSearchLegislatorResponse =  networkService.getRankingSearchLegislator(searchString!!)
+
+        //  윤환이형 통신할 때 밑에 주석 없애줘야돼!
+        val keyword = "ㄱ"
+//        val keyword = intent.getStringExtra("keyword")
+        search_result_act_search_reult_tv.text = keyword
+        val getRankingSearchLegislatorResponse =  networkService.getRankingSearchLegislator(keyword!!)
 
         getRankingSearchLegislatorResponse.enqueue(object  : Callback<GetRankingSearchLegislatorResponse>{
             override fun onFailure(call: Call<GetRankingSearchLegislatorResponse>?, t: Throwable?) {
@@ -61,11 +58,24 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<GetRankingSearchLegislatorResponse>?, response: Response<GetRankingSearchLegislatorResponse>?) {
                 if(response!!.isSuccessful){
+                    var str = response!!.message()
+                    Log.v("10101011110", "들어왔당")
                     legislatorResultItems = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
-                    Log.v("101010",legislatorResultItems.toString())
-                    searchResultRecyclerAdapter = SearchResultRecyclerAdapter(legislatorResultItems, context)
-                    search_result_act_search_rv.layoutManager = LinearLayoutManager(context)
-                    search_result_act_search_rv.adapter = searchResultRecyclerAdapter
+                    if(!(str.equals("No data"))){
+                        search_result_act_search_rv.visibility = View.VISIBLE
+                        search_result_act_search_rl.visibility = View.GONE
+                        Log.v("101010",legislatorResultItems.toString())
+                        searchResultRecyclerAdapter = SearchResultRecyclerAdapter(legislatorResultItems, context)
+                        search_result_act_search_rv.layoutManager = LinearLayoutManager(context)
+                        search_result_act_search_rv.adapter = searchResultRecyclerAdapter
+                    }else {
+                        //검색 결과 없음 뷰륿 보여줘야한다.
+                        search_result_act_search_rv.visibility = View.GONE
+                        search_result_act_search_rl.visibility = View.VISIBLE
+
+
+                    }
+
 
 
                 }
@@ -74,6 +84,8 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         })
 
     }
+
+
 
     private fun setStatusBarColor(){
         val view : View? = window.decorView
