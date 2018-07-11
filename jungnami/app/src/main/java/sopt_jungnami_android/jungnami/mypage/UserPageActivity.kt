@@ -77,7 +77,7 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         toast("마이 아이디 : ${my_id}")
         networkService = ApplicationController.instance.networkService
 
-        val getMyPageResponse = networkService.getMyPageResponse("407144669799202")
+        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!),"407144669799202")
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse> {
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())

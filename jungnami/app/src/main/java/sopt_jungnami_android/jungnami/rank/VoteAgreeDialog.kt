@@ -23,6 +23,7 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCompletingVote
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.VotingCountData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class VoteAgreeDialog(val ctx : Context, val isLikeable: Int, val l_id : Int) : Dialog(ctx) {
 
@@ -43,7 +44,7 @@ class VoteAgreeDialog(val ctx : Context, val isLikeable: Int, val l_id : Int) : 
     }
     private fun requestCompletingVoteToServer(){
         networkService = ApplicationController.instance.networkService
-        val postCompletingVote = networkService.postCompletingVote(l_id, isLikeable)
+        val postCompletingVote = networkService.postCompletingVote(SharedPreferenceController.getAuthorization(context = context!!),l_id, isLikeable)
         postCompletingVote.enqueue(object : Callback<PostCompletingVote>{
             override fun onFailure(call: Call<PostCompletingVote>?, t: Throwable?) {
                 Log.e("failed", t.toString())
@@ -70,7 +71,7 @@ class VoteAgreeDialog(val ctx : Context, val isLikeable: Int, val l_id : Int) : 
     private fun requestDataToServer(){
         networkService = ApplicationController.instance.networkService
 
-        val getMyVotingResponse = networkService.getMyVotingCount()
+        val getMyVotingResponse = networkService.getMyVotingCount(SharedPreferenceController.getAuthorization(context = context!!))
         getMyVotingResponse.enqueue(object :Callback<GetVotingResponse>{
             override fun onFailure(call: Call<GetVotingResponse>?, t: Throwable?) {
                 Log.e("실패 로그", t.toString())

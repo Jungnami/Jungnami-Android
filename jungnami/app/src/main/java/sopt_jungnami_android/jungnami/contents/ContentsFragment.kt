@@ -24,6 +24,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Contents
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
 //    made by Yunhwan
@@ -106,7 +107,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         recommendDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
 
-        val getRecommendContentsResponse = networkService.getRecommendContentsResponse()
+        val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!))
         getRecommendContentsResponse.enqueue(object : Callback<GetRecommendContentsResponse>{
             override fun onFailure(call: Call<GetRecommendContentsResponse>?, t: Throwable?) {
                 Log.e("추천 컨텐츠 요청 실패", "추천 컨텐츠 요청 실패!!!!")
@@ -134,7 +135,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         tmiOrStoryDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
 
-        val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(category)
+        val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context = context!!),category)
         getTmiStoryContentsResponse.enqueue(object : Callback<GetTmiStoryContentsResponse>{
             override fun onFailure(call: Call<GetTmiStoryContentsResponse>?, t: Throwable?) {
                 Log.e("컨텐츠 요청 실패", "컨텐츠 요청 실패!!!!")

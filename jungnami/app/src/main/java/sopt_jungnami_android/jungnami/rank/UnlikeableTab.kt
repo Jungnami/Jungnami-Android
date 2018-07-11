@@ -28,6 +28,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 
 class UnlikeableTab : Fragment() , View.OnClickListener{
@@ -83,7 +84,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
 
         unlikeable_tab_refresh_srl.isRefreshing = true
 
-        val getUnlikeableRankingResponse = networkService.getRanking(0)
+        val getUnlikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),0)
         getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
