@@ -27,9 +27,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         }
 //      밑에 bar누르면 SearchActivity로 이동해야한다.
         search_result_act_search_bar.setOnClickListener {  }
-
     }
-
     lateinit var networkService: NetworkService
     lateinit var legislatorResultItems : ArrayList<RankingSearchLegislatorData>
     var context : Context = this

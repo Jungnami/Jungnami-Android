@@ -51,18 +51,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         setClickListener()
         requestMyPageDataToServer()
 
-//        requestScrapDataToServer()
-//        requestFeedDataToServer()
-//        커뮤니티 피드받아오기 할 때 주석처리 by 형민
-        //setScrapRecyclerViewAdapter()
     }
-//    private fun requestScrapDataToServer(){
-//        contentDataList = ArrayList()
-//        contentDataList.add(ContentItemData("국회의원 아들과 폐지 줍는 부모님???", "image", "스토리"))
-//        contentDataList.add(ContentItemData("문재인 대통령의\n살아온 일대기와 운명", "image", "스토리"))
-//        contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
-//        contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
-//    }
+
     //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
     private fun requestMyPageDataToServer(){
         scrapDataList = ArrayList()
@@ -84,7 +74,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                     boardDataList = myPageDataList.board
                     //나중에 백그라운드로
                     setMyInfoView()
-                    setFeedRecyclerViewAdapter()
+                    setScrapRecyclerViewAdapter()
 
                 }
             }
@@ -109,6 +99,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         mypage_act_mycoin_count_tv.text = "${myPageDataList.coin} 코인"
         mypage_act_votingcnt_tv.text = "${myPageDataList.votingcnt}개"
     }
+
     private fun setFeedRecyclerViewAdapter(){
         userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = boardDataList)
         userAndMyPageFeedRecyclerViewAdapter.setOnItemClickListener(this)
