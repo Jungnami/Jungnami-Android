@@ -2,20 +2,41 @@ package sopt_jungnami_android.jungnami.community
 
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import retrofit2.Call
+import retrofit2.Response
+import sopt_jungnami_android.jungnami.Network.ApplicationController
+import sopt_jungnami_android.jungnami.Network.NetworkService
+import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
+import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
+import javax.security.auth.callback.Callback
 
 //made by YunHwan
 //modify by TakHyeongMin
-class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: FragmentActivity?) :RecyclerView.Adapter<CommunityRecyclerViewAdapter.Holder>(){
+class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: FragmentActivity?) :RecyclerView.Adapter<CommunityRecyclerViewAdapter.Holder>() {
+
+    private lateinit var onItemClick: View.OnClickListener
+    lateinit var networkService: NetworkService
+    lateinit var postCommunityLike : PostCommunityLikeRequset
+
+
+    fun setOnItemClickListener(l : View.OnClickListener){
+        onItemClick = l
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder{
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_feed, parent,false)
+        view.setOnClickListener(onItemClick)
+
+
         return Holder(view)
     }
 
@@ -23,13 +44,40 @@ class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: Fr
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
+        networkService = ApplicationController.instance.networkService
+
         Glide.with(this!!.ctx!!)
-                .load(dataList[position].img)
+                .load(dataList[position].userimg)
                 .into(holder.profile_img_btn)
+
+        // Text없으면 GONE 처리
+        // "" 처리하기
+        if(dataList[position].content.equals("\"\"")) {
+            holder.feed_description.text = dataList[position].content
+        }else{
+            holder.feed_description.visibility = View.GONE
+        }
+
+
+        // img없으면 GONE 처리
+        if(dataList[position].img.equals("0")) {
+            holder.feed_image.visibility = View.GONE
+        }else{
+            Glide.with(this!!.ctx!!)
+                    .load(dataList[position].img)
+                    .into(holder.feed_image)
+        }
+
+        // isLike가 1이면 좋아요 버튼이 파란색
+        if(dataList[position].islike == 1){
+            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
+        }else{
+            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_gray)
+        }
 
         holder.profile_name_btn.text = dataList[position].nickname
         holder.feed_date.text = dataList[position].writingtime
-        holder.feed_description.text = dataList[position].content
+
         holder.feed_likes_num_btn.text = dataList[position].likecnt.toString()
         holder.feed_chat_num_btn.text = dataList[position].commentcnt.toString()
 
@@ -38,7 +86,34 @@ class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: Fr
             holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
         }
 
+        // 좋아요가 눌렀을 때
         holder.feed_likes_btn.setOnClickListener {
+
+            //좋아요 통신단
+            postCommunityLike = PostCommunityLikeRequset(dataList[position].boardid)
+            val postCommunityLikeRequset = networkService.postCommunityLike(postCommunityLike)
+            postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
+                override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
+
+                }
+
+                override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
+                    if(response!!.isSuccessful){
+                        Log.v("성공?", response!!.body()!!.message)
+                    }
+                }
+
+            })
+
+
+            // 보여주는 좋아요 수 늘려주기
+            var likenum = dataList[position].likecnt + 1
+            holder.feed_likes_num_btn.text = likenum.toString()
+
+            // 좋아요 버튼 색 blue로 바꿔주기
+            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
+
+
 
         }
 
@@ -59,12 +134,18 @@ class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: Fr
 
     }
 
+
+
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+        //본인 이미지
+        var user_img_: ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_image_btn) as ImageView
+                //글쓴이 사진 가져오기
         var profile_img_btn : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_image_btn) as ImageView
         var profile_name_btn : TextView = itemView.findViewById(R.id.contents_comment_rv_item_profile_name_tv) as TextView
         var feed_date : TextView = itemView.findViewById(R.id.contents_comment_rv_item_date) as TextView
         var feed_description : TextView = itemView.findViewById(R.id.contents_comment_rv_item_contents_tv) as TextView
+        var feed_image : ImageView = itemView.findViewById(R.id.contents_comment_rv_item_contents_iv) as ImageView
         var feed_likes_num_btn : TextView = itemView.findViewById(R.id.contents_comment_rv_item_heart_num_btn) as TextView
         var feed_chat_num_btn : TextView = itemView.findViewById(R.id.contents_comment_rv_item_chat_num_des_btn) as TextView
         var feed_likes_btn : ImageView = itemView.findViewById(R.id.contents_comment_tv_item_bottom_bar_heart_btn) as ImageView
@@ -75,4 +156,6 @@ class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: Fr
 
 
     }
+
+
 }
