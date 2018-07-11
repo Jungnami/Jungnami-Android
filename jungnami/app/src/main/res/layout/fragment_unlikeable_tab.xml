@@ -55,6 +55,7 @@
                                     android:layout_height="16dp">
                                     <TextView
                                         android:id="@+id/unlikeable_tab_1st_vote_count_tv"
+                                        android:visibility="invisible"
                                         android:layout_alignParentRight="true"
                                         android:layout_centerVertical="true"
                                         android:layout_marginRight="8dp"
@@ -127,6 +128,7 @@
                                     android:layout_height="16dp">
                                     <TextView
                                         android:id="@+id/unlikeable_tab_2st_vote_count_tv"
+                                        android:visibility="invisible"
                                         android:layout_alignParentLeft="true"
                                         android:layout_centerVertical="true"
                                         android:layout_marginLeft="8dp"

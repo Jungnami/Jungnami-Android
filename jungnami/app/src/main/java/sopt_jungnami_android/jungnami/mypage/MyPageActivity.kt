@@ -98,6 +98,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
         mypage_act_mycoin_count_tv.text = "${myPageDataList.coin} 코인"
         mypage_act_votingcnt_tv.text = "${myPageDataList.votingcnt}개"
+
+        mypage_act_top_bar_new_post_counter_tv.text = myPageDataList.pushcnt.toString()
     }
 
     private fun setFeedRecyclerViewAdapter(){
