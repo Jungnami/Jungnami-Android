@@ -9,15 +9,9 @@ import android.widget.TextView
 import sopt_jungnami_android.jungnami.data.AlarmData
 
 class AlarmViewAdapter (private var alarmItems : ArrayList<AlarmData>) : RecyclerView.Adapter<AlarmViewAdapter.AlarmViewHolder>() {
-    private lateinit var OnItemClick : View.OnClickListener
-
-    fun SetOnItemClickListener(l :  View.OnClickListener) {
-        OnItemClick = l
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         val alarmView : View = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_alarm, parent, false)
-        alarmView.setOnClickListener(OnItemClick)
         return AlarmViewHolder(alarmView)
     }
 
