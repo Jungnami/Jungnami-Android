@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.activity_user_page.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.data.Board
 import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.FeedItemData
+import sopt_jungnami_android.jungnami.data.Scrap
 
 
 //made by Yun Hwan
@@ -27,8 +29,8 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     var isSelectScrap : Boolean = true
-    lateinit var contentDataList : ArrayList<ContentItemData>
-    lateinit var feedDataList : ArrayList<FeedItemData>
+    lateinit var contentDataList : ArrayList<Scrap>
+    lateinit var feedDataList : ArrayList<Board>
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
 
@@ -59,10 +61,10 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     }
     private fun requestScrapDataToServer(){
         contentDataList = ArrayList()
-        contentDataList.add(ContentItemData("국회의원 아들과 폐지 줍는 부모님???", "image", "스토리"))
-        contentDataList.add(ContentItemData("문재인 대통령의\n살아온 일대기와 운명", "image", "스토리"))
-        contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
-        contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
+//        contentDataList.add(ContentItemData("국회의원 아들과 폐지 줍는 부모님???", "image", "스토리"))
+//        contentDataList.add(ContentItemData("문재인 대통령의\n살아온 일대기와 운명", "image", "스토리"))
+//        contentDataList.add(ContentItemData("이재명 시장,\n청와대 실세와 오붓한 시간", "image", "TMI"))
+//        contentDataList.add(ContentItemData("장제원 의원\n아들 인성 논란", "image", "TMI"))
     }
     //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
 //    private fun requestFeedDataToServer(){

@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentItemData
+import sopt_jungnami_android.jungnami.data.Scrap
 
-class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<ContentItemData>) : RecyclerView.Adapter<UserAndMyPageScrapRecyclerViewAdapter.Holder>() {
+class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<Scrap>) : RecyclerView.Adapter<UserAndMyPageScrapRecyclerViewAdapter.Holder>() {
     lateinit var onItemClick : View.OnClickListener
 
     fun setOnItemClickListener(l : View.OnClickListener){
@@ -38,9 +41,15 @@ class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : Ar
             rootLayoutParams.leftMargin = (6*dp).toInt()
             rootLayoutParams.rightMargin = (16*dp).toInt()
         }
+        val requestOptions = RequestOptions()
+        Glide.with(ctx)
+                .load(dataList[position].thumbnail)
+                .thumbnail(0.5f)
+                .into(holder.image)
+
         holder.root_layout.layoutParams = rootLayoutParams
-        holder.title.text = dataList[position].title
-        holder.category.text = "${dataList[position].category} · 3분"
+        holder.title.text = dataList[position].cTitle
+        holder.category.text = "${dataList[position].text}"
         //holder.image.setBackgroundColor(Color.parseColor("#00B8D4"))
     }
 

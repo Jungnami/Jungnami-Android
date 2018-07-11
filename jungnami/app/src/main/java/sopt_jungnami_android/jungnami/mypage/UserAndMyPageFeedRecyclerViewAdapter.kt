@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.data.Board
 import sopt_jungnami_android.jungnami.data.FeedItemData
 
-class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<FeedItemData>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
+class UserAndMyPageFeedRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<Board>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
     lateinit var onItemClick : View.OnClickListener
     fun setOnItemClickListener(l : View.OnClickListener){
         onItemClick = l
