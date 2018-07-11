@@ -38,7 +38,7 @@ import java.io.InputStream
 
 // Written by SooYoung
 
-class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
+class CommunityWritePage() : AppCompatActivity(), View.OnClickListener {
 
     lateinit var networkService: NetworkService
     var context : Context = this
@@ -50,6 +50,8 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     var isText: Boolean = false
     var isIMG: Boolean = false
     var isGIF: Boolean = false
+
+    var isShared : Int = 0
 
     override fun onClick(v: View?) {
         when (v) {
@@ -65,6 +67,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         getCommunityPostingResponse()
 
+        isShared = intent.getIntExtra("isShared", 0)
         setStatusBarColor()
 
         val editTextContent = findViewById<EditText>(R.id.community_act_writepage_posting_et)
@@ -134,26 +137,29 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<GetCommunityPostingResponse>?, response: Response<GetCommunityPostingResponse>?) {
                 if (response!!.isSuccessful) {
-                    var imgurl = response!!.body()!!.data.img_url
+                    var imgurl = response.body()!!.data.img_url
                     Glide.with(context).load(imgurl).into(rv_item_community_profile_img_iv)
-
                 }
             }
         })
     }
 
     fun postCommunityPostingResponse() {
-        val posting_content = RequestBody.create(MediaType.parse("text/plain"), community_act_writepage_posting_et.text.toString())
-
-        //val posting_shared = RequestBody.create(MediaType.parse("text/plain"), )
-
-        val postingcomplete = networkService.postCommunityPostingRequest(posting_content, image, posting_shared)
-        postingcomplete.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
+        var content : String = community_act_writepage_posting_et.text.toString()
+        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(content, image, 0)
+        postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
             override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
-                if(response!!.isSuccessful)
-                    finish()
+                if(response!!.isSuccessful){
+                    if (isShared == 0){
+                        // refresh 기능 구현. intent 기능 윤환오빠와.
+                        finish()
+                        Log.v("success", "내가 쓴 글")
+                    }
+                    else {
+                        Log.v("success", "타인이 쓴 글")
+                    }
+                }
             }
-
             override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
                 toast("Error!")
             }
