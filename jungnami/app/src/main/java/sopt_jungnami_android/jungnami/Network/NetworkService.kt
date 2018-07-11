@@ -37,7 +37,6 @@ interface NetworkService {
     fun getRanking(
             @Path("islike") islike : Int
     ) : Call<GetRankingResponse>
-
     // rank탭 투표하기 윤환
     @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("legislator/voting")
@@ -50,14 +49,22 @@ interface NetworkService {
             @Field("l_id") l_id : Int,
             @Field("islike") islike : Int
     ) : Call<PostCompletingVote>
-
+    //마이 페이지 윤환
     @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("user/mypage/{mypage_id}")
     fun getMyPageResponse(
             @Path("mypage_id") mypage_id : String
     ) : Call<GetMyPageResponse>
-
-
+    //컨텐츠탭 - recommend 추천!
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("contents/recommend")
+    fun getRecommendContentsResponse() : Call<GetRecommendContentsResponse>
+//    컨텐츠텝 TMI STORY
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("contents/main/{category}")
+    fun getTmiStoryContentsResponse(
+            @Path("category") category : String
+    ) : Call<GetTmiStoryContentsResponse>
 
     // 커뮤니티 글 작성화면 made by SooYoung
     @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
@@ -65,12 +72,13 @@ interface NetworkService {
     fun getCommunityPostingResponse(
     ) : Call<GetCommunityPostingResponse>
     // 커뮤니티 글 작성 완료 made by SooYoung
-    @Headers("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA5MjUzMzQ0LCJpYXQiOjE1MzExNTMyMzIsImV4cCI6MTUzMzc0NTIzMn0.5qInI1D3Ikz0AHeMAfH8w-tIwFrvKF4TT0vd47zSiQ4")
+    // 커뮤니티 글 작성 완료 made by SooYoung
     @Multipart
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @POST("board/postcomplete")
-    fun postCommunityPostingRequest(
-            @Part ("content") posting_content: RequestBody,
+    fun postCommunityPostingResponse(
+            @Part ("content") posting_content: String,
             @Part posting_image: MultipartBody.Part?,
-            @Part ("shared") posting_shared: RequestBody
+            @Part("shared") posting_shared: Int
     ) : Call<PostCommunityPostingResponse>
 }

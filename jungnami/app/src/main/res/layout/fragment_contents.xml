@@ -64,20 +64,38 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/contents_frag_top_bar_bell_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="10dp"
-                    android:padding="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="16dp"
                     android:background="?android:selectableItemBackground">
                     <ImageView
-                        android:layout_centerInParent="true"
                         android:src="@drawable/community_bell"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"/>
+                    <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/contents_act_bell_circle_img"
+                        android:layout_alignParentStart="true"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp">
+                        <ImageView
+                            android:src="@drawable/mypage_bell_circle_blue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:id="@+id/contents_act_top_bar_new_post_counter_tv"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:text="0"
+                            android:gravity="center"
+                            android:textSize="9dp"
+                            android:textColor="#FFFFFF"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
@@ -187,6 +205,7 @@
 
                     <RelativeLayout
                         android:id="@+id/contents_frag_main_content_lr"
+                        android:visibility="invisible"
                         android:layout_marginTop="9dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginHorizontal="16dp"
