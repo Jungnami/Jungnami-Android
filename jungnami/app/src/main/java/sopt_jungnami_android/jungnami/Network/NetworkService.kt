@@ -6,9 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
 import sopt_jungnami_android.jungnami.Get.*
-import sopt_jungnami_android.jungnami.Post.PostCommunityPostingResponse
-import sopt_jungnami_android.jungnami.Post.PostCompletingVote
-import sopt_jungnami_android.jungnami.Post.PostLoginResponse
+import sopt_jungnami_android.jungnami.Post.*
 
 interface NetworkService {
 //형민이 라인!
@@ -31,64 +29,66 @@ interface NetworkService {
     ) : Call<GetRankingSearchLegislatorResponse>
 
     // 커뮤니티 좋아요 by 탁형민
-//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
-//    @POST("board/likeboard")
-//    fun postCommunityLike(
-//            @Body postCommunityLikeRequset: PostCommunityLikeRequset
-//    ) : Call<postCommunityLikeResponse>
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("board/likeboard")
+    fun postCommunityLike(
+            @Body postCommunityLikeRequset: PostCommunityLikeRequset
+    ) : Call<postCommunityLikeResponse>
 //형민이 라인 종료!
 
 
 
 //윤환 라인!
     // 호감/비호감 순위 윤환
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("ranking/list/{islike}")
     fun getRanking(
+            @Header("authorization") tokenValue : String?,
             @Path("islike") islike : Int
     ) : Call<GetRankingResponse>
 
     // rank탭 투표하기 윤환
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("legislator/voting")
-    fun getMyVotingCount() : Call<GetVotingResponse>
+    fun getMyVotingCount(
+            @Header("authorization") tokenValue : String?
+    ) : Call<GetVotingResponse>
 
     //투표 완료하기 윤환
     @FormUrlEncoded
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @POST("legislator/voting")
     fun postCompletingVote(
+            @Header("authorization") tokenValue : String?,
             @Field("l_id") l_id : Int,
             @Field("islike") islike : Int
     ) : Call<PostCompletingVote>
 
     //마이 페이지 윤환
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("user/mypage/{mypage_id}")
     fun getMyPageResponse(
+            @Header("authorization") tokenValue : String?,
             @Path("mypage_id") mypage_id : String
     ) : Call<GetMyPageResponse>
 
     //컨텐츠탭 - recommend 추천!
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("contents/recommend")
-    fun getRecommendContentsResponse() : Call<GetRecommendContentsResponse>
+    fun getRecommendContentsResponse(
+            @Header("authorization") tokenValue : String?
+    ) : Call<GetRecommendContentsResponse>
 
 //    컨텐츠텝 TMI STORY
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("contents/main/{category}")
     fun getTmiStoryContentsResponse(
+            @Header("authorization") tokenValue : String?,
             @Path("category") category : String
     ) : Call<GetTmiStoryContentsResponse>
 
     //로그인 통신
     @FormUrlEncoded
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @POST("user/kakaologin")
     fun postLoginResponse(
+            @Header("authorization") tokenValue : String?,
             @Field("accessToken") accessToken : String,
             @Field("fcmToken") fcmToken : String
-    ) : Callback<PostLoginResponse>
+    ) : Call<PostLoginResponse>
 
 //윤환 라인 종료!
 

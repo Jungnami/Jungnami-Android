@@ -60,7 +60,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         val my_id = SharedPreferenceController.getMyId(applicationContext)
         networkService = ApplicationController.instance.networkService
 
-        val getMyPageResponse = networkService.getMyPageResponse(my_id)
+        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext),my_id)
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse>{
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())

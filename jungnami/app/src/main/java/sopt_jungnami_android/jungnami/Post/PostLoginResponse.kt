@@ -1,8 +1,8 @@
 package sopt_jungnami_android.jungnami.Post
 
-import sopt_jungnami_android.jungnami.data.KakaoData
+import sopt_jungnami_android.jungnami.data.UserData
 
 data class PostLoginResponse (
-        val data: KakaoData,
+        val data: UserData,
         val message: String
 )

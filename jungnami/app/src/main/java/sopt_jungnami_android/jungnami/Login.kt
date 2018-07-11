@@ -18,7 +18,14 @@ import sopt_jungnami_android.jungnami.kakao.KakaoSDKAdapter
 import android.content.pm.PackageManager
 import android.content.pm.PackageInfo
 import android.util.Base64
+import com.google.firebase.iid.FirebaseInstanceId
 import org.jetbrains.anko.startActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import sopt_jungnami_android.jungnami.Network.ApplicationController
+import sopt_jungnami_android.jungnami.Network.NetworkService
+import sopt_jungnami_android.jungnami.Post.PostLoginResponse
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import java.security.MessageDigest
 
@@ -26,6 +33,10 @@ import java.security.MessageDigest
 // modify by YunHwan
 class Login : AppCompatActivity() {
     private lateinit var callback: SessionCallback
+
+    private lateinit var networkService: NetworkService
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +50,7 @@ class Login : AppCompatActivity() {
         Session.getCurrentSession().addCallback(callback)
         Session.getCurrentSession().checkAndImplicitOpen()
         setStatusBarColor()
+
 
         setClickListener()
 
@@ -73,11 +85,37 @@ class Login : AppCompatActivity() {
         }
 
         override fun onSessionOpened() {
-            var user_token : String = Session.getCurrentSession().tokenInfo.accessToken
-            SharedPreferenceController.setAuthorization(context = application, authorization = user_token)
-            startActivity<MainActivity>()
-            finish()
+            val fcmToken : String = FirebaseInstanceId.getInstance().token.toString()
+            val accessToken : String = Session.getCurrentSession().tokenInfo.accessToken
+            requestLoginToServer(accessToken, fcmToken)
         }
+    }
+    private fun requestLoginToServer(accessToken : String, fcmToken : String){
+        networkService = ApplicationController.instance.networkService
+        val authorization : String = SharedPreferenceController.getAuthorization(context = applicationContext)
+        var postLoginResponse : Call<PostLoginResponse>
+        if (authorization.length != 0){
+            postLoginResponse  = networkService.postLoginResponse(authorization, accessToken, fcmToken)
+        } else {
+            postLoginResponse  = networkService.postLoginResponse(null, accessToken, fcmToken)
+        }
+        postLoginResponse.enqueue(object : Callback<PostLoginResponse>{
+            override fun onFailure(call: Call<PostLoginResponse>?, t: Throwable?) {
+                Log.e("로긴 통신 실패", t.toString())
+            }
+            override fun onResponse(call: Call<PostLoginResponse>?, response: Response<PostLoginResponse>?) {
+                if (response!!.isSuccessful){
+
+                    val id : String = response.body()!!.data.id
+                    val auth: String= response.body()!!.data.token
+                    SharedPreferenceController.setAuthorization(context = applicationContext, authorization = auth)
+                    SharedPreferenceController.setMyId(context = applicationContext,id = id)
+
+                    startActivity<MainActivity>()
+                    finish()
+                }
+            }
+        })
     }
 
 

@@ -26,6 +26,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class LikeableTab : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -83,8 +84,7 @@ class LikeableTab : Fragment(), View.OnClickListener {
         legislatorRankDataList = ArrayList()
 
         likeable_tab_refresh_srl.isRefreshing = true
-
-        val getLikeableRankingResponse = networkService.getRanking(1)
+        val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),1)
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
