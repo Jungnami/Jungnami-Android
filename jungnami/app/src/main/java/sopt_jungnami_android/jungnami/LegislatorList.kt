@@ -1,18 +1,32 @@
 package sopt_jungnami_android.jungnami
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_legislator_list.*
+import sopt_jungnami_android.jungnami.Network.ApplicationController
+import sopt_jungnami_android.jungnami.Network.NetworkService
+import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
 
-//Written by SooYoung
+// Written by SooYoung
 
 class LegislatorList : AppCompatActivity(), View.OnClickListener {
 
+    lateinit var networkService: NetworkService
+    lateinit var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>
+    lateinit var partyDistrictLegislatorListViewAdapter: PartyDistrictLegislatorListViewAdapter
+
+    var isParty : Boolean = true
+
+    var context : Context = this
     var isFavorableSelected: Boolean = true
+
+
 
     override fun onClick(v: View?) {
         when(v) {
@@ -26,7 +40,101 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_list)
         setStatusBarColor()
+        isPartyRegionSelected()
         setOnClickListener()
+
+        networkService = ApplicationController.instance.networkService
+        getPartyDistrictLegislatorList()
+
+        party_name = intent.getStringExtra("party_name")
+        region_name = intent.getStringExtra("region_name")
+
+    }
+
+    fun getPartyDistrictLegislatorList(){
+
+    }
+
+    fun isPartyRegionSelected() {
+        when (party_name){
+            "blue" -> {
+
+            }
+            "red" -> {
+
+            }
+            "mint" -> {
+
+            }
+            "yellow" -> {
+
+            }
+            "orange" -> {
+
+            }
+            "navy" -> {
+
+            }
+            "green" -> {
+
+            }
+            "gray" -> {
+
+            }
+        }
+        when (region_name){
+            "seoul" -> {
+
+            }
+            "incheon" -> {
+
+            }
+            "gyeonggi" -> {
+
+            }
+            "gangwon" -> {
+
+            }
+            "chungbug" -> {
+
+            }
+            "chungnam" -> {
+
+            }
+            "sejong" -> {
+
+            }
+            "daejeon" -> {
+
+            }
+            "gyeongbug" -> {
+
+            }
+            "daegu" -> {
+
+            }
+            "ulsan" -> {
+
+            }
+            "busan" -> {
+
+            }
+            "jeonbug" -> {
+
+            }
+            "gwangju" -> {
+
+            }
+            "gyeongnam" -> {
+
+            }
+            "jeonnam" -> {
+
+            }
+            "jeju" -> {
+
+            }
+        }
     }
 
     private fun setOnClickListener(){
@@ -71,11 +179,11 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun addFragment(){
-
-    }
-
-    private fun replaceFragment() {
-
+    private fun replaceFragment(fragment: Fragment){
+        val fm = supportFragmentManager
+        val transaction = fm.beginTransaction()
+        transaction.replace(R.id.legislator_list_frag_list, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
