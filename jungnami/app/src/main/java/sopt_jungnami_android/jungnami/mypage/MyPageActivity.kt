@@ -60,7 +60,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         val my_id = SharedPreferenceController.getMyId(applicationContext)
         networkService = ApplicationController.instance.networkService
 
-        val getMyPageResponse = networkService.getMyPageResponse("407144669799202")
+        val getMyPageResponse = networkService.getMyPageResponse(my_id
+        )
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse>{
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())
@@ -99,7 +100,10 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         mypage_act_mycoin_count_tv.text = "${myPageDataList.coin} 코인"
         mypage_act_votingcnt_tv.text = "${myPageDataList.votingcnt}개"
 
-        mypage_act_top_bar_new_post_counter_tv.text = myPageDataList.pushcnt.toString()
+        if (myPageDataList.pushcnt > 0){
+            mypage_act_bell_img.visibility = View.VISIBLE
+            mypage_act_top_bar_new_post_counter_tv.text = myPageDataList.pushcnt.toString()
+        }
     }
 
     private fun setFeedRecyclerViewAdapter(){
