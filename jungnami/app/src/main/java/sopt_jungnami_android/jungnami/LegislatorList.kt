@@ -26,7 +26,8 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
     var context : Context = this
     var isFavorableSelected: Boolean = true
 
-
+    lateinit var party_name : String
+    lateinit var region_name : String
 
     override fun onClick(v: View?) {
         when(v) {
@@ -40,15 +41,17 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_list)
         setStatusBarColor()
-        isPartyRegionSelected()
         setOnClickListener()
 
         networkService = ApplicationController.instance.networkService
         getPartyDistrictLegislatorList()
-
-        party_name = intent.getStringExtra("party_name")
-        region_name = intent.getStringExtra("region_name")
-
+        isParty = intent.getBooleanExtra("isParty", true)
+        if (isParty) {
+            party_name = intent.getStringExtra("party_name")
+        } else {
+            region_name = intent.getStringExtra("region_name")
+        }
+        isPartyRegionSelected()
     }
 
     fun getPartyDistrictLegislatorList(){
@@ -58,6 +61,8 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
     fun isPartyRegionSelected() {
         when (party_name){
             "blue" -> {
+                legislator_list_act_party_category.visibility = View.GONE
+                legislator_list_act_district_category.visibility = View.VISIBLE
 
             }
             "red" -> {

@@ -28,7 +28,7 @@
             />
         
         <TextView
-            android:id="@+id/legislator_list_act_category"
+            android:id="@+id/legislator_list_act_party_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -36,6 +36,19 @@
             android:text="정당"
             android:textSize="16sp"
             android:textColor="#6b6b6b"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:id="@+id/legislator_list_act_district_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="지역"
+            android:textSize="16sp"
+            android:textColor="#6b6b6b"
+            android:visibility="gone"
             />
         
         <ImageView
