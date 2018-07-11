@@ -9,9 +9,9 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import sopt_jungnami_android.jungnami.R
-import sopt_jungnami_android.jungnami.data.ContentItemData
+import sopt_jungnami_android.jungnami.data.Contents
 
-class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<ContentItemData>) : RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
+class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<Contents>) : RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
     lateinit var onItemClick : View.OnClickListener
     fun setOnItemClickListener(l : View.OnClickListener){
         onItemClick = l
@@ -37,7 +37,7 @@ class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<Con
         //이미지 셋팅하기
         //holder.image.setBackgroundColor(Color.parseColor("#00B8D4"))
         holder.title.text = dataList[position].title
-        holder.info.text = "${dataList[position].category} · 3분"
+        holder.info.text = "${dataList[position].text}"
 
     }
 

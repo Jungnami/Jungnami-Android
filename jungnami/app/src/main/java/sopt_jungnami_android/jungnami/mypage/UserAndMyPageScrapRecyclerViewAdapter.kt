@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import sopt_jungnami_android.jungnami.R
-import sopt_jungnami_android.jungnami.data.ContentItemData
 import sopt_jungnami_android.jungnami.data.Scrap
 
 class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<Scrap>) : RecyclerView.Adapter<UserAndMyPageScrapRecyclerViewAdapter.Holder>() {
