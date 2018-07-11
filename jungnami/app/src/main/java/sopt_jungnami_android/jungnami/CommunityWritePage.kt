@@ -94,7 +94,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
         community_act_writepage_complete_btn.setOnClickListener {
             if (community_act_writepage_complete_btn.isSelected){
-                postCommunityPostingResponse()
+                //postCommunityPostingResponse()
             }
         }
         community_act_writepage_upload_pic_btn.setOnClickListener {
@@ -142,23 +142,23 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    fun postCommunityPostingResponse() {
-        val posting_content = RequestBody.create(MediaType.parse("text/plain"), community_act_writepage_posting_et.text.toString())
-
-        //val posting_shared = RequestBody.create(MediaType.parse("text/plain"), )
-
-        val postingcomplete = networkService.postCommunityPostingRequest(posting_content, image, posting_shared)
-        postingcomplete.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
-            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
-                if(response!!.isSuccessful)
-                    finish()
-            }
-
-            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
-                toast("Error!")
-            }
-        })
-    }
+//    fun postCommunityPostingResponse() {
+//        val posting_content = RequestBody.create(MediaType.parse("text/plain"), community_act_writepage_posting_et.text.toString())
+//
+//        //val posting_shared = RequestBody.create(MediaType.parse("text/plain"), )
+//
+//        val postingcomplete = networkService.postCommunityPostingRequest(posting_content, image, posting_shared)
+//        postingcomplete.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
+//            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+//                if(response!!.isSuccessful)
+//                    finish()
+//            }
+//
+//            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+//                toast("Error!")
+//            }
+//        })
+//    }
 
     private fun checkUploadedContent() {
         community_act_writepage_complete_btn.isSelected = isText || isIMG || isGIF

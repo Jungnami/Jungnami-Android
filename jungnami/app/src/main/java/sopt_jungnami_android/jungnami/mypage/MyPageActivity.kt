@@ -22,9 +22,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
-import sopt_jungnami_android.jungnami.data.ContentItemData
-import sopt_jungnami_android.jungnami.data.FeedItemData
-import sopt_jungnami_android.jungnami.data.MyPageData
+import sopt_jungnami_android.jungnami.data.*
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class MyPageActivity : AppCompatActivity(), View.OnClickListener {
@@ -39,8 +37,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     var isSelectScrap : Boolean = true
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
-    lateinit var contentDataList : ArrayList<ContentItemData>
-    lateinit var feedDataList : ArrayList<FeedItemData>
+    lateinit var scrapDataList : ArrayList<Scrap>
+    lateinit var boardDataList : ArrayList<Board>
 
     lateinit var myPageDataList: MyPageData
     lateinit var networkService : NetworkService
@@ -67,7 +65,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 //    }
     //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
     private fun requestMyPageDataToServer(){
-        feedDataList = ArrayList()
+        scrapDataList = ArrayList()
+        boardDataList = ArrayList()
         val my_id = SharedPreferenceController.getMyId(applicationContext)
         networkService = ApplicationController.instance.networkService
 
@@ -81,8 +80,11 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                 if (response!!.isSuccessful){
                     myPageDataList = response!!.body()!!.data
 
+                    scrapDataList = myPageDataList.scrap
+                    boardDataList = myPageDataList.board
                     //나중에 백그라운드로
                     setMyInfoView()
+                    setFeedRecyclerViewAdapter()
 
                 }
             }
@@ -108,13 +110,13 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         mypage_act_votingcnt_tv.text = "${myPageDataList.votingcnt}개"
     }
     private fun setFeedRecyclerViewAdapter(){
-        userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = feedDataList)
+        userAndMyPageFeedRecyclerViewAdapter = UserAndMyPageFeedRecyclerViewAdapter(this, dataList = boardDataList)
         userAndMyPageFeedRecyclerViewAdapter.setOnItemClickListener(this)
         mypage_act_recyclerview_list_rv.layoutManager = LinearLayoutManager(applicationContext)
         mypage_act_recyclerview_list_rv.adapter = userAndMyPageFeedRecyclerViewAdapter
     }
     private fun setScrapRecyclerViewAdapter(){
-        userAndMyPageScrapRecyclerViewAdapter = UserAndMyPageScrapRecyclerViewAdapter(this, dataList = contentDataList)
+        userAndMyPageScrapRecyclerViewAdapter = UserAndMyPageScrapRecyclerViewAdapter(this, dataList = scrapDataList)
         userAndMyPageScrapRecyclerViewAdapter.setOnItemClickListener(this)
         mypage_act_recyclerview_list_rv.layoutManager = GridLayoutManager(this, 2)
         mypage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter

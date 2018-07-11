@@ -1,8 +1,11 @@
 package sopt_jungnami_android.jungnami.Network
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import sopt_jungnami_android.jungnami.Get.*
+import sopt_jungnami_android.jungnami.Post.PostCommunityPostingResponse
 import sopt_jungnami_android.jungnami.Post.PostCompletingVote
 
 interface NetworkService {

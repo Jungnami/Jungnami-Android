@@ -24,7 +24,7 @@
             android:id="@+id/vote_agree_dialog_myvote_count_tv"
             android:layout_gravity="center_horizontal"
             android:textColor="#757575"
-            android:text="나의 보유 투표권 : 0개"
+            android:text="나의 보유 투표권 : -개"
             android:textSize="15dp"
             android:fontFamily="@font/nanumbarungothiclight"
             android:layout_width="wrap_content"
