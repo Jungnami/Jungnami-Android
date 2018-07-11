@@ -16,7 +16,7 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            legislator_list_act_back_btn -> {
+            legislator_list_act_back_btn -> { // 백버튼
                 finish()
             }
         }
@@ -35,7 +35,7 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
             isSelectedTabView()
         }
         legislator_list_act_unlikeable_tab_btn.setOnClickListener {
-            isFavorableSelected = true
+            isFavorableSelected = false
             isSelectedTabView()
         }
         legislator_list_act_search.setOnClickListener {
@@ -44,7 +44,6 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         legislator_list_act_is_display_blind_panel_rl.setOnClickListener {
             legislator_list_act_legislator_search_rl.visibility = View.GONE
         }
-        // 취소 버튼
     }
 
     private fun isSelectedTabView(){
