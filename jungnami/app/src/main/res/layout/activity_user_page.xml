@@ -90,8 +90,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/otheruserpage_follow_btn" />
-
+                            android:padding="3dp"
+                            android:src="@drawable/otheruserpage_follow_btn"
+                            android:background="?android:selectableItemBackground"/>
                     </RelativeLayout>
 
                 </LinearLayout>
