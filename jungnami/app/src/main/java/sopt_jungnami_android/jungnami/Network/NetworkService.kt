@@ -205,6 +205,19 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Path("l_id") l_id : Int
     ) : Call<GetLegislatorResponse>
+    //후원하기 전 내 코인 받기
+    @GET("legislator/support")
+    fun getSponseBeforeDataResponse(
+            @Header("authorization") tokenValue : String?
+    ) : Call<GetSponseBeforeDataResponse>
+    //후원하기
+    @FormUrlEncoded
+    @POST("legislator/support")
+    fun postCompleteSponseCoinResponse(
+            @Header("authorization") tokenValue : String?,
+            @Field("l_id") l_id : Int,
+            @Field("coin") coin : Int
+    ) : Call<PostCompleteSponseCoinResponse>
 //윤환 라인 종료!
 
 

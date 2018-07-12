@@ -37,12 +37,12 @@
         android:layout_below="@+id/login_character_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="56dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
         <ImageView
             android:id="@+id/kakao_custom_login_btn"
-            android:src="@drawable/kakao_account_login_btn_medium_narrow"
+            android:src="@drawable/kakao_account_login_btn_large_wide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

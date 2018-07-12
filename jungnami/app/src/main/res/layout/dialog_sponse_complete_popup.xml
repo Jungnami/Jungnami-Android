@@ -18,11 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_centerHorizontal="true">
-            <ImageView
-                android:layout_toLeftOf="@+id/pc_charactor"
-                android:src="@drawable/coinpage_popup_chat_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/pc_charactor"
@@ -56,7 +51,7 @@
                 android:layout_marginBottom="40dp">
 
                 <ImageView
-                    android:id="@+id/coinpage_exchange_popup_complete_check_btn"
+                    android:id="@+id/sponse_popup_complete_check_btn"
                     android:src="@drawable/coinpage_popup_check_btn_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,8 +65,8 @@
                 android:layout_marginTop="60dp"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="구매가"
-                android:textSize="18sp"
+                android:text="후원이"
+                android:textSize="18dp"
                 android:textColor="#6b6b6b"/>
 
             <TextView
@@ -81,7 +76,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="완료되었습니다!"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textColor="#6b6b6b"/>
 
         </RelativeLayout>

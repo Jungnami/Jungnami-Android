@@ -212,7 +212,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content" />
                                             <ImageView
-                                                android:layout_marginLeft="6dp"
+                                                android:layout_marginLeft="3dp"
                                                 android:layout_gravity="center"
                                                 android:src="@drawable/legislatorpage_good_icon"
                                                 android:layout_width="wrap_content"
@@ -240,7 +240,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content" />
                                             <ImageView
-                                                android:layout_marginLeft="6dp"
+                                                android:layout_marginLeft="3dp"
                                                 android:layout_gravity="center"
                                                 android:src="@drawable/legislatorpage_bad_icon"
                                                 android:layout_width="wrap_content"
@@ -267,7 +267,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content" />
                                             <ImageView
-                                                android:layout_marginLeft="6dp"
+                                                android:layout_marginLeft="3dp"
                                                 android:layout_gravity="center"
                                                 android:src="@drawable/legislatorpage_coin_icon"
                                                 android:layout_width="wrap_content"

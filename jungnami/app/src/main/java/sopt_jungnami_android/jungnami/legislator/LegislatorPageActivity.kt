@@ -2,6 +2,7 @@ package sopt_jungnami_android.jungnami.legislator
 
 import android.app.Dialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -123,7 +124,9 @@ class LegislatorPageActivity : AppCompatActivity(), View.OnClickListener {
             dialog.show()
         }
         legislator_page_sponsor_btn.setOnClickListener {
-
+            val dialog : Dialog = SponsedCoinDialog(this, l_id)
+            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
         }
     }
 

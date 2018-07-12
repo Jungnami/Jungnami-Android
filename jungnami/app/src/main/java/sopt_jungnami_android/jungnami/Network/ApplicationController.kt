@@ -8,6 +8,7 @@ class ApplicationController : Application() {
     lateinit var networkService: NetworkService
 
     private val baseUrl = "https://jungnami.ml/"
+//    private val baseUrl = "http://13.124.216.2:3000/"
     companion object {
         lateinit var instance : ApplicationController
     }
