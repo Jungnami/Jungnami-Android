@@ -46,6 +46,26 @@ interface NetworkService {
             @Path("city") city : String,
             @Path("l_name") l_name : String
     ) : Call<GetRankingSearchLegislatorResponse>
+    // 커뮤니티 댓글 가져오기
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("board/commentlist/{board_id}")
+    fun getCommunityComment(
+            @Path("board_id") board_id: Int
+    ) : Call<GetCommunityCommentResponse>
+
+    // 커뮤니티 댓글쓰기 by 탁형민
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("board/makecomment")
+    fun postCommunityComment(
+            @Body postCommunityCommentRequest: PostCommunityCommentRequest
+    ) : Call<postCommunityLikeResponse>
+
+    // 커뮤니티 댓글 좋아요 by 탁형민
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("board/likecomment")
+    fun postCommunityCommentLike(
+            @Body postCommunityCommentLikeRequset: PostCommunityCommentLikeRequset
+    ) : Call<postCommunityLikeResponse>
 //형민이 라인 종료!
 
 
@@ -124,6 +144,11 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Field("coin") coin : Int
     ): Call<PostCoinExchangeResponse>
+    @GET("contents/cardnews/{contents_id}")
+    fun getDetailedContentsResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("contents_id") contents_id : Int
+    ): Call<GetDetailedContentsResponse>
 //윤환 라인 종료!
 
 
