@@ -21,6 +21,7 @@ import sopt_jungnami_android.jungnami.Get.GetMyPageResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.contents.ContentsDetail
 import sopt_jungnami_android.jungnami.data.*
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
@@ -30,9 +31,8 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (isSelectScrap){
             val index : Int = userpage_act_recyclerview_list_rv.getChildAdapterPosition(v)
-//        val l_id : Int = legislatorRankDataList[index].l_id
-            //startActivity<LegislatorPageActivity>()
-            toast("클릭됨 인덱스 : $index")
+            val contents_id = scrapDataList[index].c_id
+            startActivity<ContentsDetail>("contents_id" to contents_id)
         }
     }
 

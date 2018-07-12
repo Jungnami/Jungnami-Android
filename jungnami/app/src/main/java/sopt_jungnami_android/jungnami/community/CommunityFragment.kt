@@ -21,6 +21,7 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
 class CommunityFragment : Fragment(), View.OnClickListener {
@@ -82,16 +83,13 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
 
     fun getCommunityFeed(){
-        val getCommunityFeedResponse = networkService.getCommunityFeed()
+        val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!))
         getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse>{
             override fun onFailure(call: Call<GetCommunityFeedResponse>?, t: Throwable?) {
             }
 
             override fun onResponse(call: Call<GetCommunityFeedResponse>?, response: Response<GetCommunityFeedResponse>?) {
                 if(response!!.isSuccessful){
-
-
-
                     var user_img_url = response!!.body()!!.data!!.user_img_url
 
 
