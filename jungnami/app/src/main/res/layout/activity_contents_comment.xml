@@ -20,64 +20,6 @@
             android:src="@drawable/writepage_x_btn"
             android:background="?android:selectableItemBackground"/>
 
-        <ImageView
-            android:id="@+id/contents_comment_act_heart_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@id/contents_comment_act_backarrow_btn"
-            android:background="?android:selectableItemBackground"
-            android:src="@drawable/community_heart_gray" />
-
-        <TextView
-            android:id="@+id/contents_comment_act_likes_num_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/contents_comment_act_heart_iv"
-            android:text="5,258명"
-            android:textColor="#444444"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/contents_comment_act_likes_subtitle_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이 좋아합니다."
-            android:textSize="12sp"
-            android:textColor="#444444"
-            android:layout_toRightOf="@id/contents_comment_act_likes_num_btn"
-            android:layout_centerVertical="true"
-            />
-        
-        <ImageView
-            android:id="@+id/contents_comment_act_chat_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/community_chat_gray"
-            android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@id/contents_comment_act_likes_subtitle_tv"
-            android:layout_centerVertical="true"
-            />
-
-        <TextView
-            android:id="@+id/contents_comment_act_chat_num_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/contents_comment_act_chat_iv"
-            android:text="523개"
-            android:textColor="#444444"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:background="?android:selectableItemBackground"/>
-
     </RelativeLayout>
     
     
