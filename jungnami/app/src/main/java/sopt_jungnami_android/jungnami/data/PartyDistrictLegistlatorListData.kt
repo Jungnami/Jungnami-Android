@@ -6,6 +6,6 @@ data class PartyDistrictLegistlatorListData (
         val position: String,
         val imgurl: String?,
         val party_name: String,
-        val rank: Int,
+        val rank: String,
         val rankInAll: String
 )
