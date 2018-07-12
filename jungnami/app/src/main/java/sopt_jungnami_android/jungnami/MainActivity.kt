@@ -89,7 +89,6 @@ class MainActivity : AppCompatActivity() {
             })
             main_act_unlikeable_icon_with_animation_iv.startAnimation(anim)
         }
-
     }
 
     private fun addFragment(fragment: Fragment): Unit {

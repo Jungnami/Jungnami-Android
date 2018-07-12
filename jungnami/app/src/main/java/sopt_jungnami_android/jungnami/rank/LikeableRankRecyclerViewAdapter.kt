@@ -72,7 +72,6 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
         holder.vote_btn.setOnClickListener {
             val dialog : Dialog = VoteAgreeDialog(ctx,1, dataList[position].l_id)
             dialog.show()
-
         }
 
 //        when (dataList[position].is_voted){
