@@ -1,5 +1,6 @@
 package sopt_jungnami_android.jungnami.legislator
 
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -8,9 +9,12 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_legislator_page.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_user_page.*
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -45,14 +49,20 @@ class LegislatorPageActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_page)
         l_id = intent.getIntExtra("l_id", 0)
+
         setStatusBarColor()
+
         setClickListener()
 
+        legislator_act_likeable_icon_with_animation_iv.visibility = View.INVISIBLE
+        legislator_act_unlikeable_icon_with_animation_iv.visibility = View.INVISIBLE
 
 
         requestLegislatorPageDataToServer()
 
     }
+
+
     private fun setLikeableTop3Image(lanking : String){
         when (lanking) {
             "1" -> legislator_page_act_like_top3_iv.setImageResource(R.drawable.main_gold_medal_icon)
@@ -103,6 +113,18 @@ class LegislatorPageActivity : AppCompatActivity(), View.OnClickListener {
         legislator_page_act_back_btn.setOnClickListener {
             finish()
         }
+
+        legislator_page_likeable_btn.setOnClickListener {
+            val dialog : Dialog = LegislatorPageVoteDialog(this,1,l_id)
+            dialog.show()
+        }
+        legislator_page_unlikeable_btn.setOnClickListener {
+            val dialog : Dialog = LegislatorPageVoteDialog(this,0,l_id)
+            dialog.show()
+        }
+        legislator_page_sponsor_btn.setOnClickListener {
+
+        }
     }
 
     private fun setRecyclerViewAdapter() {
@@ -135,7 +157,40 @@ class LegislatorPageActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
+    fun setAnimationIcon(isLikeable: Boolean) {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this, R.anim.expand_anim)
+        anim.interpolator = interpolator
+        if (isLikeable) {
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+                }
 
+                override fun onAnimationEnd(animation: Animation?) {
+                    legislator_act_likeable_icon_with_animation_iv.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    legislator_act_likeable_icon_with_animation_iv.visibility = View.VISIBLE
+                }
+            })
+            legislator_act_likeable_icon_with_animation_iv.startAnimation(anim)
+        } else {
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    legislator_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    legislator_act_unlikeable_icon_with_animation_iv.visibility = View.VISIBLE
+                }
+            })
+            legislator_act_unlikeable_icon_with_animation_iv.startAnimation(anim)
+        }
+    }
 
     private fun setStatusBarColor() {
         val view: View? = window.decorView
@@ -144,6 +199,20 @@ class LegislatorPageActivity : AppCompatActivity(), View.OnClickListener {
                 view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 window.statusBarColor = Color.parseColor("#FFFFFF")
             }
+        }
+    }
+    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) : android.view.animation.Interpolator {
+        private var mAmplitude = 1.0
+        private var mFrequency = 10.0
+
+        init {
+            mAmplitude = amplitude
+            mFrequency = frequency
+        }
+
+        override fun getInterpolation(time: Float): Float {
+            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1).toFloat()
         }
     }
 }
