@@ -10,7 +10,8 @@ data class ContentsCardViewData(
         val youtube: String,
         val likeCnt: Int,
         val commentCnt: Int,
-        val isscrap: Int
+        val isscrap: Int,
+        val islike: Int
 )
 
 data class Imagearray (

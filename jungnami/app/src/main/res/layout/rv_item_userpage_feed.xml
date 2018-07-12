@@ -29,7 +29,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/userpage_feed_rv_item_profile_name_btn"
+                android:id="@+id/userpage_feed_rv_item_profile_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic_normal"
@@ -38,10 +38,10 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/contents_comment_rv_item_date"
+                android:id="@+id/userpage_comment_rv_item_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/userpage_feed_rv_item_profile_name_btn"
+                android:layout_below="@id/userpage_feed_rv_item_profile_name_tv"
                 android:fontFamily="@font/nanumbarungothiclight_normal"
                 android:text="1시간 전"
                 android:textColor="#707070"
@@ -71,19 +71,19 @@
         android:text="앱잼 가즈아ㅏ~~~"
         android:textColor="#707070"
         android:textSize="13sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <!--공유하기면 gone처리-->
     <!--이미지 없으면 gone처리 필요-->
     <ImageView
         android:id="@+id/userpage_feed_rv_item_contents_iv"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:src="@color/colorAccent"
-        android:visibility="gone" />
+        android:visibility="visible" />
     <!--공유하기가 아니면 gone 처리-->
     <LinearLayout
         android:orientation="vertical"
@@ -108,7 +108,7 @@
                 android:src="@drawable/community_profile_circle"/>
 
             <TextView
-                android:id="@+id/userpage_feed_rv_item_shared_profile_text_btn"
+                android:id="@+id/userpage_feed_rv_item_shared_profile_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="동굴문어"
@@ -126,7 +126,7 @@
                 android:fontFamily="@font/nanumbarungothiclight_normal"
                 android:text="1시간 전"
                 android:textSize="9dp"
-                android:layout_below="@id/userpage_feed_rv_item_shared_profile_text_btn"
+                android:layout_below="@id/userpage_feed_rv_item_shared_profile_name_tv"
                 android:layout_toRightOf="@id/userpage_feed_rv_item_shared_profile_image_btn"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="5dp"/>

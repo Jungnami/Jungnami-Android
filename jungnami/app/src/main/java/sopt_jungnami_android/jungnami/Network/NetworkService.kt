@@ -5,6 +5,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
+import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
 import sopt_jungnami_android.jungnami.Delete.DeleteContentsScrapResponse
 import sopt_jungnami_android.jungnami.Get.*
 import sopt_jungnami_android.jungnami.Post.*
@@ -19,9 +20,9 @@ interface NetworkService {
     ) : Call<GetFollowingResponse>
 
 //// 2. 커뮤니티 피드 가져오기 by 형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("board/boardlist")
     fun getCommunityFeed(
+        @Header("authorization") tokenValue : String?
     ) : Call<GetCommunityFeedResponse>
 
     @GET("search/legislator/{l_name}")
@@ -30,9 +31,9 @@ interface NetworkService {
     ) : Call<GetRankingSearchLegislatorResponse>
 
     // 커뮤니티 좋아요 by 탁형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @POST("board/likeboard")
     fun postCommunityLike(
+            @Header("authorization") tokenValue : String?,
             @Body postCommunityLikeRequset: PostCommunityLikeRequset
     ) : Call<postCommunityLikeResponse>
     // 정당에서 검색하기 by Tak
@@ -66,6 +67,26 @@ interface NetworkService {
     @POST("board/likecomment")
     fun postCommunityCommentLike(
             @Body postCommunityCommentLikeRequset: PostCommunityCommentLikeRequset
+    ) : Call<postCommunityLikeResponse>
+    // 콘텐츠 댓글 가져오기
+//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+//    @GET("contents/commentlist/{contents_id}")
+//    fun getContentsComment(
+//            @Path("contents_id") contents_id: Int
+//    ) : Call<GetContentsCommentResponse>
+//
+//    // 콘텐츠 댓글쓰기 by 탁형민
+//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+//    @POST("contents/makecomment")
+//    fun postContentsComment(
+//            @Body postContentsCommentRequest: PostContentsCommentRequest
+//    ) : Call<postCommunityLikeResponse>
+
+    // 콘텐츠 댓글 좋아요 by 탁형민
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("contents/likecomment")
+    fun postContentsCommentLike(
+            @Body postContentsCommentLikeRequset: PostCommunityCommentLikeRequset
     ) : Call<postCommunityLikeResponse>
 //형민이 라인 종료!
 
@@ -165,7 +186,17 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Path("contentsid") contentsid : Int
     ) : Call<DeleteContentsScrapResponse>
-
+    @FormUrlEncoded
+    @POST("contents/like")
+    fun postContentsLikeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Field("contents_id") contents_id : Int
+    ) : Call<PostContentsLikeResponse>
+    @DELETE("delete/contentslike/{contentsid}")
+    fun deleteContentsLikeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("contentsid") contentsid : Int
+    ) : Call<DeleteContentsLikeResponse>
 
 //윤환 라인 종료!
 

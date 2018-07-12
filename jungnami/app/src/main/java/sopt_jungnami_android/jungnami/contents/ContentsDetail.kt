@@ -12,13 +12,16 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contents_detail.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.CommunityWritePage
+import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
 import sopt_jungnami_android.jungnami.Get.GetDetailedContentsResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
+import sopt_jungnami_android.jungnami.Post.PostContentsLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentsCardViewData
 import sopt_jungnami_android.jungnami.data.Imagearray
@@ -31,6 +34,7 @@ class ContentsDetail : AppCompatActivity() {
     lateinit var cardViewItemData: ContentsCardViewData
     lateinit var cardViewInImageList : ArrayList<Imagearray>
 
+    var isLike : Int = 0
     var isScrapInPage : Int = 0
     var contents_id: Int = 0
     var isUserMyPage : Boolean = false
@@ -45,6 +49,42 @@ class ContentsDetail : AppCompatActivity() {
         requestDataToServer()
         setViewPagerChangeListener()
     }
+    private fun requestContentsLikeToServer(){
+        networkService = ApplicationController.instance.networkService
+        val postContentsLikeResponse = networkService.postContentsLikeResponse(SharedPreferenceController.getAuthorization(this),
+                contents_id)
+        postContentsLikeResponse.enqueue(object : Callback<PostContentsLikeResponse>{
+            override fun onFailure(call: Call<PostContentsLikeResponse>?, t: Throwable?) {
+                Log.e("좋아요 실패", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostContentsLikeResponse>?, response: Response<PostContentsLikeResponse>?) {
+                if (response!!.isSuccessful){
+                    isLike = 1
+                    checkLikeClicked()
+                    toast("좋아요")
+                }
+            }
+        })
+    }
+    private fun requestDeleteContentsLikeToServer(){
+        networkService = ApplicationController.instance.networkService
+        val deleteContentsLikeResponse = networkService.deleteContentsLikeResponse(SharedPreferenceController.getAuthorization(this),
+                contents_id)
+        deleteContentsLikeResponse.enqueue(object : Callback<DeleteContentsLikeResponse>{
+            override fun onFailure(call: Call<DeleteContentsLikeResponse>?, t: Throwable?) {
+                Log.e("좋아요 삭제 실패", t.toString())
+            }
+
+            override fun onResponse(call: Call<DeleteContentsLikeResponse>?, response: Response<DeleteContentsLikeResponse>?) {
+                if (response!!.isSuccessful){
+                    isLike = 0
+                    checkLikeClicked()
+                    toast("좋아요 취소")
+                }
+            }
+        })
+    }
     private fun requestDataToServer() {
         networkService = ApplicationController.instance.networkService
         val getDetailedContentsResponse = networkService.getDetailedContentsResponse(
@@ -58,15 +98,12 @@ class ContentsDetail : AppCompatActivity() {
                     cardViewItemData = response.body()!!.data
                     cardViewInImageList= response.body()!!.data.imagearray
 
-                    Log.e("스크랩 확인", cardViewItemData.isscrap.toString())
+                    //좋아요
+                    isLike = cardViewItemData.likeCnt
+                    checkLikeClicked()
 
+                    //스크랩
                     isScrapInPage = cardViewItemData.isscrap
-                    if (cardViewItemData.isscrap==0){
-                        contents_act_detail_scrap_btn.setImageResource(R.drawable.contents_scrap)
-                    } else {
-                        contents_act_detail_scrap_btn.setImageResource(R.drawable.contents_scrap_blue)
-                    }
-
                     changeIsScrapBtnView()
 
                     val card_page : Int = cardViewItemData.imagearray.size
@@ -82,14 +119,20 @@ class ContentsDetail : AppCompatActivity() {
         })
 
     }
+    private fun checkLikeClicked(){
+        if (isLike==0){
+            contents_act_detail_like_btn.setImageResource(R.drawable.contents_heart_gray)
+        } else {
+            contents_act_detail_like_btn.setImageResource(R.drawable.contents_heart_blue)
+        }
+    }
 
     private fun setView(){
         val vote_count : String = String.format("%,d", cardViewItemData.likeCnt)
         contents_act_detail_like_count_tv.text = "${vote_count}명"
         contents_act_detail_comment_count_tv.text = "${cardViewItemData.commentCnt}"
+
     }
-
-
 
     fun changeIsScrapBtnView(){
         if (isScrapInPage==0){
@@ -111,8 +154,12 @@ class ContentsDetail : AppCompatActivity() {
             finish()
         }
         contents_act_detail_like_btn.setOnClickListener {
-            contents_act_detail_like_btn.isSelected = true
-            // 좋아요++ 은 나중에
+            if (isLike==0){
+                requestContentsLikeToServer()
+            } else {
+                requestDeleteContentsLikeToServer()
+            }
+
         }
         contents_act_detail_comment_btn.setOnClickListener {
             val intent = Intent(applicationContext, CommunityWritePage::class.java) // contents_comment 댓글 창 .kt 파일명

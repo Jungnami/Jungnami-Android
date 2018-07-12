@@ -17,6 +17,7 @@ import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
 import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import javax.security.auth.callback.Callback
 
 //made by YunHwan
@@ -91,7 +92,7 @@ class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: Fr
 
             //좋아요 통신단
             postCommunityLike = PostCommunityLikeRequset(dataList[position].boardid)
-            val postCommunityLikeRequset = networkService.postCommunityLike(postCommunityLike)
+            val postCommunityLikeRequset = networkService.postCommunityLike(SharedPreferenceController.getAuthorization(context = ctx!!),postCommunityLike)
             postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
                 override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
 
@@ -139,9 +140,9 @@ class CommunityRecyclerViewAdapter(val dataList: ArrayList<Content>, val ctx: Fr
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         //본인 이미지
-        var user_img_: ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_image_btn) as ImageView
+        //var user_img_: ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_image_btn) as ImageView
                 //글쓴이 사진 가져오기
-        var profile_img_btn : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_image_btn) as ImageView
+        var profile_img_btn : ImageView = itemView.findViewById(R.id.contents_feed_rv_item_shared_profile_image_btn) as ImageView
         var profile_name_btn : TextView = itemView.findViewById(R.id.contents_comment_rv_item_profile_name_tv) as TextView
         var feed_date : TextView = itemView.findViewById(R.id.contents_comment_rv_item_date) as TextView
         var feed_description : TextView = itemView.findViewById(R.id.contents_comment_rv_item_contents_tv) as TextView
