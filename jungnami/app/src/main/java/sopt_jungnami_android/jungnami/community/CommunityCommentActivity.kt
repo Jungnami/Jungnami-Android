@@ -37,6 +37,10 @@ class CommunityCommentActivity : AppCompatActivity() {
     }
 
     private fun setClickedListener(){
+        // back 버튼 눌렀을 때
+        contents_comment_act_backarrow_btn.setOnClickListener {
+            finish()
+        }
         // 댓글 쓰기 버튼 눌렀을 때
         contents_comment_act_bottom_bar_write_btn.setOnClickListener {
             // Post 통신코드
@@ -56,8 +60,10 @@ class CommunityCommentActivity : AppCompatActivity() {
     }
 
     fun postCommunityComment(){
+        // # 보드아이디 받아와야한다.
+        var board_id = 103
         var content : String = contents_comment_act_bottom_bar_edit_text.text.toString()
-        var postCommunityCommentRequest = PostCommunityCommentRequest(103, content)
+        var postCommunityCommentRequest = PostCommunityCommentRequest(board_id, content)
         var postCommunityPostingResponse = networkService.postCommunityComment(postCommunityCommentRequest)
         postCommunityPostingResponse.enqueue(object : Callback <postCommunityLikeResponse> {
             override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
@@ -82,20 +88,22 @@ class CommunityCommentActivity : AppCompatActivity() {
         val getCommunityResponse = networkService.getCommunityComment(board_id!!)
         getCommunityResponse.enqueue(object : Callback<GetCommunityCommentResponse>{
             override fun onFailure(call: Call<GetCommunityCommentResponse>?, t: Throwable?) {
-                Log.v("ㅌㅅ","ㅅㅍ")
+                Log.v("ㅌㅅ","이거들어오면getCommunityComment실패")
             }
 
             override fun onResponse(call: Call<GetCommunityCommentResponse>?, response: Response<GetCommunityCommentResponse>?) {
                 if (response!!.isSuccessful){
-                    Log.v("ㅌㅅ","ㅅㄱ")
+                    Log.v("ㅌㅅ","이거들어오면getCommunityComment성공")
                     communityCommentItem = response!!.body()!!.data as ArrayList<CommunityCommentData>
-                    communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem, context)
+                    communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem, context,0)
                     contents_comment_act_rv.layoutManager = LinearLayoutManager(context)
                     contents_comment_act_rv.adapter = communityCommentRecyclerViewAdapter
                 }
             }
         })
     }
+
+
 
     private fun setStatusBarColor(){
         val view : View? = window.decorView

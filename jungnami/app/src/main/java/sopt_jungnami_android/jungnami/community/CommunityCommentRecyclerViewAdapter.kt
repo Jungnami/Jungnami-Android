@@ -22,7 +22,7 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.CommunityCommentData
 import sopt_jungnami_android.jungnami.mypage.UserPageActivity
 
-class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<CommunityCommentData>, private val context: Context) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<CommunityCommentData>, private val context: Context, private val flag : Int) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     lateinit var networkService: NetworkService
 
@@ -52,8 +52,16 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
 
         // 좋아요 눌렀을 때
         viewHolder.comment_like_img_btn.setOnClickListener {
-            // 좋아요 수 늘리기 통신
-            postCommunityCommentLike(position)
+            // flag == 0 (CommmunityCommentActivity에서 넘어온 뷰)
+            if(flag == 0) {
+                // 좋아요 수 늘리기 통신
+                postCommunityCommentLike(position)
+            }
+            // flag == 1 (ContentsCommentActivity에서 넘어온 뷰)
+            if(flag == 1){
+                // 좋아요 수 늘리기 통신
+                postContentsCommentLike(position)
+            }
             // 좋아요 수 + 1 해서 값 뷰에 적용
             viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
             var temp = dataItems!![position].commentlikeCnt + 1
@@ -107,6 +115,25 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
 
         })
 
+    }
+
+    fun postContentsCommentLike(position : Int){
+        networkService = ApplicationController.instance.networkService
+        var comment_id : Int = dataItems!![position].commentid
+        var postContentsCommentLikeRequset = PostCommunityCommentLikeRequset(comment_id)
+        var postContentsCommentLikeResponse = networkService.postContentsCommentLike(postContentsCommentLikeRequset)
+        postContentsCommentLikeResponse.enqueue(object : Callback<postCommunityLikeResponse>{
+            override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
+                if(response!!.isSuccessful){
+                    Log.v("success", "좋아요성공")
+                }
+            }
+
+        })
     }
 
 
