@@ -108,10 +108,10 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
             val imageviewGIF: ImageView = findViewById(R.id.community_act_writepage_upload_gif_iv)
             val gifImage = DrawableImageViewTarget(imageviewGIF)
             Visible(imageviewGIF)
-            Glide.with(this).load(R.drawable.community_gif_box).into(gifImage)
+            Glide.with(this).load(R.drawable.dancing_citizen).into(gifImage)
             community_act_writepage_upload_gif_iv.setOnClickListener {
                 Gone(imageviewGIF)
-                Glide.with(this).load(R.drawable.community_gif_box).into(community_act_writepage_upload_pic_iv)
+                Glide.with(this).load(R.drawable.dancing_citizen).into(community_act_writepage_upload_pic_iv)
                 isGIF = true
                 checkUploadedContent()
             }
