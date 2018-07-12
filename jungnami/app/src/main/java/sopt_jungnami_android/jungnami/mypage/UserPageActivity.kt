@@ -46,6 +46,7 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
 
+    lateinit var page_id : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_page)
@@ -86,7 +87,7 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<GetMyPageResponse>?, response: Response<GetMyPageResponse>?) {
                 if (response!!.isSuccessful){
                     myPageDataList = response!!.body()!!.data
-
+                    page_id = myPageDataList.mypage_id
                     scrapDataList = myPageDataList.scrap
                     boardDataList = myPageDataList.board
                     //나중에 백그라운드로
@@ -134,7 +135,7 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         userpage_act_following_btn.setOnClickListener {
-            startActivity<FollowingActivity>()
+            startActivity<FollowingActivity>("f_id" to page_id)
         }
         userpage_act_follower_btn.setOnClickListener {
             startActivity<FollowerActivity>()

@@ -5,6 +5,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
+import sopt_jungnami_android.jungnami.Delete.DeleteContentsScrapResponse
 import sopt_jungnami_android.jungnami.Get.*
 import sopt_jungnami_android.jungnami.Post.*
 
@@ -158,6 +159,13 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Field("contentsid") contentsid : Int
     ) : Call<PostContentsScrapAgreeResponse>
+    //스크랩 제거
+    @DELETE("delete/scrap/{scrapid}")
+    fun deleteContentsScrapResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("scrapid") scrapid : Int
+    ) : Call<DeleteContentsScrapResponse>
+
 
 //윤환 라인 종료!
 

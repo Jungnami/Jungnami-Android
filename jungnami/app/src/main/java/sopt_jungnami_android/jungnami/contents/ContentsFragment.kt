@@ -36,13 +36,13 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             0 -> {
                 val index : Int = contents_frag_sub_contents_recycler_rv.getChildAdapterPosition(v)
                 val contents_id : Int = recommendDataList[index].contentsid
-                toast("${contents_id} = 컨텐츠 아이디, ${recommendDataList[index].title} = 제목" )
+                //toast("${contents_id} = 컨텐츠 아이디, ${recommendDataList[index].title} = 제목" )
                 startActivity<ContentsDetail>("contents_id" to contents_id)
             }
             1,2 -> {
                 val index : Int = contents_frag_sub_contents_recycler_rv.getChildAdapterPosition(v)
                 val contents_id : Int = tmiOrStoryDataList[index].contentsid
-                toast("${contents_id} = 컨텐츠 아이디, ${tmiOrStoryDataList[index].title} = 제목" )
+                //toast("${contents_id} = 컨텐츠 아이디, ${tmiOrStoryDataList[index].title} = 제목" )
                 startActivity<ContentsDetail>("contents_id" to contents_id)
             }
         }
