@@ -160,10 +160,10 @@ interface NetworkService {
             @Field("contentsid") contentsid : Int
     ) : Call<PostContentsScrapAgreeResponse>
     //스크랩 제거
-    @DELETE("delete/scrap/{scrapid}")
+    @DELETE("delete/scrap/{contentsid}")
     fun deleteContentsScrapResponse(
             @Header("authorization") tokenValue : String?,
-            @Path("scrapid") scrapid : Int
+            @Path("contentsid") contentsid : Int
     ) : Call<DeleteContentsScrapResponse>
 
 

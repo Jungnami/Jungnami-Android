@@ -195,7 +195,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
             if (resultCode == Activity.RESULT_OK){
                 val temp = data!!.getBooleanExtra("isChangeScapState", false)
                 if (temp) {
-                    requestMyPageDataToServer("scrap")
+                    requestMyPageDataToServer("all")
                 }
             }
         }
