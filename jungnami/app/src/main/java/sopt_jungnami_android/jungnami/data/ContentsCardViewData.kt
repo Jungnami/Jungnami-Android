@@ -6,12 +6,12 @@ data class ContentsCardViewData(
         val text: String,
         val subtitle: String,
         val type: Int,
-        val imagearray: ArrayList<CardViewImage>,
+        val imagearray: ArrayList<Imagearray>,
         val youtube: String,
         val likeCnt: Int,
         val commentCnt: Int
 )
 
-data class CardViewImage (
-        val imgURL: String
+data class Imagearray (
+        val img_url: String
 )

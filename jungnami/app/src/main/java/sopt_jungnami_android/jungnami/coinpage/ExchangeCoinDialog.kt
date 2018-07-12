@@ -28,7 +28,6 @@ class ExchangeCoinDialog(val ctx : Context, val coin : String) : Dialog(ctx) {
         setContentView(R.layout.fragment_coinpage_popup_exchange)
         setView()
         setClickListener()
-
     }
     private fun setClickListener(){
         coinpage_exchange_popup_cancel_btn.setOnClickListener {
