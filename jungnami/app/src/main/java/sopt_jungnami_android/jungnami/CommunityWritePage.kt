@@ -31,6 +31,7 @@ import sopt_jungnami_android.jungnami.Get.GetCommunityPostingResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityPostingResponse
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -129,7 +130,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     }
 
     fun getCommunityPostingResponse() {
-        val getCommunityPostingResponse = networkService.getCommunityPostingResponse()
+        val getCommunityPostingResponse = networkService.getCommunityPostingResponse(SharedPreferenceController.getMyId(context))
         getCommunityPostingResponse.enqueue(object : retrofit2.Callback<GetCommunityPostingResponse>{
             override fun onFailure(call: Call<GetCommunityPostingResponse>?, t: Throwable?) {
                 toast("error!")
@@ -147,7 +148,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
     fun postCommunityPostingResponse() {
         var content : String = community_act_writepage_posting_et.text.toString()
-        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(content, image, 0)
+        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getMyId(context), content, image, 0)
         postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
             override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
                 if(response!!.isSuccessful){

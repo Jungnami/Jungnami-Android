@@ -27,7 +27,6 @@ class PartyDistrictLegislatorListViewAdapter(private var context: Context, priva
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var partyDistrictLegislatorListViewHolder : PartyDistrictLegislatorListViewAdapter.PartyDistrictLegislatorListViewHolder = holder as PartyDistrictLegislatorListViewAdapter.PartyDistrictLegislatorListViewHolder
-        var searchResultRecyclerViewHolder : SearchResultRecyclerAdapter.SearchResultRecyclerViewHolder = holder as SearchResultRecyclerAdapter.SearchResultRecyclerViewHolder
 
         var l_id = legislatorItems[position].id
 
@@ -80,10 +79,10 @@ class PartyDistrictLegislatorListViewAdapter(private var context: Context, priva
         val legislator_rvlayout: LinearLayout = itemView!!.findViewById(R.id.rv_item_legislator_background_ll) as LinearLayout
         val legislator_rank : TextView = itemView!!.findViewById(R.id.rv_item_legislator_rank_num_tv) as TextView
         val legislator_partycolor: CircleImageView = itemView!!.findViewById(R.id.rv_item_legislator_party_color_img_iv) as CircleImageView
-        val legislator_profileIMG: ImageView = itemView!!.findViewById(R.id.rv_item_legislator_profile_img_iv) as ImageView
+        val legislator_profileIMG: CircleImageView = itemView!!.findViewById(R.id.rv_item_legislator_profile_img_iv) as CircleImageView
         val legislator_name: TextView = itemView!!.findViewById(R.id.rv_item_legislator_name_tv)
         val legislator_rankInAll: TextView = itemView!!.findViewById(R.id.rv_item_legislator_likable_district_rankinall_tv) as TextView
         val legislator_position: TextView = itemView!!.findViewById(R.id.rv_item_legislator_likable_position_tv) as TextView
-        val legislator_votebtn: ImageView = itemView!!.findViewById(R.id.rv_item_legislator_vote_btn) as ImageView
+        val legislator_votebtn: ImageView = itemView!!.findViewById(R.id.rv_item_legislator_likable_vote_btn) as ImageView
     }
 }
