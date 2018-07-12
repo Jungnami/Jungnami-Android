@@ -61,11 +61,17 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if (SharedPreferenceController.getAuthorization(context!!) == ""){
+            community_frag_what_do_u_think_box.visibility = View.GONE
+        } else {
+            community_frag_no_login_status_rl.visibility = View.GONE
+        }
+
         setClickedListener()
         networkService = ApplicationController.instance.networkService
         getCommunityFeed()
 
-        community_frag_no_login_status_rl.visibility = View.VISIBLE
+
 
 //        setRecyclerViewAdapter()
     }
