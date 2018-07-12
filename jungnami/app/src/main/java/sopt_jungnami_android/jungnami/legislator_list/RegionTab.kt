@@ -25,55 +25,55 @@ class RegionTab : Fragment() {
 
     private fun setClickListener(){
         resion_tab_map_seoul_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "seoul")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "서울", "party_name" to "trash value")
         }
         resion_tab_map_incheon_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "incheon")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "인천", "party_name" to "trash value")
         }
         resion_tab_map_gyeonggi_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "gyeonggi")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "경기", "party_name" to "trash value")
         }
         resion_tab_map_gangwon_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "gangwon")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "강원", "party_name" to "trash value")
         }
         resion_tab_map_chungbug_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "chungbug")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "충북", "party_name" to "trash value")
         }
         resion_tab_map_chungnam_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "chungnam")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "충남", "party_name" to "trash value")
         }
         resion_tab_map_sejong_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "sejong")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "세종", "party_name" to "trash value")
         }
         resion_tab_map_daejeon_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "daejeon")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "대전", "party_name" to "trash value")
         }
         resion_tab_map_gyeongbug_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "gyeongbug")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "경북", "party_name" to "trash value")
         }
         resion_tab_map_daegu_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "daegu")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "대구", "party_name" to "trash value")
         }
         resion_tab_map_ulsan_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "ulsan")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "울산", "party_name" to "trash value")
         }
         resion_tab_map_busan_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "busan")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "부산", "party_name" to "trash value")
         }
         resion_tab_map_jeonbug_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "jeonbug")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "전북", "party_name" to "trash value")
         }
         resion_tab_map_gwangju_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "gwangju")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "광주", "party_name" to "trash value")
         }
         resion_tab_map_gyeongnam_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "gyeongnam")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "경남", "party_name" to "trash value")
         }
         resion_tab_map_jeonnam_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "jeonnam")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "전남", "party_name" to "trash value")
         }
         resion_tab_map_jeju_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to false, "region_name" to "jeju")
+            startActivity<LegislatorList>("isParty" to false, "region_name" to "제주", "party_name" to "trash value")
         }
     }
 }

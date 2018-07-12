@@ -1,37 +1,19 @@
 package sopt_jungnami_android.jungnami
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_legislator_list.*
-import kotlinx.android.synthetic.main.fragment_legislator_list.*
-import kotlinx.android.synthetic.main.fragment_legislator_party_list.*
-import org.jetbrains.anko.backgroundDrawable
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import sopt_jungnami_android.jungnami.Get.GetPartyDistrictLegislatorListResponse
-import sopt_jungnami_android.jungnami.Network.ApplicationController
-import sopt_jungnami_android.jungnami.Network.NetworkService
-import sopt_jungnami_android.jungnami.R.color.*
-import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
-import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 // Written by SooYoung
 
 class LegislatorList : AppCompatActivity(), View.OnClickListener {
-
-    lateinit var networkService: NetworkService
-    lateinit var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>
-    lateinit var partyDistrictLegislatorListViewAdapter: PartyDistrictLegislatorListViewAdapter
 
     var isParty : Boolean = true
 
@@ -39,7 +21,9 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
     var isFavorableSelected: Boolean = true
 
     var party_name : String? = "party_name"
-    var region_name : String? = "region_name"
+    var region_name : String = "region_name"
+    lateinit var p_name : String
+    lateinit var city: String
 
     override fun onClick(v: View?) {
         when(v) {
@@ -49,222 +33,134 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_list)
         setStatusBarColor()
+        setOnClickListener()
+        // 프래그 먼트 넘어가는 단
+        replaceFragment(LegislatorPartyListFragment())
+        if (isParty == true){
+            p_name = intent.getStringExtra("party_name")
+        }else{
+            region_name = intent.getStringExtra("region_name")
+        }
 
-        networkService = ApplicationController.instance.networkService
 
+//        getPartyLegislatorLikableListResponse()
+//        getDistrictLegislatorLikableListResponse()
         isParty = intent.getBooleanExtra("isParty", true)
         if (isParty) {
             party_name = intent.getStringExtra("party_name")
             isPartyRegionSelected()
-            setOnClickListener()
         } else {
             region_name = intent.getStringExtra("region_name")
             isPartyRegionSelected()
-            setOnClickListener()
         }
     }
 
-    private fun getPartyLegislatorLikableListResponse(){
-        var p_name : String = "더불어민주당"
-        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(context),1, p_name)
-        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
-            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-                Log.v("error", "통신 오류")
-            }
-            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                Log.v("success1", "통신1")
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                if(!(str.equals("No data"))){
-                    Log.v("success2", "통신2")
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
-                }
-            }
-        })
+    public fun getp_name() : String{
+        Log.v("이것", p_name)
+        return p_name
     }
 
-    private fun getPartyLegislatorUnlikableListResponse(){
-        var p_name : String = "더불어민주당"
-        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(context),0, p_name)
-        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
-            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-                Log.v("error", "통신 오류")
-            }
-            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                Log.v("success1", "통신1")
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                if(!(str.equals("No data"))){
-                    Log.v("success2", "통신2")
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
-                }
-            }
-        })
+    public fun getregion_name() : String{
+        return region_name
     }
 
-    private fun getDistrictLegislatorLikableListResponse(){
-        var city : String = "seoul"
-        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(context),1, city)
-        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
-            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-                Log.v("error", "통신 오류")
-            }
-            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                Log.v("success3", "통신3")
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                if(!(str.equals("No data"))){
-                    Log.v("success4", "통신4")
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
-                }
-            }
-        })
+    public fun getisParty() : Boolean{
+        return isParty
     }
 
-    private fun getDistrictLegislatorUnlikableListResponse(){
-        var city : String = "seoul"
-        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(context),0, city)
-        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
-            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-                Log.v("error", "통신 오류")
-            }
-            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                Log.v("success3", "통신3")
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                if(!(str.equals("No data"))){
-                    Log.v("success4", "통신4")
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
-                }
-            }
-        })
-    }
+
 
     fun isPartyRegionSelected() {
         when (party_name) {
             "blue" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
-                replaceFragment(LegislatorPartyListFragment())
-                //legislator_frag_party_color_party_iv.setBackgroundColor(Orange)
+                partyPage()
             }
             "red" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
+                partyPage()
             }
             "mint" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
-
+                partyPage()
             }
             "yellow" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
-
+                partyPage()
             }
             "orange" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
-
+                partyPage()
             }
             "navy" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
-
+                partyPage()
             }
             "green" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
-
+                partyPage()
             }
             "gray" -> {
-                legislator_list_act_party_category.visibility = View.VISIBLE
-                legislator_list_act_district_category.visibility = View.GONE
+                partyPage()
             }
         }
         when (region_name){
-            "seoul" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
-                replaceFragment(LegislatorPartyListFragment())
+            "서울" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "incheon" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "인천" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "gyeonggi" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "경기" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "gangwon" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "강원" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "chungbug" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "충북" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "chungnam" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "충남" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "sejong" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "세종" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "daejeon" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "대전" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "gyeongbug" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "경북" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "daegu" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "대구" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "ulsan" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "울산" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "busan" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "부산" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "jeonbug" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "전북" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "gwangju" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "광주" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "gyeongnam" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "경남" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "jeonnam" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "전남" -> {
+                legislator_list_act_party_category.text = "지역"
             }
-            "jeju" -> {
-                legislator_list_act_party_category.visibility = View.GONE
-                legislator_list_act_district_category.visibility = View.VISIBLE
+            "제주" -> {
+                legislator_list_act_party_category.text = "지역"
             }
         }
+    }
+
+    fun partyPage(){
+        legislator_list_act_party_category.visibility = View.VISIBLE
+        legislator_list_act_district_category.visibility = View.GONE
+        replaceFragment(LegislatorPartyListFragment())
     }
 
     private fun partyBarColor(party_name: String, viewItem: View) {
@@ -283,24 +179,14 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
 
     private fun setOnClickListener(){
         legislator_list_act_likeable_tab_btn.setOnClickListener {
-            if (legislator_list_act_party_category.visibility == View.VISIBLE && legislator_list_act_district_category.visibility == View.GONE){
-                getPartyLegislatorLikableListResponse()
-            }
-            if(legislator_list_act_party_category.visibility == View.GONE && legislator_list_act_district_category.visibility == View.VISIBLE){
-                getDistrictLegislatorLikableListResponse()
-            }
             isFavorableSelected = true
             isSelectedTabView()
+            replaceFragment(LegislatorPartyListFragment())
         }
         legislator_list_act_unlikeable_tab_btn.setOnClickListener {
-            if (legislator_list_act_party_category.visibility == View.VISIBLE && legislator_list_act_district_category.visibility == View.GONE){
-                getPartyLegislatorUnlikableListResponse()
-            }
-            if(legislator_list_act_party_category.visibility == View.GONE && legislator_list_act_district_category.visibility == View.VISIBLE){
-                getDistrictLegislatorUnlikableListResponse()
-            }
             isFavorableSelected = false
             isSelectedTabView()
+            replaceFragment(CutLegislatorDistrictListFragment())
         }
         legislator_list_act_search.setOnClickListener {
             legislator_list_act_search.visibility = View.GONE
@@ -313,17 +199,38 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun isSelectedTabView(){
+        // 호감
         if (isFavorableSelected){
             legislator_list_act_likeable_title_tv.setTextColor(Color.parseColor("#6b6b6b"))
             legislator_list_act_likable_underbar_line.visibility = View.VISIBLE
             legislator_list_act_unlikeable_title_tv.setTextColor(Color.parseColor("#d8d8d8"))
             legislator_list_act_unlikeable_underbar_line.visibility = View.INVISIBLE
+            if (legislator_list_act_party_category.visibility == View.VISIBLE && legislator_list_act_district_category.visibility == View.GONE){
+                Log.v("123", "123")
+                // 정당의 호감도
+//                getPartyLegislatorLikableListResponse()
+            }
+            if(legislator_list_act_party_category.visibility == View.GONE && legislator_list_act_district_category.visibility == View.VISIBLE){
+                Log.v("123", "123")
+                // 지역의 호감도
+//                getDistrictLegislatorLikableListResponse()
+            }
         }
+
+        // 비호감
         else {
             legislator_list_act_likeable_title_tv.setTextColor(Color.parseColor("#d8d8d8"))
             legislator_list_act_likable_underbar_line.visibility = View.INVISIBLE
             legislator_list_act_unlikeable_title_tv.setTextColor(Color.parseColor("#6b6b6b"))
             legislator_list_act_unlikeable_underbar_line.visibility = View.VISIBLE
+            if (legislator_list_act_party_category.visibility == View.VISIBLE && legislator_list_act_district_category.visibility == View.GONE){
+                // 정당의 비호감도
+//                getPartyLegislatorUnlikableListResponse()
+            }
+            if(legislator_list_act_party_category.visibility == View.GONE && legislator_list_act_district_category.visibility == View.VISIBLE){
+                // 지역의 비호감도
+//                getDistrictLegislatorUnlikableListResponse()
+            }
         }
     }
 
@@ -338,10 +245,103 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun replaceFragment(fragment: Fragment){
-        val fm = supportFragmentManager
-        val transaction = fm.beginTransaction()
+
+        val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.legislator_list_frag_list, fragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 }
+
+
+//    private fun getPartyLegislatorLikableListResponse(){
+//        Log.v("123", "123")
+////        legislatorItems = ArrayList()
+//        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(context),1, "더불어민주당")
+//        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
+//            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+//                Log.v("error", "통신 오류")
+//            }
+//            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+//                Log.v("success1", "통신1")
+////                p_name = "더불어민주당"
+//                var str = response!!.message()
+//                Log.v("success!",str)
+//                legislatorItems = response!!.body()!!.data
+//                Log.v("success!",legislatorItems[0].name)
+//                if(!(str.equals("No data"))){
+//                    replaceFragment(LegislatorPartyListFragment())
+//                    Log.v("success2", "통신2")
+//                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems, "더불어민주당", "이상한 값",1)
+//                    rv_legislator.layoutManager = LinearLayoutManager(context)
+//                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+//                }
+//            }
+//        })
+//    }
+
+//    private fun getPartyLegislatorUnlikableListResponse(){
+//        var p_name : String = "더불어민주당"
+//        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(context),0, "민주평화당")
+//        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
+//            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+//                Log.v("error", "통신 오류")
+//            }
+//            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+//                Log.v("success1", "통신1")
+//                var str = response!!.message()
+//                legislatorItems = response!!.body()!!.data
+//                if(!(str.equals("No data"))){
+//                    replaceFragment(LegislatorPartyListFragment())
+//                    Log.v("success2", "통신2")
+//                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems, p_name,"이상한 값", 0)
+//                    rv_legislator.layoutManager = LinearLayoutManager(context)
+//                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+//                }
+//            }
+//        })
+//    }
+
+//    private fun getDistrictLegislatorLikableListResponse(){
+//        var city : String = "seoul"
+//        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(context),1, city)
+//        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
+//            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+//                Log.v("error", "통신 오류")
+//            }
+//            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+//                Log.v("success3", "통신3")
+//                var str = response!!.message()
+//                legislatorItems = response!!.body()!!.data
+//                if(!(str.equals("No data"))){
+//                    replaceFragment(LegislatorPartyListFragment())
+//                    Log.v("success4", "통신4")
+//                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems, "이상한 값", city, 1)
+//                    rv_legislator.layoutManager = LinearLayoutManager(context)
+//                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+//                }
+//            }
+//        })
+//    }
+
+
+//    private fun getDistrictLegislatorUnlikableListResponse(){
+//        var city : String = "seoul"
+//        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(context),0, city)
+//        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
+//            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+//                Log.v("error", "통신 오류")
+//            }
+//            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+//                Log.v("success3", "통신3")
+//                var str = response!!.message()
+//                legislatorItems = response!!.body()!!.data
+//                if(!(str.equals("No data"))){
+//                    replaceFragment(LegislatorPartyListFragment())
+//                    Log.v("success4", "통신4")
+//                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems, "이상한 값", city,0)
+//                    rv_legislator.layoutManager = LinearLayoutManager(context)
+//                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+//                }
+//            }
+//        })
+//    }
