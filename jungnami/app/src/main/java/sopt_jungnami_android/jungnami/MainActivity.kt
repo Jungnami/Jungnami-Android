@@ -10,6 +10,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.longToast
 import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
@@ -18,7 +19,8 @@ import sopt_jungnami_android.jungnami.rank.RankFragment
 
 class MainActivity : AppCompatActivity() {
     var current_tab_idx: Int = 0
-
+    private val FINISH_INTERVAL_TIME: Long = 2000
+    private var backPressedTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -171,6 +173,17 @@ class MainActivity : AppCompatActivity() {
         override fun getInterpolation(time: Float): Float {
             return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
                     Math.cos(mFrequency * time) + 1).toFloat()
+        }
+    }
+
+    override fun onBackPressed() {
+        var tempTime: Long = System.currentTimeMillis()
+        var intervalTime: Long = tempTime - backPressedTime
+        if (intervalTime in 0..FINISH_INTERVAL_TIME) {
+            super.onBackPressed()
+        } else {
+            backPressedTime = tempTime
+            longToast("한번 더 뒤로가기를 누르면 종료됩니다.")
         }
     }
 }
