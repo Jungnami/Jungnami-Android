@@ -148,6 +148,7 @@
                                     android:layout_marginRight="8dp"
                                     android:layout_marginBottom="5dp">
                                     <TextView
+                                        android:id="@+id/unlikeable_tab_2st_title"
                                         android:text="2위"
                                         android:textSize="11dp"
                                         android:textColor="#FFFFFF"

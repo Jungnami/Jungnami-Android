@@ -69,18 +69,18 @@ interface NetworkService {
             @Body postCommunityCommentLikeRequset: PostCommunityCommentLikeRequset
     ) : Call<postCommunityLikeResponse>
     // 콘텐츠 댓글 가져오기
-//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
-//    @GET("contents/commentlist/{contents_id}")
-//    fun getContentsComment(
-//            @Path("contents_id") contents_id: Int
-//    ) : Call<GetContentsCommentResponse>
-//
-//    // 콘텐츠 댓글쓰기 by 탁형민
-//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
-//    @POST("contents/makecomment")
-//    fun postContentsComment(
-//            @Body postContentsCommentRequest: PostContentsCommentRequest
-//    ) : Call<postCommunityLikeResponse>
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("contents/commentlist/{contents_id}")
+    fun getContentsComment(
+            @Path("contents_id") contents_id: Int
+    ) : Call<GetContentsCommentResponse>
+
+    // 콘텐츠 댓글쓰기 by 탁형민
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("contents/makecomment")
+    fun postContentsComment(
+            @Body postContentsCommentRequest: PostContentsCommentRequest
+    ) : Call<postCommunityLikeResponse>
 
     // 콘텐츠 댓글 좋아요 by 탁형민
     @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
@@ -186,18 +186,25 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Path("contentsid") contentsid : Int
     ) : Call<DeleteContentsScrapResponse>
+    //컨텐츠 좋아요
     @FormUrlEncoded
     @POST("contents/like")
     fun postContentsLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Field("contents_id") contents_id : Int
     ) : Call<PostContentsLikeResponse>
+    //좋아요 삭제
     @DELETE("delete/contentslike/{contentsid}")
     fun deleteContentsLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contentsid") contentsid : Int
     ) : Call<DeleteContentsLikeResponse>
-
+    //국회의원 페이지 불러오기
+    @GET("legislator/page/{l_id}")
+    fun getLegislatorResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("l_id") l_id : Int
+    ) : Call<GetLegislatorResponse>
 //윤환 라인 종료!
 
 
@@ -219,5 +226,39 @@ interface NetworkService {
             @Part posting_image: MultipartBody.Part?,
             @Part("shared") posting_shared: Int
     ) : Call<PostCommunityPostingResponse>
+    //수영 라인!
+    // 커뮤니티 글 작성화면 made by SooYoung
+    @GET("board/post")
+    fun getCommunityPostingResponse(
+            @Header("authorization") tokenValue : String?
+    ) : Call<GetCommunityPostingResponse>
+
+    // 커뮤니티 글 작성 완료 made by SooYoung
+    @Multipart
+    @POST("board/postcomplete")
+    fun postCommunityPostingResponse(
+            @Header("authorization") tokenValue : String?,
+            @Part ("content") posting_content: String,
+            @Part posting_image: MultipartBody.Part?,
+            @Part("shared") posting_shared: Int
+    ) : Call<PostCommunityPostingResponse>
+
+    // 정당별 호감/비호감 의원리스트
+    @GET("legislatorlist/groupbyparty/{islike}/{p_name}")
+    fun getPartyLegislatorListResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("islike") islike: Int,
+            @Path ("p_name") p_name: String
+    ) : Call<GetPartyDistrictLegislatorListResponse>
+
+    // 지역별 호감/비호감 의원리스트
+    @GET("legislatorlist/groupbyregion/{islike}/{city}")
+    fun getDistrictLegislatorListResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("islike") islike: Int,
+            @Path("city") city: String
+    ) : Call<GetPartyDistrictLegislatorListResponse>
 //수영 라인 종료!
+//수영 라인 종료!
+
 }

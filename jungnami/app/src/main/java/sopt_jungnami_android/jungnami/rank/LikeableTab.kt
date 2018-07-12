@@ -21,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetRankingResponse
-import sopt_jungnami_android.jungnami.LegislatorPageActivity
+import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
@@ -31,8 +31,8 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 class LikeableTab : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         val index: Int = likeable_tab_rank_list_rv.getChildAdapterPosition(v)
-//        val l_id : Int = legislatorRankDataList[index].l_id
-        startActivity<LegislatorPageActivity>()
+        val l_id : Int = legislatorRankDataList[index].l_id
+        startActivity<LegislatorPageActivity>("l_id" to l_id)
     }
 
 
@@ -109,10 +109,10 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     private fun setClickListener() {
         likeable_tab_1st_btn.setOnClickListener {
-            startActivity<LegislatorPageActivity>("l_id" to 11)
+            startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
         }
         likeable_tab_2st_btn.setOnClickListener {
-            startActivity<LegislatorPageActivity>("l_id" to 22)
+            startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[1].l_id)
         }
     }
 
@@ -160,6 +160,10 @@ class LikeableTab : Fragment(), View.OnClickListener {
         val rank2: RankItemData = legislatorRankDataList[1]
         setVoteBarColor(rank1.party_name, likeable_tab_1st_vote_count_bar)
         setVoteBarColor(rank2.party_name, likeable_tab_2st_vote_count_bar)
+        if (rank1.ranking == rank2.ranking){
+            //공동 1등
+            likeable_tab_2st_title.text = "1위"
+        }
         //1등 셋팅
         val requestOptions = RequestOptions()
         if (rank1.mainimg != "0") {
