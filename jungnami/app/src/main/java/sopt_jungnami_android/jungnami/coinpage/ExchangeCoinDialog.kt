@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import kotlinx.android.synthetic.main.fragment_coinpage_popup_exchange.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +50,7 @@ class ExchangeCoinDialog(val ctx : Context, val coin : String) : Dialog(ctx) {
         val postCoinExchangeResponse = networkService.postCoinExchangeResponse(SharedPreferenceController.getAuthorization(context = context!!),total_coin)
         postCoinExchangeResponse.enqueue(object : Callback<PostCoinExchangeResponse>{
             override fun onFailure(call: Call<PostCoinExchangeResponse>?, t: Throwable?) {
+                context.toast("코인")
             }
 
             override fun onResponse(call: Call<PostCoinExchangeResponse>?, response: Response<PostCoinExchangeResponse>?) {
@@ -57,6 +59,10 @@ class ExchangeCoinDialog(val ctx : Context, val coin : String) : Dialog(ctx) {
                     val completeDialog: Dialog = ExchangeCompleteCoinDialog(ctx!!)
                     completeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     completeDialog.show()
+                }
+                if (response!!.body()!!.message == "No coin"){
+                    context.toast("코인이 부족합니다.")
+                    dismiss()
                 }
             }
         })

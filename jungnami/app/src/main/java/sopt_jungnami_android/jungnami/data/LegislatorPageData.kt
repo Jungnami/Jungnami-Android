@@ -10,3 +10,8 @@ data class LegislatorPageData (
         val unlikerank: String,
         val contents: ArrayList<Scrap>
 )
+
+
+data class MyCoin (
+        val user_coin: Int
+)
