@@ -1,148 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="8dp"
+    android:orientation="vertical">
 
     <!--Written by SooYoung-->
-    
-    <RelativeLayout
-        android:id="@+id/legislator_frag_party_color_party_iv"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:background="#1783dc">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10.73dp"
-            android:layout_marginLeft="22.39dp">
-
-            <ImageView
-                android:id="@+id/legislator_frag_party_logo_iv"
-                android:src="@drawable/party_blue_logo"
-                android:layout_width="105.88dp"
-                android:layout_height="36.56dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp">
-
-            <ImageView
-                android:id="@+id/legislator_frag_party_ppl_iv"
-                android:src="@drawable/partylist_blue_character"
-                android:layout_width="40dp"
-                android:layout_height="61dp"
-                android:layout_alignParentBottom="true"/>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="63.27dp"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="국회의석:"
-                android:textSize="14sp"
-                android:textColor="#ffffff"/>
-
-            <TextView
-                android:id="@+id/legislator_frag_party_totalchair_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="130석"
-                android:textSize="14sp"
-                android:textColor="#ffffff"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/legislator_frag_party_color_district_iv"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:background="#1783dc"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:src="@drawable/arealist_white_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="16dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="40dp">
-
-            <TextView
-                android:id="@+id/legislator_frag_district_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="서울"
-                android:textSize="17sp"
-                android:textColor="#ffffff"/>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="국회의석:"
-                android:textSize="14sp"
-                android:textColor="#ffffff"/>
-
-            <TextView
-                android:id="@+id/legislator_frag_district_totalchair_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="130석"
-                android:textSize="14sp"
-                android:textColor="#ffffff"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_legislator"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/legislator_frag_top_iv"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:background="@drawable/party_blue_tab" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_legislator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="68dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>
