@@ -1,5 +1,6 @@
 package sopt_jungnami_android.jungnami.contents
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -30,38 +31,43 @@ class ContentsDetail : AppCompatActivity() {
     lateinit var cardViewItemData: ContentsCardViewData
     lateinit var cardViewInImageList : ArrayList<Imagearray>
 
-
+    var isScrapInPage : Int = 0
     var contents_id: Int = 0
+    var isUserMyPage : Boolean = false
+    var isChangeScapState = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_detail)
         setStatusBarColor()
         setClickListener()
         contents_id = intent.getIntExtra("contents_id", 0)
-
+        isUserMyPage = intent.getBooleanExtra("isUserMyPage",false)
         requestDataToServer()
         setViewPagerChangeListener()
-
-
-
     }
-
-
     private fun requestDataToServer() {
-        Log.e("오고있나??111", "${contents_id} 데이터야~ 오고있니?!?!")
         networkService = ApplicationController.instance.networkService
         val getDetailedContentsResponse = networkService.getDetailedContentsResponse(
-                SharedPreferenceController.getMyId(context = applicationContext), contents_id)
+                SharedPreferenceController.getAuthorization(context = applicationContext), contents_id)
         getDetailedContentsResponse.enqueue(object : Callback<GetDetailedContentsResponse>{
             override fun onFailure(call: Call<GetDetailedContentsResponse>?, t: Throwable?) {
                 Log.e("상세 컨텐츠 보기 데이터 요청 실패", t.toString())
             }
             override fun onResponse(call: Call<GetDetailedContentsResponse>?, response: Response<GetDetailedContentsResponse>?) {
-                Log.e("오고있나??222", "${contents_id} 데이터야~ 오고있니?!?!")
                 if (response!!.isSuccessful){
                     cardViewItemData = response.body()!!.data
                     cardViewInImageList= response.body()!!.data.imagearray
-                    Log.e("담긴것", cardViewItemData.toString())
+
+                    Log.e("스크랩 확인", cardViewItemData.isscrap.toString())
+
+                    isScrapInPage = cardViewItemData.isscrap
+                    if (cardViewItemData.isscrap==0){
+                        contents_act_detail_scrap_btn.setImageResource(R.drawable.contents_scrap)
+                    } else {
+                        contents_act_detail_scrap_btn.setImageResource(R.drawable.contents_scrap_blue)
+                    }
+
+                    changeIsScrapBtnView()
 
                     val card_page : Int = cardViewItemData.imagearray.size
                     if (card_page != 0) {
@@ -69,11 +75,28 @@ class ContentsDetail : AppCompatActivity() {
                     } else {
                         contents_act_detail_image_count_tv.text = "-/-"
                     }
+                    setView()
                     setViewPagerAdapter()
                 }
             }
         })
 
+    }
+
+    private fun setView(){
+        val vote_count : String = String.format("%,d", cardViewItemData.likeCnt)
+        contents_act_detail_like_count_tv.text = "${vote_count}명"
+        contents_act_detail_comment_count_tv.text = "${cardViewItemData.commentCnt}"
+    }
+
+
+
+    fun changeIsScrapBtnView(){
+        if (isScrapInPage==0){
+            contents_act_detail_scrap_btn.setImageResource(R.drawable.contents_scrap)
+        } else {
+            contents_act_detail_scrap_btn.setImageResource(R.drawable.contents_scrap_blue)
+        }
     }
 
     private fun setViewPagerAdapter() {
@@ -83,6 +106,7 @@ class ContentsDetail : AppCompatActivity() {
     }
 
     private fun setClickListener() {
+        //스크랩버튼, 나중에 isScap이랑 비디에서 받아온 isScap이랑 값이 다르면 통신을 통해서 삭제후 종료
         contents_act_detail_back_btn.setOnClickListener {
             finish()
         }
@@ -98,12 +122,20 @@ class ContentsDetail : AppCompatActivity() {
 
         }
         contents_act_detail_scrap_btn.setOnClickListener {
-            contents_act_detail_scrap_btn.isSelected = true
-        }
-        contents_act_detail_scrap_btn.setOnClickListener {
-            val scrapAgreeDialog : Dialog = ContentsScrapDialog(this,contents_id)
-            scrapAgreeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            scrapAgreeDialog.show()
+            if (isScrapInPage==0){
+                val scrapAgreeDialog : Dialog = ContentsScrapDialog(this,contents_id)
+                scrapAgreeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                scrapAgreeDialog.show()
+
+                changeIsScrapBtnView()
+            } else {
+                val scrapDeleteDialog : Dialog = ContentsDeleteScrapDialog(this, contents_id)
+                scrapDeleteDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                scrapDeleteDialog.show()
+
+                changeIsScrapBtnView()
+            }
+
         }
     }
 
@@ -129,5 +161,23 @@ class ContentsDetail : AppCompatActivity() {
                 window.statusBarColor = Color.parseColor("#000000")
             }
         }
+    }
+
+    override fun onDestroy() {
+        if (isUserMyPage){
+            val intent = Intent()
+            intent.putExtra("isChangeScapState", isChangeScapState)
+            setResult(Activity.RESULT_OK, intent)
+        }
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        if (isUserMyPage){
+            val intent = Intent()
+            intent.putExtra("isChangeScapState", isChangeScapState)
+            setResult(Activity.RESULT_OK, intent)
+        }
+        finish()
     }
 }

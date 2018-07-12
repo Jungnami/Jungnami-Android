@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--made by yun Hwan-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/sponsoring_frag_box_shape">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_marginTop="38dp"
+            android:layout_centerHorizontal="true">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스크랩을 취소 하시겠습니까?"
+                    android:textSize="16dp"
+                    android:textColor="#2B2B2B"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:layout_centerHorizontal="true"/>
+                <LinearLayout
+                    android:layout_marginTop="19dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/scrap_delete_popup_frag_yes_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/follow_yes_btn"/>
+                    <ImageView
+                        android:id="@+id/scrap_delete_popup_frag_no_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/follow_no_btn"/>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

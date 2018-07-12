@@ -1,5 +1,7 @@
 package sopt_jungnami_android.jungnami.mypage
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_my_page.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,15 +25,18 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
+import sopt_jungnami_android.jungnami.contents.ContentsDetail
 import sopt_jungnami_android.jungnami.data.*
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class MyPageActivity : AppCompatActivity(), View.OnClickListener {
+    private val REQUEST_CODE_CONTENTS_DETAILED = 1004
     override fun onClick(v: View?) {
         if (isSelectScrap){
             val index : Int = mypage_act_recyclerview_list_rv.getChildAdapterPosition(v)
-            //val data_id : Int = legislatorRankDataList[index].l_id
-            toast("눌림")
+            val contents_id = scrapDataList[index].c_id
+            startActivityForResult<ContentsDetail>(REQUEST_CODE_CONTENTS_DETAILED
+                    , "contents_id" to contents_id, "isUserMyPage" to true)
         }
     }
 
@@ -51,12 +57,14 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         setStatusBarColor()
 
         setClickListener()
-        requestMyPageDataToServer()
+        requestMyPageDataToServer("all")
 
+        Log.e("내 아이디", SharedPreferenceController.getMyId(this))
+        Log.e("내 토큰", SharedPreferenceController.getAuthorization(this))
     }
 
     //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
-    private fun requestMyPageDataToServer(){
+    private fun requestMyPageDataToServer(target: String){
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
         val my_id = SharedPreferenceController.getMyId(applicationContext)
@@ -77,13 +85,19 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
                     page_id = myPageDataList.mypage_id
                     //나중에 백그라운드로
-                    setMyInfoView()
-                    setScrapRecyclerViewAdapter()
+                    if (target == "all"){
+                        setMyInfoView()
+                        setScrapRecyclerViewAdapter()
+                    } else if (target == "scrap"){
+                        setScrapRecyclerViewAdapter()
+                    } else if (target == "alert") {
 
+                    }
                 }
             }
         })
     }
+
     private fun setMyInfoView(){
         val requestOptions = RequestOptions()
         if (myPageDataList.img != "0") {
@@ -171,6 +185,18 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
             if (view != null){
                 view.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 window.statusBarColor = Color.parseColor("#FFFFFF")
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_CONTENTS_DETAILED){
+            if (resultCode == Activity.RESULT_OK){
+                val temp = data!!.getBooleanExtra("isChangeScapState", false)
+                if (temp) {
+                    requestMyPageDataToServer("scrap")
+                }
             }
         }
     }

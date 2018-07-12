@@ -56,11 +56,11 @@
                     android:layout_marginRight="18dp">
 
                     <TextView
-                        android:id="@+id/contents_act_detail_like_count_btn"
+                        android:id="@+id/contents_act_detail_like_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="14dp"
                         android:fontFamily="@font/nanumbarungothic_normal"
-                        android:text="5,258명"
+                        android:text="-명"
                         android:textColor="#c3c3c3"
                         android:textStyle="bold"
                         android:textSize="12sp"/>
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:fontFamily="@font/nanumbarungothic_normal"
-                        android:text="523개"
+                        android:text="-개"
                         android:textColor="#e2e2e2"
                         android:textStyle="bold"
                         android:textSize="12dp"/>
@@ -162,7 +162,7 @@
             </LinearLayout>
             <ImageView
                 android:id="@+id/contents_act_detail_scrap_btn"
-                android:src="@drawable/content_scrap"
+                android:src="@drawable/contents_scrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"

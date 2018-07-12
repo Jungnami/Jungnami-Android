@@ -1,4 +1,4 @@
-package sopt_jungnami_android.jungnami.contents
+package sopt_jungnami_android.jungnami.community
 
 import android.app.Dialog
 import android.content.Context
@@ -16,7 +16,7 @@ import sopt_jungnami_android.jungnami.Post.PostContentsScrapAgreeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
-class ContentsScrapDialog(val ctx: Context, val contentsid: Int) : Dialog(ctx) {
+class CommunityScrapDialog(val ctx: Context, val contentsid: Int) : Dialog(ctx) {
     lateinit var networkService: NetworkService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +31,6 @@ class ContentsScrapDialog(val ctx: Context, val contentsid: Int) : Dialog(ctx) {
         scrap_popup_frag_yes_btn.setOnClickListener {
             requestScrapContentsToServer()
             ctx.toast("스크랩 완료")
-            (ctx as ContentsDetail).isScrapInPage = 1
-            (ctx as ContentsDetail).changeIsScrapBtnView()
-            (ctx).isChangeScapState = true
         }
         scrap_popup_frag_no_btn.setOnClickListener {
             dismiss()
