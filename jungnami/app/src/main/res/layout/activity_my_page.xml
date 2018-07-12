@@ -61,14 +61,14 @@
                         android:layout_height="16dp">
                         <ImageView
                             android:id="@+id/mypage_act_bell_img"
-                            android:visibility="invisible"
+                            android:visibility="gone"
                             android:src="@drawable/mypage_bell_circle_blue"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                         <TextView
                             android:id="@+id/mypage_act_top_bar_new_post_counter_tv"
                             android:fontFamily="@font/nanumbarungothic"
-                            android:text="0"
+                            android:text=""
                             android:gravity="center"
                             android:textSize="9dp"
                             android:textColor="#FFFFFF"

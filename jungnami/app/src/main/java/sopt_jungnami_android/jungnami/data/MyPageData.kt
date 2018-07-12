@@ -1,7 +1,7 @@
 package sopt_jungnami_android.jungnami.data
 
 data class MyPageData (
-        val mypageID: String,
+        val mypage_id: String,
         val nickname: String,
         val img: String,
         val scrapcnt: Int,
@@ -16,30 +16,31 @@ data class MyPageData (
 )
 //소스의 랭스가 0면 내가 쓴 글
 data class Board (
-        val bID: Int,
-        val uID: String,
-        val uNickname: String,
-        val uImg: String,
+        val b_id: Int,
+        val u_id: String,
+        val u_nickname: String,
+        val u_img: String,
         val source: ArrayList<Source>,
-        val bContent: String? = null,
-        val bImg: String? = null,
-        val bTime: String,
-        val likeCnt: Int,
-        val commentCnt: Int
+        val b_content: String? = null,
+        val b_img: String? = null,
+        val b_time: String,
+        val islike: Int,
+        val like_cnt: Int,
+        val comment_cnt: Int
 )
 
 data class Source (
-        val uID: String,
-        val uNickname: String,
-        val uImg: String,
-        val bContent: String,
-        val bImg: String,
-        val bTime: String
+        val u_id: String,
+        val u_nickname: String,
+        val u_img: String,
+        val b_content: String,
+        val b_img: String,
+        val b_time: String
 )
 
 data class Scrap (
-        val cID: Int,
-        val cTitle: String,
+        val c_id: Int,
+        val c_title: String,
         val thumbnail: String,
         val text: String
 )
