@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_contents.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,8 +32,21 @@ import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 class ContentsFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
-        val index : Int = contents_frag_sub_contents_recycler_rv.getChildAdapterPosition(v)
-        startActivity<ContentsDetail>()
+        when(current_tab_idx){
+            0 -> {
+                val index : Int = contents_frag_sub_contents_recycler_rv.getChildAdapterPosition(v)
+                val contents_id : Int = recommendDataList[index].contentsid
+                toast("${contents_id} = 컨텐츠 아이디, ${recommendDataList[index].title} = 제목" )
+                startActivity<ContentsDetail>("contents_id" to contents_id)
+            }
+            1,2 -> {
+                val index : Int = contents_frag_sub_contents_recycler_rv.getChildAdapterPosition(v)
+                val contents_id : Int = tmiOrStoryDataList[index].contentsid
+                toast("${contents_id} = 컨텐츠 아이디, ${tmiOrStoryDataList[index].title} = 제목" )
+                startActivity<ContentsDetail>("contents_id" to contents_id)
+            }
+        }
+
     }
 
     var current_tab_idx : Int = 0
@@ -84,7 +98,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         }
         //메인 컨텐츠 클릭 리스터
         contents_frag_main_content_lr.setOnClickListener {
-            startActivity<ContentsDetail>()
+            startActivity<ContentsDetail>("contents_id" to mainContentData.contentsid)
         }
 
     }
@@ -165,7 +179,12 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
 
     private fun changeConetentsRecyclerViewData(){
-        contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, recommendDataList)
+        if (current_tab_idx == 0){
+            contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, recommendDataList)
+        } else {
+            contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, tmiOrStoryDataList)
+        }
+
         contentsRecyclerViewAdapter.setOnItemClickListener(this)
         contents_frag_sub_contents_recycler_rv.layoutManager = GridLayoutManager(context!!,2) as RecyclerView.LayoutManager?
         contents_frag_sub_contents_recycler_rv.adapter = contentsRecyclerViewAdapter

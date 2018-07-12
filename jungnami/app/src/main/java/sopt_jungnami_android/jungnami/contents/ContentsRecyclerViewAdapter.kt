@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Contents
 
@@ -38,6 +40,14 @@ class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<Con
         //holder.image.setBackgroundColor(Color.parseColor("#00B8D4"))
         holder.title.text = dataList[position].title
         holder.info.text = "${dataList[position].text}"
+
+        val requestOptions = RequestOptions()
+        requestOptions.fitCenter()
+        Glide.with(ctx)
+                .setDefaultRequestOptions(requestOptions)
+                .load(dataList[position].thumbnail)
+                .thumbnail(0.2f)
+                .into(holder.image)
 
     }
 
