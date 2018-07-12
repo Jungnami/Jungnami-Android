@@ -9,7 +9,7 @@
     <!--Written by SooYoung-->
     
     <RelativeLayout
-        android:id="@+id/legislator_frag_party_color_iv"
+        android:id="@+id/legislator_frag_party_color_party_iv"
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:background="#1783dc">

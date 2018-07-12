@@ -30,8 +30,25 @@ class PartyTab : Fragment() {
             startActivity<LegislatorList>("isParty" to true, "party_name" to "blue")
         }
         party_tab_red_btn.setOnClickListener {
-            startActivity<UserPageActivity>()
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "red")
+        }
+        party_tab_mint_btn.setOnClickListener {
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "mint")
+        }
+        party_tab_yellow_btn.setOnClickListener {
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "yellow")
+        }
+        party_tab_orange_btn.setOnClickListener {
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "orange")
+        }
+        party_tab_indigo_btn.setOnClickListener {
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "indigo")
+        }
+        party_tab_green_btn.setOnClickListener {
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "green")
+        }
+        party_tab_gray_btn.setOnClickListener {
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "gray")
         }
     }
-
 }
