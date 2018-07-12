@@ -11,7 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
-import sopt_jungnami_android.jungnami.LegislatorPageActivity
+import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
 

@@ -13,8 +13,7 @@ import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.startActivity
 import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
-import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
-import sopt_jungnami_android.jungnami.legislator_list.SearchResultRecyclerAdapter
+import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 
 class PartyDistrictLegislatorListViewAdapter(private var context: Context, private var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

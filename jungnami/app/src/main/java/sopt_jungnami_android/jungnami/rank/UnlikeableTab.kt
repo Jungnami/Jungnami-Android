@@ -16,14 +16,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import kotlinx.android.synthetic.main.fragment_unlikeable_tab.*
-import kotlinx.android.synthetic.main.rv_item_unlikeable_tab_rank.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetRankingResponse
-import sopt_jungnami_android.jungnami.LegislatorPageActivity
+import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
@@ -35,9 +34,8 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
     override fun onClick(v: View?) {
         //클릭 시 처리 로직
         val index : Int = unlikeable_tab_rank_list_rv.getChildAdapterPosition(v)
-//        val l_id : Int = legislatorRankDataList[index].l_id
-
-        startActivity<LegislatorPageActivity>()
+        val l_id : Int = legislatorRankDataList[index].l_id
+        startActivity<LegislatorPageActivity>("l_id" to l_id)
     }
     private var mainimg_1st: ImageView? = null
     private var mainimg_2st: ImageView? = null
@@ -109,10 +107,10 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
 
     private fun setClickListener(){
         unlikeable_tab_1st_btn.setOnClickListener {
-            startActivity<LegislatorPageActivity>("l_id" to 11)
+            startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
         }
         unlikeable_tab_2st_btn.setOnClickListener {
-            startActivity<LegislatorPageActivity>("l_id" to 22)
+            startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[1].l_id)
         }
     }
     private fun setRankVoteCountProgressbarAnimation(){
@@ -150,6 +148,9 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
     private fun set1stVS2stRankView(){
         val rank1 : RankItemData = legislatorRankDataList[0]
         val rank2 : RankItemData = legislatorRankDataList[1]
+        if (rank1.ranking == rank2.ranking){
+            unlikeable_tab_2st_title.text = "1위"
+        }
         setVoteBarColor(rank1.party_name, unlikeable_tab_1st_vote_count_bar)
         setVoteBarColor(rank2.party_name, unlikeable_tab_2st_vote_count_bar)
 

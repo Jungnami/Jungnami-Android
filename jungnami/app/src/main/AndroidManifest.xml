@@ -25,7 +25,7 @@
         <activity android:name=".Alarm" />
         <!-- <activity android:name=".LegislatorList"></activity> -->
         <activity android:name=".mypage.UserPageActivity" />
-        <activity android:name=".LegislatorPageActivity" />
+        <activity android:name=".legislator.LegislatorPageActivity" />
         <activity android:name=".coinpage.CoinPageActivity"></activity>
         <activity android:name=".mypage.FollowerActivity" />
         <activity android:name=".mypage.FollowingActivity"/>

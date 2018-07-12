@@ -35,6 +35,7 @@ class ContentsDetail : AppCompatActivity() {
     lateinit var cardViewInImageList : ArrayList<Imagearray>
 
     var isLike : Int = 0
+
     var isScrapInPage : Int = 0
     var contents_id: Int = 0
     var isUserMyPage : Boolean = false
@@ -85,6 +86,8 @@ class ContentsDetail : AppCompatActivity() {
             }
         })
     }
+
+    //전체 데이터 받는곳
     private fun requestDataToServer() {
         networkService = ApplicationController.instance.networkService
         val getDetailedContentsResponse = networkService.getDetailedContentsResponse(
@@ -119,6 +122,8 @@ class ContentsDetail : AppCompatActivity() {
         })
 
     }
+
+    // 색깔 바뀌는 곳
     private fun checkLikeClicked(){
         if (isLike==0){
             contents_act_detail_like_btn.setImageResource(R.drawable.contents_heart_gray)
@@ -153,14 +158,15 @@ class ContentsDetail : AppCompatActivity() {
         contents_act_detail_back_btn.setOnClickListener {
             finish()
         }
+
         contents_act_detail_like_btn.setOnClickListener {
             if (isLike==0){
                 requestContentsLikeToServer()
             } else {
                 requestDeleteContentsLikeToServer()
             }
-
         }
+
         contents_act_detail_comment_btn.setOnClickListener {
             val intent = Intent(applicationContext, CommunityWritePage::class.java) // contents_comment 댓글 창 .kt 파일명
             startActivity(intent)
