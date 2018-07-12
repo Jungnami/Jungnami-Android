@@ -25,28 +25,28 @@ class PartyTab : Fragment() {
 
     private fun setClickListener(){
         party_tab_blue_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "blue")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "더불어민주당", "region_name" to "trashValue")
         }
         party_tab_red_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "red")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "자유한국당", "region_name" to "trashValue")
         }
         party_tab_mint_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "mint")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "바른미래당", "region_name" to "trashValue")
         }
         party_tab_yellow_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "yellow")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "정의당", "region_name" to "trashValue")
         }
         party_tab_orange_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "orange")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "민중당", "region_name" to "trashValue")
         }
         party_tab_indigo_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "indigo")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "대한애국당", "region_name" to "trashValue")
         }
         party_tab_green_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "green")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "민주평화당", "region_name" to "trashValue")
         }
         party_tab_gray_btn.setOnClickListener {
-            startActivity<LegislatorList>("isParty" to true, "party_name" to "gray")
+            startActivity<LegislatorList>("isParty" to true, "party_name" to "무소속", "region_name" to "trashValue")
         }
     }
 }

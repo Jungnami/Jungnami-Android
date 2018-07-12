@@ -19,7 +19,8 @@
                 android:id="@+id/legislator_frag_top_iv"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
-                android:background="@drawable/party_blue_tab" />
+                android:background="@drawable/party_blue_tab"
+                android:scaleType="fitXY"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_legislator"
