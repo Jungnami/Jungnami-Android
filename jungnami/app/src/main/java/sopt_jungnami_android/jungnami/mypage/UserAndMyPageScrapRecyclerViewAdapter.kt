@@ -47,7 +47,7 @@ class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : Ar
                 .into(holder.image)
 
         holder.root_layout.layoutParams = rootLayoutParams
-        holder.title.text = dataList[position].cTitle
+        holder.title.text = dataList[position].c_title
         holder.category.text = "${dataList[position].text}"
         //holder.image.setBackgroundColor(Color.parseColor("#00B8D4"))
     }

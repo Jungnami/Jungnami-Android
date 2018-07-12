@@ -35,6 +35,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     var isSelectScrap : Boolean = true
+    lateinit var page_id : String
+
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
     lateinit var scrapDataList : ArrayList<Scrap>
@@ -72,6 +74,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
                     scrapDataList = myPageDataList.scrap
                     boardDataList = myPageDataList.board
+
+                    page_id = myPageDataList.mypage_id
                     //나중에 백그라운드로
                     setMyInfoView()
                     setScrapRecyclerViewAdapter()
@@ -144,7 +148,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         }
         //팔로잉 팔로워
         mypage_act_following_btn.setOnClickListener {
-            startActivity<FollowingActivity>()
+            startActivity<FollowingActivity>("f_id" to page_id)
         }
         mypage_act_follower_btn.setOnClickListener {
             startActivity<FollowerActivity>()

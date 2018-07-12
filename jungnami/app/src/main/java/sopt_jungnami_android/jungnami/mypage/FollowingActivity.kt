@@ -33,8 +33,8 @@ class FollowingActivity : AppCompatActivity()  {
         setStatusBarColor()
         networkService = ApplicationController.instance.networkService
 
-        f_id = "809253344"
-//        f_id= intent.getStringExtra("f_id")
+        //f_id = "809253344"
+        f_id= intent.getStringExtra("f_id")
         getFollowing()
 
 
