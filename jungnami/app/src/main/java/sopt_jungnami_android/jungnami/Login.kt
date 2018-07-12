@@ -62,7 +62,6 @@ class Login : AppCompatActivity() {
             finish()
         }
 
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
