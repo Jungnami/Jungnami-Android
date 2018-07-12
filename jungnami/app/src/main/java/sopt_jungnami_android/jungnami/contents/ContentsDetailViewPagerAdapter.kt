@@ -23,6 +23,7 @@ class ContentsDetailViewPagerAdapter(val ctx : Context, val cardContentsData : C
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val itemView : View = LayoutInflater.from(ctx).inflate(R.layout.view_pager_item_contents_detail, container, false)
+
         val imageView : ImageView = itemView.findViewById(R.id.contents_detail_viewpager_item_image_iv) as ImageView
         if (position == 0) {
             val firstPageInfo : LinearLayout = itemView.findViewById(R.id.contents_detail_viewpager_first_main_info_ll) as LinearLayout
@@ -35,27 +36,18 @@ class ContentsDetailViewPagerAdapter(val ctx : Context, val cardContentsData : C
             requestOptions.fitCenter()
             Glide.with(ctx)
                     .setDefaultRequestOptions(requestOptions)
-                    .load(cardContentsData.thumbnail)
+                    .load(cardContentsData.imagearray[position].img_url)
                     .thumbnail(0.5f)
                     .into(imageView)
-            container.addView(itemView)
-
-//            Glide.with(ctx)
-//                    .setDefaultRequestOptions(requestOptions)
-//                    .load(cardContentsData.imagearray[position].imgURL)
-//                    .thumbnail(0.5f)
-//                    .into(imageView)
-
         } else {
             val requestOptions = RequestOptions()
             requestOptions.fitCenter()
             Glide.with(ctx)
                     .setDefaultRequestOptions(requestOptions)
-                    .load(cardContentsData.imagearray[position].imgURL)
+                    .load(cardContentsData.imagearray[position].img_url)
                     .thumbnail(0.5f)
                     .into(imageView)
         }
-
         container.addView(itemView)
         return itemView
     }

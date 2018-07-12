@@ -1,7 +1,9 @@
 package sopt_jungnami_android.jungnami.contents
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.ViewPager
@@ -18,6 +20,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.ContentsCardViewData
+import sopt_jungnami_android.jungnami.data.Imagearray
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class ContentsDetail : AppCompatActivity() {
@@ -25,22 +28,27 @@ class ContentsDetail : AppCompatActivity() {
     lateinit var networkService: NetworkService
     lateinit var contentsDetailViewPagerAdapter: ContentsDetailViewPagerAdapter
     lateinit var cardViewItemData: ContentsCardViewData
+    lateinit var cardViewInImageList : ArrayList<Imagearray>
+
+
     var contents_id: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_detail)
         setStatusBarColor()
         setClickListener()
+        contents_id = intent.getIntExtra("contents_id", 0)
 
         requestDataToServer()
         setViewPagerChangeListener()
 
-        contents_id = intent.getIntExtra("content_id", 0)
+
 
     }
 
 
     private fun requestDataToServer() {
+        Log.e("오고있나??111", "${contents_id} 데이터야~ 오고있니?!?!")
         networkService = ApplicationController.instance.networkService
         val getDetailedContentsResponse = networkService.getDetailedContentsResponse(
                 SharedPreferenceController.getMyId(context = applicationContext), contents_id)
@@ -49,8 +57,18 @@ class ContentsDetail : AppCompatActivity() {
                 Log.e("상세 컨텐츠 보기 데이터 요청 실패", t.toString())
             }
             override fun onResponse(call: Call<GetDetailedContentsResponse>?, response: Response<GetDetailedContentsResponse>?) {
+                Log.e("오고있나??222", "${contents_id} 데이터야~ 오고있니?!?!")
                 if (response!!.isSuccessful){
                     cardViewItemData = response.body()!!.data
+                    cardViewInImageList= response.body()!!.data.imagearray
+                    Log.e("담긴것", cardViewItemData.toString())
+
+                    val card_page : Int = cardViewItemData.imagearray.size
+                    if (card_page != 0) {
+                        contents_act_detail_image_count_tv.text = "1/${cardViewItemData.imagearray.size}"
+                    } else {
+                        contents_act_detail_image_count_tv.text = "-/-"
+                    }
                     setViewPagerAdapter()
                 }
             }
@@ -81,6 +99,11 @@ class ContentsDetail : AppCompatActivity() {
         }
         contents_act_detail_scrap_btn.setOnClickListener {
             contents_act_detail_scrap_btn.isSelected = true
+        }
+        contents_act_detail_scrap_btn.setOnClickListener {
+            val scrapAgreeDialog : Dialog = ContentsScrapDialog(this,contents_id)
+            scrapAgreeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            scrapAgreeDialog.show()
         }
     }
 

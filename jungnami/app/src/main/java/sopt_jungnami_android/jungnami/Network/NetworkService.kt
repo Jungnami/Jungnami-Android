@@ -131,24 +131,34 @@ interface NetworkService {
     fun getVotePageInfoResponse(
             @Header("authorization") tokenValue : String?
     ) : Call<GetVotePageInfoResponse>
-
+    //코인 충전 확인
     @FormUrlEncoded
     @POST("user/addcoin")
     fun postCoinChargeCompletionResponse(
             @Header("authorization") tokenValue : String?,
             @Field("coin") coin : Int
     ): Call<PostCoinChargeCompletionResponse>
+    //내투표권 변환 확인
     @FormUrlEncoded
     @POST("user/addvote")
     fun postCoinExchangeResponse(
             @Header("authorization") tokenValue : String?,
             @Field("coin") coin : Int
     ): Call<PostCoinExchangeResponse>
+    //카드 컨텐츠 내용물
     @GET("contents/cardnews/{contents_id}")
     fun getDetailedContentsResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contents_id") contents_id : Int
     ): Call<GetDetailedContentsResponse>
+    //컨텐츠 스크랩
+    @FormUrlEncoded
+    @POST("contents/scrap")
+    fun postContentsScrapAgreeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Field("contentsid") contentsid : Int
+    ) : Call<PostContentsScrapAgreeResponse>
+
 //윤환 라인 종료!
 
 
