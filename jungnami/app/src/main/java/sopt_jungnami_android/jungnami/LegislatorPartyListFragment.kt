@@ -22,25 +22,21 @@ import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 
-class LegislatorPartyListFragment: Fragment(), View.OnClickListener  {
-    override fun onClick(v: View?) {
-        val index: Int = rv_legislator.getChildAdapterPosition(v)
-        val l_id : Int = legislatorItems[index].id
-        startActivity<LegislatorPageActivity>("l_id" to l_id)
-    }
+class LegislatorPartyListFragment: Fragment()  {
+
 
     lateinit var networkService: NetworkService
     lateinit var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>
-    lateinit var partyDistrictLegislatorListViewAdapter: PartyDistrictLegislatorListViewAdapter
+    lateinit var legislatorListAdapter : LegislatorListViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_legislator_party_list, container, false)
     }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        legislatorItems = ArrayList()
         setAdapter()
+
         var isParty = (context as LegislatorList).getisParty()
         if (isParty == true){
             getPartyLegislatorLikableListResponse()
@@ -134,6 +130,7 @@ class LegislatorPartyListFragment: Fragment(), View.OnClickListener  {
             }
         }
     }
+
     private fun getPartyLegislatorLikableListResponse(){
         var p_name = (context as LegislatorList).getp_name()
         networkService = ApplicationController.instance.networkService
@@ -147,9 +144,9 @@ class LegislatorPartyListFragment: Fragment(), View.OnClickListener  {
                 Log.v("success!",legislatorItems[0].party_name)
                 if(!(str.equals("No data"))){
                     Log.v("success2", "통신2")
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!,legislatorItems,1)
+                    legislatorListAdapter = LegislatorListViewAdapter(context!!,legislatorItems,1)
                     rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+                    rv_legislator.adapter = legislatorListAdapter
                 }
             }
         })
@@ -157,27 +154,22 @@ class LegislatorPartyListFragment: Fragment(), View.OnClickListener  {
 
     private fun getDistrictLegislatorLikableListResponse(){
         var region_name = (context as LegislatorList).getregion_name()
+        networkService = ApplicationController.instance.networkService
         val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1, region_name)
         getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                Log.v("text",legislatorItems[0].party_name)
-                if(!(str.equals("No data"))){
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!, legislatorItems, 1)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+                if (response!!.isSuccessful){
+                    legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
+                    setAdapter()
                 }
             }
         })
     }
     fun setAdapter(){
-        legislatorItems = ArrayList()
-        partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!, legislatorItems,1)
-        partyDistrictLegislatorListViewAdapter.setOnItemClickListener(this)
+        legislatorListAdapter = LegislatorListViewAdapter(context!!, legislatorItems, 1)
         rv_legislator.layoutManager = LinearLayoutManager(context)
-        rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+        rv_legislator.adapter = legislatorListAdapter
     }
 }

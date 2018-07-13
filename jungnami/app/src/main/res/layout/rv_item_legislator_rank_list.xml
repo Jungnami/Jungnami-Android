@@ -119,5 +119,10 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <RelativeLayout
+        android:id="@+id/rv_item_legislator_btn"
+        android:layout_marginRight="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
 </RelativeLayout>

@@ -26,7 +26,9 @@
                 android:id="@+id/rv_legislator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="68dp">
+                android:layout_marginTop="68dp"
+                android:descendantFocusability="blocksDescendants"
+                android:nestedScrollingEnabled="false">
 
             </android.support.v7.widget.RecyclerView>
 
