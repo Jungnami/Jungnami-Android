@@ -32,6 +32,7 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     private val REQUEST_CODE_CONTENTS_DETAILED = 1004
     private val REQUEST_CODE_COIN_CHARGE = 7547
+    private val REQUEST_CODE_FEED =1002
     override fun onClick(v: View?) {
         if (isSelectScrap){
             val index : Int = mypage_act_recyclerview_list_rv.getChildAdapterPosition(v)
@@ -64,7 +65,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         Log.e("내 토큰", SharedPreferenceController.getAuthorization(this))
     }
 
-    //        커뮤니티 피드받아오기 할 때 주석처리 by 형민
+
     private fun requestMyPageDataToServer(target: String){
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
@@ -91,6 +92,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                         setScrapRecyclerViewAdapter()
                     } else if (target == "info"){
                         setMyInfoView()
+                    } else if (target == "feed"){
+                        setFeedRecyclerViewAdapter()
                     }
                 }
             }
@@ -190,7 +193,6 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e("여기는 마이페이지 판별소", "오긴왔나")
         if (requestCode == REQUEST_CODE_CONTENTS_DETAILED){
             if (resultCode == Activity.RESULT_OK){
                 val temp = data!!.getBooleanExtra("isChangeScapState", false)
@@ -203,11 +205,17 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == REQUEST_CODE_COIN_CHARGE){
             if (resultCode == Activity.RESULT_OK){
                 val temp = data!!.getBooleanExtra("isStateChange", false)
-                val value = data!!.getIntExtra("key",100)
-                Log.e("여기는 마이페이지 판별소", "key에 대한 value = $value")
                 if(temp){
-                    Log.e("여기는 마이페이지 판별소", "새롭게 리프레쉬")
                     requestMyPageDataToServer("all")
+                }
+            }
+        }
+        if (requestCode == REQUEST_CODE_FEED){
+            if (resultCode == Activity.RESULT_OK){
+                val temp = data!!.getBooleanExtra("isStateChange", false)
+                Log.e("마이페이지", "$temp 값이 무엇인고")
+                if(temp){
+                    requestMyPageDataToServer("feed")
                 }
             }
         }

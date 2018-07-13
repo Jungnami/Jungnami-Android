@@ -10,11 +10,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import okhttp3.MultipartBody
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
+import sopt_jungnami_android.jungnami.Post.PostCommunityPostingResponse
 import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
@@ -53,7 +58,10 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         if(dataList[position].img == "0") {
             holder.feed_image.visibility = View.GONE
         }else{
+            val requestOptions = RequestOptions()
+            requestOptions.fitCenter()
             Glide.with(this!!.ctx!!)
+                    .setDefaultRequestOptions(requestOptions)
                     .load(dataList[position].img)
                     .into(holder.feed_image)
         }
@@ -99,13 +107,14 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
 
             // 좋아요 버튼 색 blue로 바꿔주기
             holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
+        }
 
-
-
+        holder.feed_chat_num_btn.setOnClickListener {
+            ctx.startActivity<CommunityCommentActivity>("board_id" to dataList[position].boardid)
         }
 
         holder.feed_chats_btn.setOnClickListener {
-
+            ctx.startActivity<CommunityCommentActivity>("board_id" to dataList[position].boardid)
         }
 
         holder.feed_share_btn.setOnClickListener {
@@ -113,14 +122,9 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         }
 
         holder.feed_scrap_btn.setOnClickListener {
-
+            requestCommunityPostingResponse(dataList[position].boardid)
         }
-
-
-
-
     }
-
 
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -131,11 +135,27 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         val feed_image : ImageView = itemView.findViewById(R.id.contents_comment_rv_item_contents_iv) as ImageView
         val feed_likes_num_btn : TextView = itemView.findViewById(R.id.contents_comment_rv_item_heart_num_btn) as TextView
         val feed_chat_num_btn : TextView = itemView.findViewById(R.id.contents_comment_rv_item_chat_num_des_btn) as TextView
+
         val feed_likes_btn : ImageView = itemView.findViewById(R.id.contents_comment_tv_item_bottom_bar_heart_btn) as ImageView
         val feed_chats_btn : ImageView = itemView.findViewById(R.id.contents_comment_tv_item_bottom_bar_chat_btn) as ImageView
         val feed_share_btn : ImageView = itemView.findViewById(R.id.contents_comment_tv_item_bottom_bar_share_btn) as ImageView
         val feed_scrap_btn : ImageView = itemView.findViewById(R.id.contents_comment_tv_item_bottom_bar_scrap_btn) as ImageView
     }
 
+    fun requestCommunityPostingResponse(board_id : Int){
+        val networkService = ApplicationController.instance.networkService
+        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(ctx),
+                "", null, board_id)
+        postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
+            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+            }
+
+            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+                if(response!!.isSuccessful){
+                    ctx.toast("스크랩 완료")
+                }
+            }
+        })
+    }
 
 }

@@ -1,6 +1,7 @@
 package sopt_jungnami_android.jungnami.mypage
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,10 @@ class UserAndMyPageScrapRecyclerViewAdapter(val ctx : Context, val dataList : Ar
             rootLayoutParams.leftMargin = (6*dp).toInt()
             rootLayoutParams.rightMargin = (16*dp).toInt()
         }
+
+        val drawable = ctx.getDrawable(R.drawable.contents_frag_sub_content_image_shape) as GradientDrawable
+        holder.image.background = drawable
+        holder.image.clipToOutline = true
         val requestOptions = RequestOptions()
         Glide.with(ctx)
                 .load(dataList[position].thumbnail)
