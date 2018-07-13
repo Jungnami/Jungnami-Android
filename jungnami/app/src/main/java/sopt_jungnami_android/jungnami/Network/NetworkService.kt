@@ -246,6 +246,18 @@ interface NetworkService {
             @Field("l_id") l_id : Int,
             @Field("coin") coin : Int
     ) : Call<PostCompleteSponseCoinResponse>
+    //컨텐츠 댓글 좋아요 삭제
+    @DELETE("delete/boardcommentlike/{boardcommentid}")
+    fun deleteContentsCommendLikeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("boardcommentid") boardcommentid : Int
+    ) : Call<DeleteContentsLikeResponse>
+    //보드 댓글 좋아요 삭제
+    @DELETE("delete/contentscommentlike/{contentscommentid}")
+    fun deleteCummunityCommendLikeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("contentscommentid") contentscommentid : Int
+    ) : Call<DeleteContentsLikeResponse>
 //윤환 라인 종료!
 
 

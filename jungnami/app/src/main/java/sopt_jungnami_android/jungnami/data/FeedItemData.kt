@@ -8,6 +8,7 @@ data class FeedItemData (
 
 data class Content (
         val boardid: Int,
+        val user_id : String,
         val nickname: String,
         val userimg: String,
         val img: String,

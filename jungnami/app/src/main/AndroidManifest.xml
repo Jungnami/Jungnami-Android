@@ -41,6 +41,7 @@
         <activity android:name=".legislator_list.SearchPartyActivity"/>
         <activity android:name="legislator_list.SearchRigionActivity"/>
         <activity android:name=".community.CommunityCommentActivity"/>
+        <activity android:name=".contents.ContentsCommentActivity"/>
 
 
 

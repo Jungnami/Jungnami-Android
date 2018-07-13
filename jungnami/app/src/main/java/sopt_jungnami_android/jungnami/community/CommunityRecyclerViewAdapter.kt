@@ -24,6 +24,7 @@ import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.mypage.UserPageActivity
 import javax.security.auth.callback.Callback
 
 //made by YunHwan
@@ -47,6 +48,9 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         Glide.with(this!!.ctx!!)
                 .load(dataList[position].userimg)
                 .into(holder.profile_img_btn)
+        holder.profile_img_btn.setOnClickListener {
+            ctx.startActivity<UserPageActivity>("mypage_id" to dataList[position].user_id)
+        }
 
         // Text없으면 GONE 처리
         if(dataList[position].content.isEmpty()) {
