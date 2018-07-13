@@ -9,7 +9,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_legislator_list.*
+import kotlinx.android.synthetic.main.activity_legislator_page.*
 
 // Written by SooYoung
 
@@ -46,8 +49,8 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         }else{
             region_name = intent.getStringExtra("region_name")
         }
-
-
+        legislator_list_act_likeable_icon_with_animation_iv.visibility = View.INVISIBLE
+        legislator_list_act_unlikeable_icon_with_animation_iv.visibility = View.INVISIBLE
 //        getPartyLegislatorLikableListResponse()
 //        getDistrictLegislatorLikableListResponse()
         isParty = intent.getBooleanExtra("isParty", true)
@@ -59,7 +62,40 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
             isPartyRegionSelected()
         }
     }
+    fun setAnimationIcon(isLikeable: Boolean) {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this, R.anim.expand_anim)
+        anim.interpolator = interpolator
+        if (isLikeable) {
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+                }
 
+                override fun onAnimationEnd(animation: Animation?) {
+                    legislator_list_act_likeable_icon_with_animation_iv.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    legislator_list_act_likeable_icon_with_animation_iv.visibility = View.VISIBLE
+                }
+            })
+            legislator_list_act_likeable_icon_with_animation_iv.startAnimation(anim)
+        } else {
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    legislator_list_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
+                }
+
+                override fun onAnimationStart(animation: Animation?) {
+                    legislator_list_act_unlikeable_icon_with_animation_iv.visibility = View.VISIBLE
+                }
+            })
+            legislator_list_act_unlikeable_icon_with_animation_iv.startAnimation(anim)
+        }
+    }
     public fun getp_name() : String{
         Log.v("이것", p_name)
         return p_name
@@ -249,6 +285,20 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.legislator_list_frag_list, fragment)
         transaction.commit()
+    }
+    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) : android.view.animation.Interpolator {
+        private var mAmplitude = 1.0
+        private var mFrequency = 10.0
+
+        init {
+            mAmplitude = amplitude
+            mFrequency = frequency
+        }
+
+        override fun getInterpolation(time: Float): Float {
+            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1).toFloat()
+        }
     }
 }
 

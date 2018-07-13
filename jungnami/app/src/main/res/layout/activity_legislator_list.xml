@@ -204,5 +204,18 @@
         </LinearLayout>
 
     </RelativeLayout>
-
+    <ImageView
+        android:id="@+id/legislator_list_act_unlikeable_icon_with_animation_iv"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:src="@drawable/vote_animation_icon_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/legislator_list_act_likeable_icon_with_animation_iv"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:src="@drawable/vote_animation_icon_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

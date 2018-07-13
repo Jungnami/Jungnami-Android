@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_legislator_party_list.*
+import kotlinx.android.synthetic.main.fragment_likeable_tab.*
+import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,8 +20,14 @@ import sopt_jungnami_android.jungnami.R.id.legislator_frag_top_iv
 import sopt_jungnami_android.jungnami.R.id.rv_legislator
 import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 
-class LegislatorPartyListFragment: Fragment()  {
+class LegislatorPartyListFragment: Fragment(), View.OnClickListener  {
+    override fun onClick(v: View?) {
+        val index: Int = rv_legislator.getChildAdapterPosition(v)
+        val l_id : Int = legislatorItems[index].id
+        startActivity<LegislatorPageActivity>("l_id" to l_id)
+    }
 
     lateinit var networkService: NetworkService
     lateinit var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>
@@ -29,51 +37,10 @@ class LegislatorPartyListFragment: Fragment()  {
         return inflater.inflate(R.layout.fragment_legislator_party_list, container, false)
     }
 
-
-
-    private fun getPartyLegislatorLikableListResponse(){
-        var p_name = (context as LegislatorList).getp_name()
-        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1,p_name)
-        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse> {
-            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-            }
-            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                Log.v("success!",legislatorItems[0].party_name)
-                if(!(str.equals("No data"))){
-                    Log.v("success2", "통신2")
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context,legislatorItems,1)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
-                }
-            }
-        })
-    }
-
-    private fun getDistrictLegislatorLikableListResponse(){
-        var region_name = (context as LegislatorList).getregion_name()
-        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1, region_name)
-        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
-            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-            }
-            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                Log.v("text",legislatorItems[0].party_name)
-                if(!(str.equals("No data"))){
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems, 1)
-                    rv_legislator.layoutManager = LinearLayoutManager(context)
-                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
-                }
-            }
-        })
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        networkService = ApplicationController.instance.networkService
 
+        setAdapter()
         var isParty = (context as LegislatorList).getisParty()
         if (isParty == true){
             getPartyLegislatorLikableListResponse()
@@ -166,5 +133,51 @@ class LegislatorPartyListFragment: Fragment()  {
                 }
             }
         }
+    }
+    private fun getPartyLegislatorLikableListResponse(){
+        var p_name = (context as LegislatorList).getp_name()
+        networkService = ApplicationController.instance.networkService
+        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1,p_name)
+        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse> {
+            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+                var str = response!!.message()
+                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
+                Log.v("success!",legislatorItems[0].party_name)
+                if(!(str.equals("No data"))){
+                    Log.v("success2", "통신2")
+                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!,legislatorItems,1)
+                    rv_legislator.layoutManager = LinearLayoutManager(context)
+                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+                }
+            }
+        })
+    }
+
+    private fun getDistrictLegislatorLikableListResponse(){
+        var region_name = (context as LegislatorList).getregion_name()
+        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1, region_name)
+        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
+            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+                var str = response!!.message()
+                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
+                Log.v("text",legislatorItems[0].party_name)
+                if(!(str.equals("No data"))){
+                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!, legislatorItems, 1)
+                    rv_legislator.layoutManager = LinearLayoutManager(context)
+                    rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+                }
+            }
+        })
+    }
+    fun setAdapter(){
+        legislatorItems = ArrayList()
+        partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!, legislatorItems,1)
+        partyDistrictLegislatorListViewAdapter.setOnItemClickListener(this)
+        rv_legislator.layoutManager = LinearLayoutManager(context)
+        rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
     }
 }
