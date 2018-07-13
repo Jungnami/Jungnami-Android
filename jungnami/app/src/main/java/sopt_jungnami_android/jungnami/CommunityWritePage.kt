@@ -123,14 +123,19 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                 isGIF = true
                 checkUploadedContent()
             }
-//            val options = BitmapFactory.Options()
-//            var input: InputStream? = null
-//            val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 생성
-//            val baos = ByteArrayOutputStream()
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
-//            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
-//            val photo = File(this.data.toString()) // 가져온 파일의 이름
-//            image = MultipartBody.Part.createFormData("image", photo.name, photoBody)
+            val options = BitmapFactory.Options()
+            var input: InputStream? = null
+            try{
+                input = contentResolver.openInputStream(this.data)
+            } catch (e : FileNotFoundException){
+                e.printStackTrace()
+            }
+            val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 생성
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
+            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
+            val photo = File(this.data.toString()) // 가져온 파일의 이름
+            image = MultipartBody.Part.createFormData("image", photo.name, photoBody)
         }
         community_act_writepage_upload_pic_iv.setOnClickListener {
             community_act_writepage_upload_pic_iv.setImageBitmap(null)
@@ -162,43 +167,46 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    fun stringTrim(editText: EditText): String {
-        val content = community_act_writepage_posting_et.text.toString()
-        val complete = content.myTrim()
-        Log.v("통신", "포스팅")
-        return complete
-    }
-
-    fun String.myTrim() : String {
-        var result: String = " "
-
-        var startIdx = 0
-        while (startIdx < this.length && this[startIdx] == '"') startIdx ++
-
-        var endIdx = this.length - 1
-        while (endIdx >= 0 && this[endIdx] == '"') endIdx --
-
-        result = this.substring(startIdx, endIdx+1)
-        return result
-    }
+//    fun stringTrim(editText: EditText): String {
+//        val content = community_act_writepage_posting_et.text.toString()
+//        val complete = content.myTrim()
+//        Log.v("통신", "포스팅")
+//        return complete
+//    }
+//
+//    fun String.myTrim() : String {
+//        var result: String = " "
+//
+//        var startIdx = 0
+//        while (startIdx < this.length && this[startIdx] == '"') startIdx ++
+//
+//        var endIdx = this.length - 1
+//        while (endIdx >= 0 && this[endIdx] == '"') endIdx --
+//
+//        result = this.substring(startIdx, endIdx+1)
+//        return result
+//    }
 
     fun postCommunityPostingResponse() {
         var content: String? = null
         if (isShared == 0) {
+            Log.v("test1", community_act_writepage_posting_et.text.toString())
             if (community_act_writepage_posting_et.text.toString().isEmpty()) {
+                Log.v("E", "null")
                 content = null
             }
             else {
-                content = stringTrim(community_act_writepage_posting_et)
+                content = community_act_writepage_posting_et.text.toString()
+                Log.v("test", content)
             }
             val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext), content, image, isShared)
             postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse> {
                 override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
                     if (response!!.isSuccessful) {
                         isStateChange = true
-                        Log.v("EditText", content)
-                        finish()
+                        Log.v("EditText2", content)
                         Log.v("success", "내가 쓴 글")
+                        finish()
                     }
                 }
                 override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {

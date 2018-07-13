@@ -52,7 +52,8 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         if(dataList[position].content.isEmpty()) {
             holder.feed_description.visibility = View.GONE
         }else{
-            holder.feed_description.text = dataList[position].content
+            holder.feed_description.setText(dataList[position].content)
+            Log.v("완료", dataList[position].content)
         }
         // img없으면 GONE 처리
         if(dataList[position].img == "0") {
