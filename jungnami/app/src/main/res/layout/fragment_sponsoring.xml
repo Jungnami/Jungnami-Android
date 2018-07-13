@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="나의 코인"
-                    android:textSize="11sp"
+                    android:textSize="11dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerVertical="true"
                     android:textColor="#757575"/>
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100코인"
-                    android:textSize="11sp"
+                    android:textSize="11dp"
                     android:textColor="#36C5F1"
                     android:fontFamily="@font/nanumbarungothic_normal"
                     android:layout_alignParentRight="true"
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="후원 코인"
-                    android:textSize="11sp"
+                    android:textSize="11dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerVertical="true"/>
 
