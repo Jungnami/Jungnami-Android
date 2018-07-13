@@ -112,57 +112,57 @@ class LegislatorPartyListFragment: Fragment()  {
             var region_name = (context as LegislatorList).getregion_name()
             when (region_name){
                 "서울" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_seoul_tab)
                 }
                 "인천" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_incheon_tab)
                 }
                 "경기" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_gyeonggi_tab)
 
                 }
                 "강원" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_gangwon_tab)
 
                 }
                 "충북" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_chungbug_tab)
                 }
                 "충남" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_chungnam_tab)
                 }
                 "세종" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_sejong_tab)
                 }
                 "대전" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_daejeon_tab)
                 }
                 "경북" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_gyeongbug_tab)
                 }
                 "대구" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_daegu_tab)
                 }
                 "울산" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_ulsan_tab)
                 }
                 "부산" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_busan_tab)
                 }
                 "전북" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_jeonbug_tab)
                 }
                 "광주" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_gwangju_tab)
                 }
                 "경남" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_gyeongnam_tab)
                 }
                 "전남" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_jeonnam_tab)
                 }
                 "제주" -> {
-                    legislator_frag_top_iv.setImageResource(R.drawable.party_blue_tab)
+                    legislator_frag_top_iv.setImageResource(R.drawable.region_jeju_tab)
                 }
             }
         }

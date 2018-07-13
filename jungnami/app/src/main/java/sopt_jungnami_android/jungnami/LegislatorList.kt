@@ -186,7 +186,7 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         legislator_list_act_unlikeable_tab_btn.setOnClickListener {
             isFavorableSelected = false
             isSelectedTabView()
-            replaceFragment(CutLegislatorDistrictListFragment())
+            replaceFragment(LegislatorUnlikabletListFragment())
         }
         legislator_list_act_search.setOnClickListener {
             legislator_list_act_search.visibility = View.GONE
