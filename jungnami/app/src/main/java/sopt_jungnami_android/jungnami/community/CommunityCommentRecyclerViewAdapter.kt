@@ -20,6 +20,7 @@ import sopt_jungnami_android.jungnami.Post.PostCommunityCommentLikeRequset
 import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.CommunityCommentData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.UserPageActivity
 
 class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<CommunityCommentData>, private val context: Context, private val flag : Int) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -42,12 +43,8 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
         val viewHolder : ViewHolder = holder as ViewHolder
 
         viewHolder.comment_profile_img_btn.setOnClickListener {
-
             // 프로필 상세보기로 넘어가기
             context.startActivity<UserPageActivity>("mypage_id" to dataItems[position].user_id)
-
-
-
         }
 
         // 좋아요 눌렀을 때
@@ -100,19 +97,16 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
     fun postCommunityCommentLike(position: Int) {
         networkService = ApplicationController.instance.networkService
         var comment_id : Int = dataItems!![position].commentid
-        var postCommunityCommentLikeRequset = PostCommunityCommentLikeRequset(comment_id)
-        var postCommunityLikePostResponse = networkService.postCommunityCommentLike(postCommunityCommentLikeRequset)
+        var postCommunityLikePostResponse = networkService.postCommunityCommentLike(SharedPreferenceController.getAuthorization(context),
+                comment_id)
         postCommunityLikePostResponse.enqueue(object : Callback<postCommunityLikeResponse>{
             override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
-
             }
-
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("success", "좋아요성공")
                 }
             }
-
         })
 
     }
@@ -120,11 +114,10 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
     fun postContentsCommentLike(position : Int){
         networkService = ApplicationController.instance.networkService
         var comment_id : Int = dataItems!![position].commentid
-        var postContentsCommentLikeRequset = PostCommunityCommentLikeRequset(comment_id)
-        var postContentsCommentLikeResponse = networkService.postContentsCommentLike(postContentsCommentLikeRequset)
+        var postContentsCommentLikeResponse = networkService.postContentsCommentLike(SharedPreferenceController.getAuthorization(context),
+                comment_id)
         postContentsCommentLikeResponse.enqueue(object : Callback<postCommunityLikeResponse>{
             override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
-
             }
 
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {

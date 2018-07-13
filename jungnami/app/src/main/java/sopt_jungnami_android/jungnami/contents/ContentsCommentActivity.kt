@@ -20,13 +20,14 @@ import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.community.CommunityCommentRecyclerViewAdapter
 import sopt_jungnami_android.jungnami.data.CommunityCommentData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class ContentsCommentActivity : AppCompatActivity() {
     lateinit var networkService: NetworkService
     lateinit var contentsCommentItem : ArrayList<CommunityCommentData>
     var context : Context = this
     lateinit var contentsCommentRecyclerViewAdapter: CommunityCommentRecyclerViewAdapter
-
+    var contents_id = 0
 
     private fun setClickedListener(){
         contents_comment_act_backarrow_btn.setOnClickListener {
@@ -39,10 +40,6 @@ class ContentsCommentActivity : AppCompatActivity() {
             // 값 다시 받아오기
             getContentsComment()
             // # Get 통신으로 다시 데이터 다시 받고 보여주기.
-
-
-
-
         }
     }
 
@@ -50,23 +47,21 @@ class ContentsCommentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_comment)
         setStatusBarColor()
-        networkService = ApplicationController.instance.networkService
+        contents_id = intent.getIntExtra("contents_id", 0)
         getContentsComment()
         setClickedListener()
     }
     fun postContentsComment(){
         // # 콘텐츠 아이디 받아야한다.
-        var contents_id = 4
         var content : String = contents_comment_act_bottom_bar_edit_text.text.toString()
-        var postContentsCommentRequest = PostContentsCommentRequest(contents_id, content)
-        var postContentsCommentResponse = networkService.postContentsComment(postContentsCommentRequest)
+        networkService = ApplicationController.instance.networkService
+        var postContentsCommentResponse = networkService.postContentsComment(SharedPreferenceController.getAuthorization(context),
+                contents_id, content)
         postContentsCommentResponse.enqueue(object : Callback<postCommunityLikeResponse>{
             override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
             }
-
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("success", "내가 쓴 글")
                     contents_comment_act_bottom_bar_edit_text.setText("")
                 }
             }
@@ -78,18 +73,14 @@ class ContentsCommentActivity : AppCompatActivity() {
 
     fun getContentsComment(){
         //# 콘텐츠 아이디 받아와야한다.
-        var contents_id = 4
-        val getContentsCommentResponse = networkService.getContentsComment(contents_id)
+        val getContentsCommentResponse = networkService.getContentsComment(SharedPreferenceController.getAuthorization(context),contents_id)
         getContentsCommentResponse.enqueue(object : Callback<GetContentsCommentResponse>{
             override fun onFailure(call: Call<GetContentsCommentResponse>?, t: Throwable?) {
-                Log.v("ㅌㅅ","ㅋㅌㅊㅋㅁㅌ ㅅㅍ")
-
             }
 
             override fun onResponse(call: Call<GetContentsCommentResponse>?, response: Response<GetContentsCommentResponse>?) {
                 if (response!!.isSuccessful){
                     contentsCommentItem = response!!.body()!!.data
-                    Log.v("ㅌㅅ","ㅋㅌㅊㅋㅁㅌ ㅅㄱ")
                     contentsCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(contentsCommentItem, context,1)
                     contents_comment_act_rv.layoutManager = LinearLayoutManager(context)
                     contents_comment_act_rv.adapter = contentsCommentRecyclerViewAdapter

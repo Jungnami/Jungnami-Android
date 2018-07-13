@@ -46,12 +46,13 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
 
+    var user_id : Int = 0
     lateinit var page_id : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_page)
         setStatusBarColor()
-
+        user_id = intent.getIntExtra("user_id", 0)
         setClickListener()
 
         requestPageDataToServer()
@@ -75,10 +76,9 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
         //여기
-        val user_id = SharedPreferenceController.getMyId(applicationContext)
         networkService = ApplicationController.instance.networkService
 
-        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!), user_id)
+        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!), user_id.toString())
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse> {
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())
