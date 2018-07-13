@@ -57,7 +57,6 @@
                         android:fontFamily="@font/nanumbarungothiclight"
                         android:background="#00000000"
                         android:textSize="12dp"
-                        android:hint="'최형윤 바로'를 검색해보세요."
                         android:gravity="left|center"
                         android:layout_toRightOf="@+id/contents_frag_top_bar_search_box_search_iv"
                         android:layout_width="match_parent"
