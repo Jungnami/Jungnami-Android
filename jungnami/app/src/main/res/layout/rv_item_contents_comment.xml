@@ -81,8 +81,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="16dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/community_heart_gray"
-            />
+            android:src="@drawable/community_heart_gray" />
 
     </RelativeLayout>
     

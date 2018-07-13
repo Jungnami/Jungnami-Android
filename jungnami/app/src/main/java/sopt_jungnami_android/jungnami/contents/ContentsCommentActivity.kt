@@ -73,6 +73,7 @@ class ContentsCommentActivity : AppCompatActivity() {
 
     fun getContentsComment(){
         //# 콘텐츠 아이디 받아와야한다.
+        networkService = ApplicationController.instance.networkService
         val getContentsCommentResponse = networkService.getContentsComment(SharedPreferenceController.getAuthorization(context),contents_id)
         getContentsCommentResponse.enqueue(object : Callback<GetContentsCommentResponse>{
             override fun onFailure(call: Call<GetContentsCommentResponse>?, t: Throwable?) {

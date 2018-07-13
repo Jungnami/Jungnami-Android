@@ -11,9 +11,11 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityCommentLikeRequset
@@ -29,75 +31,95 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val mainView : View = LayoutInflater.from(parent!!.context).inflate(R.layout.rv_item_contents_comment, parent, false)
+
         return ViewHolder(mainView)
     }
 
     override fun getItemCount(): Int {
         return dataItems.size
     }
+    fun removeAll(){
+        var before_size = dataItems.size
+        dataItems.clear()
+        notifyItemRangeRemoved(0,before_size)
+        notifyDataSetChanged()
+    }
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
-
-
         val viewHolder : ViewHolder = holder as ViewHolder
 
         viewHolder.comment_profile_img_btn.setOnClickListener {
             // 프로필 상세보기로 넘어가기
             context.startActivity<UserPageActivity>("mypage_id" to dataItems[position].user_id)
-            Log.e("프로필 상세보기 - 댓글에서", dataItems[position].user_id.toString())
+
+        }
+
+
+        //초기 좋아요 셋팅
+        if(dataItems[position].islike == 0){
+            holder.islike = false
+            viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_gray)
+
+        } else {
+            holder.islike = true
+            viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
+        }
+        holder.commentid = dataItems[position].commentid
+
+
+        when (position){
+            0,1,2 -> viewHolder.comment_bestbox.visibility = View.VISIBLE
         }
 
         // 좋아요 눌렀을 때
         viewHolder.comment_like_img_btn.setOnClickListener {
-            // flag == 0 (CommmunityCommentActivity에서 넘어온 뷰)
-            if(flag == 0) {
-                // 좋아요 수 늘리기 통신
-                postCommunityCommentLike(position)
+            if (flag ==0){
+                when (holder.islike){
+                    true -> {
+                        holder.islike = false
+                        deleteCummunityCommendLike(dataItems[position].commentid)
+                        viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_gray)
+                    }
+                    false -> {
+                        holder.islike = true
+                        viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
+                        postCommunityCommentLike(dataItems[position].commentid)
+                    }
+                }
+            } else if(flag==1){
+                when(holder.islike) {
+                    true -> {
+                        holder.islike = false
+                        deleteContentsCommendLike(dataItems[position].commentid)
+                        viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_gray)
+                    } //삭제 통신
+                    false -> {
+                        holder.islike = true
+                        viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
+                        postContentsCommentLike(dataItems[position].commentid)
+                    }
+                }
             }
-            // flag == 1 (ContentsCommentActivity에서 넘어온 뷰)
-            if(flag == 1){
-                // 좋아요 수 늘리기 통신
-                postContentsCommentLike(position)
-            }
-            // 좋아요 수 + 1 해서 값 뷰에 적용
-            viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
-            var temp = dataItems!![position].commentlikeCnt + 1
-            viewHolder.comment_like_num.text = temp.toString()
-            // #좋아요 버튼 색 푸른색 == > 회색, (취소) 회색 ==> 푸른색
-            viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
-
         }
 
-        // 만약 제일 첫 아이템에만 BEST 박스 적용
-        if(position == 0){
-            viewHolder.comment_bestbox.visibility = View.VISIBLE
-        }else{
-            viewHolder.comment_bestbox.visibility = View.GONE
-        }
+
+
+
 
         // 이미지 버튼 담기
         Glide.with(context)
                 .load(dataItems!![position].user_img)
                 .into(viewHolder.comment_profile_img_btn)
 
-        // isLike 변수에 따라 Like 버튼 푸른색으로 적용
-        if (dataItems[position].islike == 0){
-            viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_blue)
-        }else{
-            viewHolder.comment_like_img_btn.setImageResource(R.drawable.community_heart_gray)
-        }
-        Log.v("ㅌㅅ", dataItems!![position].user_nick)
         viewHolder.comment_profile_name_btn.setText(dataItems!![position].user_nick)
         viewHolder.comment_descrption.text = dataItems!![position].content
         viewHolder.comment_date.text = dataItems!![position].timeset
         viewHolder.comment_like_num.text = dataItems!![position].commentlikeCnt.toString()
-
     }
 
-    fun postCommunityCommentLike(position: Int) {
+    fun postCommunityCommentLike(comment_id: Int) {
         networkService = ApplicationController.instance.networkService
-        var comment_id : Int = dataItems!![position].commentid
         var postCommunityLikePostResponse = networkService.postCommunityCommentLike(SharedPreferenceController.getAuthorization(context),
                 comment_id)
         postCommunityLikePostResponse.enqueue(object : Callback<postCommunityLikeResponse>{
@@ -105,16 +127,15 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
             }
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("success", "좋아요성공")
+                    context.toast("좋아요")
                 }
             }
         })
 
     }
 
-    fun postContentsCommentLike(position : Int){
+    fun postContentsCommentLike(comment_id : Int){
         networkService = ApplicationController.instance.networkService
-        var comment_id : Int = dataItems!![position].commentid
         var postContentsCommentLikeResponse = networkService.postContentsCommentLike(SharedPreferenceController.getAuthorization(context),
                 comment_id)
         postContentsCommentLikeResponse.enqueue(object : Callback<postCommunityLikeResponse>{
@@ -123,17 +144,45 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
 
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("success", "좋아요성공")
+                    context.toast("좋아요")
                 }
             }
 
         })
     }
 
-
-
+    fun deleteContentsCommendLike(comment_id : Int){
+        networkService = ApplicationController.instance.networkService
+        var deleteContentsCommendLikeResponse = networkService.deleteContentsCommendLikeResponse(SharedPreferenceController.getAuthorization(context),
+                comment_id)
+        deleteContentsCommendLikeResponse.enqueue(object : Callback<DeleteContentsLikeResponse>{
+            override fun onFailure(call: Call<DeleteContentsLikeResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<DeleteContentsLikeResponse>?, response: Response<DeleteContentsLikeResponse>?) {
+                if (response!!.isSuccessful){
+                    context.toast("좋아요 취소")
+                }
+            }
+        })
+    }
+    fun deleteCummunityCommendLike(comment_id : Int){
+        networkService = ApplicationController.instance.networkService
+        var deleteCummunityCommendLikeResponse = networkService.deleteCummunityCommendLikeResponse(SharedPreferenceController.getAuthorization(context),
+                comment_id)
+        deleteCummunityCommendLikeResponse.enqueue(object : Callback<DeleteContentsLikeResponse>{
+            override fun onFailure(call: Call<DeleteContentsLikeResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<DeleteContentsLikeResponse>?, response: Response<DeleteContentsLikeResponse>?) {
+                if (response!!.isSuccessful){
+                    context.toast("좋아요 취소")
+                }
+            }
+        })
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var islike : Boolean = false
+        var commentid : Int = 0
         var comment_profile_img_btn : ImageView = itemView!!.findViewById(R.id.rv_item_community_contents_comment_profile_btn) as ImageView
         var comment_like_img_btn : ImageView = itemView!!.findViewById(R.id.rv_item_community_contents_comment_likes_btn) as ImageView
         var comment_profile_name_btn : TextView = itemView!!.findViewById(R.id.rv_item_community_contents_comment_name_btn) as TextView
