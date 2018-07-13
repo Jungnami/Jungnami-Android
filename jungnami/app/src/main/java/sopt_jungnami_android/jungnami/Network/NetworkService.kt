@@ -7,6 +7,7 @@ import retrofit2.Callback
 import retrofit2.http.*
 import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
 import sopt_jungnami_android.jungnami.Delete.DeleteContentsScrapResponse
+import sopt_jungnami_android.jungnami.Delete.DeleteFollowResponse
 import sopt_jungnami_android.jungnami.Get.*
 import sopt_jungnami_android.jungnami.Post.*
 
@@ -95,6 +96,26 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Field("comment_id") comment_id : Int
     ) : Call<postCommunityLikeResponse>
+    // 팔로워 보기 made by 형민
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @GET("user/followerlist/{f_id}")
+    fun getFollower(
+            @Path("f_id") f_id : String
+    ) : Call<GetFollowerResponse>
+
+    // 팔로우 요청하기 by 탁형민
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @POST("user/follow")
+    fun postFollow(
+            @Body postFollowRequest: PostFollowRequest
+    ) : Call<PostFollwResponse>
+
+    // 팔로우 취소하기
+    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @DELETE("user/unfollow/{f_id}")
+    fun deleteFollow(
+            @Path("f_id") f_id : String
+    ) : Call<DeleteFollowResponse>
 //형민이 라인 종료!
 
 

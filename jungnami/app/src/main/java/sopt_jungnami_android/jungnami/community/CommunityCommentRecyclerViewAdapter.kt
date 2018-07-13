@@ -45,6 +45,7 @@ class CommunityCommentRecyclerViewAdapter(private val dataItems: ArrayList<Commu
         viewHolder.comment_profile_img_btn.setOnClickListener {
             // 프로필 상세보기로 넘어가기
             context.startActivity<UserPageActivity>("mypage_id" to dataItems[position].user_id)
+            Log.e("프로필 상세보기 - 댓글에서", dataItems[position].user_id.toString())
         }
 
         // 좋아요 눌렀을 때

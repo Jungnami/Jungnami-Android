@@ -1,5 +1,6 @@
 package sopt_jungnami_android.jungnami.mypage
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -11,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import retrofit2.Call
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Network.ApplicationController
@@ -26,7 +28,7 @@ import javax.security.auth.callback.Callback
 class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Board>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
     lateinit var onItemClick: View.OnClickListener
     lateinit var networkService: NetworkService
-
+    private val REQUEST_CODE_FEED =1002
     fun setOnItemClickListener(l: View.OnClickListener) {
         onItemClick = l
     }
@@ -66,7 +68,7 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, val dataList: Array
 
         }
         holder.b_comment_img.setOnClickListener {
-            ctx.startActivity<CommunityCommentActivity>()
+            (ctx as Activity).startActivityForResult<CommunityCommentActivity>(REQUEST_CODE_FEED,"board_id" to dataList[position].b_id)
         }
     }
 
@@ -86,7 +88,7 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, val dataList: Array
         val b_u_img : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_image_btn) as ImageView
         val b_u_nickname : TextView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_profile_name_tv) as TextView
         val b_b_time : TextView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_date_tv) as TextView
-        val b_b_content : TextView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_date_tv) as TextView
+        val b_b_content : TextView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_contents_tv) as TextView
         val b_b_image : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_contents_iv) as ImageView
     }
 

@@ -46,13 +46,14 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var userAndMyPageScrapRecyclerViewAdapter: UserAndMyPageScrapRecyclerViewAdapter
     lateinit var userAndMyPageFeedRecyclerViewAdapter : UserAndMyPageFeedRecyclerViewAdapter
 
-    var user_id : Int = 0
+    lateinit var mypage_id : String
     lateinit var page_id : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_page)
         setStatusBarColor()
-        user_id = intent.getIntExtra("user_id", 0)
+        mypage_id = intent.getStringExtra("mypage_id")
+        Log.e("프로필 상세보기 - 유저페이지에서", mypage_id.toString())
         setClickListener()
 
         requestPageDataToServer()
@@ -75,10 +76,11 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
     private fun requestPageDataToServer(){
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
-        //여기
+
         networkService = ApplicationController.instance.networkService
 
-        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!), user_id.toString())
+        val getMyPageResponse = networkService.getMyPageResponse(SharedPreferenceController.getAuthorization(context = applicationContext!!),
+                mypage_id.toString())
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse> {
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())
@@ -86,6 +88,7 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<GetMyPageResponse>?, response: Response<GetMyPageResponse>?) {
                 if (response!!.isSuccessful){
+                    Log.e("유저페이지 통신!!! ", response!!.body()!!.data.toString())
                     myPageDataList = response!!.body()!!.data
                     page_id = myPageDataList.mypage_id
                     scrapDataList = myPageDataList.scrap

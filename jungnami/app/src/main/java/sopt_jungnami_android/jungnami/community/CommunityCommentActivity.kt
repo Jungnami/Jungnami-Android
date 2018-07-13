@@ -1,6 +1,8 @@
 package sopt_jungnami_android.jungnami.community
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -22,7 +24,7 @@ import sopt_jungnami_android.jungnami.data.CommunityCommentData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class CommunityCommentActivity : AppCompatActivity() {
-
+    var isStateChange : Boolean = false
     lateinit var networkService: NetworkService
     lateinit var communityCommentItem : ArrayList<CommunityCommentData>
     var context : Context = this
@@ -34,6 +36,7 @@ class CommunityCommentActivity : AppCompatActivity() {
         setStatusBarColor()
 
         board_id = intent.getIntExtra("board_id", 0)
+
         networkService = ApplicationController.instance.networkService
         getCommunityComment()
         setClickedListener()
@@ -65,7 +68,6 @@ class CommunityCommentActivity : AppCompatActivity() {
     fun postCommunityComment(){
         // # 보드아이디 받아와야한다.
         var content : String = contents_comment_act_bottom_bar_edit_text.text.toString()
-        var postCommunityCommentRequest = PostCommunityCommentRequest(board_id, content)
         var postCommunityPostingResponse = networkService.postCommunityComment(SharedPreferenceController.getAuthorization(context),
                 board_id,content)
         postCommunityPostingResponse.enqueue(object : Callback <postCommunityLikeResponse> {
@@ -73,8 +75,10 @@ class CommunityCommentActivity : AppCompatActivity() {
             }
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("success", "내가 쓴 글")
+                    isStateChange = true
                     contents_comment_act_bottom_bar_edit_text.setText("")
+
+                    getCommunityComment()
                 }
             }
 
@@ -87,16 +91,13 @@ class CommunityCommentActivity : AppCompatActivity() {
 
 
     fun getCommunityComment(){
-        var board_id = 103
         val getCommunityResponse = networkService.getCommunityComment(SharedPreferenceController.getAuthorization(context),board_id!!)
         getCommunityResponse.enqueue(object : Callback<GetCommunityCommentResponse>{
             override fun onFailure(call: Call<GetCommunityCommentResponse>?, t: Throwable?) {
-                Log.v("ㅌㅅ","이거들어오면getCommunityComment실패")
             }
 
             override fun onResponse(call: Call<GetCommunityCommentResponse>?, response: Response<GetCommunityCommentResponse>?) {
                 if (response!!.isSuccessful){
-                    Log.v("ㅌㅅ","이거들어오면getCommunityComment성공")
                     communityCommentItem = response!!.body()!!.data as ArrayList<CommunityCommentData>
                     communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem, context,0)
                     contents_comment_act_rv.layoutManager = LinearLayoutManager(context)
@@ -116,5 +117,21 @@ class CommunityCommentActivity : AppCompatActivity() {
                 window.statusBarColor = Color.parseColor("#FFFFFF")
             }
         }
+    }
+
+    override fun onDestroy() {
+        val intent = Intent()
+        intent.putExtra("isStateChange", isStateChange)
+        Log.e("댓글 달기 변경사항 있나1?", isStateChange.toString())
+        setResult(RESULT_OK, intent)
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        intent.putExtra("isStateChange", isStateChange)
+        Log.e("댓글 달기 변경사항 있나?2", isStateChange.toString())
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }

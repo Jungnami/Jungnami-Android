@@ -8,15 +8,21 @@
         android:id="@+id/contents_frag_rv_item_root_layout_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/contents_frag_rv_item_sub_content_image_iv"
-            android:layout_width="match_parent"
-            android:layout_height="109dp"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/contents_frag_sub_content_image_shape"/>
+
+        <RelativeLayout
+            android:id="@+id/contents_frag_rv_item_sub_content_image_bx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/contents_frag_rv_item_sub_content_image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="109dp"
+                android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/contents_frag_rv_item_sub_content_title_tv"
-            android:layout_below="@+id/contents_frag_rv_item_sub_content_image_iv"
+            android:layout_below="@+id/contents_frag_rv_item_sub_content_image_bx"
             android:layout_above="@+id/contents_frag_rv_item_sub_content_info_tv"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="6dp"

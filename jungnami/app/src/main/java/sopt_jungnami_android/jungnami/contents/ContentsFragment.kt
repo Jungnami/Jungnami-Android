@@ -96,9 +96,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         }
         //메인 컨텐츠 클릭 리스터
         contents_frag_main_content_lr.setOnClickListener {
-            if (mainContentData != null){
-                startActivity<ContentsDetail>("contents_id" to mainContentData!!.contentsid)
-            }
+            startActivity<ContentsDetail>("contents_id" to contents_id)
         }
 
     }

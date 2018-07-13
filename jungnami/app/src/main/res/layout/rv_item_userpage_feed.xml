@@ -33,9 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic_normal"
-                android:text="동굴문어"
+                android:text="-"
                 android:textColor="#000000"
-                android:textSize="13sp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/userpage_comment_rv_item_date"
@@ -44,8 +44,9 @@
                 android:layout_below="@id/userpage_feed_rv_item_profile_name_tv"
                 android:fontFamily="@font/nanumbarungothiclight_normal"
                 android:text="1시간 전"
+                android:layout_marginTop="5dp"
                 android:textColor="#707070"
-                android:textSize="11sp" />
+                android:textSize="9dp" />
 
         </LinearLayout>
         <!--이것도 공유하기 일 시 gone처리-->
