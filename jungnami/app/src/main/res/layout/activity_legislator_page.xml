@@ -35,291 +35,286 @@
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:background="#f3f3f3"/>
-        <android.support.v4.widget.SwipeRefreshLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.v4.widget.NestedScrollView
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="184dp"
+                    android:background="#ffffff">
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="184dp"
-                        android:background="#ffffff">
+                        android:id="@+id/legislator_frag_img_box"
+                        android:layout_margin="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                         <RelativeLayout
-                            android:id="@+id/legislator_frag_img_box"
-                            android:layout_margin="16dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <RelativeLayout
-                                android:layout_width="88dp"
-                                android:layout_height="88dp">
-                                <View
-                                    android:id="@+id/legislator_frag_party_color_circle_v"
-                                    android:background="@drawable/party_blue_circle_box"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <de.hdodenhof.circleimageview.CircleImageView
-                                    android:id="@+id/legislator_page_act_profile_img_iv"
-                                    android:layout_width="84dp"
-                                    android:layout_height="84dp"
-                                    android:layout_centerInParent="true"/>
-                            </RelativeLayout>
+                            android:layout_width="88dp"
+                            android:layout_height="88dp">
+                            <View
+                                android:id="@+id/legislator_frag_party_color_circle_v"
+                                android:background="@drawable/party_blue_circle_box"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/legislator_page_act_profile_img_iv"
+                                android:layout_width="84dp"
+                                android:layout_height="84dp"
+                                android:layout_centerInParent="true"/>
                         </RelativeLayout>
+                    </RelativeLayout>
 
-                        <RelativeLayout
-                            android:layout_toRightOf="@+id/legislator_frag_img_box"
+                    <RelativeLayout
+                        android:layout_toRightOf="@+id/legislator_frag_img_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_marginRight="16dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
                             <LinearLayout
-                                android:layout_marginRight="16dp"
-                                android:layout_width="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="18dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:gravity="center">
 
-                                <LinearLayout
-                                    android:orientation="horizontal"
-                                    android:layout_marginTop="18dp"
+                                <TextView
+                                    android:id="@+id/legislator_frag_name_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center">
+                                    android:layout_marginVertical="4dp"
+                                    android:fontFamily="@font/nanumbarungothic_normal"
+                                    android:text="-"
+                                    android:textSize="22dp"
+                                    android:textColor="#343434"/>
 
-                                    <TextView
-                                        android:id="@+id/legislator_frag_name_tv"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="4dp"
-                                        android:fontFamily="@font/nanumbarungothic_normal"
-                                        android:text="-"
-                                        android:textSize="22dp"
-                                        android:textColor="#343434"/>
-
-                                    <ImageView
-                                        android:id="@+id/legislator_page_act_like_top3_iv"
-                                        android:src="@drawable/legislatorpage_gold_medal"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="6dp"/>
-
-                                    <ImageView
-                                        android:id="@+id/legislator_page_act_unlike_top3_iv"
-                                        android:src="@drawable/legislatorpage_bomb_icon"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="6dp"/>
-
-                                </LinearLayout>
-
-                                <RelativeLayout
+                                <ImageView
+                                    android:id="@+id/legislator_page_act_like_top3_iv"
+                                    android:src="@drawable/legislatorpage_gold_medal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp">
+                                    android:layout_marginLeft="6dp"/>
 
-                                    <LinearLayout
-                                        android:gravity="center"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:id="@+id/legislator_frag_likeable_ranking_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumbarungothic_normal"
-                                            android:text="호감 -위 "
-                                            android:textSize="15dp"
-                                            android:textColor="#36c5f1"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumbarungothic_normal"
-                                            android:text="/"
-                                            android:textSize="15dp"
-                                            android:textColor="#36c5f1"/>
-
-                                        <TextView
-                                            android:id="@+id/legislator_frag_unlikeable_ranking_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumbarungothic_normal"
-                                            android:text=" 비호감 -위 "
-                                            android:textSize="15dp"
-                                            android:textColor="#36c5f1"/>
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
-
-                                <RelativeLayout
+                                <ImageView
+                                    android:id="@+id/legislator_page_act_unlike_top3_iv"
+                                    android:src="@drawable/legislatorpage_bomb_icon"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp">
-
-                                    <TextView
-                                        android:id="@+id/legislator_frag_party_name_tv"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumbarungothic_normal"
-                                        android:text="-"
-                                        android:textSize="12dp"
-                                        android:textColor="#9e9e9e"/>
-
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp">
-
-                                    <TextView
-                                        android:id="@+id/legislator_frag_position_tv"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumbarungothiclight_normal"
-                                        android:text="-"
-                                        android:textSize="12dp"
-                                        android:textColor="#9e9e9e"/>
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_marginTop="12dp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <RelativeLayout
-                                        android:id="@+id/legislator_page_likeable_btn"
-                                        android:layout_weight="1"
-                                        android:layout_marginRight="7dp"
-                                        android:background="@drawable/legislator_btn_box_shape"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="28dp">
-                                        <LinearLayout
-                                            android:id="@+id/legislator_page_act_like_btn"
-                                            android:orientation="horizontal"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true">
-                                            <TextView
-                                                android:fontFamily="@font/nanumbarungothic"
-                                                android:textColor="#FFFFFF"
-                                                android:textSize="13dp"
-                                                android:text="호감"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" />
-                                            <ImageView
-                                                android:layout_marginLeft="3dp"
-                                                android:layout_gravity="center"
-                                                android:src="@drawable/legislatorpage_good_icon"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" />
-                                        </LinearLayout>
-                                    </RelativeLayout>
-                                    <RelativeLayout
-                                        android:id="@+id/legislator_page_unlikeable_btn"
-                                        android:layout_weight="1"
-                                        android:layout_marginRight="7dp"
-                                        android:background="@drawable/legislator_btn_box_shape"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="28dp">
-                                        <LinearLayout
-                                            android:id="@+id/legislator_page_act_unlike_btn"
-                                            android:orientation="horizontal"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true">
-                                            <TextView
-                                                android:fontFamily="@font/nanumbarungothic"
-                                                android:textColor="#FFFFFF"
-                                                android:textSize="13dp"
-                                                android:text="비호감"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" />
-                                            <ImageView
-                                                android:layout_marginLeft="3dp"
-                                                android:layout_gravity="center"
-                                                android:src="@drawable/legislatorpage_bad_icon"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" />
-                                        </LinearLayout>
-                                    </RelativeLayout>
-                                    <RelativeLayout
-                                        android:id="@+id/legislator_page_sponsor_btn"
-                                        android:layout_weight="1"
-                                        android:background="@drawable/legislator_btn_box_shape"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="28dp">
-                                        <LinearLayout
-                                            android:id="@+id/legislator_page_act_sponsor_btn"
-                                            android:orientation="horizontal"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true">
-                                            <TextView
-                                                android:fontFamily="@font/nanumbarungothic"
-                                                android:textColor="#FFFFFF"
-                                                android:textSize="13dp"
-                                                android:text="후원하기"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" />
-                                            <ImageView
-                                                android:layout_marginLeft="3dp"
-                                                android:layout_gravity="center"
-                                                android:src="@drawable/legislatorpage_coin_icon"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" />
-                                        </LinearLayout>
-                                    </RelativeLayout>
-                                </LinearLayout>
+                                    android:layout_marginLeft="6dp"/>
 
                             </LinearLayout>
 
-                        </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp">
+
+                                <LinearLayout
+                                    android:gravity="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/legislator_frag_likeable_ranking_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothic_normal"
+                                        android:text="호감 -위 "
+                                        android:textSize="15dp"
+                                        android:textColor="#36c5f1"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothic_normal"
+                                        android:text="/"
+                                        android:textSize="15dp"
+                                        android:textColor="#36c5f1"/>
+
+                                    <TextView
+                                        android:id="@+id/legislator_frag_unlikeable_ranking_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothic_normal"
+                                        android:text=" 비호감 -위 "
+                                        android:textSize="15dp"
+                                        android:textColor="#36c5f1"/>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp">
+
+                                <TextView
+                                    android:id="@+id/legislator_frag_party_name_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumbarungothic_normal"
+                                    android:text="-"
+                                    android:textSize="12dp"
+                                    android:textColor="#9e9e9e"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp">
+
+                                <TextView
+                                    android:id="@+id/legislator_frag_position_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumbarungothiclight_normal"
+                                    android:text="-"
+                                    android:textSize="12dp"
+                                    android:textColor="#9e9e9e"/>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <RelativeLayout
+                                    android:id="@+id/legislator_page_likeable_btn"
+                                    android:layout_weight="1"
+                                    android:layout_marginRight="7dp"
+                                    android:background="@drawable/legislator_btn_box_shape"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="28dp">
+                                    <LinearLayout
+                                        android:id="@+id/legislator_page_act_like_btn"
+                                        android:orientation="horizontal"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+                                        <TextView
+                                            android:fontFamily="@font/nanumbarungothic"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="13dp"
+                                            android:text="호감"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                        <ImageView
+                                            android:layout_marginLeft="3dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/legislatorpage_good_icon"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:id="@+id/legislator_page_unlikeable_btn"
+                                    android:layout_weight="1"
+                                    android:layout_marginRight="7dp"
+                                    android:background="@drawable/legislator_btn_box_shape"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="28dp">
+                                    <LinearLayout
+                                        android:id="@+id/legislator_page_act_unlike_btn"
+                                        android:orientation="horizontal"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+                                        <TextView
+                                            android:fontFamily="@font/nanumbarungothic"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="13dp"
+                                            android:text="비호감"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                        <ImageView
+                                            android:layout_marginLeft="3dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/legislatorpage_bad_icon"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:id="@+id/legislator_page_sponsor_btn"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/legislator_btn_box_shape"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="28dp">
+                                    <LinearLayout
+                                        android:id="@+id/legislator_page_act_sponsor_btn"
+                                        android:orientation="horizontal"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+                                        <TextView
+                                            android:fontFamily="@font/nanumbarungothic"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="13dp"
+                                            android:text="후원하기"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                        <ImageView
+                                            android:layout_marginLeft="3dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/legislatorpage_coin_icon"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </RelativeLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:background="#f3f3f3"/>
+                </RelativeLayout>
 
-                    <RelativeLayout
-                        android:elevation="0.5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="51dp"
-                        android:background="#ffffff">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#f3f3f3"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/nanumbarungothicbold_normal"
-                            android:text="관련된 컨텐츠"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#2b2b2b"/>
+                <RelativeLayout
+                    android:elevation="0.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:background="#ffffff">
 
-                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:text="관련된 컨텐츠"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#2b2b2b"/>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/legislator_frag_recyclerview_rv"
-                        android:descendantFocusability="blocksDescendants"
-                        android:nestedScrollingEnabled="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                </RelativeLayout>
 
-                    </android.support.v7.widget.RecyclerView>
-                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/legislator_frag_recyclerview_rv"
+                    android:descendantFocusability="blocksDescendants"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            </android.support.v4.widget.NestedScrollView>
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
     <ImageView
         android:id="@+id/legislator_act_unlikeable_icon_with_animation_iv"

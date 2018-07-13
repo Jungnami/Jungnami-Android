@@ -3,6 +3,7 @@ package sopt_jungnami_android.jungnami.rank
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -27,6 +28,11 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankItemData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import android.support.v7.widget.RecyclerView
+import android.util.Log
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+
 
 class LikeableTab : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -65,25 +71,27 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     private fun initSettingView() {
         set1stVS2stRankView()
-        likeable_tab_refresh_srl.isRefreshing = false
         likeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
+        likeable_tab_refresh_srl.isRefreshing = false
         setRecyclerViewAdapter()
         setRankVoteCountProgressbarAnimation()
     }
 
     private fun refreshView() {
         set1stVS2stRankView()
-        setRecyclerViewAdapter()
         likeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
+        likeable_tab_refresh_srl.isRefreshing = false
+        setRecyclerViewAdapter()
         setRankVoteCountProgressbarAnimation()
     }
 
     //서버에서 데이터 받기
-    private fun getRankItemDataAtServer() {
+    fun getRankItemDataAtServer() {
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
 
         likeable_tab_refresh_srl.isRefreshing = true
+
         val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),1)
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
@@ -94,8 +102,10 @@ class LikeableTab : Fragment(), View.OnClickListener {
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
-                        legislatorRankDataList = legislatorRankDataList.take(10) as ArrayList<RankItemData>
+                        legislatorRankDataList = legislatorRankDataList.take(50) as ArrayList<RankItemData>
                         initSettingView()
+
+                        likeable_tab_refresh_srl.isRefreshing = false
 
 
                     } else {
@@ -108,6 +118,11 @@ class LikeableTab : Fragment(), View.OnClickListener {
     }
 
     private fun setClickListener() {
+        likeable_tab_refresh_srl.setOnRefreshListener {
+            getRankItemDataAtServer()
+        }
+
+
         likeable_tab_1st_btn.setOnClickListener {
             startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
         }
@@ -128,6 +143,7 @@ class LikeableTab : Fragment(), View.OnClickListener {
             }
 
             override fun onAnimationStart(animation: Animation?) {
+                likeable_tab_1st_vote_count_tv.visibility = View.INVISIBLE
                 likeable_tab_1st_vote_count_bar.visibility = View.VISIBLE
             }
         })
@@ -140,12 +156,14 @@ class LikeableTab : Fragment(), View.OnClickListener {
             }
 
             override fun onAnimationStart(animation: Animation?) {
+                likeable_tab_2st_vote_count_tv.visibility = View.INVISIBLE
                 likeable_tab_2st_vote_count_bar.visibility = View.VISIBLE
             }
         })
         likeable_tab_1st_vote_count_bar.startAnimation(animOf1st)
         likeable_tab_2st_vote_count_bar.startAnimation(animOf2st)
     }
+
 
     private fun setRecyclerViewAdapter() {
         likeableRankRecyclerViewAdapter = LikeableRankRecyclerViewAdapter(activity!!, legislatorRankDataList)
@@ -156,6 +174,7 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     //랭크 메인 vs 뷰 바꾸기
     private fun set1stVS2stRankView() {
+
         val rank1: RankItemData = legislatorRankDataList[0]
         val rank2: RankItemData = legislatorRankDataList[1]
         setVoteBarColor(rank1.party_name, likeable_tab_1st_vote_count_bar)
@@ -219,6 +238,4 @@ class LikeableTab : Fragment(), View.OnClickListener {
             else -> viewItem.background.setColorFilter(Color.parseColor("#B7B7B7"), PorterDuff.Mode.SRC_IN)
         }
     }
-
-
 }

@@ -15,7 +15,9 @@ import sopt_jungnami_android.jungnami.community.CommunityFragment
 import sopt_jungnami_android.jungnami.contents.ContentsFragment
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.legislator_list.LegislatorListFragment
+import sopt_jungnami_android.jungnami.rank.LikeableTab
 import sopt_jungnami_android.jungnami.rank.RankFragment
+import sopt_jungnami_android.jungnami.rank.UnlikeableTab
 
 class MainActivity : AppCompatActivity() {
     var current_tab_idx: Int = 0
@@ -67,6 +69,8 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onAnimationEnd(animation: Animation?) {
                     main_act_likeable_icon_with_animation_iv.visibility = View.GONE
+                    val fragment = supportFragmentManager.findFragmentById(R.id.main_act_fragment_fl)
+                    (fragment as RankFragment).connectionLikeableTab()
                 }
 
                 override fun onAnimationStart(animation: Animation?) {
@@ -81,6 +85,8 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onAnimationEnd(animation: Animation?) {
                     main_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
+                    val fragment = supportFragmentManager.findFragmentById(R.id.main_act_fragment_fl)
+                    (fragment as RankFragment).connectionUnLikeableTab()
                 }
 
                 override fun onAnimationStart(animation: Animation?) {
@@ -91,19 +97,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addFragment(fragment: Fragment): Unit {
+    fun addFragment(fragment: Fragment): Unit {
         val fm = supportFragmentManager
         val transaction = fm.beginTransaction()
         transaction.add(R.id.main_act_fragment_fl, fragment)
         transaction.commit()
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_act_fragment_fl, fragment)
 //        transaction.addToBackStack(null) //백키 눌렀을때 순차대로
         transaction.commit()
     }
+
+
 
     private fun chagneNonSelectedTabView(idx: Int) {
         when (idx) {

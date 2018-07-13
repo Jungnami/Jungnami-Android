@@ -92,9 +92,17 @@ class RankFragment : Fragment() {
         transaction.add(R.id.rank_frag_fragment_frame_fl, LikeableTab()).commit()
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.rank_frag_fragment_frame_fl, fragment).commit()
+    }
+    fun connectionLikeableTab(){
+        val fragment = childFragmentManager.findFragmentById(R.id.rank_frag_fragment_frame_fl)
+        (fragment as LikeableTab).getRankItemDataAtServer()
+    }
+    fun connectionUnLikeableTab(){
+        val fragment = childFragmentManager.findFragmentById(R.id.rank_frag_fragment_frame_fl)
+        (fragment as UnlikeableTab).getRankItemDataAtServer()
     }
 
 }

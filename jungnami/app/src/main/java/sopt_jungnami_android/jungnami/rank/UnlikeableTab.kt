@@ -76,7 +76,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         setRankVoteCountProgressbarAnimation()
     }
     //서버에서 데이터 받기
-    private fun getRankItemDataAtServer() {
+    fun getRankItemDataAtServer() {
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
 
@@ -102,10 +102,13 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                 }
             }
         })
-
     }
 
     private fun setClickListener(){
+        unlikeable_tab_refresh_srl.setOnRefreshListener {
+            getRankItemDataAtServer()
+        }
+
         unlikeable_tab_1st_btn.setOnClickListener {
             startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
         }
@@ -123,6 +126,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                 unlikeable_tab_1st_vote_count_tv.visibility = View.VISIBLE
             }
             override fun onAnimationStart(animation: Animation?) {
+                unlikeable_tab_1st_vote_count_tv.visibility = View.INVISIBLE
                 unlikeable_tab_1st_vote_count_bar.visibility = View.VISIBLE
             }
         })
@@ -133,6 +137,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                 unlikeable_tab_2st_vote_count_tv.visibility = View.VISIBLE
             }
             override fun onAnimationStart(animation: Animation?) {
+                unlikeable_tab_2st_vote_count_tv.visibility = View.INVISIBLE
                 unlikeable_tab_2st_vote_count_bar.visibility = View.VISIBLE
             }
         })

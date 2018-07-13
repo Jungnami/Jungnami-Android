@@ -1,17 +1,20 @@
 package sopt_jungnami_android.jungnami.coinpage
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_coin_page.*
 import sopt_jungnami_android.jungnami.R
 //made by YunHwan
 class CoinPageActivity : AppCompatActivity() {
     var isCoinChargeSelected : Boolean = true
-
+    var isStateChange : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin_page)
@@ -45,6 +48,11 @@ class CoinPageActivity : AppCompatActivity() {
             replaceFragment(VoteChargeFragment())
         }
         coinpage_act_cancel_btn.setOnClickListener {
+            val intent = Intent()
+            intent.putExtra("key", 0)
+            intent.putExtra("isStateChange", isStateChange)
+            Log.e("벡버튼 변경사항 있나?", isStateChange.toString())
+            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }
@@ -92,5 +100,22 @@ class CoinPageActivity : AppCompatActivity() {
                 window.statusBarColor = Color.parseColor("#FFFFFF")
             }
         }
+    }
+    override fun onDestroy() {
+        intent.putExtra("key", 0)
+        val intent = Intent()
+        intent.putExtra("isStateChange", isStateChange)
+        Log.e("디스트로이 변경사항 있나?", isStateChange.toString())
+        setResult(Activity.RESULT_OK, intent)
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        intent.putExtra("key", 0)
+        intent.putExtra("isStateChange", isStateChange)
+        Log.e("벡버튼 변경사항 있나?", isStateChange.toString())
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

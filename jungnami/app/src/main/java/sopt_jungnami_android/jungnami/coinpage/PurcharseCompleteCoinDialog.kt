@@ -47,7 +47,7 @@ class PurcharseCompleteCoinDialog(val ctx : Context) : Dialog(ctx) {
 //            ctx.startActivity<CoinPageActivity>("target" to "coin")
             dismiss()
             (ctx as CoinPageActivity).refreshCoinPage()
-
+            (ctx as CoinPageActivity).isStateChange = true
         }
     }
 
