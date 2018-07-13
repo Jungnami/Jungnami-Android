@@ -16,7 +16,7 @@
         android:id="@+id/act_following_rv_item_nick_name_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:fontFamily="@font/nanumbarungothicbold_normal"
         android:text="강지희"
         android:textColor="#2B2B2B"
