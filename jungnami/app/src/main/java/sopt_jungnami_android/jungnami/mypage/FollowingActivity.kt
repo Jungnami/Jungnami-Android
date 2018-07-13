@@ -33,6 +33,7 @@ class FollowingActivity : AppCompatActivity()  {
         networkService = ApplicationController.instance.networkService
 
         f_id= intent.getStringExtra("f_id")
+        setOnClickListener()
         getFollowing()
 
 
@@ -43,6 +44,12 @@ class FollowingActivity : AppCompatActivity()  {
 //        following_act_top_bar_rv.adapter = followingAdapter
 
 
+    }
+
+    fun setOnClickListener(){
+        following_act_top_bar_close_btn.setOnClickListener {
+            finish()
+        }
     }
 
     fun getFollowing(){

@@ -4,11 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.VisibleForTesting
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.View.VISIBLE
 import kotlinx.android.synthetic.main.activity_contents_search.*
+import kotlinx.android.synthetic.main.activity_search_result.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -43,6 +46,7 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_search)
         setStatusBarColor()
+        setClickListener()
         keyword = intent.getStringExtra("keyword")
         contentsSearchItems = ArrayList()
 
@@ -67,11 +71,18 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 override fun onResponse(call: Call<GetContentSearchResponse>?, response: Response<GetContentSearchResponse>?) {
+                    Log.v("ㅠㅠㅠ", "ㅠㅠ")
                     if (response!!.isSuccessful){
                         contentsSearchItems = response!!.body()!!.data
+                        Log.v("사이즈", "666")
                         if (contentsSearchItems.size == 0) {
-
-                        } else {
+                            // 검색 키워드 blank -> 검색 키워드 존재X
+                            Log.v("사이즈", "000")
+                            search_result_act_back_btn.visibility = View.VISIBLE
+                        }
+                        else if (contentsSearchItems.size == 1)
+                         {
+                            Log.v("사이즈", "111")
                             changeConetentsRecyclerViewData()
                         }
 
