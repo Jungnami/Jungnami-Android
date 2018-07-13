@@ -47,7 +47,7 @@
                     android:layout_toRightOf="@+id/search_result_act_search_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:text="김성태"
                     android:layout_centerVertical="true"
                     android:textColor="#2B2B2B"
@@ -69,7 +69,7 @@
                     android:fontFamily="@font/nanumbarungothic_normal"
                     android:hint="'국회의원의 이름을 검색해 보세요'"
                     android:textColor="#2B2B2B"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:visibility="gone"
                     />
 
@@ -107,7 +107,7 @@
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="검색 결과 없음"
             android:textColor="#D8D8D8"
-            android:textSize="24sp" />
+            android:textSize="24dp" />
     </RelativeLayout>
 
 
