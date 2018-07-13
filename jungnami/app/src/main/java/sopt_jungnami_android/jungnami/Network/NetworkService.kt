@@ -272,7 +272,7 @@ interface NetworkService {
 
     // 커뮤니티 글 작성 완료 made by SooYoung
     @Multipart
-    @POST("board/postcomplete")
+    @POST("board/postcompleteforand")
     fun postCommunityPostingResponse(
             @Header("authorization") tokenValue : String?,
             @Part ("content") posting_content: String?,
