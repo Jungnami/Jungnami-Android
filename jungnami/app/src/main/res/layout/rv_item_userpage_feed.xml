@@ -35,7 +35,7 @@
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="동굴문어"
                 android:textColor="#000000"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/userpage_comment_rv_item_date"
@@ -45,7 +45,7 @@
                 android:fontFamily="@font/nanumbarungothiclight_normal"
                 android:text="1시간 전"
                 android:textColor="#707070"
-                android:textSize="11sp" />
+                android:textSize="11dp" />
 
         </LinearLayout>
         <!--이것도 공유하기 일 시 gone처리-->
@@ -70,7 +70,7 @@
         android:fontFamily="@font/nanumbarungothic_normal"
         android:text="앱잼 가즈아ㅏ~~~"
         android:textColor="#707070"
-        android:textSize="13sp"
+        android:textSize="13dp"
         android:visibility="visible" />
 
     <!--공유하기면 gone처리-->
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/nanumbarungothic_normal"
-            android:textSize="13sp"
+            android:textSize="13dp"
             android:text="대한민국 정치의 가장 큰 문제점을 찾았습니다. 다들 권력을 쥐고 나서야 강압적 또는 선심쓰듯 대국민 통합을 외치는 겁니다."
             />
 
