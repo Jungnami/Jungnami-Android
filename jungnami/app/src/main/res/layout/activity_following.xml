@@ -29,7 +29,7 @@
                 android:layout_height="19dp"
                 android:text="팔로잉"
                 android:layout_centerInParent="true"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textColor="#2B2B2B"
                 android:fontFamily="@font/nanumbarungothicbold_normal"
                 />
@@ -89,7 +89,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="15dp"
         android:text="사람"
         android:textColor="#2B2B2B"
         android:fontFamily="@font/nanumbarungothicbold_normal"
