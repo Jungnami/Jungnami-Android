@@ -90,8 +90,6 @@ class LikeableTab : Fragment(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
 
-        likeable_tab_refresh_srl.isRefreshing = true
-
         val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),1)
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
@@ -102,7 +100,7 @@ class LikeableTab : Fragment(), View.OnClickListener {
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
-                        legislatorRankDataList = legislatorRankDataList.take(50) as ArrayList<RankItemData>
+                        legislatorRankDataList = legislatorRankDataList.take(100) as ArrayList<RankItemData>
                         initSettingView()
 
                         likeable_tab_refresh_srl.isRefreshing = false
