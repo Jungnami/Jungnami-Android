@@ -31,6 +31,7 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     private val REQUEST_CODE_CONTENTS_DETAILED = 1004
+    private val REQUEST_CODE_COIN_CHARGE = 7547
     override fun onClick(v: View?) {
         if (isSelectScrap){
             val index : Int = mypage_act_recyclerview_list_rv.getChildAdapterPosition(v)
@@ -88,10 +89,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                     if (target == "all"){
                         setMyInfoView()
                         setScrapRecyclerViewAdapter()
-                    } else if (target == "scrap"){
-                        setScrapRecyclerViewAdapter()
-                    } else if (target == "alert") {
-
+                    } else if (target == "info"){
+                        setMyInfoView()
                     }
                 }
             }
@@ -138,10 +137,10 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setClickListener(){
         mypage_act_mycoin_check_btn.setOnClickListener {
-            startActivity<CoinPageActivity>("target" to "coin")
+            startActivityForResult<CoinPageActivity>(REQUEST_CODE_COIN_CHARGE, "target" to "coin")
         }
         mypage_act_myvote_check_btn.setOnClickListener {
-            startActivity<CoinPageActivity>("target" to "vote")
+            startActivityForResult<CoinPageActivity>(REQUEST_CODE_COIN_CHARGE, "target" to "vote")
         }
         mypage_act_top_bar_back_btn.setOnClickListener {
             finish()
@@ -191,10 +190,23 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.e("여기는 마이페이지 판별소", "오긴왔나")
         if (requestCode == REQUEST_CODE_CONTENTS_DETAILED){
             if (resultCode == Activity.RESULT_OK){
                 val temp = data!!.getBooleanExtra("isChangeScapState", false)
                 if (temp) {
+                    requestMyPageDataToServer("all")
+                }
+            }
+
+        }
+        if (requestCode == REQUEST_CODE_COIN_CHARGE){
+            if (resultCode == Activity.RESULT_OK){
+                val temp = data!!.getBooleanExtra("isStateChange", false)
+                val value = data!!.getIntExtra("key",100)
+                Log.e("여기는 마이페이지 판별소", "key에 대한 value = $value")
+                if(temp){
+                    Log.e("여기는 마이페이지 판별소", "새롭게 리프레쉬")
                     requestMyPageDataToServer("all")
                 }
             }

@@ -223,22 +223,6 @@ interface NetworkService {
 
 
 
-//수영 라인!
-    // 커뮤니티 글 작성화면 made by SooYoung
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
-    @GET("board/post")
-    fun getCommunityPostingResponse(
-    ) : Call<GetCommunityPostingResponse>
-
-    // 커뮤니티 글 작성 완료 made by SooYoung
-    @Multipart
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
-    @POST("board/postcomplete")
-    fun postCommunityPostingResponse(
-            @Part ("content") posting_content: String,
-            @Part posting_image: MultipartBody.Part?,
-            @Part("shared") posting_shared: Int
-    ) : Call<PostCommunityPostingResponse>
     //수영 라인!
     // 커뮤니티 글 작성화면 made by SooYoung
     @GET("board/post")
@@ -251,7 +235,7 @@ interface NetworkService {
     @POST("board/postcomplete")
     fun postCommunityPostingResponse(
             @Header("authorization") tokenValue : String?,
-            @Part ("content") posting_content: String,
+            @Part ("content") posting_content: String?,
             @Part posting_image: MultipartBody.Part?,
             @Part("shared") posting_shared: Int
     ) : Call<PostCommunityPostingResponse>
@@ -271,7 +255,12 @@ interface NetworkService {
             @Path("islike") islike: Int,
             @Path("city") city: String
     ) : Call<GetPartyDistrictLegislatorListResponse>
-//수영 라인 종료!
+
+    // 알림 목록
+    @GET("user/push")
+    fun getAlarmResponse(
+            @Header("authorization") tokenValue: String?
+    ) : Call<GetAlarmResponse>
 //수영 라인 종료!
 
 }

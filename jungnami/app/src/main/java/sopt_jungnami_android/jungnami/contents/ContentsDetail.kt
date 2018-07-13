@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contents_detail.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -154,8 +155,12 @@ class ContentsDetail : AppCompatActivity() {
     }
 
     private fun setClickListener() {
-        //스크랩버튼, 나중에 isScap이랑 비디에서 받아온 isScap이랑 값이 다르면 통신을 통해서 삭제후 종료
         contents_act_detail_back_btn.setOnClickListener {
+            if (isUserMyPage){
+                val intent = Intent()
+                intent.putExtra("isChangeScapState", isChangeScapState)
+                setResult(Activity.RESULT_OK, intent)
+            }
             finish()
         }
 
@@ -170,6 +175,7 @@ class ContentsDetail : AppCompatActivity() {
         contents_act_detail_comment_btn.setOnClickListener {
             val intent = Intent(applicationContext, CommunityWritePage::class.java) // contents_comment 댓글 창 .kt 파일명
             startActivity(intent)
+            startActivity<ContentsCommentActivity>("contents_id" to contents_id)
         }
         contents_act_detail_share_btn.setOnClickListener {
 

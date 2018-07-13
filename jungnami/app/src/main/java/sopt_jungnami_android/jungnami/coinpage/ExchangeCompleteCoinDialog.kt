@@ -47,7 +47,7 @@ class ExchangeCompleteCoinDialog(val ctx : Context) : Dialog(ctx) {
 //            ctx.startActivity<CoinPageActivity>("target" to "coin")
             dismiss()
             (ctx as CoinPageActivity).refreshVotePage()
-
+            (ctx as CoinPageActivity).isStateChange = true
         }
     }
 

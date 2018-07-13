@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import kotlinx.android.synthetic.main.dialog_legislator_coin_sponse.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +37,11 @@ class SponsedCoinDialog(val ctx : Context, val l_id : Int) : Dialog(ctx) {
             dismiss()
         }
         legislator_page_popup_check_btn.setOnClickListener {
-            requestCompleteSponse()
+            if (legislator_user_coin_tv.text.isEmpty()){
+                ctx.toast("코인을 입력해주세요.")
+            } else {
+                requestCompleteSponse()
+            }
         }
     }
     private fun requestMyCoinDataToServer(){

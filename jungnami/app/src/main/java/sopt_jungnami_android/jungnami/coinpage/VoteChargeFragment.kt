@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.fragment_vote_charge.*
+import org.jetbrains.anko.support.v4.longToast
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,9 +41,14 @@ class VoteChargeFragment : Fragment() {
 
     private fun setClickListener(){
         votecharge_frag_exchange_btn_tv.setOnClickListener {
-            val exchangeDialog : Dialog = ExchangeCoinDialog(activity!!, votecharge_frag_vote_count_input_et.text.toString())
-            exchangeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            exchangeDialog.show()
+            if (votecharge_frag_vote_count_input_et.text.toString().isEmpty()){
+                longToast("교환할 코인 수를 입력해주세요.")
+            } else {
+                val exchangeDialog : Dialog = ExchangeCoinDialog(activity!!, votecharge_frag_vote_count_input_et.text.toString())
+                exchangeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                exchangeDialog.show()
+            }
+
         }
     }
 
