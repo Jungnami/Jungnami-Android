@@ -24,17 +24,27 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
         />
-
-
     <ImageView
+        android:id="@+id/act_following_rv_item_following_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_centerVertical="true"
         android:src="@drawable/alarm_following_gray"
+        android:visibility="visible"
         />
 
+    <ImageView
+        android:id="@+id/act_following_rv_item_follow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/alarm_follow_blue"
+        android:visibility="gone"
+        />
 
 
 

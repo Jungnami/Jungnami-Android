@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_following.*
 import retrofit2.Call
@@ -33,7 +32,6 @@ class FollowingActivity : AppCompatActivity()  {
         setStatusBarColor()
         networkService = ApplicationController.instance.networkService
 
-        //f_id = "809253344"
         f_id= intent.getStringExtra("f_id")
         getFollowing()
 
@@ -48,19 +46,16 @@ class FollowingActivity : AppCompatActivity()  {
     }
 
     fun getFollowing(){
-        Log.v("왜안들어요냐","들어와라")
+//        f_id = 809075065.toString()
         val getFollowingResponse = networkService.getFollowing(f_id!!)
-        Log.v("2031",f_id.toString())
         getFollowingResponse.enqueue(object : Callback<GetFollowingResponse> {
             override fun onFailure(call: Call<GetFollowingResponse>?, t: Throwable?) {
-                Log.v("1000", "안돼이건")
 
             }
 
             override fun onResponse(call: Call<GetFollowingResponse>?, response: Response<GetFollowingResponse>?) {
                 if(response!!.isSuccessful){
                     followingItems = response!!.body()!!.data
-                    Log.v("9991",followingItems.toString())
                     followingAdapter = FollowingAdapter(followingItems, context)
 //                  followingAdapter.setOnItemClick(this@FollowingActivity)
                     following_act_top_bar_rv.layoutManager = LinearLayoutManager(context)
