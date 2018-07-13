@@ -130,7 +130,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     }
 
     fun getCommunityPostingResponse() {
-        val getCommunityPostingResponse = networkService.getCommunityPostingResponse(SharedPreferenceController.getMyId(context))
+        val getCommunityPostingResponse = networkService.getCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext))
         getCommunityPostingResponse.enqueue(object : retrofit2.Callback<GetCommunityPostingResponse>{
             override fun onFailure(call: Call<GetCommunityPostingResponse>?, t: Throwable?) {
                 toast("error!")
@@ -147,26 +147,70 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     }
 
     fun postCommunityPostingResponse() {
-        var content : String = community_act_writepage_posting_et.text.toString()
-        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getMyId(context), content, image, 0)
-        postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
-            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
-                if(response!!.isSuccessful){
-                    if (isShared == 0){
-                        // refresh 기능 구현. intent 기능 윤환오빠와.
+        var content: String? = null
+        if (isShared == 0) {
+            if (community_act_writepage_posting_et.text.toString().isEmpty()) {
+                content = null
+            }
+            else {
+                content = community_act_writepage_posting_et.text.toString()
+            }
+            val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext), content, image, isShared)
+            postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse> {
+                override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+                    if (response!!.isSuccessful) {
                         finish()
                         Log.v("success", "내가 쓴 글")
                     }
-                    else {
+                }
+                override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+                    toast("Error!")
+                }
+            })
+        }
+        else {
+            val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext), null, null, isShared)
+            postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse> {
+                override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+                    if (response!!.isSuccessful) {
+                        finish()
                         Log.v("success", "타인이 쓴 글")
                     }
                 }
-            }
-            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
-                toast("Error!")
-            }
-        })
+                override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+                    toast("Error!")
+                }
+            })
+        }
     }
+
+//    fun postCommunityPostingResponse() {
+//        var content : String? = null
+//        if (community_act_writepage_posting_et.text.toString().isEmpty()){
+//            content = null
+//        } else {
+//            content = community_act_writepage_posting_et.text.toString()
+//        }
+//        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext), content, image, isShared)
+//        postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
+//            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+//                if(response!!.isSuccessful){
+//                    if (isShared == 0){
+//                        // refresh 기능 구현. intent 기능 윤환오빠와.
+//                        finish()
+//                        Log.v("success", "내가 쓴 글")
+//                    }
+//                    else {
+//
+//                        Log.v("success", "타인이 쓴 글")
+//                    }
+//                }
+//            }
+//            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+//                toast("Error!")
+//            }
+//        })
+//    }
 
     private fun checkUploadedContent() {
         community_act_writepage_complete_btn.isSelected = isText || isIMG || isGIF
