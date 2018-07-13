@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
@@ -128,7 +129,7 @@ class PartyDistrictLegislatorListViewAdapter(private var context: Context?, priv
     }
 
     class PartyDistrictLegislatorListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val legislator_rvlayout: LinearLayout = itemView!!.findViewById(R.id.rv_item_legislator_background_ll) as LinearLayout
+        val legislator_rvlayout: RelativeLayout = itemView!!.findViewById(R.id.rv_item_legislator_background_ll) as RelativeLayout
         val legislator_rank: TextView = itemView!!.findViewById(R.id.rv_item_legislator_rank_num_tv) as TextView
         val legislator_partycolor: CircleImageView = itemView!!.findViewById(R.id.rv_item_legislator_party_color_img_iv) as CircleImageView
         val legislator_profileIMG: CircleImageView = itemView!!.findViewById(R.id.rv_item_legislator_profile_img_iv) as CircleImageView

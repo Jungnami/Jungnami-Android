@@ -16,7 +16,7 @@
             android:id="@+id/rv_alarm_item_user_img_btn"
             android:src="@drawable/alarm_none_profile_man_image"
             android:layout_width="56.5dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56.5dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"/>
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="동글문어"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#757575"
                 android:textStyle="bold"/>
 
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="님이 댓글을 남겼습니다."
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textColor="#757575" />
 
         </LinearLayout>
