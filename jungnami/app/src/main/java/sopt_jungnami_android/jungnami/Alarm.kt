@@ -9,14 +9,25 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_alarm.*
+import kotlinx.android.synthetic.main.activity_follower.*
+import kotlinx.android.synthetic.main.activity_following.*
+import kotlinx.android.synthetic.main.rv_item_alarm.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetAlarmResponse
+import sopt_jungnami_android.jungnami.Get.GetFollowerResponse
+import sopt_jungnami_android.jungnami.Get.GetFollowingResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.data.AlarmData
+import sopt_jungnami_android.jungnami.data.FollowerData
+import sopt_jungnami_android.jungnami.data.FollowingData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.mypage.FollowerAdapter
+import sopt_jungnami_android.jungnami.mypage.FollowingAdapter
+
+// Written by SooYoung
 
 class Alarm : AppCompatActivity(){
 
@@ -57,9 +68,12 @@ class Alarm : AppCompatActivity(){
                 alarmItems = response!!.body()!!.data
                 if(response!!.isSuccessful){
                     Log.v("통신 성공?", "통신 성공?")
+                    Log.v("통신 성공?", response.body()!!.data!!.toString())
+                    Log.v("통신 성공?", response.body()!!.data[0].id)
                     alarmAdapter = AlarmViewAdapter(context, alarmItems)
                     rv_alarm.layoutManager = LinearLayoutManager(context)
                     rv_alarm.adapter = alarmAdapter
+                    Log.v("통신 성공!", "통신 성공!")
                 }
             }
         })
