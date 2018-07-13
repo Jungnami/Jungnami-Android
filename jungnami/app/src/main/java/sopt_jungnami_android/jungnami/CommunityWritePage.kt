@@ -40,6 +40,7 @@ import java.io.InputStream
 // Written by SooYoung
 
 class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
+    var isStateChange : Boolean= false
 
     lateinit var networkService: NetworkService
     var context : Context = this
@@ -51,6 +52,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     var isText: Boolean = false
     var isIMG: Boolean = false
     var isGIF: Boolean = false
+
 
     var isShared : Int = 0
 
@@ -106,15 +108,29 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         }
         community_act_writepage_upload_gif_btn.setOnClickListener {
             val imageviewGIF: ImageView = findViewById(R.id.community_act_writepage_upload_gif_iv)
+            val imageviewdummyGIF1: ImageView = findViewById(R.id.community_act_writepage_dummy_gif1)
+            val imageviewdummyGIF2: ImageView = findViewById(R.id.community_act_writepage_dummy_gif2)
             val gifImage = DrawableImageViewTarget(imageviewGIF)
             Visible(imageviewGIF)
+            Visible(imageviewdummyGIF1)
+            Visible(imageviewdummyGIF2)
             Glide.with(this).load(R.drawable.dancing_citizen).into(gifImage)
             community_act_writepage_upload_gif_iv.setOnClickListener {
-                Gone(imageviewGIF)
+                Invisible(imageviewGIF)
+                Invisible(imageviewdummyGIF1)
+                Invisible(imageviewdummyGIF2)
                 Glide.with(this).load(R.drawable.dancing_citizen).into(community_act_writepage_upload_pic_iv)
                 isGIF = true
                 checkUploadedContent()
             }
+//            val options = BitmapFactory.Options()
+//            var input: InputStream? = null
+//            val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 생성
+//            val baos = ByteArrayOutputStream()
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
+//            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
+//            val photo = File(this.data.toString()) // 가져온 파일의 이름
+//            image = MultipartBody.Part.createFormData("image", photo.name, photoBody)
         }
         community_act_writepage_upload_pic_iv.setOnClickListener {
             community_act_writepage_upload_pic_iv.setImageBitmap(null)
@@ -146,6 +162,26 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         })
     }
 
+    fun stringTrim(editText: EditText): String {
+        val content = community_act_writepage_posting_et.text.toString()
+        val complete = content.myTrim()
+        Log.v("통신", "포스팅")
+        return complete
+    }
+
+    fun String.myTrim() : String {
+        var result: String = " "
+
+        var startIdx = 0
+        while (startIdx < this.length && this[startIdx] == '"') startIdx ++
+
+        var endIdx = this.length - 1
+        while (endIdx >= 0 && this[endIdx] == '"') endIdx --
+
+        result = this.substring(startIdx, endIdx+1)
+        return result
+    }
+
     fun postCommunityPostingResponse() {
         var content: String? = null
         if (isShared == 0) {
@@ -153,12 +189,14 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                 content = null
             }
             else {
-                content = community_act_writepage_posting_et.text.toString()
+                content = stringTrim(community_act_writepage_posting_et)
             }
             val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext), content, image, isShared)
             postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse> {
                 override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
                     if (response!!.isSuccessful) {
+                        isStateChange = true
+                        Log.v("EditText", content)
                         finish()
                         Log.v("success", "내가 쓴 글")
                     }
@@ -216,14 +254,12 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         community_act_writepage_complete_btn.isSelected = isText || isIMG || isGIF
     }
 
-    fun Gone(v: View?){
-        val gif = findViewById<ImageView>(R.id.community_act_writepage_upload_gif_iv)
-        gif.visibility = View.INVISIBLE
+    fun Invisible(v: View?){
+        v!!.visibility = View.INVISIBLE
     }
 
     fun Visible(v: View?){
-        val gif = findViewById<ImageView>(R.id.community_act_writepage_upload_gif_iv)
-        gif.visibility = View.VISIBLE
+        v!!.visibility = View.VISIBLE
     }
 
     fun changeImage() {
@@ -273,6 +309,13 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        intent.putExtra("isStateChange", true)
+
+        finish()
     }
 
     private fun setStatusBarColor() {
