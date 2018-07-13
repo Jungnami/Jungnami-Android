@@ -116,6 +116,12 @@ interface NetworkService {
     fun deleteFollow(
             @Path("f_id") f_id : String
     ) : Call<DeleteFollowResponse>
+    // 콘텐츠 검색 결과 보기 made by 형민
+//    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+//    @GET("search/contents/{keyword}")
+//    fun getContentsSearchresult(
+//            @Path("keyword") keyword : String
+//    ) : Call<GetContentSearchResponse>
 //형민이 라인 종료!
 
 

@@ -27,12 +27,12 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="24.43dp">
 
-        <ImageView
-            android:id="@+id/rv_item_legislator_party_color_img_iv"
-            android:src="@drawable/partylist_legislator_profile_circle"
-            android:layout_width="52.93dp"
-            android:layout_height="52.93dp"
-            android:layout_centerInParent="true"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/rv_item_legislator_party_color_img_iv"-->
+            <!--android:src="@drawable/partylist_legislator_profile_circle"-->
+            <!--android:layout_width="52.93dp"-->
+            <!--android:layout_height="52.93dp"-->
+            <!--android:layout_centerInParent="true"/>-->
         
         <ImageView
             android:id="@+id/rv_item_legislator_profile_img_btn"
@@ -48,15 +48,15 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="27.43dp">
 
-        <TextView
-            android:id="@+id/rv_item_legislator_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/nanumbarungothic_normal"
-            android:text="임수영"
-            android:textSize="15sp"
-            android:textColor="#6b6b6b"/>
+        <!--<TextView-->
+            <!--android:id="@+id/rv_item_legislator_name_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:fontFamily="@font/nanumbarungothic_normal"-->
+            <!--android:text="임수영"-->
+            <!--android:textSize="15sp"-->
+            <!--android:textColor="#6b6b6b"/>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
