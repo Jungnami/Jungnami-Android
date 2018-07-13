@@ -35,7 +35,14 @@ class FollowerActivity : AppCompatActivity() {
         networkService = ApplicationController.instance.networkService
 
         f_id= intent.getStringExtra("f_id")
+        setOnClickListener()
         getFollower()
+    }
+
+    fun setOnClickListener(){
+        follower_act_top_bar_close_btn.setOnClickListener {
+            finish()
+        }
     }
 
     fun getFollower(){

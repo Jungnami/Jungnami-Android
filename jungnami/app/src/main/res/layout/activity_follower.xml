@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--wrriten by HyeongMin-->
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,7 +24,7 @@
                     android:padding="6dp"
                     android:src="@drawable/alarm_x_btn"
                     android:layout_centerVertical="true"
-                    />
+                    android:background="?android:selectableItemBackground"/>
 
                 <TextView
                     android:layout_width="43dp"
