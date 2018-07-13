@@ -9,12 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_contents.*
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,6 +58,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
     var contents_id : Int = 0
     lateinit var networkService : NetworkService
     var alertCount : Int = 0
+    lateinit var edittext : EditText
 
     lateinit var mainRecommendImage : ImageView
 
@@ -65,6 +66,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_contents, container, false)
         mainRecommendImage = view.findViewById(R.id.contents_frag_main_content_image_iv) as ImageView
+
         return view
     }
 
@@ -72,35 +74,14 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
 
-        recommendDataList = ArrayList()
-        tmiOrStoryDataList = ArrayList()
-        storyDataList = ArrayList()
-
         requestRecommendContentsDataToServer()
+
+
 
 
 
     }
     private fun setClickListener(){
-        contents_frag_refresh_srl.setOnRefreshListener {
-            when (current_tab_idx){
-                0 -> {
-//                    contents_frag_total_blind.visibility = View.GONE
-                    requestRecommendContentsDataToServer()
-                }
-                1 -> {
-//                    contents_frag_total_blind.visibility = View.GONE
-
-                    requestTmiOrStoryDataToServer("TMI")
-                }
-                2 -> {
-//                    contents_frag_total_blind.visibility = View.GONE
-
-                    requestTmiOrStoryDataToServer("스토리")
-                }
-            }
-        }
-
         contents_frag_top_bar_my_page_btn.setOnClickListener {
             startActivity<MyPageActivity>()
         }
@@ -109,20 +90,25 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         }
         //Tab 클릭 리스터
         contents_frag_recommend_btn.setOnClickListener {
-            //contents_frag_total_blind.visibility = View.GONE
             checkSelectedTabView(0)
         }
         contents_frag_tmi_btn.setOnClickListener {
-            //contents_frag_total_blind.visibility = View.GONE
             checkSelectedTabView(1)
         }
         contents_frag_story_btn.setOnClickListener {
-            //contents_frag_total_blind.visibility = View.GONE
             checkSelectedTabView(2)
         }
         //메인 컨텐츠 클릭 리스터
         contents_frag_main_content_lr.setOnClickListener {
             startActivity<ContentsDetail>("contents_id" to contents_id)
+        }
+        contents_frag_top_bar_search_insert_btn.setOnClickListener {
+            edittext = view!!.findViewById(R.id.contents_frag_top_bar_search_et)
+
+            var keyword = edittext.text.toString()
+
+            startActivity<ContentsSearchActivity>("keyword" to keyword)
+
         }
 
     }
@@ -137,15 +123,13 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                     .into(mainRecommendImage)
             contents_frag_main_content_title_tv.text = mainContent!!.title
             contents_frag_main_content_info_tv.text = mainContent!!.text
-
-//            contents_frag_main_content_lr.visibility = View.VISIBLE
+            contents_frag_main_content_lr.visibility = View.VISIBLE
         }
 
     }
 
     private fun requestRecommendContentsDataToServer(){
-        contents_frag_refresh_srl.isRefreshing = true
-
+        recommendDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
 
         val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!))
@@ -168,15 +152,14 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                         //추천 컨텐츠 뿌리기
                         changeConetentsRecyclerViewData()
                     } else {
-                        contents_frag_total_blind.visibility = View.INVISIBLE
+                        contents_frag_main_content_lr.visibility = View.GONE
                     }
                 }
             }
         })
     }
     private fun requestTmiOrStoryDataToServer(category : String){
-        contents_frag_refresh_srl.isRefreshing = true
-
+        tmiOrStoryDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
         Log.e("요청 카테고리는? ", category)
         val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context = context!!),category)
@@ -187,23 +170,19 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<GetTmiStoryContentsResponse>?, response: Response<GetTmiStoryContentsResponse>?) {
                 if (response!!.isSuccessful){
                     if (response!!.body()!!.data.content.size != 0){
+                        Log.e("TMI or STORY 컨텐츠 ", "${response!!.body()!!.data.content}")
                         alertCount = response.body()!!.data.alarmcnt
                         setAlertBellView()
-                        if (category == "TMI") {
-                            tmiOrStoryDataList = response.body()!!.data.content
-                            setMainContentView(tmiOrStoryDataList[0])
-                            contents_id = tmiOrStoryDataList[0].contentsid
-                            tmiOrStoryDataList.removeAt(0)
-                        } else {
-                            storyDataList = response.body()!!.data.content
-                            setMainContentView(storyDataList[0])
-                            contents_id = storyDataList[0].contentsid
-                            storyDataList.removeAt(0)
-                        }
+                        tmiOrStoryDataList = response.body()!!.data.content
+
+                        setMainContentView(tmiOrStoryDataList[0])
+                        contents_id = tmiOrStoryDataList[0].contentsid
+                        tmiOrStoryDataList.removeAt(0)
 
                         changeConetentsRecyclerViewData()
                     } else {
-                        contents_frag_total_blind.visibility = View.INVISIBLE
+                        Log.e("컨텐츠 없넹2", "컨텐츠 없넹2")
+                        contents_frag_main_content_lr.visibility = View.GONE
                     }
 
                 }
@@ -220,19 +199,15 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
 
     private fun changeConetentsRecyclerViewData(){
-
-        when(current_tab_idx){
-            0 -> contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, recommendDataList)
-            1 -> contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, tmiOrStoryDataList)
-            2 -> contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, storyDataList)
+        if (current_tab_idx == 0){
+            contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, recommendDataList)
+        } else {
+            contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, tmiOrStoryDataList)
         }
 
         contentsRecyclerViewAdapter.setOnItemClickListener(this)
         contents_frag_sub_contents_recycler_rv.layoutManager = GridLayoutManager(context!!,2) as RecyclerView.LayoutManager?
         contents_frag_sub_contents_recycler_rv.adapter = contentsRecyclerViewAdapter
-
-        contents_frag_refresh_srl.isRefreshing = false
-        contents_frag_total_blind.visibility = View.VISIBLE
     }
 
 

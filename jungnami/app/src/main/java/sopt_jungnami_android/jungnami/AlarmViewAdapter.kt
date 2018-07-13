@@ -20,6 +20,7 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostFollowRequest
 import sopt_jungnami_android.jungnami.Post.PostFollwResponse
 import sopt_jungnami_android.jungnami.data.AlarmData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class AlarmViewAdapter (private var context: Context, private var alarmItems : ArrayList<AlarmData>) : RecyclerView.Adapter<AlarmViewAdapter.AlarmViewHolder>() {
 
@@ -113,8 +114,7 @@ class AlarmViewAdapter (private var context: Context, private var alarmItems : A
         networkService = ApplicationController.instance.networkService
 //        var following_id : String = followingItems!![position].following_id
         var following_id : String = alarmItems[position].id
-        var postFollowRequest = PostFollowRequest(following_id)
-        var postFollowResponse = networkService.postFollow(postFollowRequest)
+        var postFollowResponse = networkService.postFollow(SharedPreferenceController.getAuthorization(context),following_id)
         postFollowResponse.enqueue(object : Callback<PostFollwResponse> {
             override fun onFailure(call: Call<PostFollwResponse>?, t: Throwable?) {
 
@@ -134,7 +134,7 @@ class AlarmViewAdapter (private var context: Context, private var alarmItems : A
     fun deleteFollow(position: Int){
         var following_id : String = alarmItems!![position].id
         networkService = ApplicationController.instance.networkService
-        val deleteFollowResponse = networkService.deleteFollow(following_id)
+        val deleteFollowResponse = networkService.deleteFollow(SharedPreferenceController.getAuthorization(context),following_id)
         deleteFollowResponse.enqueue(object :Callback<DeleteFollowResponse>{
             override fun onFailure(call: Call<DeleteFollowResponse>?, t: Throwable?) {
             }
