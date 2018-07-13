@@ -4,5 +4,5 @@ import sopt_jungnami_android.jungnami.data.AlarmData
 
 data class GetAlarmResponse (
         val message: String,
-        val data: AlarmData
+        val data: ArrayList<AlarmData>
 )

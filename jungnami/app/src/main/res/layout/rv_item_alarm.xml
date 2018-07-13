@@ -4,35 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="73dp"
     android:id="@+id/rv_alarm_item_click_btn"
-    android:background="?android:selectableItemBackground">
+    android:background="#ffffff">
 
     <RelativeLayout
-        android:layout_width="77dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <!--여기서부터 수정...-->
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/rv_alarm_item_user_img_btn"
             android:src="@drawable/alarm_none_profile_man_image"
-            android:layout_width="wrap_content"
+            android:layout_width="56.5dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"/>
-
-        <RelativeLayout
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="50dp">
-
-            <ImageView
-                android:id="@+id/rv_alarm_item_menu_iv"
-                android:src="@drawable/alarm_community"
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
-
-        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -40,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginLeft="7dp">
+        android:layout_marginLeft="11dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -94,13 +80,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="28dp">
+            android:layout_marginTop="26dp">
+
+            <ImageView
+                android:id="@+id/rv_alarm_item_following_btn"
+                android:src="@drawable/alarm_following_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                />
 
             <ImageView
                 android:id="@+id/rv_alarm_item_follow_btn"
-                android:src="@drawable/alarm_following_gray"
-                android:layout_width="66dp"
-                android:layout_height="25dp"
+                android:src="@drawable/alarm_follow_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
                 />
 
         </RelativeLayout>
