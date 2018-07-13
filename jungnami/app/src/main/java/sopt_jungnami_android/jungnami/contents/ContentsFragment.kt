@@ -51,13 +51,11 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
     var current_tab_idx : Int = 0
     lateinit var contentsRecyclerViewAdapter: ContentsRecyclerViewAdapter
-
-
     lateinit var recommendDataList: ArrayList<Contents>
     lateinit var tmiOrStoryDataList : ArrayList<Contents>
     lateinit var storyDataList : ArrayList<Contents>
-    lateinit var mainContentData : Contents
-
+    var mainContentData : Contents? = null
+    var contents_id : Int = 0
     lateinit var networkService : NetworkService
     var alertCount : Int = 0
 
@@ -98,23 +96,27 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         }
         //메인 컨텐츠 클릭 리스터
         contents_frag_main_content_lr.setOnClickListener {
-            startActivity<ContentsDetail>("contents_id" to mainContentData.contentsid)
+            if (mainContentData != null){
+                startActivity<ContentsDetail>("contents_id" to mainContentData!!.contentsid)
+            }
         }
 
     }
 
-    private fun setMainContentView(){
-        val requestOptions = RequestOptions()
-        requestOptions.centerCrop()
-        Glide.with(context!!)
-                .setDefaultRequestOptions(requestOptions)
-                .load(mainContentData.thumbnail)
-                .into(mainRecommendImage)
-        contents_frag_main_content_title_tv.text = mainContentData.title
-        contents_frag_main_content_info_tv.text = mainContentData.text
-//        contents_frag_main_content_image_iv.setImageResource()
+    private fun setMainContentView(mainContent : Contents?){
+        if (mainContent != null){
+            val requestOptions = RequestOptions()
+            requestOptions.centerCrop()
+            Glide.with(context!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(mainContent!!.thumbnail)
+                    .into(mainRecommendImage)
+            contents_frag_main_content_title_tv.text = mainContent!!.title
+            contents_frag_main_content_info_tv.text = mainContent!!.text
 
-        contents_frag_main_content_lr.visibility = View.VISIBLE
+            contents_frag_main_content_lr.visibility = View.VISIBLE
+        }
+
     }
 
     private fun requestRecommendContentsDataToServer(){
@@ -129,18 +131,20 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<GetRecommendContentsResponse>?, response: Response<GetRecommendContentsResponse>?) {
                 if (response!!.isSuccessful){
-                    alertCount = response.body()!!.data.alarmcnt
-                    setAlertBellView()
+                    if (response!!.body()!!.data.content.size != 0){
+                        alertCount = response.body()!!.data.alarmcnt
+                        setAlertBellView()
+                        recommendDataList = response.body()!!.data.content
 
-                    recommendDataList = response.body()!!.data.content
-                    //추천 메인 컨텐츠 빼주기
-                    mainContentData = recommendDataList[0]
-                    recommendDataList.removeAt(0)
-                    setMainContentView()
+                        contents_id = recommendDataList[0].contentsid
+                        setMainContentView(recommendDataList[0])
+                        recommendDataList.removeAt(0)
 
-                    //추천 컨텐츠 뿌리기
-                    changeConetentsRecyclerViewData()
-
+                        //추천 컨텐츠 뿌리기
+                        changeConetentsRecyclerViewData()
+                    } else {
+                        contents_frag_main_content_lr.visibility = View.GONE
+                    }
                 }
             }
         })
@@ -148,7 +152,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
     private fun requestTmiOrStoryDataToServer(category : String){
         tmiOrStoryDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
-
+        Log.e("요청 카테고리는? ", category)
         val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context = context!!),category)
         getTmiStoryContentsResponse.enqueue(object : Callback<GetTmiStoryContentsResponse>{
             override fun onFailure(call: Call<GetTmiStoryContentsResponse>?, t: Throwable?) {
@@ -156,15 +160,22 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             }
             override fun onResponse(call: Call<GetTmiStoryContentsResponse>?, response: Response<GetTmiStoryContentsResponse>?) {
                 if (response!!.isSuccessful){
-                    tmiOrStoryDataList = response.body()!!.data.content
-                    mainContentData = tmiOrStoryDataList[0]
-                    tmiOrStoryDataList.removeAt(0)
-                    setMainContentView()
+                    if (response!!.body()!!.data.content.size != 0){
+                        Log.e("TMI or STORY 컨텐츠 ", "${response!!.body()!!.data.content}")
+                        alertCount = response.body()!!.data.alarmcnt
+                        setAlertBellView()
+                        tmiOrStoryDataList = response.body()!!.data.content
 
-                    alertCount = response.body()!!.data.alarmcnt
-                    setAlertBellView()
+                        setMainContentView(tmiOrStoryDataList[0])
+                        contents_id = tmiOrStoryDataList[0].contentsid
+                        tmiOrStoryDataList.removeAt(0)
 
-                    changeConetentsRecyclerViewData()
+                        changeConetentsRecyclerViewData()
+                    } else {
+                        Log.e("컨텐츠 없넹2", "컨텐츠 없넹2")
+                        contents_frag_main_content_lr.visibility = View.GONE
+                    }
+
                 }
             }
         })

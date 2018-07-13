@@ -1,7 +1,7 @@
 package sopt_jungnami_android.jungnami.data
 
 data class FeedItemData (
-        val content: List<Content>,
+        val content: ArrayList<Content>,
         val user_img_url: String,
         val alarmcnt: Int
 )

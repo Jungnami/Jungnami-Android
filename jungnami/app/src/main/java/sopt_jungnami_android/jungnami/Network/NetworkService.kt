@@ -49,44 +49,51 @@ interface NetworkService {
             @Path("l_name") l_name : String
     ) : Call<GetRankingSearchLegislatorResponse>
     // 커뮤니티 댓글 가져오기
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("board/commentlist/{board_id}")
     fun getCommunityComment(
+            @Header("authorization") tokenValue : String?,
             @Path("board_id") board_id: Int
     ) : Call<GetCommunityCommentResponse>
 
     // 커뮤니티 댓글쓰기 by 탁형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @FormUrlEncoded
     @POST("board/makecomment")
     fun postCommunityComment(
-            @Body postCommunityCommentRequest: PostCommunityCommentRequest
+            @Header("authorization") tokenValue : String?,
+            @Field("board_id") board_id : Int,
+            @Field("content") content : String
     ) : Call<postCommunityLikeResponse>
 
     // 커뮤니티 댓글 좋아요 by 탁형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @FormUrlEncoded
     @POST("board/likecomment")
     fun postCommunityCommentLike(
-            @Body postCommunityCommentLikeRequset: PostCommunityCommentLikeRequset
+            @Header("authorization") tokenValue : String?,
+            @Field("comment_id") comment_id : Int
     ) : Call<postCommunityLikeResponse>
     // 콘텐츠 댓글 가져오기
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("contents/commentlist/{contents_id}")
     fun getContentsComment(
+            @Header("authorization") tokenValue : String?,
             @Path("contents_id") contents_id: Int
     ) : Call<GetContentsCommentResponse>
 
     // 콘텐츠 댓글쓰기 by 탁형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    //붙여야될듯?
+    @FormUrlEncoded
     @POST("contents/makecomment")
     fun postContentsComment(
-            @Body postContentsCommentRequest: PostContentsCommentRequest
+            @Header("authorization") tokenValue : String?,
+            @Field("contents_id") contents_id : Int,
+            @Field("content") content : String
     ) : Call<postCommunityLikeResponse>
 
     // 콘텐츠 댓글 좋아요 by 탁형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
+    @FormUrlEncoded
     @POST("contents/likecomment")
     fun postContentsCommentLike(
-            @Body postContentsCommentLikeRequset: PostCommunityCommentLikeRequset
+            @Header("authorization") tokenValue : String?,
+            @Field("comment_id") comment_id : Int
     ) : Call<postCommunityLikeResponse>
 //형민이 라인 종료!
 

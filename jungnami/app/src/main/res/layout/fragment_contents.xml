@@ -205,7 +205,7 @@
 
                     <RelativeLayout
                         android:id="@+id/contents_frag_main_content_lr"
-                        android:visibility="invisible"
+                        android:visibility="visible"
                         android:layout_marginTop="9dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginHorizontal="16dp"
@@ -219,7 +219,6 @@
                         <TextView
                             android:id="@+id/contents_frag_main_content_title_tv"
                             android:textSize="16dp"
-                            android:text="국회의원 아들과 폐지 줍는 부모님?"
                             android:fontFamily="@font/nanumbarungothic"
                             android:layout_marginLeft="17dp"
                             android:layout_above="@+id/contents_frag_main_content_info_tv"
@@ -229,7 +228,6 @@
                             android:textColor="#FFFFFF"/>
                         <TextView
                             android:id="@+id/contents_frag_main_content_info_tv"
-                            android:text="스토리 · 25분"
                             android:fontFamily="@font/nanumbarungothiclight"
                             android:layout_alignParentBottom="true"
                             android:layout_marginBottom="16dp"

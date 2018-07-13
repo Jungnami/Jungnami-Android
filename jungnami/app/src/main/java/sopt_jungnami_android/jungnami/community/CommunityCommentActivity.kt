@@ -19,6 +19,7 @@ import sopt_jungnami_android.jungnami.Post.PostCommunityCommentRequest
 import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.CommunityCommentData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class CommunityCommentActivity : AppCompatActivity() {
 
@@ -26,11 +27,13 @@ class CommunityCommentActivity : AppCompatActivity() {
     lateinit var communityCommentItem : ArrayList<CommunityCommentData>
     var context : Context = this
     lateinit var communityCommentRecyclerViewAdapter: CommunityCommentRecyclerViewAdapter
-
+    var board_id :Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_comment)
         setStatusBarColor()
+
+        board_id = intent.getIntExtra("board_id", 0)
         networkService = ApplicationController.instance.networkService
         getCommunityComment()
         setClickedListener()
@@ -61,10 +64,10 @@ class CommunityCommentActivity : AppCompatActivity() {
 
     fun postCommunityComment(){
         // # 보드아이디 받아와야한다.
-        var board_id = 103
         var content : String = contents_comment_act_bottom_bar_edit_text.text.toString()
         var postCommunityCommentRequest = PostCommunityCommentRequest(board_id, content)
-        var postCommunityPostingResponse = networkService.postCommunityComment(postCommunityCommentRequest)
+        var postCommunityPostingResponse = networkService.postCommunityComment(SharedPreferenceController.getAuthorization(context),
+                board_id,content)
         postCommunityPostingResponse.enqueue(object : Callback <postCommunityLikeResponse> {
             override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
             }
@@ -85,7 +88,7 @@ class CommunityCommentActivity : AppCompatActivity() {
 
     fun getCommunityComment(){
         var board_id = 103
-        val getCommunityResponse = networkService.getCommunityComment(board_id!!)
+        val getCommunityResponse = networkService.getCommunityComment(SharedPreferenceController.getAuthorization(context),board_id!!)
         getCommunityResponse.enqueue(object : Callback<GetCommunityCommentResponse>{
             override fun onFailure(call: Call<GetCommunityCommentResponse>?, t: Throwable?) {
                 Log.v("ㅌㅅ","이거들어오면getCommunityComment실패")
