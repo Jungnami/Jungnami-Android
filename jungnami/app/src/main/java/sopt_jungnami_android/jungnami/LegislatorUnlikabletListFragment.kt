@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_legislator_party_list.*
+import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,8 +16,14 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.data.PartyDistrictLegistlatorListData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 
-class LegislatorUnlikabletListFragment : Fragment() {
+class LegislatorUnlikabletListFragment : Fragment(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        val index: Int = rv_legislator.getChildAdapterPosition(v)
+        val l_id : Int = legislatorItems[index].id
+        startActivity<LegislatorPageActivity>("l_id" to l_id)
+    }
 
     lateinit var networkService: NetworkService
     lateinit var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>
@@ -30,6 +37,8 @@ class LegislatorUnlikabletListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         networkService = ApplicationController.instance.networkService
+
+        setAdapter()
         var isParty = (context as LegislatorList).getisParty()
         if (isParty == true){
             getPartyLegislatorUnlikableListResponse()
@@ -133,14 +142,20 @@ class LegislatorUnlikabletListFragment : Fragment() {
                 var str = response!!.message()
                 legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                 if (!(str.equals("No data"))) {
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems, 0)
+                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!, legislatorItems, 0)
                     rv_legislator.layoutManager = LinearLayoutManager(context)
                     rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
                 }
             }
         })
     }
-
+    fun setAdapter(){
+        legislatorItems = ArrayList()
+        partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!,legislatorItems,1)
+        partyDistrictLegislatorListViewAdapter.setOnItemClickListener(this)
+        rv_legislator.layoutManager = LinearLayoutManager(context)
+        rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
+    }
     private fun getDistrictLegislatorUnlikableListResponse(){
         var region_name = (context as LegislatorList).getregion_name()
         val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),0, region_name)
@@ -151,7 +166,7 @@ class LegislatorUnlikabletListFragment : Fragment() {
                 var str = response!!.message()
                 legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                 if(!(str.equals("No data"))){
-                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context, legislatorItems,0)
+                    partyDistrictLegislatorListViewAdapter = PartyDistrictLegislatorListViewAdapter(context!!, legislatorItems,0)
                     rv_legislator.layoutManager = LinearLayoutManager(context)
                     rv_legislator.adapter = partyDistrictLegislatorListViewAdapter
                 }
