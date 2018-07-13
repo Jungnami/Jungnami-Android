@@ -48,6 +48,8 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
         setClickedListener()
         networkService = ApplicationController.instance.networkService
+
+        community_frag_refresh.isRefreshing = true
         getCommunityFeed()
 
     }
@@ -78,6 +80,8 @@ class CommunityFragment : Fragment(), View.OnClickListener {
                     feedDataList = response!!.body()!!.data!!.content
 
                     setRecyclerViewAdapter()
+
+                    community_frag_refresh.isRefreshing = false
                 }
             }
 
@@ -85,6 +89,9 @@ class CommunityFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setClickedListener(){
+        community_frag_refresh.setOnRefreshListener {
+            getCommunityFeed()
+        }
         //종
         community_frag_top_bar_bell_btn.setOnClickListener {
             startActivity<Alarm>()

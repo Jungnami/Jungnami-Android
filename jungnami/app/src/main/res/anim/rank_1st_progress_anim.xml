@@ -2,7 +2,8 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/linear_interpolator">
     <scale
-        android:duration="1000"
+        android:startOffset="200"
+        android:duration="1800"
         android:pivotX="0%"
         android:pivotY="100%"
         android:fromXScale="0.0"

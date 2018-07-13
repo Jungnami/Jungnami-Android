@@ -45,6 +45,10 @@
                                     android:id="@+id/unlikeable_tab_1st_picture_iv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent" />
+                                <ImageView
+                                    android:background="@drawable/main_opacity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
                                 <RelativeLayout
                                     android:id="@+id/unlikeable_tab_1st_vote_count_bar"
                                     android:background="@drawable/in_rank_tab_1st_vote_count_bar_shape"
@@ -60,7 +64,7 @@
                                         android:layout_centerVertical="true"
                                         android:layout_marginRight="8dp"
                                         android:textSize="8dp"
-                                        android:text="715000 표"
+                                        android:text="- 표"
                                         android:fontFamily="@font/nanumbarungothiclight"
                                         android:textColor="#E2E2E2"
                                         android:layout_width="wrap_content"
@@ -85,7 +89,7 @@
                                         android:layout_marginBottom="4dp"/>
                                     <TextView
                                         android:id="@+id/unlikeable_tab_1st_name_tv"
-                                        android:text="서청원"
+                                        android:text="-"
                                         android:textSize="17dp"
                                         android:textColor="#F7F7F7"
                                         android:fontFamily="@font/nanumbarungothic"
@@ -94,7 +98,7 @@
                                         android:layout_gravity="left"/>
                                     <TextView
                                         android:id="@+id/unlikeable_tab_1st_party_name_tv"
-                                        android:text="자유한국당"
+                                        android:text="-"
                                         android:textSize="10dp"
                                         android:textColor="#E2E2E2"
                                         android:fontFamily="@font/nanumbarungothiclight"
@@ -118,6 +122,10 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="#E57373"/>
+                                <ImageView
+                                    android:background="@drawable/main_opacity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
                                 <RelativeLayout
                                     android:id="@+id/unlikeable_tab_2st_vote_count_bar"
                                     android:background="@drawable/in_rank_tab_2st_vote_count_bar_shape"
@@ -133,7 +141,7 @@
                                         android:layout_centerVertical="true"
                                         android:layout_marginLeft="8dp"
                                         android:textSize="8dp"
-                                        android:text="222000 표"
+                                        android:text="- 표"
                                         android:fontFamily="@font/nanumbarungothiclight"
                                         android:textColor="#E2E2E2"
                                         android:layout_width="wrap_content"
@@ -159,7 +167,7 @@
                                         android:layout_marginBottom="4dp"/>
                                     <TextView
                                         android:id="@+id/unlikeable_tab_2st_name_tv"
-                                        android:text="김용태"
+                                        android:text="-"
                                         android:textSize="17dp"
                                         android:textColor="#F7F7F7"
                                         android:fontFamily="@font/nanumbarungothic"
@@ -168,7 +176,7 @@
                                         android:layout_gravity="right"/>
                                     <TextView
                                         android:id="@+id/unlikeable_tab_2st_party_name_tv"
-                                        android:text="자유한국당"
+                                        android:text="-"
                                         android:textSize="10dp"
                                         android:textColor="#E2E2E2"
                                         android:fontFamily="@font/nanumbarungothiclight"

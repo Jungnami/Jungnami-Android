@@ -92,7 +92,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
-                        legislatorRankDataList = legislatorRankDataList.take(10) as ArrayList<RankItemData>
+                        legislatorRankDataList = legislatorRankDataList.take(100) as ArrayList<RankItemData>
                         initSettingView()
 
 

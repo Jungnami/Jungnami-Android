@@ -100,122 +100,129 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/community_frag_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/community_frag_top_box_rl">
-
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/community_frag_top_box_rl"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/community_frag_no_login_status_rl"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:background="#F8F8F8">
-
-                <ImageView
-                    android:id="@+id/community_frag_character_iv"
-                    android:layout_width="49dp"
-                    android:layout_height="55dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="14dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/community_character" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_marginRight="48dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_toRightOf="@+id/community_frag_character_iv"
-                    android:background="@drawable/community_frag_login_message_box_shape">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="글 작성은 "
-                            android:textColor="#757575"
-                            android:textSize="13dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="로그인 후 "
-                            android:textColor="#36C5F1"
-                            android:textSize="13dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="이용해 주세요."
-                            android:textColor="#757575"
-                            android:textSize="13dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </RelativeLayout>
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:id="@+id/community_frag_what_do_u_think_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="66dp"
-                    android:background="#FFFFFF">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/community_frag_my_picture_iv"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginHorizontal="16dp"
-                        android:src="@drawable/my_page" />
-
-                    <TextView
-                        android:background="?android:selectableItemBackground"
-                        android:id="@+id/community_frag_write_feed_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/community_frag_my_picture_iv"
-                        android:fontFamily="@font/nanumbarungothiclight"
-                        android:text="무슨 생각을 하고 계신가요?"
-                        android:textColor="#CECECE"
-                        android:textSize="15dp" />
-
-                </RelativeLayout>
-                <View
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@+id/community_frag_what_do_u_think_box"
-                    android:background="#F3F3F3"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"/>
-            </LinearLayout>
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/community_frag_feed_list_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false">
+                android:layout_below="@id/community_frag_top_box_rl"
+                android:orientation="vertical">
 
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                <RelativeLayout
+                    android:id="@+id/community_frag_no_login_status_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:background="#F8F8F8"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/community_frag_character_iv"
+                        android:layout_width="49dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/community_character" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="43dp"
+                        android:layout_marginRight="48dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_toRightOf="@+id/community_frag_character_iv"
+                        android:background="@drawable/community_frag_login_message_box_shape">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="글 작성은 "
+                                android:textColor="#757575"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="로그인 후 "
+                                android:textColor="#36C5F1"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumbarungothic"
+                                android:text="이용해 주세요."
+                                android:textColor="#757575"
+                                android:textSize="13dp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:id="@+id/community_frag_what_do_u_think_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:background="#FFFFFF">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/community_frag_my_picture_iv"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="16dp"
+                            android:src="@drawable/my_page" />
+
+                        <TextView
+                            android:background="?android:selectableItemBackground"
+                            android:id="@+id/community_frag_write_feed_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/community_frag_my_picture_iv"
+                            android:fontFamily="@font/nanumbarungothiclight"
+                            android:text="무슨 생각을 하고 계신가요?"
+                            android:textColor="#CECECE"
+                            android:textSize="15dp" />
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@+id/community_frag_what_do_u_think_box"
+                        android:background="#F3F3F3"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"/>
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/community_frag_feed_list_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <RelativeLayout

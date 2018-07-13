@@ -72,12 +72,35 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
 
+        recommendDataList = ArrayList()
+        tmiOrStoryDataList = ArrayList()
+        storyDataList = ArrayList()
+
         requestRecommendContentsDataToServer()
 
 
 
     }
     private fun setClickListener(){
+        contents_frag_refresh_srl.setOnRefreshListener {
+            when (current_tab_idx){
+                0 -> {
+//                    contents_frag_total_blind.visibility = View.GONE
+                    requestRecommendContentsDataToServer()
+                }
+                1 -> {
+//                    contents_frag_total_blind.visibility = View.GONE
+
+                    requestTmiOrStoryDataToServer("TMI")
+                }
+                2 -> {
+//                    contents_frag_total_blind.visibility = View.GONE
+
+                    requestTmiOrStoryDataToServer("스토리")
+                }
+            }
+        }
+
         contents_frag_top_bar_my_page_btn.setOnClickListener {
             startActivity<MyPageActivity>()
         }
@@ -86,12 +109,15 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         }
         //Tab 클릭 리스터
         contents_frag_recommend_btn.setOnClickListener {
+            //contents_frag_total_blind.visibility = View.GONE
             checkSelectedTabView(0)
         }
         contents_frag_tmi_btn.setOnClickListener {
+            //contents_frag_total_blind.visibility = View.GONE
             checkSelectedTabView(1)
         }
         contents_frag_story_btn.setOnClickListener {
+            //contents_frag_total_blind.visibility = View.GONE
             checkSelectedTabView(2)
         }
         //메인 컨텐츠 클릭 리스터
@@ -112,13 +138,14 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             contents_frag_main_content_title_tv.text = mainContent!!.title
             contents_frag_main_content_info_tv.text = mainContent!!.text
 
-            contents_frag_main_content_lr.visibility = View.VISIBLE
+//            contents_frag_main_content_lr.visibility = View.VISIBLE
         }
 
     }
 
     private fun requestRecommendContentsDataToServer(){
-        recommendDataList = ArrayList()
+        contents_frag_refresh_srl.isRefreshing = true
+
         networkService = ApplicationController.instance.networkService
 
         val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!))
@@ -141,14 +168,15 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                         //추천 컨텐츠 뿌리기
                         changeConetentsRecyclerViewData()
                     } else {
-                        contents_frag_main_content_lr.visibility = View.GONE
+                        contents_frag_total_blind.visibility = View.INVISIBLE
                     }
                 }
             }
         })
     }
     private fun requestTmiOrStoryDataToServer(category : String){
-        tmiOrStoryDataList = ArrayList()
+        contents_frag_refresh_srl.isRefreshing = true
+
         networkService = ApplicationController.instance.networkService
         Log.e("요청 카테고리는? ", category)
         val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context = context!!),category)
@@ -159,19 +187,23 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<GetTmiStoryContentsResponse>?, response: Response<GetTmiStoryContentsResponse>?) {
                 if (response!!.isSuccessful){
                     if (response!!.body()!!.data.content.size != 0){
-                        Log.e("TMI or STORY 컨텐츠 ", "${response!!.body()!!.data.content}")
                         alertCount = response.body()!!.data.alarmcnt
                         setAlertBellView()
-                        tmiOrStoryDataList = response.body()!!.data.content
-
-                        setMainContentView(tmiOrStoryDataList[0])
-                        contents_id = tmiOrStoryDataList[0].contentsid
-                        tmiOrStoryDataList.removeAt(0)
+                        if (category == "TMI") {
+                            tmiOrStoryDataList = response.body()!!.data.content
+                            setMainContentView(tmiOrStoryDataList[0])
+                            contents_id = tmiOrStoryDataList[0].contentsid
+                            tmiOrStoryDataList.removeAt(0)
+                        } else {
+                            storyDataList = response.body()!!.data.content
+                            setMainContentView(storyDataList[0])
+                            contents_id = storyDataList[0].contentsid
+                            storyDataList.removeAt(0)
+                        }
 
                         changeConetentsRecyclerViewData()
                     } else {
-                        Log.e("컨텐츠 없넹2", "컨텐츠 없넹2")
-                        contents_frag_main_content_lr.visibility = View.GONE
+                        contents_frag_total_blind.visibility = View.INVISIBLE
                     }
 
                 }
@@ -188,15 +220,19 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
 
     private fun changeConetentsRecyclerViewData(){
-        if (current_tab_idx == 0){
-            contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, recommendDataList)
-        } else {
-            contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, tmiOrStoryDataList)
+
+        when(current_tab_idx){
+            0 -> contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, recommendDataList)
+            1 -> contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, tmiOrStoryDataList)
+            2 -> contentsRecyclerViewAdapter = ContentsRecyclerViewAdapter(context!!, storyDataList)
         }
 
         contentsRecyclerViewAdapter.setOnItemClickListener(this)
         contents_frag_sub_contents_recycler_rv.layoutManager = GridLayoutManager(context!!,2) as RecyclerView.LayoutManager?
         contents_frag_sub_contents_recycler_rv.adapter = contentsRecyclerViewAdapter
+
+        contents_frag_refresh_srl.isRefreshing = false
+        contents_frag_total_blind.visibility = View.VISIBLE
     }
 
 

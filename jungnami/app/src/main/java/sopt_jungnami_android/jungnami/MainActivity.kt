@@ -20,6 +20,8 @@ import sopt_jungnami_android.jungnami.rank.RankFragment
 import sopt_jungnami_android.jungnami.rank.UnlikeableTab
 
 class MainActivity : AppCompatActivity() {
+    var isLoading : Boolean = false
+
     var current_tab_idx: Int = 0
     private val FINISH_INTERVAL_TIME: Long = 2000
     private var backPressedTime: Long = 0

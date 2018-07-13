@@ -46,17 +46,16 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="?android:selectableItemBackground">
-                                <!--<ImageView-->
-                                    <!--android:src="@drawable/main_opacity"-->
-                                    <!--android:layout_width="match_parent"-->
-                                    <!--android:layout_height="match_parent"-->
-                                    <!--android:layout_alignParentBottom="true"/>-->
+
                                 <ImageView
                                     android:id="@+id/likeable_tab_1st_picture_iv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="#BBDEFB" />
-
+                                <ImageView
+                                    android:background="@drawable/main_opacity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
                                 <RelativeLayout
                                     android:id="@+id/likeable_tab_1st_vote_count_bar"
                                     android:layout_width="150dp"
@@ -133,15 +132,17 @@
                                 android:id="@+id/likeable_tab_2st_btn"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="?android:selectableItemBackground">
+                                android:layout_weight="1">
 
                                 <ImageView
                                     android:id="@+id/likeable_tab_2st_picture_iv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="#90CAF9" />
-
+                                <ImageView
+                                    android:background="@drawable/main_opacity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
                                 <RelativeLayout
                                     android:id="@+id/likeable_tab_2st_vote_count_bar"
                                     android:layout_width="150dp"
