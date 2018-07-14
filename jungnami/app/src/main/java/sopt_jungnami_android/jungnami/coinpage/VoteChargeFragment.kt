@@ -43,6 +43,10 @@ class VoteChargeFragment : Fragment() {
         votecharge_frag_exchange_btn_tv.setOnClickListener {
             if (votecharge_frag_vote_count_input_et.text.toString().isEmpty()){
                 longToast("교환할 코인 개수를 입력해주세요.")
+            } else if(votecharge_frag_vote_count_input_et.text.toString().toInt() > votecharge_frag_my_having_coin_count_tv.text.toString().toInt()) {
+                longToast("소유 코인보다 큰 개수 입니다.")
+            } else if (votecharge_frag_vote_count_input_et.text.toString().toInt() < 0){
+                longToast("올바른 개수를 입력해주세요.")
             } else {
                 val exchangeDialog : Dialog = ExchangeCoinDialog(activity!!, votecharge_frag_vote_count_input_et.text.toString())
                 exchangeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

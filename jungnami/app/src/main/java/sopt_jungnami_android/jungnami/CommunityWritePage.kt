@@ -206,6 +206,10 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                         isStateChange = true
                         Log.v("EditText2", content)
                         Log.v("success", "내가 쓴 글")
+
+                        val intent = Intent()
+                        intent.putExtra("isComplete" , true)
+                        setResult(Activity.RESULT_OK, intent)
                         finish()
                     }
                 }

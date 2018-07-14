@@ -1,6 +1,8 @@
 package sopt_jungnami_android.jungnami.community
 
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_community.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.startActivityForResult
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +30,7 @@ import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 class CommunityFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
     }
-
+    private val REQUEST_CODE_WRITE = 1001
     lateinit var feedDataList : ArrayList<Content>
     lateinit var communityRecyclerViewAdapter: CommunityRecyclerViewAdapter
     lateinit var networkService: NetworkService
@@ -102,7 +105,19 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         }
         //내 피드 작성
         community_frag_write_feed_btn.setOnClickListener {
-            startActivity<CommunityWritePage>("isShared" to 0)
+            startActivityForResult<CommunityWritePage>(REQUEST_CODE_WRITE,"isShared" to 0)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_WRITE){
+            if (resultCode== Activity.RESULT_OK){
+                val isComplete = data!!.getBooleanExtra("isComplete", false)
+                if (isComplete){
+                    getCommunityFeed()
+                }
+            }
         }
     }
 
