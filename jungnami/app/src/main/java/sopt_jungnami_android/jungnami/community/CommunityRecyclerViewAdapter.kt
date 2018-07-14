@@ -20,6 +20,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
 import sopt_jungnami_android.jungnami.Post.PostCommunityPostingResponse
+import sopt_jungnami_android.jungnami.Post.PostFeedPostingResponse
 import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
@@ -149,13 +150,13 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
 
     fun requestCommunityPostingResponse(board_id : Int){
         val networkService = ApplicationController.instance.networkService
-        val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(ctx),
+        val postFeedPostingResponse = networkService.postFeedPostingResponse(SharedPreferenceController.getAuthorization(ctx),
                 "", null, board_id)
-        postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse>{
-            override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
+        postFeedPostingResponse.enqueue(object : retrofit2.Callback<PostFeedPostingResponse>{
+            override fun onFailure(call: Call<PostFeedPostingResponse>?, t: Throwable?) {
             }
 
-            override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
+            override fun onResponse(call: Call<PostFeedPostingResponse>?, response: Response<PostFeedPostingResponse>?) {
                 if(response!!.isSuccessful){
                     ctx.toast("스크랩 완료")
                 }

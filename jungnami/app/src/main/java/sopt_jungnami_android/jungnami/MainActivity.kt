@@ -44,19 +44,15 @@ class MainActivity : AppCompatActivity() {
 //        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         main_act_rank_btn.setOnClickListener {
             checkSelectedTabView(0)
-            replaceFragment(RankFragment())
         }
         main_act_list_btn.setOnClickListener {
             checkSelectedTabView(1)
-            replaceFragment(LegislatorListFragment())
         }
         main_act_community_btn.setOnClickListener {
             checkSelectedTabView(2)
-            replaceFragment(CommunityFragment())
         }
         main_act_content_btn.setOnClickListener {
             checkSelectedTabView(3)
-            replaceFragment(ContentsFragment())
         }
     }
 
@@ -136,25 +132,41 @@ class MainActivity : AppCompatActivity() {
     private fun checkSelectedTabView(selected_idx: Int) {
         when (selected_idx) {
             0 -> {
-                chagneNonSelectedTabView(current_tab_idx)
-
+                val temp = current_tab_idx
                 current_tab_idx = 0
+                chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
+                if(temp != 0){
+                    replaceFragment(RankFragment())
+                }
             }
             1 -> {
-                chagneNonSelectedTabView(current_tab_idx)
+                val temp = current_tab_idx
                 current_tab_idx = 1
+                chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
+                if (temp != 1){
+                    replaceFragment(LegislatorListFragment())
+                }
             }
             2 -> {
-                chagneNonSelectedTabView(current_tab_idx)
+                val temp = current_tab_idx
                 current_tab_idx = 2
+                chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
+                if (temp != 2){
+                    replaceFragment(CommunityFragment())
+
+                }
             }
             3 -> {
-                chagneNonSelectedTabView(current_tab_idx)
+                val temp = current_tab_idx
                 current_tab_idx = 3
+                chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
+                if (temp != 3){
+                    replaceFragment(ContentsFragment())
+                }
             }
         }
     }

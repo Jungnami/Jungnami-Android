@@ -265,6 +265,14 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Path("contentscommentid") contentscommentid : Int
     ) : Call<DeleteContentsLikeResponse>
+    @Multipart
+    @POST("board/postcomplete")
+    fun postFeedPostingResponse(
+            @Header("authorization") tokenValue : String?,
+            @Part ("content") posting_content: String?,
+            @Part posting_image: MultipartBody.Part?,
+            @Part("shared") posting_shared: Int
+    ) : Call<PostFeedPostingResponse>
 //윤환 라인 종료!
 
 
