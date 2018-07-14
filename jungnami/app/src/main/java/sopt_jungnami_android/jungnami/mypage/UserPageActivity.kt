@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_my_page.*
@@ -18,6 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetMyPageResponse
+import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
@@ -74,6 +76,8 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         userpage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter
     }
     private fun requestPageDataToServer(){
+        window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
 
@@ -84,6 +88,8 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse> {
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
 
             override fun onResponse(call: Call<GetMyPageResponse>?, response: Response<GetMyPageResponse>?) {
@@ -97,6 +103,8 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
                     setPageInfoView()
                     setScrapRecyclerViewAdapter()
                 }
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
         })
 

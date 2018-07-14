@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -22,6 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Get.GetRankingResponse
+import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
@@ -77,6 +79,8 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
     }
     //서버에서 데이터 받기
     fun getRankItemDataAtServer() {
+        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
 
@@ -86,6 +90,8 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
+                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
 
             override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
@@ -95,9 +101,12 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                         legislatorRankDataList = legislatorRankDataList.take(100) as ArrayList<RankItemData>
                         initSettingView()
 
+                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     } else {
                         toast("데이터 수 부족")
+                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     }
                 }
             }

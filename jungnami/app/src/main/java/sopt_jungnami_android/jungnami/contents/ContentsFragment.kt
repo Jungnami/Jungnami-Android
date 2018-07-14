@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ import retrofit2.Response
 import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.Get.GetRecommendContentsResponse
 import sopt_jungnami_android.jungnami.Get.GetTmiStoryContentsResponse
+import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
@@ -129,16 +131,21 @@ class ContentsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun requestRecommendContentsDataToServer(){
+        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+        (context as MainActivity).isLoading = true
+
         recommendDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
 
         val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!))
         getRecommendContentsResponse.enqueue(object : Callback<GetRecommendContentsResponse>{
             override fun onFailure(call: Call<GetRecommendContentsResponse>?, t: Throwable?) {
-                Log.e("추천 컨텐츠 요청 실패", "추천 컨텐츠 요청 실패!!!!")
+                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
 
             override fun onResponse(call: Call<GetRecommendContentsResponse>?, response: Response<GetRecommendContentsResponse>?) {
+                (context as MainActivity).isLoading = false
                 if (response!!.isSuccessful){
                     if (response!!.body()!!.data.content.size != 0){
                         alertCount = response.body()!!.data.alarmcnt
@@ -151,8 +158,12 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
                         //추천 컨텐츠 뿌리기
                         changeConetentsRecyclerViewData()
+                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     } else {
                         contents_frag_main_content_lr.visibility = View.GONE
+                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     }
                 }
             }
