@@ -16,6 +16,7 @@ import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.FollowingData
+import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
 class FollowingActivity : AppCompatActivity()  {
 
@@ -35,7 +36,9 @@ class FollowingActivity : AppCompatActivity()  {
         f_id= intent.getStringExtra("f_id")
         getFollowing()
 
-
+        following_act_top_bar_close_btn.setOnClickListener {
+            finish()
+        }
 //        followingItems = ArrayList()
 //        followingAdapter = FollowingAdapter(followingItems, context)
 //
@@ -47,7 +50,7 @@ class FollowingActivity : AppCompatActivity()  {
 
     fun getFollowing(){
 //        f_id = 809075065.toString()
-        val getFollowingResponse = networkService.getFollowing(f_id!!)
+        val getFollowingResponse = networkService.getFollowing(SharedPreferenceController.getAuthorization(context),f_id)
         getFollowingResponse.enqueue(object : Callback<GetFollowingResponse> {
             override fun onFailure(call: Call<GetFollowingResponse>?, t: Throwable?) {
 

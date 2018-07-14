@@ -167,7 +167,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
             startActivity<FollowingActivity>("f_id" to page_id)
         }
         mypage_act_follower_btn.setOnClickListener {
-            startActivity<FollowerActivity>()
+            startActivity<FollowerActivity>("f_id" to page_id)
         }
 
     }

@@ -14,9 +14,9 @@ import sopt_jungnami_android.jungnami.Post.*
 interface NetworkService {
 //형민이 라인!
     // 1. 팔로잉 보기 made by 형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("user/followinglist/{f_id}")
     fun getFollowing(
+        @Header("authorization") tokenValue : String?,
             @Path("f_id") f_id : String
     ) : Call<GetFollowingResponse>
 
@@ -97,9 +97,9 @@ interface NetworkService {
             @Field("comment_id") comment_id : Int
     ) : Call<postCommunityLikeResponse>
     // 팔로워 보기 made by 형민
-    @Headers("authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODA3NDY1MjM5LCJpYXQiOjE1MzA3NzU1MDQsImV4cCI6MTUzMzM2NzUwNH0.DAXcgbHm4gOaJMTFyQW0KCvs64lUZai6Cc_pi5pKu4Q")
     @GET("user/followerlist/{f_id}")
     fun getFollower(
+            @Header("authorization") tokenValue : String?,
             @Path("f_id") f_id : String
     ) : Call<GetFollowerResponse>
 
@@ -108,7 +108,7 @@ interface NetworkService {
     @POST("user/follow")
     fun postFollow(
             @Header("authorization") tokenValue : String?,
-            @Path("following_id") following_id : String
+            @Field("following_id") following_id : String
     ) : Call<PostFollwResponse>
 
     // 팔로우 취소하기

@@ -45,6 +45,7 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
         setStatusBarColor()
         keyword = intent.getStringExtra("keyword")
         contentsSearchItems = ArrayList()
+        setClickListener()
 
         getContentsSearchresult(keyword)
         contents_search_act_search_result_tv.setText(keyword)
@@ -93,7 +94,6 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun setClickListener(){
-
         contents_search_act_back_btn.setOnClickListener {
             finish()
         }
@@ -104,11 +104,6 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
             startActivity<ContentsSearchActivity>("keyword" to keyword)
 
         }
-
-
-
-
-
     }
 
     private fun setStatusBarColor(){
