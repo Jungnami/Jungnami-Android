@@ -31,7 +31,9 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.uiThread
+import sopt_jungnami_android.jungnami.MainActivity
 
 
 class LikeableTab : Fragment(), View.OnClickListener {
@@ -87,6 +89,7 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     //서버에서 데이터 받기
     fun getRankItemDataAtServer() {
+        (ctx as MainActivity).isLoading = true
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
 
@@ -97,6 +100,7 @@ class LikeableTab : Fragment(), View.OnClickListener {
             }
 
             override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
+                (ctx as MainActivity).isLoading = false
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
