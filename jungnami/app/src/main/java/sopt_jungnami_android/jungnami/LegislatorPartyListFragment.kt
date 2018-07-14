@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.fragment_legislator_party_list.*
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -132,11 +133,15 @@ class LegislatorPartyListFragment: Fragment()  {
     }
 
     private fun getPartyLegislatorLikableListResponse(){
+        (context as LegislatorList).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         var p_name = (context as LegislatorList).getp_name()
         networkService = ApplicationController.instance.networkService
         val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1,p_name)
         getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse> {
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
                 var str = response!!.message()
@@ -148,22 +153,30 @@ class LegislatorPartyListFragment: Fragment()  {
                     rv_legislator.layoutManager = LinearLayoutManager(context)
                     rv_legislator.adapter = legislatorListAdapter
                 }
+                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
         })
     }
 
     private fun getDistrictLegislatorLikableListResponse(){
+        (context as LegislatorList).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         var region_name = (context as LegislatorList).getregion_name()
         networkService = ApplicationController.instance.networkService
         val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),1, region_name)
         getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
                 if (response!!.isSuccessful){
                     legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                     setAdapter()
                 }
+                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
         })
     }

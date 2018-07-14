@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity() {
                 chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
                 if(temp != 0){
+
                     replaceFragment(RankFragment())
                 }
             }
@@ -146,6 +147,7 @@ class MainActivity : AppCompatActivity() {
                 chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
                 if (temp != 1){
+
                     replaceFragment(LegislatorListFragment())
                 }
             }
@@ -156,7 +158,6 @@ class MainActivity : AppCompatActivity() {
                 chagneSelectedTabView(current_tab_idx)
                 if (temp != 2){
                     replaceFragment(CommunityFragment())
-
                 }
             }
             3 -> {

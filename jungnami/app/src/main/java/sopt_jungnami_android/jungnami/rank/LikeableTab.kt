@@ -30,6 +30,7 @@ import sopt_jungnami_android.jungnami.data.RankItemData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.WindowManager
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.uiThread
@@ -89,7 +90,9 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     //서버에서 데이터 받기
     fun getRankItemDataAtServer() {
-        (ctx as MainActivity).isLoading = true
+        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+        (context as MainActivity).isLoading = true
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
 
@@ -97,10 +100,12 @@ class LikeableTab : Fragment(), View.OnClickListener {
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
+                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             }
 
             override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
-                (ctx as MainActivity).isLoading = false
+                (context as MainActivity).isLoading = false
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
@@ -108,9 +113,12 @@ class LikeableTab : Fragment(), View.OnClickListener {
                         initSettingView()
 
                         likeable_tab_refresh_srl.isRefreshing = false
+                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
 
                     } else {
+                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         toast("데이터 수 부족")
                     }
                 }

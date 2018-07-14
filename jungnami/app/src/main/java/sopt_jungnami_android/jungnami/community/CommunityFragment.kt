@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_community.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -19,9 +20,9 @@ import retrofit2.Response
 import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.CommunityWritePage
 import sopt_jungnami_android.jungnami.Get.GetCommunityFeedResponse
+import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
-import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Content
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
@@ -30,8 +31,9 @@ import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 class CommunityFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
     }
+
     private val REQUEST_CODE_WRITE = 1001
-    lateinit var feedDataList : ArrayList<Content>
+    lateinit var feedDataList: ArrayList<Content>
     lateinit var communityRecyclerViewAdapter: CommunityRecyclerViewAdapter
     lateinit var networkService: NetworkService
 
@@ -43,7 +45,7 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if (SharedPreferenceController.getAuthorization(context!!) == ""){
+        if (SharedPreferenceController.getAuthorization(context!!) == "") {
             community_frag_what_do_u_think_box.visibility = View.GONE
         } else {
             community_frag_no_login_status_rl.visibility = View.GONE
@@ -64,14 +66,19 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         community_frag_feed_list_rv.layoutManager = LinearLayoutManager(activity)
     }
 
-    fun getCommunityFeed(){
+    fun getCommunityFeed() {
+        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+        (context as MainActivity).isLoading = true
         val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!))
-        getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse>{
+        getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse> {
             override fun onFailure(call: Call<GetCommunityFeedResponse>?, t: Throwable?) {
+                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
 
             override fun onResponse(call: Call<GetCommunityFeedResponse>?, response: Response<GetCommunityFeedResponse>?) {
-                if(response!!.isSuccessful){
+                (context as MainActivity).isLoading = false
+                if (response!!.isSuccessful) {
                     var user_img_url = response!!.body()!!.data!!.user_img_url
 
                     Glide.with(context!!)
@@ -85,13 +92,15 @@ class CommunityFragment : Fragment(), View.OnClickListener {
                     setRecyclerViewAdapter()
 
                     community_frag_refresh.isRefreshing = false
+                    (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                 }
             }
 
         })
     }
 
-    private fun setClickedListener(){
+    private fun setClickedListener() {
         community_frag_refresh.setOnRefreshListener {
             getCommunityFeed()
         }
@@ -105,16 +114,16 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         }
         //내 피드 작성
         community_frag_write_feed_btn.setOnClickListener {
-            startActivityForResult<CommunityWritePage>(REQUEST_CODE_WRITE,"isShared" to 0)
+            startActivityForResult<CommunityWritePage>(REQUEST_CODE_WRITE, "isShared" to 0)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_WRITE){
-            if (resultCode== Activity.RESULT_OK){
+        if (requestCode == REQUEST_CODE_WRITE) {
+            if (resultCode == Activity.RESULT_OK) {
                 val isComplete = data!!.getBooleanExtra("isComplete", false)
-                if (isComplete){
+                if (isComplete) {
                     getCommunityFeed()
                 }
             }
