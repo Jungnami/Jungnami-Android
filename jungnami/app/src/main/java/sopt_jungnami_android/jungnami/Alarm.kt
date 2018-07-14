@@ -65,8 +65,8 @@ class Alarm : AppCompatActivity(){
             }
             override fun onResponse(call: Call<GetAlarmResponse>?, response: Response<GetAlarmResponse>?) {
                 Log.v("통신 접근", "통신 접근")
-                alarmItems = response!!.body()!!.data
                 if(response!!.isSuccessful){
+                    alarmItems = response!!.body()!!.data
                     Log.v("통신 성공?", "통신 성공?")
                     Log.v("통신 성공?", response.body()!!.data!!.toString())
                     Log.v("통신 성공?", response.body()!!.data[0].id)

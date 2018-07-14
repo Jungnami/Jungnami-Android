@@ -26,6 +26,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         }
 //      밑에 bar누르면 SearchActivity로 이동해야한다.
         search_result_act_search_bar.setOnClickListener {  }
+
     }
     lateinit var networkService: NetworkService
     lateinit var legislatorResultItems : ArrayList<RankingSearchLegislatorData>
@@ -42,12 +43,14 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
         getRankingSearchLegislator()
 
+
+
     }
 
     fun getRankingSearchLegislator(){
 
         //  윤환이형 통신할 때 밑에 주석 없애줘야돼!
-        val keyword = "김성태바보"
+        val keyword = intent.getStringExtra("keyword")
 //        val keyword = intent.getStringExtra("keyword")
         search_result_act_search_reult_tv.text = keyword
         val getRankingSearchLegislatorResponse =  networkService.getRankingSearchLegislator(keyword!!)
