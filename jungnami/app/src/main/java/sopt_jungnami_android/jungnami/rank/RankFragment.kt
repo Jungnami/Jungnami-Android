@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.fragment_rank.*
 import org.jetbrains.anko.support.v4.startActivity
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.legislator_list.SearchActivity
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
 //made by yun hwan
@@ -59,6 +60,7 @@ class RankFragment : Fragment() {
             val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
+
         //상단바 검색 창 띄우기
         rank_frag_top_bar_search_btn.setOnClickListener {
             rank_frag_is_display_search_box_rl.visibility = View.VISIBLE
@@ -67,6 +69,11 @@ class RankFragment : Fragment() {
             imm.showSoftInput(rank_frag_top_bar_search_et,InputMethodManager.SHOW_IMPLICIT)
             //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
+        }
+        rank_frag_top_bar_search_request_btn.setOnClickListener {
+            var keyword : String = rank_frag_top_bar_search_et.text.toString()
+
+            startActivity<SearchActivity>("keyword" to keyword)
         }
 
     }

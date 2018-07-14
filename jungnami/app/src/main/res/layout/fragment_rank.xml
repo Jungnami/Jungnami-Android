@@ -142,9 +142,17 @@
                     android:hint="'국회의원의 이름을 검색해보세요.'"
                     android:gravity="left|center"
                     android:layout_toRightOf="@+id/rank_frag_top_bar_search_iv"
-                    android:layout_width="match_parent"
+                    android:layout_width="260dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/rank_frag_top_bar_search_request_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_centerVertical="true"
+                    android:text="검색"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"

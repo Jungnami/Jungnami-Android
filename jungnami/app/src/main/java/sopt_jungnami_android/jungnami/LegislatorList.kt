@@ -232,6 +232,7 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
             legislator_list_act_legislator_search_rl.visibility = View.GONE
             legislator_list_act_search.visibility = View.VISIBLE
         }
+
     }
 
     private fun isSelectedTabView(){

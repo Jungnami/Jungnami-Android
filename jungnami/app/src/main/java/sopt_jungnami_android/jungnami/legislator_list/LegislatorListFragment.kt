@@ -54,7 +54,11 @@ class LegislatorListFragment : Fragment() {
         legislator_list_frag_is_display_blind_panel_rl.setOnClickListener {
             legislator_list_frag_is_display_search_box_rl.visibility = View.GONE
         }
+        legislator_list_frag_top_bar_search_tv.setOnClickListener {
+            var keyword : String = legislator_list_frag_top_bar_search_et.text.toString()
 
+            startActivity<SearchActivity>("keyword" to keyword)
+        }
     }
 
 

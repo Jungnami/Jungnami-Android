@@ -50,6 +50,8 @@ class Login : AppCompatActivity() {
         setStatusBarColor()
 
         setClickListener()
+
+        Log.e("hashkey", getHashKey(applicationContext))
     }
 
     private fun setClickListener() {
@@ -132,25 +134,25 @@ class Login : AppCompatActivity() {
     }
 
     // 프로젝트의 해시키를 반환
-//    fun getHashKey(context: Context): String? {
-//        val TAG = "KeyHash"
-//        var keyHash: String? = null
-//        try {
-//            val info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES)
-//            for (signature in info.signatures) {
-//                val md: MessageDigest
-//                md = MessageDigest.getInstance("SHA")
-//                md.update(signature.toByteArray())
-//                keyHash = String(Base64.encode(md.digest(), 0))
-//                Log.d(TAG, keyHash)
-//            }
-//        } catch (e: Exception) {
-//            Log.e("name not found", e.toString())
-//        }
-//        return if (keyHash != null) {
-//            keyHash
-//        } else {
-//            null
-//        }
-//    }
+    fun getHashKey(context: Context): String? {
+        val TAG = "KeyHash"
+        var keyHash: String? = null
+        try {
+            val info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md: MessageDigest
+                md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                keyHash = String(Base64.encode(md.digest(), 0))
+                Log.d(TAG, keyHash)
+            }
+        } catch (e: Exception) {
+            Log.e("name not found", e.toString())
+        }
+        return if (keyHash != null) {
+            keyHash
+        } else {
+            null
+        }
+    }
 }
