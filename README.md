@@ -1,5 +1,5 @@
 #Jungnami Android Part
-SOPT 22th 정치가 나의 미래다 프로젝트 안드로이드 어플리케이션 개발 레파지토리
+-SOPT 22th 정치가 나의 미래다 프로젝트 안드로이드 어플리케이션 개발 레파지토리
 
 #Develop Environment
 development language - kotlin
