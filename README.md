@@ -18,5 +18,5 @@
 * **Kakao auth** - com.kakao.sdk:usermgmt 
 * **Kakao link** - com.kakao.sdk:kakaolink
 
-# Story board
+# App view
 <img src="https://user-images.githubusercontent.com/17523340/42875931-10d877c4-8ac0-11e8-9885-f6b6124cef99.jpg">
