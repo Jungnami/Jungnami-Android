@@ -98,13 +98,13 @@ class MainActivity : AppCompatActivity() {
     fun addFragment(fragment: Fragment): Unit {
         val fm = supportFragmentManager
         val transaction = fm.beginTransaction()
-        transaction.add(R.id.main_act_fragment_fl, fragment)
+        transaction.add(R.id.main_act_fragment_fl, fragment, "rank_tab")
         transaction.commit()
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment, tag : String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.main_act_fragment_fl, fragment)
+        transaction.replace(R.id.main_act_fragment_fl, fragment, tag)
 //        transaction.addToBackStack(null) //백키 눌렀을때 순차대로
         transaction.commit()
     }
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                 chagneSelectedTabView(current_tab_idx)
                 if(temp != 0){
 
-                    replaceFragment(RankFragment())
+                    replaceFragment(RankFragment(), "rankTab")
                 }
             }
             1 -> {
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                 chagneSelectedTabView(current_tab_idx)
                 if (temp != 1){
 
-                    replaceFragment(LegislatorListFragment())
+                    replaceFragment(LegislatorListFragment(), "legislatorListTab")
                 }
             }
             2 -> {
@@ -157,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                 chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
                 if (temp != 2){
-                    replaceFragment(CommunityFragment())
+                    replaceFragment(CommunityFragment(), "communityTab")
                 }
             }
             3 -> {
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 chagneNonSelectedTabView(temp)
                 chagneSelectedTabView(current_tab_idx)
                 if (temp != 3){
-                    replaceFragment(ContentsFragment())
+                    replaceFragment(ContentsFragment(), "contentsTab")
                 }
             }
         }

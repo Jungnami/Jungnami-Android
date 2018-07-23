@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".legislator_list.LegislatorListFragment">
     <!-- made by Yun Hwan-->
 
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <LinearLayout
+            android:visibility="gone"
             android:orientation="horizontal"
             android:elevation="1dp"
             android:layout_width="match_parent"
@@ -95,10 +97,25 @@
             </RelativeLayout>
         </LinearLayout>
         <FrameLayout
+            android:visibility="gone"
             android:id="@+id/legislator_list_frag_fragment_fl"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/legislator_list_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:tabIndicatorColor="#36C5F1"
+            app:tabIndicatorHeight="3dp">
+
+        </android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/legislator_list_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
     </LinearLayout>
     <RelativeLayout
         android:visibility="gone"

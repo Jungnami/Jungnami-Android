@@ -43,6 +43,7 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (SharedPreferenceController.getAuthorization(context!!) == "") {
