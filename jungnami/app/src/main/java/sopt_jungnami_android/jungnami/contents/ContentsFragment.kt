@@ -29,6 +29,7 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Contents
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
+import java.io.Serializable
 
 //    made by Yunhwan
 class ContentsFragment : Fragment(), View.OnClickListener {
@@ -56,7 +57,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
     lateinit var recommendDataList: ArrayList<Contents>
     lateinit var tmiOrStoryDataList : ArrayList<Contents>
     lateinit var storyDataList : ArrayList<Contents>
-    var mainContentData : Contents? = null
+    lateinit var mainContentData : Contents
     var contents_id : Int = 0
     lateinit var networkService : NetworkService
     var alertCount : Int = 0
@@ -72,16 +73,31 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         return view
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putSerializable("recommendDataList", recommendDataList)
+//        outState.putSerializable("tmiOrStoryDataList", tmiOrStoryDataList)
+        outState.putInt("alertCount", alertCount)
+        outState.putSerializable("mainContentData", mainContentData)
+        Log.e("컨텐츠 상태저장 시작", "저장 시작")
+        super.onSaveInstanceState(outState)
+    }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
+        if (savedInstanceState != null){
+            Log.e("컨텐츠 상태저장 불러오기", "저장 불러오기")
+            recommendDataList = savedInstanceState.getSerializable("recommendDataList") as ArrayList<Contents>
+            alertCount = savedInstanceState.getInt("alertCount")
+            mainContentData = savedInstanceState.getSerializable("mainContentData") as Contents
+            setMainContentView(mainContentData)
+            changeConetentsRecyclerViewData()
 
-        requestRecommendContentsDataToServer()
-
-
-
-
-
+        } else {
+            Log.e("컨텐츠 상태저장 내용 없음", "저장된 내용 없음")
+            requestRecommendContentsDataToServer()
+        }
     }
     private fun setClickListener(){
         contents_frag_top_bar_my_page_btn.setOnClickListener {
@@ -151,6 +167,8 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                         alertCount = response.body()!!.data.alarmcnt
                         setAlertBellView()
                         recommendDataList = response.body()!!.data.content
+
+                        mainContentData = recommendDataList[0]
 
                         contents_id = recommendDataList[0].contentsid
                         setMainContentView(recommendDataList[0])

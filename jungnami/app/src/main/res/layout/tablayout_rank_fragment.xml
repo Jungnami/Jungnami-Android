@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#FFFFFF"
+    android:elevation="1dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/likeable_tab_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?android:selectableItemBackground">
+
+        <TextView
+            android:id="@+id/likeable_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="호감"
+            android:textColor="#6B6B6B"
+            android:textSize="16dp" />
+
+        <View
+            android:visibility="invisible"
+            android:id="@+id/likeable_underbar_line"
+            android:layout_width="99dp"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#36C5F1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/unlikeable_tab_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?android:selectableItemBackground">
+
+        <TextView
+            android:id="@+id/unlikeable_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic"
+            android:text="비호감"
+            android:textColor="#D8D8D8"
+            android:textSize="16dp" />
+
+        <View
+            android:id="@+id/unlikeable_underbar_line"
+            android:layout_width="99dp"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#36C5F1"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</LinearLayout>

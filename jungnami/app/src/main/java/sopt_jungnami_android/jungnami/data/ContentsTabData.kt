@@ -1,4 +1,7 @@
 package sopt_jungnami_android.jungnami.data
+
+import java.io.Serializable
+
 //
 //data class ContentItemData(val title : String,
 //                           val image_url : String,
@@ -16,4 +19,4 @@ data class Contents (
         val thumbnail: String? = null,
         val text: String,
         val type: Int
-)
+) : Serializable
