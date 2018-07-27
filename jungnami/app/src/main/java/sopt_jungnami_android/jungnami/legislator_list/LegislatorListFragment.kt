@@ -35,8 +35,8 @@ class LegislatorListFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
     }
+
     private fun setClickListener(){
         //tab 이동 리스터
         legislator_list_frag_party_tab_btn.setOnClickListener {
