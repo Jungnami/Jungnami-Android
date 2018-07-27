@@ -52,6 +52,16 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
     private var mainimg_1st: ImageView? = null
     private var mainimg_2st: ImageView? = null
+
+//    private lateinit var likeableRecyclerView : RecyclerView
+//    private lateinit var layoutManager: LinearLayoutManager
+
+//    private lateinit var dataSet : ArrayList<RankItemData>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        initDataSet()
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_likeable_tab, container, false)
@@ -59,18 +69,55 @@ class LikeableTab : Fragment(), View.OnClickListener {
         mainimg_1st = view.findViewById(R.id.likeable_tab_1st_picture_iv) as ImageView
         mainimg_2st = view.findViewById(R.id.likeable_tab_2st_picture_iv) as ImageView
 
+//        likeableRecyclerView = view.findViewById(R.id.likeable_tab_rank_list_rv) as RecyclerView
+//        layoutManager = LinearLayoutManager(activity)
+
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
-        likeable_tab_root_rl_to_refreshing.visibility = View.INVISIBLE
-        likeable_tab_refresh_srl.isRefreshing = true
-        getRankItemDataAtServer()
-
-
+        legislatorRankDataList = ArrayList()
+        if (savedInstanceState != null) {
+            Log.i("상태 불러오는 중", "legislatorRankDataList 불러옴!!!!!!")
+            legislatorRankDataList = savedInstanceState.getSerializable("legislatorRankDataList") as ArrayList<RankItemData>
+            refreshView()
+        } else {
+            Log.i("상태 저장된것 없음", "legislatorRankDataList 처음임!!!!!!!!")
+            likeable_tab_root_rl_to_refreshing.visibility = View.INVISIBLE
+            likeable_tab_refresh_srl.isRefreshing = true
+            getRankItemDataAtServer()
+        }
     }
+
+//    private fun setRecyclerviewLayoutManager(){
+//        var scrollPosition = 0
+//        if (likeableRecyclerView.layoutManager != null){
+//            scrollPosition = (likeableRecyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+//        }
+//
+//        with(likeableRecyclerView){
+//            layoutManager = this@LikeableTab.layoutManager
+//            scrollToPosition(scrollPosition)
+//        }
+//    }
+//    private fun initDataSet(){
+//        dataSet = ArrayList()
+//        val getLikeableTabResponse = ApplicationController.instance.networkService.getRanking(
+//                SharedPreferenceController.getAuthorization(context = context!!), 1)
+//        getLikeableTabResponse.enqueue(object :Callback<GetRankingResponse>{
+//            override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
+//                toast("응답 실패")
+//            }
+//
+//            override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
+//                if (response!!.isSuccessful){
+//                    dataSet = response.body()!!.data
+//                }
+//            }
+//        })
+//    }
 
     private fun initSettingView() {
         set1stVS2stRankView()
@@ -88,13 +135,17 @@ class LikeableTab : Fragment(), View.OnClickListener {
         setRankVoteCountProgressbarAnimation()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.i("상태 저장 중", "legislatorRankDataList 저장!!!")
+        outState.putSerializable("legislatorRankDataList", legislatorRankDataList)
+        super.onSaveInstanceState(outState)
+    }
+
     //서버에서 데이터 받기
     fun getRankItemDataAtServer() {
         (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
         (context as MainActivity).isLoading = true
         networkService = ApplicationController.instance.networkService
-        legislatorRankDataList = ArrayList()
 
         val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),1)
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
@@ -111,14 +162,9 @@ class LikeableTab : Fragment(), View.OnClickListener {
                     if (legislatorRankDataList.size > 1) {
                         legislatorRankDataList = legislatorRankDataList.take(100) as ArrayList<RankItemData>
                         initSettingView()
-
-                        likeable_tab_refresh_srl.isRefreshing = false
                         (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
-
                     } else {
                         (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
                         toast("데이터 수 부족")
                     }
                 }
@@ -131,8 +177,6 @@ class LikeableTab : Fragment(), View.OnClickListener {
         likeable_tab_refresh_srl.setOnRefreshListener {
             getRankItemDataAtServer()
         }
-
-
         likeable_tab_1st_btn.setOnClickListener {
             startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
         }

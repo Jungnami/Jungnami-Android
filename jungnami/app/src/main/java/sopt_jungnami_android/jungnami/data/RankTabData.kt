@@ -1,5 +1,7 @@
 package sopt_jungnami_android.jungnami.data
 
+import java.io.Serializable
+
 data class RankItemData (val l_id : Int,
                          val l_name : String,
                          val party_name : String,
@@ -9,7 +11,7 @@ data class RankItemData (val l_id : Int,
                          val profileimg : String?,
                          val mainimg : String?,
                          val ranking : String,
-                         val width: Double)
+                         val width: Double) : Serializable
 
 
 //"l_id": 6,
