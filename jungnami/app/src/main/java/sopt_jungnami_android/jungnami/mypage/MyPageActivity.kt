@@ -69,7 +69,6 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun requestMyPageDataToServer(target: String){
-        window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
@@ -80,7 +79,6 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse>{
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())
-                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
@@ -102,7 +100,6 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                         setFeedRecyclerViewAdapter()
                     }
                 }
-                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
         })
     }

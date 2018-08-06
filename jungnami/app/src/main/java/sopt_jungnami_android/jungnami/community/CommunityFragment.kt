@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,11 +37,20 @@ class CommunityFragment : Fragment(), View.OnClickListener {
     lateinit var feedDataList: ArrayList<Content>
     lateinit var communityRecyclerViewAdapter: CommunityRecyclerViewAdapter
     lateinit var networkService: NetworkService
+    lateinit var user_img_url : String
+    var alarmcnt: Int = 0
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.i("상태 저장 중", "feedDataList 저장!!!")
+        outState.putSerializable("feedDataList", feedDataList)
+        outState.putString("user_img_url", user_img_url)
+        outState.putInt("alarmcnt", alarmcnt)
+        super.onSaveInstanceState(outState)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_community, container, false)
-
     }
 
 
@@ -51,13 +61,28 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         } else {
             community_frag_no_login_status_rl.visibility = View.GONE
         }
-
         setClickedListener()
         networkService = ApplicationController.instance.networkService
-
         community_frag_refresh.isRefreshing = true
-        getCommunityFeed()
+        if (savedInstanceState == null){
+            Log.i("상태 저장 없다", "feedDataList 새롭게 받는중")
+            getCommunityFeed()
+        } else {
+            Log.i("상태 저장 꺼내오는중", "feedDataList 꺼내옴!!!!!!")
+            feedDataList = savedInstanceState.getSerializable("feedDataList") as ArrayList<Content>
+            user_img_url = savedInstanceState.getString("user_img_url")
+            alarmcnt = savedInstanceState.getInt("alarmcnt")
 
+            Glide.with(context!!)
+                    .load(user_img_url)
+                    .into(community_frag_my_picture_iv)
+
+            community_top_bar_new_post_counter_tv.text = alarmcnt.toString()
+
+            setRecyclerViewAdapter()
+
+            community_frag_refresh.isRefreshing = false
+        }
     }
 
     private fun setRecyclerViewAdapter() {
@@ -68,32 +93,28 @@ class CommunityFragment : Fragment(), View.OnClickListener {
     }
 
     fun getCommunityFeed() {
-        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
-        (context as MainActivity).isLoading = true
         val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!))
         getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse> {
             override fun onFailure(call: Call<GetCommunityFeedResponse>?, t: Throwable?) {
-                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
 
             override fun onResponse(call: Call<GetCommunityFeedResponse>?, response: Response<GetCommunityFeedResponse>?) {
-                (context as MainActivity).isLoading = false
                 if (response!!.isSuccessful) {
-                    var user_img_url = response!!.body()!!.data!!.user_img_url
+                    user_img_url = response!!.body()!!.data!!.user_img_url
 
                     Glide.with(context!!)
                             .load(user_img_url)
                             .into(community_frag_my_picture_iv)
 
-                    community_top_bar_new_post_counter_tv.text = response!!.body()!!.data!!.alarmcnt.toString()
+                    alarmcnt = response!!.body()!!.data!!.alarmcnt
+
+                    community_top_bar_new_post_counter_tv.text = alarmcnt.toString()
 
                     feedDataList = response!!.body()!!.data!!.content
 
                     setRecyclerViewAdapter()
 
                     community_frag_refresh.isRefreshing = false
-                    (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                 }
             }

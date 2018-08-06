@@ -33,7 +33,10 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
     }
 
     override fun getItemCount(): Int = dataList.size
-
+    fun addItem(dataList : ArrayList<RankItemData>){
+        this.dataList.addAll(dataList)
+        notifyDataSetChanged()
+    }
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val rank_number = dataList[position].ranking
         when (rank_number){
@@ -41,7 +44,7 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
             "2" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_orange)
             "3" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_bomb_yellow)
             else -> {
-                holder.rank_number_cover_img.visibility = View.INVISIBLE
+                holder.rank_number_cover_img.visibility = View.GONE
                 holder.rank_number.setTextColor(Color.parseColor("#36C5F1"))
             }
         }
@@ -51,6 +54,7 @@ class UnlikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
             val requestOptions = RequestOptions()
             requestOptions.placeholder(R.drawable.legislator_noneprofile_woman_image)
             requestOptions.error(R.drawable.legislator_noneprofile_woman_image)
+            requestOptions.override(150)
             Glide.with(ctx)
                     .setDefaultRequestOptions(requestOptions)
                     .load(dataList[position].profileimg)

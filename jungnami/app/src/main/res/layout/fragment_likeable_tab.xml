@@ -81,7 +81,7 @@
                                             android:layout_centerVertical="true"
                                             android:layout_marginRight="8dp"
                                             android:fontFamily="@font/nanumbarungothiclight"
-                                            android:text="715000 표"
+                                            android:text="-"
                                             android:textColor="#E2E2E2"
                                             android:textSize="8dp"
                                             android:visibility="gone" />
@@ -112,7 +112,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="left"
                                             android:fontFamily="@font/nanumbarungothic"
-                                            android:text="홍길동"
+                                            android:text="-"
                                             android:textColor="#F7F7F7"
                                             android:textSize="17dp" />
 
@@ -122,7 +122,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="left"
                                             android:fontFamily="@font/nanumbarungothiclight"
-                                            android:text="숭구리당"
+                                            android:text="-"
                                             android:textColor="#E2E2E2"
                                             android:textSize="10dp" />
                                     </LinearLayout>
@@ -168,7 +168,7 @@
                                             android:layout_centerVertical="true"
                                             android:layout_marginLeft="8dp"
                                             android:fontFamily="@font/nanumbarungothiclight"
-                                            android:text="222000 표"
+                                            android:text="-"
                                             android:textColor="#E2E2E2"
                                             android:textSize="8dp"
                                             android:visibility="gone" />
@@ -200,7 +200,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="right"
                                             android:fontFamily="@font/nanumbarungothic"
-                                            android:text="김병욱"
+                                            android:text="-"
                                             android:textColor="#F7F7F7"
                                             android:textSize="17dp" />
 
@@ -210,7 +210,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="right"
                                             android:fontFamily="@font/nanumbarungothiclight"
-                                            android:text="더불어민주당"
+                                            android:text="-"
                                             android:textColor="#E2E2E2"
                                             android:textSize="10dp" />
                                     </LinearLayout>

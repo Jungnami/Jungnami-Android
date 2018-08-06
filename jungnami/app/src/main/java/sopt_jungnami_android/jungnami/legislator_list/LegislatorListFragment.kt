@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.fragment_legislator_list.*
 import kotlinx.android.synthetic.main.tablayout_legislator_list_frag.*
+import org.jetbrains.anko.sdk25.coroutines.onTouch
 import org.jetbrains.anko.support.v4.startActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
@@ -113,6 +115,7 @@ class LegislatorListFragment : Fragment() {
     fun configureLegislatorListTabMenu() {
         legislator_list_viewpager.adapter = LegislatorListTabPagerAdapter(2, childFragmentManager)
         legislator_list_tablayout.setupWithViewPager(legislator_list_viewpager)
+
 
         val headerView: View = (activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
                 .inflate(R.layout.tablayout_legislator_list_frag, null, false)

@@ -3,24 +3,18 @@ package sopt_jungnami_android.jungnami
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.longToast
-import sopt_jungnami_android.jungnami.community.CommunityFragment
-import sopt_jungnami_android.jungnami.contents.ContentsFragment
-import sopt_jungnami_android.jungnami.db.SharedPreferenceController
-import sopt_jungnami_android.jungnami.legislator_list.LegislatorListFragment
-import sopt_jungnami_android.jungnami.rank.LikeableTab
-import sopt_jungnami_android.jungnami.rank.RankFragment
-import sopt_jungnami_android.jungnami.rank.UnlikeableTab
+import sopt_jungnami_android.jungnami.main.MainTabAdapter
 
 class MainActivity : AppCompatActivity() {
-    var isLoading : Boolean = false
+    var isLoading: Boolean = false
 
     var current_tab_idx: Int = 0
     private val FINISH_INTERVAL_TIME: Long = 2000
@@ -31,30 +25,13 @@ class MainActivity : AppCompatActivity() {
 //        Log.e("현재 유저 토큰", SharedPreferenceController.getAuthorization(context = this))
 
         setStatusBarColor()
-        main_act_rank_btn.isSelected = true
-        setBottomNavigationClickListener()
-        addFragment(RankFragment())
-        main_act_likeable_icon_with_animation_iv.visibility = View.INVISIBLE
-        main_act_unlikeable_icon_with_animation_iv.visibility = View.INVISIBLE
+
         //FirebaseConnection().onTokenRefresh()
+
+
+        configureMainTab()
     }
 
-    private fun setBottomNavigationClickListener() {
-//        activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-//        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        main_act_rank_btn.setOnClickListener {
-            checkSelectedTabView(0)
-        }
-        main_act_list_btn.setOnClickListener {
-            checkSelectedTabView(1)
-        }
-        main_act_community_btn.setOnClickListener {
-            checkSelectedTabView(2)
-        }
-        main_act_content_btn.setOnClickListener {
-            checkSelectedTabView(3)
-        }
-    }
 
     fun setAnimRankTabIcon(isLikeable: Boolean) {
         val interpolator = MyBounceInterpolator(0.2, 20.0)
@@ -67,8 +44,8 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onAnimationEnd(animation: Animation?) {
                     main_act_likeable_icon_with_animation_iv.visibility = View.GONE
-                    val fragment = supportFragmentManager.findFragmentById(R.id.main_act_fragment_fl)
-                    (fragment as RankFragment).connectionLikeableTab()
+//                    val fragment = supportFragmentManager.findFragmentById(R.id.main_act_fragment_fl)
+//                    (fragment as RankFragment).connectionLikeableTab()
                 }
 
                 override fun onAnimationStart(animation: Animation?) {
@@ -83,8 +60,9 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onAnimationEnd(animation: Animation?) {
                     main_act_unlikeable_icon_with_animation_iv.visibility = View.GONE
-                    val fragment = supportFragmentManager.findFragmentById(R.id.main_act_fragment_fl)
-                    (fragment as RankFragment).connectionUnLikeableTab()
+                    //갱신하려고
+//                    val fragment = supportFragmentManager.findFragmentById(R.id.main_act_fragment_fl)
+//                    (fragment as RankFragment).connectionUnLikeableTab()
                 }
 
                 override fun onAnimationStart(animation: Animation?) {
@@ -92,83 +70,6 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             main_act_unlikeable_icon_with_animation_iv.startAnimation(anim)
-        }
-    }
-
-    fun addFragment(fragment: Fragment): Unit {
-        val fm = supportFragmentManager
-        val transaction = fm.beginTransaction()
-        transaction.add(R.id.main_act_fragment_fl, fragment, "rank_tab")
-        transaction.commit()
-    }
-
-    fun replaceFragment(fragment: Fragment, tag : String) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.main_act_fragment_fl, fragment, tag)
-//        transaction.addToBackStack(null) //백키 눌렀을때 순차대로
-        transaction.commit()
-    }
-
-
-
-    private fun chagneNonSelectedTabView(idx: Int) {
-        when (idx) {
-            0 -> main_act_rank_btn.isSelected = false
-            1 -> main_act_list_btn.isSelected = false
-            2 -> main_act_community_btn.isSelected = false
-            3 -> main_act_content_btn.isSelected = false
-        }
-    }
-
-    private fun chagneSelectedTabView(idx: Int) {
-        when (idx) {
-            0 -> main_act_rank_btn.isSelected = true
-            1 -> main_act_list_btn.isSelected = true
-            2 -> main_act_community_btn.isSelected = true
-            3 -> main_act_content_btn.isSelected = true
-        }
-    }
-
-    private fun checkSelectedTabView(selected_idx: Int) {
-        when (selected_idx) {
-            0 -> {
-                val temp = current_tab_idx
-                current_tab_idx = 0
-                chagneNonSelectedTabView(temp)
-                chagneSelectedTabView(current_tab_idx)
-                if(temp != 0){
-
-                    replaceFragment(RankFragment(), "rankTab")
-                }
-            }
-            1 -> {
-                val temp = current_tab_idx
-                current_tab_idx = 1
-                chagneNonSelectedTabView(temp)
-                chagneSelectedTabView(current_tab_idx)
-                if (temp != 1){
-
-                    replaceFragment(LegislatorListFragment(), "legislatorListTab")
-                }
-            }
-            2 -> {
-                val temp = current_tab_idx
-                current_tab_idx = 2
-                chagneNonSelectedTabView(temp)
-                chagneSelectedTabView(current_tab_idx)
-                if (temp != 2){
-                    replaceFragment(CommunityFragment(), "communityTab")
-                }
-            }
-            3 -> {
-                val temp = current_tab_idx
-                current_tab_idx = 3
-                chagneNonSelectedTabView(temp)
-                chagneSelectedTabView(current_tab_idx)
-                if (temp != 3){
-                    replaceFragment(ContentsFragment(), "contentsTab")
-                }
-            }
         }
     }
 
@@ -207,5 +108,24 @@ class MainActivity : AppCompatActivity() {
             backPressedTime = tempTime
             longToast("한번 더 뒤로가기를 누르면 종료됩니다.")
         }
+    }
+
+    private fun configureMainTab() {
+        main_act_fragment_view_pager.adapter = MainTabAdapter(supportFragmentManager)
+        main_act_fragment_view_pager.offscreenPageLimit = 4
+        main_act_bottom_tab.setupWithViewPager(main_act_fragment_view_pager)
+
+        val bottomNaviTabBar: View = (this.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+                .inflate(R.layout.tablayout_main_act_bottom, null, false)
+        val rank = bottomNaviTabBar.findViewById(R.id.main_act_bottom_navi_rank_btn) as RelativeLayout
+        val list = bottomNaviTabBar.findViewById<RelativeLayout>(R.id.main_act_bottom_navi_list_btn)
+        val community = bottomNaviTabBar.findViewById<RelativeLayout>(R.id.main_act_bottom_navi_community_btn)
+        val contents = bottomNaviTabBar.findViewById<RelativeLayout>(R.id.main_act_bottom_navi_content_btn)
+
+        main_act_bottom_tab.getTabAt(0)!!.customView = rank
+        main_act_bottom_tab.getTabAt(1)!!.customView = list
+        main_act_bottom_tab.getTabAt(2)!!.customView = community
+        main_act_bottom_tab.getTabAt(3)!!.customView = contents
+
     }
 }

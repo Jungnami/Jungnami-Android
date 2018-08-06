@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_likeable_tab.*
 import kotlinx.android.synthetic.main.fragment_unlikeable_tab.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -61,6 +64,8 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         unlikeable_tab_root_rl_to_refreshing.visibility = View.INVISIBLE
         unlikeable_tab_refresh_srl.isRefreshing = true
         getRankItemDataAtServer()
+
+
     }
 
     private fun initSettingView() {
@@ -69,17 +74,27 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         unlikeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
         setRecyclerViewAdapter()
         setRankVoteCountProgressbarAnimation()
+        moreLoadListData()
     }
-
-    private fun refreshView() {
-        set1stVS2stRankView()
-        setRecyclerViewAdapter()
-        likeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
-        setRankVoteCountProgressbarAnimation()
+    private fun  moreLoadListData(){
+        unlikeable_tab_nested_scroll.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v!!.getChildAt(v!!.childCount -1) != null){
+                if ((scrollY >= (v.getChildAt(v!!.childCount -1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY){
+                    unlikeable_tab_refresh_srl.isRefreshing = true
+                    var currentItemsCount : Int = unlikeableRankRecyclerViewAdapter.itemCount
+                    val addItems : ArrayList<RankItemData> = ArrayList(legislatorRankDataList.subList(currentItemsCount, currentItemsCount+25))
+                    doAsync {
+                        unlikeableRankRecyclerViewAdapter.addItem(addItems)
+                        uiThread {
+                            unlikeable_tab_refresh_srl.isRefreshing = false
+                        }
+                    }
+                }
+            }
+        }
     }
     //서버에서 데이터 받기
     fun getRankItemDataAtServer() {
-        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         networkService = ApplicationController.instance.networkService
         legislatorRankDataList = ArrayList()
@@ -90,7 +105,6 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
-                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
@@ -98,14 +112,9 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
-                        legislatorRankDataList = legislatorRankDataList.take(100) as ArrayList<RankItemData>
                         initSettingView()
-
-                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
                     } else {
                         toast("데이터 수 부족")
-                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     }
                 }
@@ -154,7 +163,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         unlikeable_tab_2st_vote_count_bar.startAnimation(animOf2st)
     }
     private fun setRecyclerViewAdapter(){
-        unlikeableRankRecyclerViewAdapter = UnlikeableRankRecyclerViewAdapter(activity!!, legislatorRankDataList)
+        unlikeableRankRecyclerViewAdapter = UnlikeableRankRecyclerViewAdapter(activity!!, legislatorRankDataList.take(15) as ArrayList<RankItemData>)
         unlikeableRankRecyclerViewAdapter.setOnItemClickListener(this)
         unlikeable_tab_rank_list_rv.layoutManager = LinearLayoutManager(context)
         unlikeable_tab_rank_list_rv.adapter = unlikeableRankRecyclerViewAdapter
