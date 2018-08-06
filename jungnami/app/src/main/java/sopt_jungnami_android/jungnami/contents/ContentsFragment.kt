@@ -100,6 +100,9 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         }
     }
     private fun setClickListener(){
+        contents_frag_refresh_srl.setOnRefreshListener {
+            contents_frag_refresh_srl.isRefreshing = false
+        }
         contents_frag_top_bar_my_page_btn.setOnClickListener {
             startActivity<MyPageActivity>()
         }
@@ -147,17 +150,12 @@ class ContentsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun requestRecommendContentsDataToServer(){
-        (context as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
-        (context as MainActivity).isLoading = true
-
         recommendDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
 
         val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!))
         getRecommendContentsResponse.enqueue(object : Callback<GetRecommendContentsResponse>{
             override fun onFailure(call: Call<GetRecommendContentsResponse>?, t: Throwable?) {
-                (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
 
             override fun onResponse(call: Call<GetRecommendContentsResponse>?, response: Response<GetRecommendContentsResponse>?) {
@@ -176,11 +174,8 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
                         //추천 컨텐츠 뿌리기
                         changeConetentsRecyclerViewData()
-                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
                     } else {
                         contents_frag_main_content_lr.visibility = View.GONE
-                        (context as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     }
                 }

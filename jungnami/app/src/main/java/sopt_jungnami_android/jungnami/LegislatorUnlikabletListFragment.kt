@@ -129,13 +129,11 @@ class LegislatorUnlikabletListFragment : Fragment() {
     }
 
     private fun getPartyLegislatorUnlikableListResponse() {
-        (context as LegislatorList).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         var p_name = (context as LegislatorList).getp_name()
         val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!), 0, p_name)
         getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse> {
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
@@ -146,7 +144,6 @@ class LegislatorUnlikabletListFragment : Fragment() {
                     rv_legislator.layoutManager = LinearLayoutManager(context)
                     rv_legislator.adapter = legislatorListViewAdapter
                 }
-                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
         })
@@ -157,13 +154,10 @@ class LegislatorUnlikabletListFragment : Fragment() {
         rv_legislator.adapter = legislatorListViewAdapter
     }
     private fun getDistrictLegislatorUnlikableListResponse(){
-        (context as LegislatorList).window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
         var region_name = (context as LegislatorList).getregion_name()
         val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),0, region_name)
         getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-                (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
@@ -171,7 +165,6 @@ class LegislatorUnlikabletListFragment : Fragment() {
                     legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                     setAdapter()
 
-                    (context as LegislatorList).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                 }
             }

@@ -1,89 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
-    <FrameLayout
-        android:id="@+id/main_act_fragment_fl"
-        android:layout_alignParentTop="true"
+
+    <sopt_jungnami_android.jungnami.main.MainViewPager
+        android:id="@+id/main_act_fragment_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="55dp">
-    </FrameLayout>
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/main_act_bottom_tab">
 
-    <RelativeLayout
-        android:id="@+id/main_bottom_navigation"
-        android:background="#FFFFFF"
+    </sopt_jungnami_android.jungnami.main.MainViewPager>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_act_bottom_tab"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_alignParentBottom="true">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.25dp"
-            android:layout_alignParentTop="true"
-            android:background="#6B6B6B"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <RelativeLayout
-                android:id="@+id/main_act_rank_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/main_act_bottom_navi_item_rank_selector"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/main_act_list_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/main_act_bottom_navi_item_list_selector"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/main_act_community_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/main_act_bottom_navi_item_community_selector"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/main_act_content_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/main_act_bottom_navi_item_content_selector"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
+        android:layout_alignParentBottom="true"
+        app:tabIndicatorHeight="0dp">
+    </android.support.design.widget.TabLayout>
     <ImageView
         android:id="@+id/main_act_unlikeable_icon_with_animation_iv"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_centerInParent="true"
         android:src="@drawable/vote_animation_icon_red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <ImageView
         android:id="@+id/main_act_likeable_icon_with_animation_iv"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_centerInParent="true"
         android:src="@drawable/vote_animation_icon_blue"
         android:layout_width="wrap_content"

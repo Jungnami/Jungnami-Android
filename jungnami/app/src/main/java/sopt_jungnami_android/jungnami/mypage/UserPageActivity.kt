@@ -76,8 +76,6 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         userpage_act_recyclerview_list_rv.adapter = userAndMyPageScrapRecyclerViewAdapter
     }
     private fun requestPageDataToServer(){
-        window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
         scrapDataList = ArrayList()
         boardDataList = ArrayList()
 
@@ -88,7 +86,6 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
         getMyPageResponse.enqueue(object : Callback<GetMyPageResponse> {
             override fun onFailure(call: Call<GetMyPageResponse>?, t: Throwable?) {
                 Log.e("실패", t.toString())
-                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
@@ -103,7 +100,6 @@ class UserPageActivity : AppCompatActivity(), View.OnClickListener {
                     setPageInfoView()
                     setScrapRecyclerViewAdapter()
                 }
-                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
         })

@@ -13,6 +13,9 @@ import android.view.LayoutInflater
 import android.support.v4.view.PagerAdapter
 import retrofit2.Call
 import retrofit2.Response
+import android.support.v4.widget.NestedScrollView
+
+
 
 
 /**
@@ -26,6 +29,25 @@ class ExampleUnitTest : FirebaseInstanceIdService() {
         assertEquals(4, 2 + 2)
 
         onTokenRefresh()
+
+//        mNestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//            if (v.getChildAt(v.childCount - 1) != null) {
+//                if (scrollY >= v.getChildAt(v.childCount - 1).measuredHeight - v.measuredHeight && scrollY > oldScrollY) {
+//
+//                    visibleItemCount = mLayoutManager.getChildCount()
+//                    totalItemCount = mLayoutManager.getItemCount()
+//                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
+//
+//                    if (isLoadData()) {
+//
+//                        if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
+//
+//                            //                        Load Your Data
+//                        }
+//                    }
+//                }
+//            }
+//        })
     }
     override fun onTokenRefresh() {
         val refreshedToken = FirebaseInstanceId.getInstance().token

@@ -10,8 +10,7 @@
         android:id="@+id/likeable_tab_btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?android:selectableItemBackground">
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/likeable_title_tv"
@@ -37,8 +36,7 @@
         android:id="@+id/unlikeable_tab_btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?android:selectableItemBackground">
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/unlikeable_title_tv"

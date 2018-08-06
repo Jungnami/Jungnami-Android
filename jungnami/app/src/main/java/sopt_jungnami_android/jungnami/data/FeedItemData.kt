@@ -1,10 +1,12 @@
 package sopt_jungnami_android.jungnami.data
 
+import java.io.Serializable
+
 data class FeedItemData (
         val content: ArrayList<Content>,
         val user_img_url: String,
         val alarmcnt: Int
-)
+) : Serializable
 
 data class Content (
         val boardid: Int,
@@ -17,4 +19,4 @@ data class Content (
         val islike: Int,
         val likecnt: Int,
         val commentcnt: Int
-)
+) : Serializable
