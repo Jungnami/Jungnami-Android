@@ -31,10 +31,15 @@ class ContentsDeleteScrapDialog(val ctx: Context, val contentsid: Int) : Dialog(
 
     private fun setClickListener() {
         scrap_delete_popup_frag_yes_btn.setOnClickListener {
+            (ctx as ContentsDetail).run {
+                isScrapInPage = 0
+                changeIsScrapBtnView()
+                isChangeScapState = true
+            }
+//            (ctx as ContentsDetail).isScrapInPage = 0
+//            (ctx as ContentsDetail).changeIsScrapBtnView()
+//            (ctx).isChangeScapState = true
             requestDeleteContentsToServer()
-            (ctx as ContentsDetail).isScrapInPage = 0
-            (ctx as ContentsDetail).changeIsScrapBtnView()
-            (ctx).isChangeScapState = true
         }
         scrap_delete_popup_frag_no_btn.setOnClickListener {
             dismiss()

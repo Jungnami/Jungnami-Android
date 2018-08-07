@@ -25,10 +25,11 @@ import sopt_jungnami_android.jungnami.data.Board
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import javax.security.auth.callback.Callback
 
-class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Board>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
+class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Board>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
     lateinit var onItemClick: View.OnClickListener
     lateinit var networkService: NetworkService
     private val REQUEST_CODE_FEED =1002
+
     fun setOnItemClickListener(l: View.OnClickListener) {
         onItemClick = l
     }
@@ -60,13 +61,19 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, val dataList: Array
             Glide.with(ctx).load(dataList[position].source[0].b_img).into(holder.b_b_image)
         }
 
+        if (dataList[position].islike == 0){
+            holder.b_like_img.setImageResource(R.drawable.community_heart_gray)
+        } else {
+            holder.b_like_img.setImageResource(R.drawable.community_heart_blue)
+        }
+        Log.e("포지션 ${position} : " , "${dataList[position].islike}")
         holder.b_likecnt.text = dataList[position].like_cnt.toString()+"명"
         holder.b_commentcnt.text = dataList[position].comment_cnt.toString()
-        holder.b_like_img.setOnClickListener {
-            Log.e("눌렸나?", "좋아요 눌리긴함")
-            requestLikeBoardToServer(position)
 
+        holder.b_like_img.setOnClickListener {
+            requestLikeBoardToServer(position, holder.b_like_img)
         }
+
         holder.b_comment_img.setOnClickListener {
             (ctx as Activity).startActivityForResult<CommunityCommentActivity>(REQUEST_CODE_FEED,"board_id" to dataList[position].b_id)
         }
@@ -92,20 +99,18 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, val dataList: Array
         val b_b_image : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_contents_iv) as ImageView
     }
 
-    fun requestLikeBoardToServer(position : Int){
+    fun requestLikeBoardToServer(position : Int, b_like_img : ImageView){
         val postCommunityLikeRequset = networkService.postCommunityLike(
                 SharedPreferenceController.getAuthorization(ctx), PostCommunityLikeRequset(dataList[position].b_id))
         postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
             override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
-                Log.v("유저,마이 페이지 좋아요 성공", t.toString())
             }
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
-                Log.v("유저,마이 페이지 좋아요!!! ", "성공 전")
                 if(response!!.isSuccessful){
-                    Log.v("유저,마이 페이지 좋아요 성공", response!!.body()!!.message)
+                    dataList[position].islike
+                    b_like_img.setImageResource(R.drawable.community_heart_blue)
                 }
             }
-
         })
     }
 }

@@ -43,8 +43,7 @@
         <activity android:name=".community.CommunityCommentActivity"/>
         <activity android:name=".contents.ContentsCommentActivity"/>
         <activity android:name=".contents.ContentsSearchActivity"/>
-
-
+        <activity android:name=".legislator_list.SearchRigionActivity"></activity>
 
         <!--카카오톡 로그인-->
         <meta-data

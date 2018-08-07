@@ -138,7 +138,7 @@
                 android:layout_alignParentBottom="true">
                 <ImageView
                     android:id="@+id/contents_act_detail_like_btn"
-                    android:src="@drawable/content_heart"
+                    android:src="@drawable/contents_heart_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
