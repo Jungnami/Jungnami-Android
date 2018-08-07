@@ -36,7 +36,6 @@ class ContentsDetail : AppCompatActivity() {
     lateinit var cardViewInImageList : ArrayList<Imagearray>
 
     var isLike : Int = 0
-
     var isScrapInPage : Int = 0
     var contents_id: Int = 0
     var isUserMyPage : Boolean = false
@@ -62,8 +61,7 @@ class ContentsDetail : AppCompatActivity() {
 
             override fun onResponse(call: Call<PostContentsLikeResponse>?, response: Response<PostContentsLikeResponse>?) {
                 if (response!!.isSuccessful){
-                    isLike = 1
-                    checkLikeClicked()
+                    checkLikeClicked(1)
                     toast("좋아요")
                 }
             }
@@ -80,8 +78,7 @@ class ContentsDetail : AppCompatActivity() {
 
             override fun onResponse(call: Call<DeleteContentsLikeResponse>?, response: Response<DeleteContentsLikeResponse>?) {
                 if (response!!.isSuccessful){
-                    isLike = 0
-                    checkLikeClicked()
+                    checkLikeClicked(0)
                     toast("좋아요 취소")
                 }
             }
@@ -103,8 +100,8 @@ class ContentsDetail : AppCompatActivity() {
                     cardViewInImageList= response.body()!!.data.imagearray
 
                     //좋아요
-                    isLike = cardViewItemData.likeCnt
-                    checkLikeClicked()
+                    isLike = cardViewItemData.islike
+                    checkLikeClicked(isLike)
 
                     //스크랩
                     isScrapInPage = cardViewItemData.isscrap
@@ -118,6 +115,7 @@ class ContentsDetail : AppCompatActivity() {
                     }
                     setView()
                     setViewPagerAdapter()
+                    toast("초기 좋아요 상태 : ${isLike}")
                 }
             }
         })
@@ -125,10 +123,15 @@ class ContentsDetail : AppCompatActivity() {
     }
 
     // 색깔 바뀌는 곳
-    private fun checkLikeClicked(){
-        if (isLike==0){
+    private fun checkLikeClicked(isLikeChecker : Int){
+        if (isLikeChecker != isLike){
+            isChangeScapState = true
+        }
+        if (isLikeChecker==0){
+            isLike = 0
             contents_act_detail_like_btn.setImageResource(R.drawable.contents_heart_gray)
         } else {
+            isLike = 1
             contents_act_detail_like_btn.setImageResource(R.drawable.contents_heart_blue)
         }
     }
