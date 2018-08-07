@@ -123,6 +123,13 @@ interface NetworkService {
             @Header("authorization") tokenValue : String?,
             @Path("keyword") keyword : String
     ) : Call<GetContentSearchResponse>
+
+    // 커뮤니티 검색
+    @GET("search/board/{keyword}")
+    fun getCommunitySearchResult(
+            @Header("authorization") tokenValue : String?,
+            @Path("keyword") keyword : String
+    ) : Call<GetCommunitySearchResponse>
 //형민이 라인 종료!
 
 

@@ -11,20 +11,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_community.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Alarm
 import sopt_jungnami_android.jungnami.CommunityWritePage
 import sopt_jungnami_android.jungnami.Get.GetCommunityFeedResponse
+import sopt_jungnami_android.jungnami.Get.GetCommunitySearchResponse
 import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.data.CommunitySearchData
 import sopt_jungnami_android.jungnami.data.Content
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
@@ -35,7 +39,9 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
     private val REQUEST_CODE_WRITE = 1001
     lateinit var feedDataList: ArrayList<Content>
+    lateinit var SearchFeedDataList: ArrayList<CommunitySearchData>
     lateinit var communityRecyclerViewAdapter: CommunityRecyclerViewAdapter
+    lateinit var communitySearchRecyclerViewAdapter: CommunitySearchRecyclerViewAdapter
     lateinit var networkService: NetworkService
     lateinit var user_img_url : String
     var alarmcnt: Int = 0
@@ -92,6 +98,14 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         community_frag_feed_list_rv.layoutManager = LinearLayoutManager(activity)
     }
 
+    private fun setSearchCommunityRecyclerViewAdapter() {
+        communitySearchRecyclerViewAdapter = CommunitySearchRecyclerViewAdapter(context!!, SearchFeedDataList)
+        communitySearchRecyclerViewAdapter.setOnItemClickListener(this)
+        community_frag_feed_list_rv.adapter = communitySearchRecyclerViewAdapter
+        community_frag_feed_list_rv.layoutManager = LinearLayoutManager(activity)
+    }
+
+
     fun getCommunityFeed() {
         val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!))
         getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse> {
@@ -122,6 +136,29 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         })
     }
 
+    fun getCommunitySearchFeed(keyword : String) {
+        val keyword : String = keyword
+        community_frag_top_bar_search_et.hint = keyword
+
+        val GetCommunitySearchResponse = networkService.getCommunitySearchResult(SharedPreferenceController.getAuthorization(context!!), keyword)
+
+        GetCommunitySearchResponse.enqueue(object : Callback<GetCommunitySearchResponse> {
+            override fun onFailure(call: Call<GetCommunitySearchResponse>?, t: Throwable?) {
+            }
+
+            override fun onResponse(call: Call<GetCommunitySearchResponse>?, response: Response<GetCommunitySearchResponse>?) {
+                if(response!!.isSuccessful) {
+                    SearchFeedDataList = response!!.body()!!.data
+                    setSearchCommunityRecyclerViewAdapter()
+                } else {
+                    Log.v("xxx","xxx")
+                    community_frag_feed_list_rv.visibility = View.GONE
+                    community_frag_no_search_result_rl.visibility = View.VISIBLE
+                }
+            }
+        })
+    }
+
     private fun setClickedListener() {
         community_frag_refresh.setOnRefreshListener {
             getCommunityFeed()
@@ -137,6 +174,32 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         //내 피드 작성
         community_frag_write_feed_btn.setOnClickListener {
             startActivityForResult<CommunityWritePage>(REQUEST_CODE_WRITE, "isShared" to 0)
+        }
+
+        // 검색을 위해 edit text 눌렀을 때
+        community_frag_top_bar_search_et.setOnClickListener {
+            // 검색 버튼
+            community_frag_top_bar_search_btn.visibility = View.VISIBLE
+            // 상단 검색 바 밑에 어두운 부분 보이게 하기
+            community_frag_is_display_search_rl.visibility = View.VISIBLE
+        }
+
+        // 상단 검색 바 밑에 어두운 부분 GONE 처리
+        community_frag_is_display_search_rl.setOnClickListener {
+            community_frag_is_display_search_rl.visibility = View.GONE
+            community_frag_top_bar_search_btn.visibility = View.GONE
+
+        }
+        // 검색 버튼 눌렀을 때
+        community_frag_top_bar_search_btn.setOnClickListener {
+            community_frag_is_display_search_rl.visibility = View.GONE
+            var keyword : String = community_frag_top_bar_search_et.text.toString()
+
+            Log.v("눌려?", "응눌려")
+
+            // keyword를 포함한 검색함수 실행.
+            getCommunitySearchFeed(keyword)
+
         }
     }
 
