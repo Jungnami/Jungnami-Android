@@ -13,6 +13,12 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.activity_legislator_page.*
+import kotlinx.android.synthetic.main.fragment_rank.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchPartyActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchRigionActivity
 
 // Written by SooYoung
 
@@ -231,6 +237,26 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
         legislator_list_act_is_display_blind_panel_rl.setOnClickListener {
             legislator_list_act_legislator_search_rl.visibility = View.GONE
             legislator_list_act_search.visibility = View.VISIBLE
+        }
+
+        // 서치바에서 검색 버튼 눌렀을 때
+        legislator_list_act_top_bar_search_btn.setOnClickListener {
+
+            if(isParty){
+                var l_name : String = legislator_list_act_top_bar_search_et.text.toString()
+                startActivity<SearchPartyActivity>("p_name" to p_name, "l_name" to l_name)
+            }else{
+                var l_name : String = legislator_list_act_top_bar_search_et.text.toString()
+                startActivity<SearchRigionActivity>("city" to region_name, "l_name" to l_name)
+            }
+
+
+        }
+
+        // 서치바에서 취소 버튼 눌럿을 떄
+        legislator_list_act_search_cancel_btn.setOnClickListener {
+            legislator_list_act_search.visibility = View.VISIBLE
+            legislator_list_act_legislator_search_rl.visibility = View.GONE
         }
 
     }

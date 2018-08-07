@@ -18,32 +18,34 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
 
-class SearchPartyActivity : AppCompatActivity(), View.OnClickListener {
+class SearchPartyActivity : AppCompatActivity() {
 
     lateinit var networkService: NetworkService
     lateinit var rankingSearchLegislatorItem : ArrayList<RankingSearchLegislatorData>
     var context : Context = this
     lateinit var searchResultRecyclerAdapter : SearchResultRecyclerAdapter
 
-    override fun onClick(v: View?) {
+
+    fun setOnClickListener() {
         search_result_act_back_btn.setOnClickListener {
             finish()
         }
-//      밑에 bar누르면 SearchActivity로 이동해야한다.
-        search_result_act_search_bar.setOnClickListener {  }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
         setStatusBarColor()
-        networkService = ApplicationController.instance.networkService
         getPartySearchLegislator()
+        setOnClickListener()
     }
 
     fun getPartySearchLegislator() {
-        var p_name = "자유한국당"
-        var l_name = "ㄱ"
+        var p_name = intent.getStringExtra("p_name")
+        var l_name = intent.getStringExtra("l_name")
+        search_result_act_search_reult_tv.text = l_name
+        networkService = ApplicationController.instance.networkService
         var getRankingSearchLegislatorResponse = networkService.getPartySearchLegislator(p_name, l_name)
         getRankingSearchLegislatorResponse.enqueue(object : Callback<GetRankingSearchLegislatorResponse>{
             override fun onFailure(call: Call<GetRankingSearchLegislatorResponse>?, t: Throwable?) {

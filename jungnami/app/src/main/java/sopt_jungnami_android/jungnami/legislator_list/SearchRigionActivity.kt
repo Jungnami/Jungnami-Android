@@ -29,13 +29,21 @@ class SearchRigionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
         setStatusBarColor()
-        networkService = ApplicationController.instance.networkService
         getRegionLegislator()
+        setOnClickListener()
+    }
+    fun setOnClickListener(){
+        search_result_act_back_btn.setOnClickListener {
+            finish()
+        }
     }
 
+
     fun getRegionLegislator() {
-        var city = "서울"
-        var l_name = "ㄱ"
+        networkService = ApplicationController.instance.networkService
+        var city = intent.getStringExtra("city")
+        var l_name = intent.getStringExtra("l_name")
+        search_result_act_search_reult_tv.text = l_name
         val getRankingSearchLegislatorResponse = networkService.getRegionSearchLegislator(city!!, l_name!!)
         getRankingSearchLegislatorResponse.enqueue(object : Callback<GetRankingSearchLegislatorResponse> {
             override fun onFailure(call: Call<GetRankingSearchLegislatorResponse>?, t: Throwable?) {
