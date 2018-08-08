@@ -75,9 +75,7 @@ class CommunityCommentActivity : AppCompatActivity() {
                     getCommunityComment(false)//엔터 후 바로 재요청..
                 }
             }
-
         })
-
     }
 
 
@@ -89,23 +87,15 @@ class CommunityCommentActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetCommunityCommentResponse>?, response: Response<GetCommunityCommentResponse>?) {
                 if (response!!.isSuccessful) {
-                    if (isinit){
-                        communityCommentItem = ArrayList()
-                        communityCommentItem = response!!.body()!!.data as ArrayList<CommunityCommentData>
+                    communityCommentItem = ArrayList()
+                    communityCommentItem = response!!.body()!!.data
+                    if (communityCommentItem != null){
                         communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem!!,context,0)
-                    }
-                    else {
-                        communityCommentItem = null
-                        communityCommentRecyclerViewAdapter = null
-                        communityCommentItem = ArrayList()
-                        communityCommentItem = response!!.body()!!.data as ArrayList<CommunityCommentData>
-                        communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem!!,context,0)
+                        Log.e("들어ㅏ갓니? " , communityCommentItem.toString())
+                        contents_comment_act_rv.layoutManager = LinearLayoutManager(context)
+                        contents_comment_act_rv.adapter = communityCommentRecyclerViewAdapter
                     }
 
-                    Log.e("들어ㅏ갓니? " , communityCommentItem.toString())
-
-                    contents_comment_act_rv.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
-                    contents_comment_act_rv.adapter = communityCommentRecyclerViewAdapter
                 }
             }
         })

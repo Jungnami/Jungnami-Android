@@ -25,11 +25,11 @@
             android:layout_marginLeft="7dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:fontFamily="@font/nanumbarungothiclight"
+            android:textStyle="bold"
             android:text="동글 문어"
             android:textColor="#000000"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textSize="13dp" />
 
         <RelativeLayout
             android:id="@+id/rv_item_contents_comment_best_rl"
@@ -53,8 +53,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:text="BEST"
-                android:textSize="8sp"
-                android:fontFamily="@font/nanumbarungothicbold_normal"/>
+                android:textSize="8dp"
+                android:fontFamily="@font/nanumbarungothiclight"/>
 
 
 
@@ -66,9 +66,9 @@
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:text="헐랭"
-            android:textSize="13sp"
+            android:textSize="13dp"
             android:textColor="#707070"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:fontFamily="@font/nanumbarungothiclight"
             android:layout_below="@id/rv_item_community_contents_comment_name_btn"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_profile_btn"
             android:layout_marginLeft="7dp"
@@ -95,18 +95,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="63dp"
             android:layout_marginTop="13dp"
-            android:text="4시간"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:text="-시간"
+            android:fontFamily="@font/nanumbarungothiclight"
             android:textColor="#D0D0D2"
-            android:textSize="11sp" />
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/rv_item_community_contents_comment_likes_letter_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="좋아요  "
-            android:textSize="11sp"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:textSize="11dp"
+            android:fontFamily="@font/nanumbarungothiclight"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_date_tv"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="13dp"
@@ -117,9 +117,9 @@
             android:id="@+id/rv_item_community_contents_comment_likes_num_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="512"
-            android:textSize="11sp"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:text="-"
+            android:textSize="11dp"
+            android:fontFamily="@font/nanumbarungothiclight"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_likes_letter_tv"
             android:layout_marginTop="13dp"
             android:textColor="#D0D0D2"
@@ -128,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="개"
-            android:textSize="11sp"
+            android:textSize="11dp"
             android:fontFamily="@font/nanumbarungothicbold_normal"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_likes_num_tv"
             android:layout_marginTop="13dp"

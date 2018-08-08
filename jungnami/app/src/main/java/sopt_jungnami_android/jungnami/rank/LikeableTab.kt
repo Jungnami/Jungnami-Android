@@ -74,17 +74,19 @@ class LikeableTab : Fragment(), View.OnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
+        likeable_tab_refresh_srl.isRefreshing = true
         getRankItemDataAtServer()
 
     }
 
     private fun initSettingView() {
         set1stVS2stRankView()
-        likeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
-        likeable_tab_refresh_srl.isRefreshing = false
         setRecyclerViewAdapter()
+        likeable_tab_root_rl_to_refreshing.visibility = View.VISIBLE
         setRankVoteCountProgressbarAnimation()
         moreLoadListData()
+        likeable_tab_refresh_srl.isRefreshing = false
+
     }
 
     private fun moreLoadListData() {

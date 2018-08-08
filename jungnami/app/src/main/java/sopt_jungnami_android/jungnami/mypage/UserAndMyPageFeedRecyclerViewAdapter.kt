@@ -15,6 +15,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import retrofit2.Call
 import retrofit2.Response
+import sopt_jungnami_android.jungnami.Delete.DeleteCommunityLikeResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
@@ -26,6 +27,9 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import javax.security.auth.callback.Callback
 
 class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Board>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
+    init {
+
+    }
     lateinit var onItemClick: View.OnClickListener
     lateinit var networkService: NetworkService
     private val REQUEST_CODE_FEED =1002
@@ -60,22 +64,32 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
             holder.b_b_content.text = dataList[position].source[0].b_content
             Glide.with(ctx).load(dataList[position].source[0].b_img).into(holder.b_b_image)
         }
+        changeLikeBtnView(position, holder.b_like_img)
 
-        if (dataList[position].islike == 0){
-            holder.b_like_img.setImageResource(R.drawable.community_heart_gray)
-        } else {
-            holder.b_like_img.setImageResource(R.drawable.community_heart_blue)
-        }
         Log.e("포지션 ${position} : " , "${dataList[position].islike}")
         holder.b_likecnt.text = dataList[position].like_cnt.toString()+"명"
         holder.b_commentcnt.text = dataList[position].comment_cnt.toString()
 
         holder.b_like_img.setOnClickListener {
-            requestLikeBoardToServer(position, holder.b_like_img)
+            if (dataList[position].islike == 0){
+                requestLikeBoardToServer(position, holder.b_like_img)
+            } else {
+                dataList[position].islike = 0
+                requestDeleteLikeBoardToServer(position, holder.b_like_img)
+            }
+
         }
 
         holder.b_comment_img.setOnClickListener {
             (ctx as Activity).startActivityForResult<CommunityCommentActivity>(REQUEST_CODE_FEED,"board_id" to dataList[position].b_id)
+        }
+    }
+
+    fun changeLikeBtnView(position : Int, view : ImageView){
+        if (dataList[position].islike == 0){
+            view.setImageResource(R.drawable.community_heart_gray)
+        } else {
+            view.setImageResource(R.drawable.community_heart_blue)
         }
     }
 
@@ -99,7 +113,7 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
         val b_b_image : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_contents_iv) as ImageView
     }
 
-    fun requestLikeBoardToServer(position : Int, b_like_img : ImageView){
+    fun requestLikeBoardToServer(position : Int, view : ImageView){
         val postCommunityLikeRequset = networkService.postCommunityLike(
                 SharedPreferenceController.getAuthorization(ctx), PostCommunityLikeRequset(dataList[position].b_id))
         postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
@@ -107,8 +121,22 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
             }
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
-                    dataList[position].islike
-                    b_like_img.setImageResource(R.drawable.community_heart_blue)
+                    dataList[position].islike = 1
+                    view.setImageResource(R.drawable.community_heart_blue)
+                }
+            }
+        })
+    }
+    fun requestDeleteLikeBoardToServer(position : Int, view : ImageView){
+        val deleteCommunityLikeResponse = networkService.deleteCommunityLikeResponse(
+                SharedPreferenceController.getAuthorization(ctx), dataList[position].b_id)
+        deleteCommunityLikeResponse.enqueue(object : retrofit2.Callback<DeleteCommunityLikeResponse>{
+            override fun onFailure(call: Call<DeleteCommunityLikeResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<DeleteCommunityLikeResponse>?, response: Response<DeleteCommunityLikeResponse>?) {
+                if (response!!.isSuccessful){
+                    dataList[position].islike = 0
+                    view.setImageResource(R.drawable.community_heart_gray)
                 }
             }
         })

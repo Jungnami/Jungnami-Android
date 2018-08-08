@@ -1,5 +1,6 @@
 package sopt_jungnami_android.jungnami
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -19,6 +20,7 @@ import android.content.pm.PackageManager
 import android.content.pm.PackageInfo
 import android.util.Base64
 import com.google.firebase.iid.FirebaseInstanceId
+import org.jetbrains.anko.progressDialog
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
