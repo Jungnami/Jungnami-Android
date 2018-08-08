@@ -41,24 +41,56 @@
                     android:layout_height="32dp"
                     android:layout_toRightOf="@+id/community_frag_top_bar_my_page_btn"
                     android:layout_toLeftOf="@id/community_frag_top_bar_bell_btn">
-                    <ImageView
-                        android:id="@+id/community_frag_top_bar_search_box_search_iv"
-                        android:src="@drawable/community_search"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginVertical="8dp"
-                        android:layout_marginRight="8dp"/>
-                    <EditText
-                        android:fontFamily="@font/nanumbarungothiclight"
-                        android:background="#00000000"
-                        android:textSize="12dp"
-                        android:gravity="left|center"
-                        android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"/>
+
+                        <ImageView
+                            android:id="@+id/community_frag_bar_search_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/community_search" />
+
+                        <EditText
+                            android:id="@+id/community_frag_top_bar_search_et"
+                            android:layout_toRightOf="@+id/community_frag_bar_search_iv"
+                            android:layout_toLeftOf="@+id/community_frag_top_bar_search_btn"
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00000000"
+                            android:fontFamily="@font/nanumbarungothic_normal"
+                            android:hint="커뮤니티 글을 검색해보세요."
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/community_frag_top_bar_search_btn"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:text="검색"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"/>
+
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/community_frag_top_bar_search_box_search_iv"-->
+                        <!--android:src="@drawable/community_search"-->
+                        <!--android:layout_width="15dp"-->
+                        <!--android:layout_height="15dp"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginVertical="8dp"-->
+                        <!--android:layout_marginRight="8dp"/>-->
+                    <!--<EditText-->
+                        <!--android:fontFamily="@font/nanumbarungothiclight"-->
+                        <!--android:background="#00000000"-->
+                        <!--android:textSize="12dp"-->
+                        <!--android:gravity="left|center"-->
+                        <!--android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginRight="10dp"/>-->
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/community_frag_top_bar_bell_btn"
@@ -211,18 +243,39 @@
 
 
                 <android.support.v7.widget.RecyclerView
+                    android:visibility="gone"
                     android:id="@+id/community_frag_feed_list_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="false">
-
                 </android.support.v7.widget.RecyclerView>
+
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
 
+
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <RelativeLayout
+        android:id="@+id/community_frag_no_search_result_rl"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="검색 결과 없음"
+            android:textColor="#D8D8D8"
+            android:textSize="24sp"
+            />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/community_frag_is_display_search_rl"
