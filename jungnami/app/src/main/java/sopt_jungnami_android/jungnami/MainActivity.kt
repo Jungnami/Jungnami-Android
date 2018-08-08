@@ -1,5 +1,6 @@
 package sopt_jungnami_android.jungnami
 
+import android.app.ProgressDialog
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -11,12 +12,10 @@ import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.longToast
+import org.jetbrains.anko.progressDialog
 import sopt_jungnami_android.jungnami.main.MainTabAdapter
 
 class MainActivity : AppCompatActivity() {
-    var isLoading: Boolean = false
-
-    var current_tab_idx: Int = 0
     private val FINISH_INTERVAL_TIME: Long = 2000
     private var backPressedTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setStatusBarColor()
 
         //FirebaseConnection().onTokenRefresh()
-
 
         configureMainTab()
     }

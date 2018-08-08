@@ -159,7 +159,6 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             }
 
             override fun onResponse(call: Call<GetRecommendContentsResponse>?, response: Response<GetRecommendContentsResponse>?) {
-                (context as MainActivity).isLoading = false
                 if (response!!.isSuccessful){
                     if (response!!.body()!!.data.content.size != 0){
                         alertCount = response.body()!!.data.alarmcnt

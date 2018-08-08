@@ -5,6 +5,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
+import sopt_jungnami_android.jungnami.Delete.DeleteCommunityLikeResponse
 import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
 import sopt_jungnami_android.jungnami.Delete.DeleteContentsScrapResponse
 import sopt_jungnami_android.jungnami.Delete.DeleteFollowResponse
@@ -280,6 +281,11 @@ interface NetworkService {
             @Part posting_image: MultipartBody.Part?,
             @Part("shared") posting_shared: Int
     ) : Call<PostFeedPostingResponse>
+    @DELETE("delete/boardlike/{boardid}")
+    fun deleteCommunityLikeResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("boardid") boardid : Int
+    ) : Call<DeleteCommunityLikeResponse>
 //윤환 라인 종료!
 
 

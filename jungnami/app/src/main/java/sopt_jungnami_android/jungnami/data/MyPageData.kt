@@ -24,7 +24,7 @@ data class Board (
         val b_content: String? = null,
         val b_img: String? = null,
         val b_time: String,
-        val islike: Int,
+        var islike: Int,
         val like_cnt: Int,
         val comment_cnt: Int
 )
