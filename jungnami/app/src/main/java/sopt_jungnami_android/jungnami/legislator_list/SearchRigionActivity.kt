@@ -57,11 +57,12 @@ class SearchRigionActivity : AppCompatActivity() {
 //                    search_result_act_search_rv.layoutManager = LinearLayoutManager(context)
 //                    search_result_act_search_rv.adapter = searchResultRecyclerAdapter
 
-                    var str = response!!.message()
+                    var str = response!!.body()!!.message
                     Log.v("10101011110", "들어왔당")
-                    regionLegislatorItems = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
+
                     if(!(str.equals("No data"))){
                         Log.v("111","통신씹성공")
+                        regionLegislatorItems = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
                         search_result_act_search_rv.visibility = View.VISIBLE
                         search_result_act_search_rl.visibility = View.GONE
                         Log.v("101010",regionLegislatorItems.toString())

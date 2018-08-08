@@ -63,10 +63,11 @@ class SearchPartyActivity : AppCompatActivity() {
 //                    search_result_act_search_rv.layoutManager = LinearLayoutManager(context)
 //                    search_result_act_search_rv.adapter = searchResultRecyclerAdapter
 //
-                    var str = response!!.message()
+                    var str = response!!.body()!!.message
                     Log.v("10101011110", "들어왔당")
-                    rankingSearchLegislatorItem = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
+
                     if(!(str.equals("No data"))){
+                        rankingSearchLegislatorItem = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
                         search_result_act_search_rv.visibility = View.VISIBLE
                         search_result_act_search_rl.visibility = View.GONE
                         Log.v("101010",rankingSearchLegislatorItem.toString())

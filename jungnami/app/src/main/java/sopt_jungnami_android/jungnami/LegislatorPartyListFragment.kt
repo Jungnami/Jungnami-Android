@@ -142,10 +142,9 @@ class LegislatorPartyListFragment: Fragment()  {
 
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
-                Log.v("success!",legislatorItems[0].party_name)
+                var str = response!!.body()!!.message
                 if(!(str.equals("No data"))){
+                    legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                     Log.v("success2", "통신2")
                     legislatorListAdapter = LegislatorListViewAdapter(context!!,legislatorItems,1)
                     rv_legislator.layoutManager = LinearLayoutManager(context)
