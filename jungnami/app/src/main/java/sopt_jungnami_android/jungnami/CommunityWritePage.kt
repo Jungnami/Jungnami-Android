@@ -326,7 +326,6 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     override fun onBackPressed() {
         val intent = Intent()
         intent.putExtra("isStateChange", true)
-
         finish()
     }
 

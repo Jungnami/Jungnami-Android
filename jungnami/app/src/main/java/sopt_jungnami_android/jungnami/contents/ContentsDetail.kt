@@ -176,8 +176,6 @@ class ContentsDetail : AppCompatActivity() {
         }
 
         contents_act_detail_comment_btn.setOnClickListener {
-            val intent = Intent(applicationContext, CommunityWritePage::class.java) // contents_comment 댓글 창 .kt 파일명
-            startActivity(intent)
             startActivity<ContentsCommentActivity>("contents_id" to contents_id)
         }
         contents_act_detail_share_btn.setOnClickListener {

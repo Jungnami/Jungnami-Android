@@ -90,8 +90,9 @@ class CommunityCommentActivity : AppCompatActivity() {
                     communityCommentItem = ArrayList()
                     communityCommentItem = response!!.body()!!.data
                     if (communityCommentItem != null){
+                        Log.e("댓글게시물 아이디 : } " , "${board_id}")
                         communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem!!,context,0)
-                        Log.e("들어ㅏ갓니? " , communityCommentItem.toString())
+
                         contents_comment_act_rv.layoutManager = LinearLayoutManager(context)
                         contents_comment_act_rv.adapter = communityCommentRecyclerViewAdapter
                     }
