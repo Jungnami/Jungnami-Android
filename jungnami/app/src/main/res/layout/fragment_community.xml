@@ -3,139 +3,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".community.CommunityFragment"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    tools:context=".community.CommunityFragment">
 
     <LinearLayout
         android:id="@+id/community_frag_top_box_rl"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <RelativeLayout
-            android:layout_alignParentTop="true"
-            android:background="#FFFFFF"
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:background="#FFFFFF">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <RelativeLayout
-                    android:id="@+id/community_frag_top_bar_my_page_btn"
+                    android:id="@+id/community_frag_top_bar_left_rl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="12dp"
-                    android:padding="6dp"
-                    android:background="?android:selectableItemBackground">
-                    <ImageView
-                        android:src="@drawable/my_page"
+                    android:background="?android:selectableItemBackground"
+                    android:padding="6dp">
+
+                    <RelativeLayout
+                        android:id="@+id/community_frag_top_bar_my_page_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:background="@drawable/community_frag_bar_search_box_shape"
-                    android:layout_centerVertical="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_toRightOf="@+id/community_frag_top_bar_my_page_btn"
-                    android:layout_toLeftOf="@id/community_frag_top_bar_bell_btn">
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
 
                         <ImageView
-                            android:id="@+id/community_frag_bar_search_iv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="8dp"
-                            android:src="@drawable/community_search" />
+                            android:src="@drawable/my_page" />
 
-                        <EditText
-                            android:id="@+id/community_frag_top_bar_search_et"
-                            android:layout_toRightOf="@+id/community_frag_bar_search_iv"
-                            android:layout_toLeftOf="@+id/community_frag_top_bar_search_btn"
-                            android:layout_marginLeft="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#00000000"
-                            android:fontFamily="@font/nanumbarungothic_normal"
-                            android:hint="커뮤니티 글을 검색해보세요."
-                            android:textSize="12dp" />
+                    </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/community_frag_top_bar_search_btn"
-                            android:layout_alignParentRight="true"
+                    <RelativeLayout
+                        android:id="@+id/cmmunity_frag_top_bar_search_backarrow_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">>
+
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="검색"
-                            android:layout_centerVertical="true"
-                            android:visibility="gone"/>
+                            android:src="@drawable/back_arrow" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/community_frag_top_bar_bell_btn"
+                    android:layout_toRightOf="@+id/community_frag_top_bar_left_rl"
+                    android:background="@drawable/community_frag_bar_search_box_shape">
+
+                    <ImageView
+                        android:id="@+id/community_frag_bar_search_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/community_search" />
+
+                    <EditText
+                        android:id="@+id/community_frag_top_bar_search_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toLeftOf="@+id/community_frag_top_bar_search_btn"
+                        android:layout_toRightOf="@+id/community_frag_bar_search_iv"
+                        android:background="#00000000"
+                        android:fontFamily="@font/nanumbarungothic_normal"
+                        android:hint="커뮤니티 글을 검색해보세요."
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/community_frag_top_bar_search_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:text="검색"
+                        android:visibility="gone" />
 
 
                     <!--<ImageView-->
-                        <!--android:id="@+id/community_frag_top_bar_search_box_search_iv"-->
-                        <!--android:src="@drawable/community_search"-->
-                        <!--android:layout_width="15dp"-->
-                        <!--android:layout_height="15dp"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_marginLeft="10dp"-->
-                        <!--android:layout_marginVertical="8dp"-->
-                        <!--android:layout_marginRight="8dp"/>-->
+                    <!--android:id="@+id/community_frag_top_bar_search_box_search_iv"-->
+                    <!--android:src="@drawable/community_search"-->
+                    <!--android:layout_width="15dp"-->
+                    <!--android:layout_height="15dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginVertical="8dp"-->
+                    <!--android:layout_marginRight="8dp"/>-->
                     <!--<EditText-->
-                        <!--android:fontFamily="@font/nanumbarungothiclight"-->
-                        <!--android:background="#00000000"-->
-                        <!--android:textSize="12dp"-->
-                        <!--android:gravity="left|center"-->
-                        <!--android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_marginRight="10dp"/>-->
+                    <!--android:fontFamily="@font/nanumbarungothiclight"-->
+                    <!--android:background="#00000000"-->
+                    <!--android:textSize="12dp"-->
+                    <!--android:gravity="left|center"-->
+                    <!--android:layout_toRightOf="@+id/community_frag_top_bar_search_box_search_iv"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginRight="10dp"/>-->
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/community_frag_top_bar_bell_btn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="18dp"
                     android:layout_marginRight="16dp"
                     android:background="?android:selectableItemBackground">
+
                     <ImageView
-                        android:src="@drawable/community_bell"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"/>
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/community_bell" />
+
                     <RelativeLayout
-                        android:visibility="invisible"
                         android:id="@+id/community_bell_circle_img"
-                        android:layout_alignParentStart="true"
                         android:layout_width="16dp"
-                        android:layout_height="16dp">
+                        android:layout_height="16dp"
+                        android:layout_alignParentStart="true"
+                        android:visibility="invisible">
+
                         <ImageView
-                            android:src="@drawable/mypage_bell_circle_blue"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:src="@drawable/mypage_bell_circle_blue" />
+
                         <TextView
                             android:id="@+id/community_top_bar_new_post_counter_tv"
-                            android:fontFamily="@font/nanumbarungothic"
-                            android:text="0"
-                            android:gravity="center"
-                            android:textSize="9dp"
-                            android:textColor="#FFFFFF"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanumbarungothic"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#FFFFFF"
+                            android:textSize="9dp" />
                     </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
 
     </LinearLayout>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/community_frag_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/community_frag_top_box_rl">
+
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -202,10 +237,12 @@
                         </LinearLayout>
                     </RelativeLayout>
                 </RelativeLayout>
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <RelativeLayout
                         android:id="@+id/community_frag_what_do_u_think_box"
                         android:layout_width="match_parent"
@@ -220,50 +257,49 @@
                             android:layout_marginHorizontal="16dp"
                             android:src="@drawable/my_page" />
 
+
                         <TextView
-                            android:background="?android:selectableItemBackground"
                             android:id="@+id/community_frag_write_feed_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@id/community_frag_my_picture_iv"
+                            android:background="?android:selectableItemBackground"
                             android:fontFamily="@font/nanumbarungothiclight"
                             android:text="무슨 생각을 하고 계신가요?"
                             android:textColor="#CECECE"
                             android:textSize="15dp" />
 
                     </RelativeLayout>
+
                     <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/community_frag_what_do_u_think_box"
-                        android:background="#F3F3F3"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"/>
+                        android:background="#F3F3F3" />
                 </LinearLayout>
 
 
                 <android.support.v7.widget.RecyclerView
-                    android:visibility="gone"
                     android:id="@+id/community_frag_feed_list_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false">
-                </android.support.v7.widget.RecyclerView>
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="visible"></android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
 
-
-
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout
         android:id="@+id/community_frag_no_search_result_rl"
-        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -272,8 +308,7 @@
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="검색 결과 없음"
             android:textColor="#D8D8D8"
-            android:textSize="24sp"
-            />
+            android:textSize="24sp" />
 
     </RelativeLayout>
 

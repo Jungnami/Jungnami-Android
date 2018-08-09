@@ -148,12 +148,16 @@ class CommunityFragment : Fragment(), View.OnClickListener {
 
             override fun onResponse(call: Call<GetCommunitySearchResponse>?, response: Response<GetCommunitySearchResponse>?) {
                 if(response!!.isSuccessful) {
-                    SearchFeedDataList = response!!.body()!!.data
-                    setSearchCommunityRecyclerViewAdapter()
-                } else {
-                    Log.v("xxx","xxx")
-                    community_frag_feed_list_rv.visibility = View.GONE
-                    community_frag_no_search_result_rl.visibility = View.VISIBLE
+                    // 300 error No data 일 경우 검색결과 없음을 띄움.
+                    if(response!!.body()!!.message.equals("No data")){
+                        Log.v("xxx","xxx")
+                        community_frag_feed_list_rv.visibility = View.GONE
+                        community_frag_no_search_result_rl.visibility = View.VISIBLE
+                    }else{
+                        SearchFeedDataList = response!!.body()!!.data
+                        setSearchCommunityRecyclerViewAdapter()
+                    }
+
                 }
             }
         })
@@ -195,10 +199,36 @@ class CommunityFragment : Fragment(), View.OnClickListener {
             community_frag_is_display_search_rl.visibility = View.GONE
             var keyword : String = community_frag_top_bar_search_et.text.toString()
 
-            Log.v("눌려?", "응눌려")
+            // 키워드에 아무것도 입력돼있지 않은 상태에서 검색버튼이 눌렷을 때
+            // 처음 커뮤니티 클릭한 상태처럼 모든 데이터 가져옴.
+            if (keyword.length == 0){
+                getCommunityFeed()
+                // recycler view 를 VISUBLE, 검색 결과 없음을 GONE 처리
+                community_frag_feed_list_rv.visibility = View.VISIBLE
+                community_frag_no_search_result_rl.visibility = View.GONE
 
-            // keyword를 포함한 검색함수 실행.
-            getCommunitySearchFeed(keyword)
+            }else{
+                Log.v("눌려?", "응눌려")
+                // keyword를 포함한 검색함수 실행.
+                getCommunitySearchFeed(keyword)
+
+                // 마이페이지 버튼을 백에로우 버튼으로 바꿔 검색 전으로 돌아가게한다.
+                community_frag_top_bar_my_page_btn.visibility = View.GONE
+                cmmunity_frag_top_bar_search_backarrow_btn.visibility = View.VISIBLE
+            }
+        }
+        // 검색 후 백에로우 버튼이 생기고 커뮤니티 초기 화면으로 돌아간다.
+        cmmunity_frag_top_bar_search_backarrow_btn.setOnClickListener {
+            getCommunityFeed()
+            community_frag_top_bar_my_page_btn.visibility = View.VISIBLE
+            cmmunity_frag_top_bar_search_backarrow_btn.visibility = View.GONE
+
+            // recycler view 를 VISUBLE, 검색 결과 없음을 GONE 처리
+            community_frag_feed_list_rv.visibility = View.VISIBLE
+            community_frag_no_search_result_rl.visibility = View.GONE
+
+            // editText의 힌트를 "커뮤니티 글을 검색해보세요."로 다시 바꾼다.
+            community_frag_top_bar_search_et.hint = "커뮤니티 글을 검색해보세요."
 
         }
     }
