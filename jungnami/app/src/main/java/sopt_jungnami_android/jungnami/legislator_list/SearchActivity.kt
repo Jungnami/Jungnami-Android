@@ -18,16 +18,17 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.RankingSearchLegislatorData
 
-class SearchActivity : AppCompatActivity(), View.OnClickListener {
+class SearchActivity : AppCompatActivity(){
 
-    override fun onClick(v: View?) {
+
+    fun setOnClickListener() {
         search_result_act_back_btn.setOnClickListener {
             finish()
         }
 //      밑에 bar누르면 SearchActivity로 이동해야한다.
         search_result_act_search_bar.setOnClickListener {  }
-
     }
+
     lateinit var networkService: NetworkService
     lateinit var legislatorResultItems : ArrayList<RankingSearchLegislatorData>
     var context : Context = this
@@ -42,6 +43,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
 
         getRankingSearchLegislator()
+        setOnClickListener()
 
 
 
@@ -61,10 +63,10 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<GetRankingSearchLegislatorResponse>?, response: Response<GetRankingSearchLegislatorResponse>?) {
                 if(response!!.isSuccessful){
-                    var str = response!!.message()
+                    var str = response!!.body()!!.message
                     Log.v("10101011110", "들어왔당")
-                    legislatorResultItems = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
                     if(!(str.equals("No data"))){
+                        legislatorResultItems = response!!.body()!!.data as ArrayList<RankingSearchLegislatorData>
                         search_result_act_search_rv.visibility = View.VISIBLE
                         search_result_act_search_rl.visibility = View.GONE
                         Log.v("101010",legislatorResultItems.toString())

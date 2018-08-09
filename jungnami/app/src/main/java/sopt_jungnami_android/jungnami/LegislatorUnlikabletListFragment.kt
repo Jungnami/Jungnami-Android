@@ -137,9 +137,10 @@ class LegislatorUnlikabletListFragment : Fragment() {
 
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
-                var str = response!!.message()
-                legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
+                var str = response!!.body()!!.message
+
                 if (!(str.equals("No data"))) {
+                    legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                     legislatorListViewAdapter = LegislatorListViewAdapter(context!!, legislatorItems, 0)
                     rv_legislator.layoutManager = LinearLayoutManager(context)
                     rv_legislator.adapter = legislatorListViewAdapter

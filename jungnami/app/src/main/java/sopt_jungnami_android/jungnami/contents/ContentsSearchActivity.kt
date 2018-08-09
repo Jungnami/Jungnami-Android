@@ -69,13 +69,18 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
 
                 override fun onResponse(call: Call<GetContentSearchResponse>?, response: Response<GetContentSearchResponse>?) {
                     if (response!!.isSuccessful){
-                        contentsSearchItems = response!!.body()!!.data
-                        if (contentsSearchItems.size == 0) {
 
-                        } else {
+                        val str = response!!.body()!!.message
+
+                        if (!(str.equals("No data"))){
+                            contentsSearchItems = response!!.body()!!.data
                             changeConetentsRecyclerViewData()
+                        }else {
+                            // No data일 경우 "검색 결과 없음 출력"
+                            contents_search_commend_tv.visibility = View.VISIBLE
+                            // No data일 경우 recycler view gone 처리
+                            contents_search_act_rv.visibility = View.GONE
                         }
-
                     }
                 }
 
@@ -95,15 +100,42 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
 
     fun setClickListener(){
         contents_search_act_back_btn.setOnClickListener {
+
+            // EditText GONE 처리
+            search_nothing_result_act_search_hint_et.visibility = View.GONE
+
+            // 검색 버튼 GONE
+            contents_search_act_search_btn.visibility = View.GONE
+
+            // searchResult VISIBLE
+            contents_search_act_search_result_rl.visibility = View.VISIBLE
+
+
             finish()
         }
 
-        contents_search_act_search_result_tv.setOnClickListener {
-            search_nothing_result_act_search_hint_et.visibility = View.VISIBLE
-            contents_search_act_search_result_tv.visibility = View.GONE
-            startActivity<ContentsSearchActivity>("keyword" to keyword)
+        // 최상단 결과창 버튼 누를 경우
+        contents_search_act_search_result_rl.setOnClickListener {
 
+            // editText Visible
+            // editText 클릭 효과
+            search_nothing_result_act_search_hint_et.visibility = View.VISIBLE
+            search_nothing_result_act_search_hint_et.performClick()
+
+            // 검색 버튼 VISIBLE
+            contents_search_act_search_btn.visibility = View.VISIBLE
+
+            // searchResult GONE
+            contents_search_act_search_result_rl.visibility = View.GONE
         }
+
+        // 검색 버튼 눌렀을 경우
+        contents_search_act_search_btn.setOnClickListener {
+            // editText로 keyword 받아
+            var keyword = search_nothing_result_act_search_hint_et.text.toString()
+            startActivity<ContentsSearchActivity>("keyword" to keyword)
+        }
+
     }
 
     private fun setStatusBarColor(){
