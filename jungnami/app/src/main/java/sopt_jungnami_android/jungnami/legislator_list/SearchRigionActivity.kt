@@ -26,17 +26,21 @@ class SearchRigionActivity : AppCompatActivity() {
     lateinit var regionLegislatorItems : ArrayList<RankingSearchLegislatorData>
     var context : Context = this
     lateinit var searchResultRecyclerAdapter: SearchResultRecyclerAdapter
-    var city = intent.getStringExtra("city")
-    var l_name = intent.getStringExtra("l_name")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
+
+        var city = intent.getStringExtra("city")
+        var l_name = intent.getStringExtra("l_name")
+
+
         setStatusBarColor()
-        getRegionLegislator()
-        setOnClickListener()
+        getRegionLegislator(city, l_name)
+        setOnClickListener(city)
     }
-    fun setOnClickListener(){
+    fun setOnClickListener(city: String){
 
         search_result_act_back_btn.setOnClickListener {
             search_result_act_is_display_search_box_rl.visibility = View.GONE
@@ -85,7 +89,7 @@ class SearchRigionActivity : AppCompatActivity() {
     }
 
 
-    fun getRegionLegislator() {
+    fun getRegionLegislator(city: String, l_name: String) {
         networkService = ApplicationController.instance.networkService
         search_result_act_search_reult_tv.text = l_name
         val getRankingSearchLegislatorResponse = networkService.getRegionSearchLegislator(city!!, l_name!!)
