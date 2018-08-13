@@ -1,6 +1,7 @@
 package sopt_jungnami_android.jungnami.legislator_list
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_search_result.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,9 +28,51 @@ class SearchPartyActivity : AppCompatActivity() {
     lateinit var searchResultRecyclerAdapter : SearchResultRecyclerAdapter
 
 
-    fun setOnClickListener() {
+    fun setOnClickListener(p_name: String) {
+
         search_result_act_back_btn.setOnClickListener {
+            search_result_act_is_display_search_box_rl.visibility = View.GONE
             finish()
+        }
+
+
+        // 상단 서치 바 누르면 재검색을 위한 뷰 visible
+        search_result_act_search_bar.setOnClickListener {
+            search_result_act_is_display_search_box_rl.visibility = View.VISIBLE
+
+            // 에딧텍스트에 포커스 맞춰 바로 키보드올라오게 하는 코드
+            search_result_act_top_bar_search_et.requestFocus()
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(search_result_act_top_bar_search_et, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+        // 블라인드 판넬을 건드리면 다시 검색화면을 보여준다.
+        search_result_act_is_display_blind_panel_rl.setOnClickListener {
+
+            search_result_act_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
+
+        // 취소 버튼을 눌렀을 때
+        search_result_act_top_bar_search_cancel_btn.setOnClickListener{
+            search_result_act_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService( Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
+
+        // 검색 버튼을 눌렀을 때
+        search_result_act_search_btn.setOnClickListener {
+
+            var keyword2 = search_result_act_top_bar_search_et.text.toString()
+
+            val intent = Intent(this, SearchRigionActivity::class.java)
+            intent.putExtra("p_name", p_name)
+            intent.putExtra("l_name", keyword2)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+//            startActivity<ContentsSearchActivity>("keyword" to keyword2)
         }
     }
 
@@ -36,14 +80,14 @@ class SearchPartyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
-        setStatusBarColor()
-        getPartySearchLegislator()
-        setOnClickListener()
-    }
-
-    fun getPartySearchLegislator() {
         var p_name = intent.getStringExtra("p_name")
         var l_name = intent.getStringExtra("l_name")
+        setStatusBarColor()
+        getPartySearchLegislator(p_name, l_name )
+        setOnClickListener(p_name)
+    }
+
+    fun getPartySearchLegislator(p_name: String, l_name: String) {
         search_result_act_search_reult_tv.text = l_name
         networkService = ApplicationController.instance.networkService
         var getRankingSearchLegislatorResponse = networkService.getPartySearchLegislator(p_name, l_name)
