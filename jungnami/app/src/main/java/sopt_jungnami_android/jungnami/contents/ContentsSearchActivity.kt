@@ -1,6 +1,7 @@
 package sopt_jungnami_android.jungnami.contents
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import kotlinx.android.synthetic.main.activity_community_search_result.*
 import kotlinx.android.synthetic.main.activity_contents_search.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -18,6 +21,7 @@ import sopt_jungnami_android.jungnami.Get.GetContentSearchResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.community.CommunitySearchResultActivity
 import sopt_jungnami_android.jungnami.data.ContentsSearchData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
@@ -46,7 +50,6 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
         keyword = intent.getStringExtra("keyword")
         contentsSearchItems = ArrayList()
         setClickListener()
-
         getContentsSearchresult(keyword)
         contents_search_act_search_result_tv.setText(keyword)
     }
@@ -78,8 +81,8 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
                         }else {
                             // No data일 경우 "검색 결과 없음 출력"
                             contents_search_commend_tv.visibility = View.VISIBLE
-                            // No data일 경우 recycler view gone 처리
-                            contents_search_act_rv.visibility = View.GONE
+//                            // No data일 경우 recycler view gone 처리
+//                            contents_search_act_rv.visibility = View.GONE
                         }
                     }
                 }
@@ -101,39 +104,58 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
     fun setClickListener(){
         contents_search_act_back_btn.setOnClickListener {
 
-            // EditText GONE 처리
-            search_nothing_result_act_search_hint_et.visibility = View.GONE
+//            // 검색 버튼 GONE
+//            contents_search_act_search_btn.visibility = View.GONE
+//
+//            // searchResult VISIBLE
+//            contents_search_act_search_result_rl.visibility = View.VISIBLE
 
-            // 검색 버튼 GONE
-            contents_search_act_search_btn.visibility = View.GONE
-
-            // searchResult VISIBLE
-            contents_search_act_search_result_rl.visibility = View.VISIBLE
-
+            contents_search_act_is_display_search_box_rl.visibility = View.GONE
 
             finish()
         }
 
-        // 최상단 결과창 버튼 누를 경우
-        contents_search_act_search_result_rl.setOnClickListener {
 
-            // editText Visible
-            // editText 클릭 효과
-            search_nothing_result_act_search_hint_et.visibility = View.VISIBLE
-            search_nothing_result_act_search_hint_et.performClick()
 
-            // 검색 버튼 VISIBLE
-            contents_search_act_search_btn.visibility = View.VISIBLE
+        // 재검색을 위해 상단 바를 눌렀을 때
+        contents_search_act_search_bar.setOnClickListener {
 
-            // searchResult GONE
-            contents_search_act_search_result_rl.visibility = View.GONE
+            // 에딧 텍스트와 검색 버튼이 있는 새로운 뷰를 visible로 만든다.
+            contents_search_act_is_display_search_box_rl.visibility = View.VISIBLE
+
+            // 에딧텍스트에 포커스 맞춰 바로 키보드올라오게 하는 코드
+            contents_search_act_top_bar_search_et.requestFocus()
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(contents_search_act_top_bar_search_et, InputMethodManager.SHOW_IMPLICIT)
+
         }
 
-        // 검색 버튼 눌렀을 경우
+        // 블라인드 판넬을 건드리면 다시 검색화면을 보여준다.
+        contents_search_act_is_display_blind_panel_rl.setOnClickListener {
+
+            contents_search_act_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
+
+        // 검색 버튼을 눌렀을 때
         contents_search_act_search_btn.setOnClickListener {
-            // editText로 keyword 받아
-            var keyword = search_nothing_result_act_search_hint_et.text.toString()
-            startActivity<ContentsSearchActivity>("keyword" to keyword)
+
+            var keyword2 = contents_search_act_top_bar_search_et.text.toString()
+
+            val intent = Intent(this, ContentsSearchActivity::class.java)
+            intent.putExtra("keyword", keyword2)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+//            startActivity<ContentsSearchActivity>("keyword" to keyword2)
+        }
+
+        // 취소 버튼을 눌렀을 때
+        contents_search_act_top_bar_search_cancel_btn.setOnClickListener{
+            contents_search_act_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService( Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
 
     }

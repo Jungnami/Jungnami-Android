@@ -1,5 +1,7 @@
 package sopt_jungnami_android.jungnami.contents
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,10 +12,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.activity_community_search_result.*
 import kotlinx.android.synthetic.main.fragment_contents.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
@@ -26,6 +30,7 @@ import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.community.CommunitySearchResultActivity
 import sopt_jungnami_android.jungnami.data.Contents
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
@@ -123,10 +128,40 @@ class ContentsFragment : Fragment(), View.OnClickListener {
         contents_frag_main_content_lr.setOnClickListener {
             startActivity<ContentsDetail>("contents_id" to contents_id)
         }
-        contents_frag_top_bar_search_insert_btn.setOnClickListener {
-            edittext = view!!.findViewById(R.id.contents_frag_top_bar_search_et)
 
-            var keyword = edittext.text.toString()
+        // 회색 검색박스를 눌렀을 때 검색화면이 나오게 한다.
+        contents_frag_top_bar_search_box_search_rl.setOnClickListener {
+            contents_frag_is_display_search_box_rl.visibility = View.VISIBLE
+
+            // 에딧텍스트에 포커스 맞춰 바로 키보드올라오게 하는 코드
+            contents_frag_top_bar_search_et.requestFocus()
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(contents_frag_top_bar_search_et, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+        // 블라인드 판넬을 건드리면 다시 검색화면을 보여준다.
+        contents_frag_is_display_blind_panel_rl.setOnClickListener {
+
+            contents_frag_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
+
+        // 취소 버튼을 눌렀을 때
+        contents_frag_top_bar_search_cancel_btn.setOnClickListener{
+            contents_frag_is_display_search_box_rl.visibility = View.GONE
+            val imm: InputMethodManager = context!!.getSystemService( Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
+
+
+        // 검색 버튼 눌럿을 때
+        contents_frag_search_btn.setOnClickListener {
+
+            var keyword = contents_frag_top_bar_search_et.text.toString()
+
+            // ContentsSearchActivity에서 백버튼을 눌렀을 때 검색화면 다시 GONE
+            contents_frag_is_display_search_box_rl.visibility = View.GONE
 
             startActivity<ContentsSearchActivity>("keyword" to keyword)
 
