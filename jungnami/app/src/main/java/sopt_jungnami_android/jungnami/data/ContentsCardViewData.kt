@@ -8,7 +8,7 @@ data class ContentsCardViewData(
         val type: Int,
         val imagearray: ArrayList<Imagearray>,
         val youtube: String,
-        val likeCnt: Int,
+        var likeCnt: Int,
         val commentCnt: Int,
         val isscrap: Int,
         val islike: Int

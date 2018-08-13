@@ -16,6 +16,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Response
+import sopt_jungnami_android.jungnami.Delete.DeleteCommunityLikeResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.Post.PostCommunityLikeRequset
@@ -39,6 +40,7 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder{
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_feed, parent,false)
+        networkService = ApplicationController.instance.networkService
         view.setOnClickListener(onItemClick)
         return Holder(view)
     }
@@ -72,12 +74,8 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
                     .into(holder.feed_image)
         }
 
-        // isLike가 1이면 좋아요 버튼이 파란색
-        if(dataList[position].islike == 1){
-            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
-        }else{
-            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_gray)
-        }
+        //초기 좋아요 판별
+        changeLikeBtnView(position, holder.feed_likes_btn)
 
         holder.profile_name_btn.text = dataList[position].nickname
         holder.feed_date.text = dataList[position].writingtime
@@ -85,34 +83,14 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         holder.feed_likes_num_btn.text = dataList[position].likecnt.toString()
         holder.feed_chat_num_btn.text = dataList[position].commentcnt.toString()
 
-        // 좋아요를 눌렀는지 안눌렀는지를 islike(Int)를 통해 판별한다.
-        if (dataList[position].islike == 1){
-            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
-        }
 
-        // 좋아요가 눌렀을 때
+        // 좋아요 버튼 눌렀을 때
         holder.feed_likes_btn.setOnClickListener {
-            networkService = ApplicationController.instance.networkService
-            postCommunityLike = PostCommunityLikeRequset(dataList[position].boardid)
-            val postCommunityLikeRequset = networkService.postCommunityLike(SharedPreferenceController.getAuthorization(context = ctx!!),postCommunityLike)
-            postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
-                override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
-                }
-                override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
-                    if(response!!.isSuccessful){
-                        Log.v("성공?", response!!.body()!!.message)
-                    }
-                }
-
-            })
-
-
-            // 보여주는 좋아요 수 늘려주기
-            var likenum = dataList[position].likecnt + 1
-            holder.feed_likes_num_btn.text = likenum.toString()
-
-            // 좋아요 버튼 색 blue로 바꿔주기
-            holder.feed_likes_btn.setImageResource(R.drawable.community_heart_blue)
+            if (dataList[position].islike == 0){
+                requestLikeBoardToServer(position, holder.feed_likes_btn, holder.feed_likes_num_btn)
+            } else {
+                requestDeleteLikeBoardToServer(position, holder.feed_likes_btn, holder.feed_likes_num_btn)
+            }
         }
 
         holder.feed_chat_num_btn.setOnClickListener {
@@ -128,7 +106,15 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         }
 
         holder.feed_scrap_btn.setOnClickListener {
-            requestCommunityPostingResponse(dataList[position].boardid)
+            requestCommunityPostingResponse(position, holder.feed_scrap_btn)
+        }
+    }
+
+    fun changeLikeBtnView(position: Int, view : ImageView){
+        if (dataList[position].islike == 0) {
+            view.setImageResource(R.drawable.community_heart_gray)
+        } else {
+            view.setImageResource(R.drawable.community_heart_blue)
         }
     }
 
@@ -148,10 +134,10 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
         val feed_scrap_btn : ImageView = itemView.findViewById(R.id.contents_comment_tv_item_bottom_bar_scrap_btn) as ImageView
     }
 
-    fun requestCommunityPostingResponse(board_id : Int){
+    fun requestCommunityPostingResponse(position : Int, view : ImageView){
         val networkService = ApplicationController.instance.networkService
         val postFeedPostingResponse = networkService.postFeedPostingResponse(SharedPreferenceController.getAuthorization(ctx),
-                "", null, board_id)
+                "", null, dataList[position].boardid)
         postFeedPostingResponse.enqueue(object : retrofit2.Callback<PostFeedPostingResponse>{
             override fun onFailure(call: Call<PostFeedPostingResponse>?, t: Throwable?) {
             }
@@ -163,5 +149,43 @@ class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Con
             }
         })
     }
+    fun requestDeleteLikeBoardToServer(position : Int, view : ImageView, textView : TextView){
+        val deleteCommunityLikeResponse = networkService.deleteCommunityLikeResponse(
+                SharedPreferenceController.getAuthorization(ctx), dataList[position].boardid)
+        deleteCommunityLikeResponse.enqueue(object : retrofit2.Callback<DeleteCommunityLikeResponse>{
+            override fun onFailure(call: Call<DeleteCommunityLikeResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<DeleteCommunityLikeResponse>?, response: Response<DeleteCommunityLikeResponse>?) {
+                if (response!!.isSuccessful){
+                    ctx.toast("좋아요 취소")
+                    dataList[position].islike = 0
+                    dataList[position].likecnt -= 1
+
+                    textView.text = dataList[position].likecnt.toString()
+                    view.setImageResource(R.drawable.community_heart_gray)
+                }
+            }
+        })
+    }
+    fun requestLikeBoardToServer(position : Int, view : ImageView, textView : TextView){
+        val postCommunityLikeRequset = networkService.postCommunityLike(
+                SharedPreferenceController.getAuthorization(ctx), PostCommunityLikeRequset(dataList[position].boardid))
+        postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
+            override fun onFailure(call: Call<postCommunityLikeResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
+                if(response!!.isSuccessful){
+                    ctx.toast("좋아요")
+                    dataList[position].islike = 1
+                    dataList[position].likecnt += 1
+
+                    textView.text = dataList[position].likecnt.toString()
+                    view.setImageResource(R.drawable.community_heart_blue)
+                }
+            }
+        })
+    }
+
+
 
 }

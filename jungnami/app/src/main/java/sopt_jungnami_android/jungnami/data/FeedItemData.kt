@@ -16,7 +16,7 @@ data class Content (
         val img: String,
         val writingtime: String,
         val content: String,
-        val islike: Int,
-        val likecnt: Int,
+        var islike: Int,
+        var likecnt: Int,
         val commentcnt: Int
 ) : Serializable
