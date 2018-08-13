@@ -14,7 +14,7 @@ data class CommunityCommentData (
         //댓글 수
         val recommentCnt: Int,
         //좋아요 수
-        val commentlikeCnt: Int,
+        var commentlikeCnt: Int,
         //좋아요 여부(01.1)
         var islike: Int,
         // 유저 아이디

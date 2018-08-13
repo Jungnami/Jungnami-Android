@@ -5,10 +5,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
-import sopt_jungnami_android.jungnami.Delete.DeleteCommunityLikeResponse
-import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
-import sopt_jungnami_android.jungnami.Delete.DeleteContentsScrapResponse
-import sopt_jungnami_android.jungnami.Delete.DeleteFollowResponse
+import sopt_jungnami_android.jungnami.Delete.*
 import sopt_jungnami_android.jungnami.Get.*
 import sopt_jungnami_android.jungnami.Post.*
 
@@ -262,16 +259,16 @@ interface NetworkService {
             @Field("coin") coin : Int
     ) : Call<PostCompleteSponseCoinResponse>
     //컨텐츠 댓글 좋아요 삭제
-    @DELETE("delete/boardcommentlike/{boardcommentid}")
+    @DELETE("delete/contentscommentlike/{contentscommentid}")
     fun deleteContentsCommendLikeResponse(
             @Header("authorization") tokenValue : String?,
-            @Path("boardcommentid") boardcommentid : Int
+            @Path("contentscommentid") contentscommentid : Int
     ) : Call<DeleteContentsLikeResponse>
     //보드 댓글 좋아요 삭제
-    @DELETE("delete/contentscommentlike/{contentscommentid}")
+    @DELETE("delete/boardcommentlike/{boardcommentid}")
     fun deleteCummunityCommendLikeResponse(
             @Header("authorization") tokenValue : String?,
-            @Path("contentscommentid") contentscommentid : Int
+            @Path("boardcommentid") boardcommentid : Int
     ) : Call<DeleteContentsLikeResponse>
     @Multipart
     @POST("board/postcomplete")
@@ -281,11 +278,19 @@ interface NetworkService {
             @Part posting_image: MultipartBody.Part?,
             @Part("shared") posting_shared: Int
     ) : Call<PostFeedPostingResponse>
+    // 커뮤니티 좋아요 삭제
     @DELETE("delete/boardlike/{boardid}")
     fun deleteCommunityLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Path("boardid") boardid : Int
     ) : Call<DeleteCommunityLikeResponse>
+
+    //커뮤니티 댓글 삭제
+    @DELETE("delete/boardcomment/{boardcommentid}")
+    fun deleteCommendResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("boardcommentid") boardcommentid : Int
+    ) : Call<DeleteCommendResponse>
 //윤환 라인 종료!
 
 

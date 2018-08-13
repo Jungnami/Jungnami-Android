@@ -34,17 +34,7 @@ class RankFragment : Fragment() {
     }
 
     private fun setViewClickListener() {
-        //탭 이동 리스터
-//        rank_frag_likeable_tab_btn.setOnClickListener {
-//            isSelectedLikeableTab = true
-//            replaceFragment(LikeableTab())
-//            checkSelectedTabView()
-//        }
-//        rank_frag_unlikeable_tab_btn.setOnClickListener {
-//            isSelectedLikeableTab = false
-//            replaceFragment(UnlikeableTab())
-//            checkSelectedTabView()
-//        }
+
         //상단바 마이페이지 이동
         rank_frag_top_bar_mypage_btn.setOnClickListener {
             startActivity<MyPageActivity>()
@@ -117,36 +107,4 @@ class RankFragment : Fragment() {
         })
     }
 
-    //    private fun checkSelectedTabView() {
-//        if (isSelectedLikeableTab) {
-//            rank_frag_likeable_title_tv.setTextColor(Color.parseColor("#6B6B6B"))
-//            rank_frag_likeable_underbar_line.visibility = View.VISIBLE
-//
-//            rank_frag_unlikeable_title_tv.setTextColor(Color.parseColor("#D8D8D8"))
-//            rank_frag_unlikeable_underbar_line.visibility = View.INVISIBLE
-//        } else {
-//            rank_frag_likeable_title_tv.setTextColor(Color.parseColor("#D8D8D8"))
-//            rank_frag_likeable_underbar_line.visibility = View.INVISIBLE
-//
-//            rank_frag_unlikeable_title_tv.setTextColor(Color.parseColor("#6B6B6B"))
-//            rank_frag_unlikeable_underbar_line.visibility = View.VISIBLE
-//        }
-//    }
-//    private fun addFragment() {
-//        val transaction = childFragmentManager.beginTransaction()
-//        transaction.add(R.id.rank_frag_fragment_frame_fl, LikeableTab()).commit()
-//    }
-//
-//    fun replaceFragment(fragment: Fragment) {
-//        val transaction = childFragmentManager.beginTransaction()
-//        transaction.replace(R.id.rank_frag_fragment_frame_fl, fragment).commit()
-//    }
-//    fun connectionLikeableTab(){
-//        val fragment = childFragmentManager.findFragmentById(R.id.rank_frag_fragment_frame_fl)
-//        (fragment as LikeableTab).getRankItemDataAtServer()
-//    }
-//    fun connectionUnLikeableTab(){
-//        val fragment = childFragmentManager.findFragmentById(R.id.rank_frag_fragment_frame_fl)
-//        (fragment as UnlikeableTab).getRankItemDataAtServer()
-//    }
 }

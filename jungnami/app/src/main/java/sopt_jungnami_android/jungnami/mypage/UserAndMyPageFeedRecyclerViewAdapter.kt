@@ -27,9 +27,7 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import javax.security.auth.callback.Callback
 
 class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Board>) : RecyclerView.Adapter<UserAndMyPageFeedRecyclerViewAdapter.Holder>() {
-    init {
 
-    }
     lateinit var onItemClick: View.OnClickListener
     lateinit var networkService: NetworkService
     private val REQUEST_CODE_FEED =1002
@@ -72,10 +70,9 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
 
         holder.b_like_img.setOnClickListener {
             if (dataList[position].islike == 0){
-                requestLikeBoardToServer(position, holder.b_like_img)
+                requestLikeBoardToServer(position, holder.b_like_img, holder.b_likecnt)
             } else {
-                dataList[position].islike = 0
-                requestDeleteLikeBoardToServer(position, holder.b_like_img)
+                requestDeleteLikeBoardToServer(position, holder.b_like_img, holder.b_likecnt)
             }
 
         }
@@ -113,7 +110,7 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
         val b_b_image : ImageView = itemView.findViewById(R.id.userpage_feed_rv_item_shared_contents_iv) as ImageView
     }
 
-    fun requestLikeBoardToServer(position : Int, view : ImageView){
+    fun requestLikeBoardToServer(position : Int, view : ImageView, textView : TextView){
         val postCommunityLikeRequset = networkService.postCommunityLike(
                 SharedPreferenceController.getAuthorization(ctx), PostCommunityLikeRequset(dataList[position].b_id))
         postCommunityLikeRequset.enqueue(object : Callback, retrofit2.Callback<postCommunityLikeResponse> {
@@ -122,12 +119,15 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
             override fun onResponse(call: Call<postCommunityLikeResponse>?, response: Response<postCommunityLikeResponse>?) {
                 if(response!!.isSuccessful){
                     dataList[position].islike = 1
+                    dataList[position].like_cnt += 1
+
+                    textView.text  = dataList[position].like_cnt.toString()+"명"
                     view.setImageResource(R.drawable.community_heart_blue)
                 }
             }
         })
     }
-    fun requestDeleteLikeBoardToServer(position : Int, view : ImageView){
+    fun requestDeleteLikeBoardToServer(position : Int, view : ImageView, textView : TextView){
         val deleteCommunityLikeResponse = networkService.deleteCommunityLikeResponse(
                 SharedPreferenceController.getAuthorization(ctx), dataList[position].b_id)
         deleteCommunityLikeResponse.enqueue(object : retrofit2.Callback<DeleteCommunityLikeResponse>{
@@ -136,6 +136,9 @@ class UserAndMyPageFeedRecyclerViewAdapter(val ctx: Context, var dataList: Array
             override fun onResponse(call: Call<DeleteCommunityLikeResponse>?, response: Response<DeleteCommunityLikeResponse>?) {
                 if (response!!.isSuccessful){
                     dataList[position].islike = 0
+                    dataList[position].like_cnt -= 1
+
+                    textView.text  = dataList[position].like_cnt.toString()+"명"
                     view.setImageResource(R.drawable.community_heart_gray)
                 }
             }

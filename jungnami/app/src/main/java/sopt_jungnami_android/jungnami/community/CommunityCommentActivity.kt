@@ -11,9 +11,14 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contents_comment.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import sopt_jungnami_android.jungnami.Delete.DeleteCommendResponse
 import sopt_jungnami_android.jungnami.Get.GetCommunityCommentResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
@@ -22,13 +27,28 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.CommunityCommentData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 
-class CommunityCommentActivity : AppCompatActivity() {
+class CommunityCommentActivity : AppCompatActivity(), View.OnLongClickListener{
+
     var isStateChange: Boolean = false
     lateinit var networkService: NetworkService
     var communityCommentItem: ArrayList<CommunityCommentData>? = null
     var context: Context = this
     var communityCommentRecyclerViewAdapter: CommunityCommentRecyclerViewAdapter? = null
     var board_id: Int = 0
+
+    override fun onLongClick(v: View?): Boolean {
+        val position : Int = contents_comment_act_rv.getChildAdapterPosition(v)
+        alert ("댓글을 삭제하시겠습니까?"){
+            yesButton {
+                deleteCommendRequest(position)
+            }
+            noButton {
+                toast("취소")
+            }
+        }.show()
+        return true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_comment)
@@ -38,8 +58,6 @@ class CommunityCommentActivity : AppCompatActivity() {
 
         networkService = ApplicationController.instance.networkService
 
-//        communityCommentItem = ArrayList()
-//        communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem!!,context,0)
         getCommunityComment(true)
         setClickedListener()
     }
@@ -92,7 +110,7 @@ class CommunityCommentActivity : AppCompatActivity() {
                     if (communityCommentItem != null){
                         Log.e("댓글게시물 아이디 : } " , "${board_id}")
                         communityCommentRecyclerViewAdapter = CommunityCommentRecyclerViewAdapter(communityCommentItem!!,context,0)
-
+                        communityCommentRecyclerViewAdapter!!.setOnItemLongClick(this@CommunityCommentActivity)
                         contents_comment_act_rv.layoutManager = LinearLayoutManager(context)
                         contents_comment_act_rv.adapter = communityCommentRecyclerViewAdapter
                     }
@@ -101,7 +119,29 @@ class CommunityCommentActivity : AppCompatActivity() {
             }
         })
     }
+    fun deleteCommendRequest(position : Int){
+        networkService = ApplicationController.instance.networkService
+        var deleteCommentResponse = networkService.deleteCommendResponse(SharedPreferenceController.getAuthorization(context),
+                communityCommentItem!![position].commentid)
+        deleteCommentResponse.enqueue(object : Callback<DeleteCommendResponse>{
+            override fun onFailure(call: Call<DeleteCommendResponse>?, t: Throwable?) {
+                context.toast("댓글 불가")
+            }
 
+            override fun onResponse(call: Call<DeleteCommendResponse>?, response: Response<DeleteCommendResponse>?) {
+                toast("메시지는 ${response!!.message()}")
+
+//                if (response.body()!!.message == "Different User"){
+//                    context.toast("다른 유저 댓글입니다.")
+//                }
+
+                if (response!!.isSuccessful){
+
+                    context.toast("댓글 삭제 ${response.body()!!.message}")
+                }
+            }
+        })
+    }
 
     private fun setStatusBarColor() {
         val view: View? = window.decorView

@@ -58,10 +58,11 @@ class ContentsDetail : AppCompatActivity() {
             override fun onFailure(call: Call<PostContentsLikeResponse>?, t: Throwable?) {
                 Log.e("좋아요 실패", t.toString())
             }
-
             override fun onResponse(call: Call<PostContentsLikeResponse>?, response: Response<PostContentsLikeResponse>?) {
                 if (response!!.isSuccessful){
                     checkLikeClicked(1)
+                    cardViewItemData.likeCnt += 1
+                    setView()
                     toast("좋아요")
                 }
             }
@@ -79,6 +80,8 @@ class ContentsDetail : AppCompatActivity() {
             override fun onResponse(call: Call<DeleteContentsLikeResponse>?, response: Response<DeleteContentsLikeResponse>?) {
                 if (response!!.isSuccessful){
                     checkLikeClicked(0)
+                    cardViewItemData.likeCnt -= 1
+                    setView()
                     toast("좋아요 취소")
                 }
             }
@@ -98,15 +101,12 @@ class ContentsDetail : AppCompatActivity() {
                 if (response!!.isSuccessful){
                     cardViewItemData = response.body()!!.data
                     cardViewInImageList= response.body()!!.data.imagearray
-
                     //좋아요
                     isLike = cardViewItemData.islike
                     checkLikeClicked(isLike)
-
                     //스크랩
                     isScrapInPage = cardViewItemData.isscrap
                     changeIsScrapBtnView()
-
                     val card_page : Int = cardViewItemData.imagearray.size
                     if (card_page != 0) {
                         contents_act_detail_image_count_tv.text = "1/${cardViewItemData.imagearray.size}"
@@ -115,7 +115,6 @@ class ContentsDetail : AppCompatActivity() {
                     }
                     setView()
                     setViewPagerAdapter()
-                    toast("초기 좋아요 상태 : ${isLike}")
                 }
             }
         })
