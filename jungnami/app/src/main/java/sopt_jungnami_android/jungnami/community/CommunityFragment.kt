@@ -10,24 +10,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_community.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sopt_jungnami_android.jungnami.Alarm
-import sopt_jungnami_android.jungnami.CommunityWritePage
+import sopt_jungnami_android.jungnami.*
 import sopt_jungnami_android.jungnami.Get.GetCommunityFeedResponse
 import sopt_jungnami_android.jungnami.Get.GetCommunitySearchResponse
-import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
-import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.CommunitySearchData
 import sopt_jungnami_android.jungnami.data.Content
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
@@ -198,24 +192,27 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         community_frag_top_bar_search_btn.setOnClickListener {
             community_frag_is_display_search_rl.visibility = View.GONE
             var keyword : String = community_frag_top_bar_search_et.text.toString()
-
-            // 키워드에 아무것도 입력돼있지 않은 상태에서 검색버튼이 눌렷을 때
-            // 처음 커뮤니티 클릭한 상태처럼 모든 데이터 가져옴.
-            if (keyword.length == 0){
-                getCommunityFeed()
-                // recycler view 를 VISUBLE, 검색 결과 없음을 GONE 처리
-                community_frag_feed_list_rv.visibility = View.VISIBLE
-                community_frag_no_search_result_rl.visibility = View.GONE
-
-            }else{
-                Log.v("눌려?", "응눌려")
-                // keyword를 포함한 검색함수 실행.
-                getCommunitySearchFeed(keyword)
-
-                // 마이페이지 버튼을 백에로우 버튼으로 바꿔 검색 전으로 돌아가게한다.
-                community_frag_top_bar_my_page_btn.visibility = View.GONE
-                cmmunity_frag_top_bar_search_backarrow_btn.visibility = View.VISIBLE
-            }
+            Log.v("1001000100010", "start")
+            startActivity<CommunitySearchResultActivity>("keyword" to keyword)
+//
+//            // 키워드에 아무것도 입력돼있지 않은 상태에서 검색버튼이 눌렷을 때
+//            // 처음 커뮤니티 클릭한 상태처럼 모든 데이터 가져옴.
+//            if (keyword.length == 0){
+//                getCommunityFeed()
+//                // recycler view 를 VISUBLE, 검색 결과 없음을 GONE 처리
+//                community_frag_feed_list_rv.visibility = View.VISIBLE
+//                community_frag_no_search_result_rl.visibility = View.GONE
+//
+//            }else{
+////                Log.v("눌려?", "응눌려")
+////                // keyword를 포함한 검색함수 실행.
+////                getCommunitySearchFeed(keyword)
+////
+////                // 마이페이지 버튼을 백에로우 버튼으로 바꿔 검색 전으로 돌아가게한다.
+////                community_frag_top_bar_my_page_btn.visibility = View.GONE
+////                cmmunity_frag_top_bar_search_backarrow_btn.visibility = View.VISIBLE
+//
+//            }
         }
         // 검색 후 백에로우 버튼이 생기고 커뮤니티 초기 화면으로 돌아간다.
         cmmunity_frag_top_bar_search_backarrow_btn.setOnClickListener {
