@@ -32,7 +32,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/follower_following"
+        android:src="@drawable/alarm_following_gray"
         android:visibility="visible"
         />
 
