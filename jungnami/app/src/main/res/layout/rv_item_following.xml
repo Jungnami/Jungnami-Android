@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14dp"
-        android:fontFamily="@font/nanumbarungothicbold_normal"
+        android:fontFamily="@font/nanumbarungothic_normal"
         android:text="강지희"
         android:textColor="#2B2B2B"
         android:layout_toRightOf="@+id/act_following_rv_item_profile_btn"

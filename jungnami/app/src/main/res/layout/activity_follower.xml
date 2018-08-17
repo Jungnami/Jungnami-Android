@@ -23,7 +23,7 @@
             android:layout_width="43dp"
             android:layout_height="19dp"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:fontFamily="@font/nanumbarungothic_normal"
             android:text="팔로워"
             android:textColor="#2B2B2B"
             android:textSize="16dp" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/nanumbarungothicbold_normal"
+        android:fontFamily="@font/nanumbarungothic_normal"
         android:text="사람"
         android:textColor="#2B2B2B"
         android:textSize="15dp" />
