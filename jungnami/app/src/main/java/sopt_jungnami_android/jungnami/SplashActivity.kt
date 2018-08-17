@@ -31,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+            finish()
         }, 2900)
 
 
