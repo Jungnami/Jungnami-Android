@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
+import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.fragment_legislator_list.*
 import kotlinx.android.synthetic.main.tablayout_legislator_list_frag.*
 import org.jetbrains.anko.sdk25.coroutines.onTouch
@@ -60,14 +62,31 @@ class LegislatorListFragment : Fragment() {
         //검색
         legislator_list_frag_top_bar_search_btn.setOnClickListener {
             legislator_list_frag_is_display_search_box_rl.visibility = View.VISIBLE
+
+            // 에딧텍스트에 포커스 맞춰 바로 키보드올라오게 하는 코드
+            legislator_list_frag_top_bar_search_et.requestFocus()
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(legislator_list_frag_top_bar_search_et, InputMethodManager.SHOW_IMPLICIT)
         }
         legislator_list_frag_is_display_blind_panel_rl.setOnClickListener {
             legislator_list_frag_is_display_search_box_rl.visibility = View.GONE
+
+            // 키보드 내려가게 하는 함수
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
         legislator_list_frag_top_bar_search_tv.setOnClickListener {
             var keyword : String = legislator_list_frag_top_bar_search_et.text.toString()
 
             startActivity<SearchActivity>("keyword" to keyword)
+        }
+        // 취소
+        legislator_list_frag_top_bar_search_cancel_btn.setOnClickListener {
+            legislator_list_frag_is_display_search_box_rl.visibility = View.GONE
+
+            // 키보드 내려가게 하는 함수
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
     }
 

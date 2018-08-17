@@ -2,6 +2,7 @@ package sopt_jungnami_android.jungnami.community
 
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,7 +11,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.fragment_community.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
@@ -174,18 +177,30 @@ class CommunityFragment : Fragment(), View.OnClickListener {
             startActivityForResult<CommunityWritePage>(REQUEST_CODE_WRITE, "isShared" to 0)
         }
 
-        // 검색을 위해 edit text 눌렀을 때
+        // 검색을 위해 상단 검색 바를 눌렀을 때
         community_frag_top_bar_search_et.setOnClickListener {
+
+            // 에딧텍스트에 포커스 맞춰 바로 키보드올라오게 하는 코드
+            community_frag_top_bar_search_et.requestFocus()
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(community_frag_top_bar_search_et, InputMethodManager.SHOW_IMPLICIT)
+
             // 검색 버튼
             community_frag_top_bar_search_btn.visibility = View.VISIBLE
             // 상단 검색 바 밑에 어두운 부분 보이게 하기
             community_frag_is_display_search_rl.visibility = View.VISIBLE
+
+
         }
 
         // 상단 검색 바 밑에 어두운 부분 GONE 처리
         community_frag_is_display_search_rl.setOnClickListener {
+
             community_frag_is_display_search_rl.visibility = View.GONE
             community_frag_top_bar_search_btn.visibility = View.GONE
+
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
 
         }
         // 검색 버튼 눌렀을 때
@@ -194,40 +209,8 @@ class CommunityFragment : Fragment(), View.OnClickListener {
             var keyword : String = community_frag_top_bar_search_et.text.toString()
             Log.v("1001000100010", "start")
             startActivity<CommunitySearchResultActivity>("keyword" to keyword)
-//
-//            // 키워드에 아무것도 입력돼있지 않은 상태에서 검색버튼이 눌렷을 때
-//            // 처음 커뮤니티 클릭한 상태처럼 모든 데이터 가져옴.
-//            if (keyword.length == 0){
-//                getCommunityFeed()
-//                // recycler view 를 VISUBLE, 검색 결과 없음을 GONE 처리
-//                community_frag_feed_list_rv.visibility = View.VISIBLE
-//                community_frag_no_search_result_rl.visibility = View.GONE
-//
-//            }else{
-////                Log.v("눌려?", "응눌려")
-////                // keyword를 포함한 검색함수 실행.
-////                getCommunitySearchFeed(keyword)
-////
-////                // 마이페이지 버튼을 백에로우 버튼으로 바꿔 검색 전으로 돌아가게한다.
-////                community_frag_top_bar_my_page_btn.visibility = View.GONE
-////                cmmunity_frag_top_bar_search_backarrow_btn.visibility = View.VISIBLE
-//
-//            }
         }
-        // 검색 후 백에로우 버튼이 생기고 커뮤니티 초기 화면으로 돌아간다.
-        cmmunity_frag_top_bar_search_backarrow_btn.setOnClickListener {
-            getCommunityFeed()
-            community_frag_top_bar_my_page_btn.visibility = View.VISIBLE
-            cmmunity_frag_top_bar_search_backarrow_btn.visibility = View.GONE
 
-            // recycler view 를 VISUBLE, 검색 결과 없음을 GONE 처리
-            community_frag_feed_list_rv.visibility = View.VISIBLE
-            community_frag_no_search_result_rl.visibility = View.GONE
-
-            // editText의 힌트를 "커뮤니티 글을 검색해보세요."로 다시 바꾼다.
-            community_frag_top_bar_search_et.hint = "커뮤니티 글을 검색해보세요."
-
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

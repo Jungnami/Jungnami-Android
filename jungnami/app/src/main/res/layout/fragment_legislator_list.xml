@@ -140,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp">
                 <ImageView
                     android:id="@+id/legislator_list_frag_top_bar_search_iv"
@@ -159,6 +159,7 @@
                     android:hint="'국회의원의 이름을 검색해보세요.'"
                     android:gravity="left|center"
                     android:layout_toRightOf="@+id/legislator_list_frag_top_bar_search_iv"
+                    android:layout_toLeftOf="@+id/legislator_list_frag_top_bar_search_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"/>
@@ -178,8 +179,9 @@
                 android:id="@+id/legislator_list_frag_top_bar_search_cancel_btn"
                 android:text="취소"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/nanumbarungothiclight_normal" />
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/nanumbarungothiclight_normal"
+                />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
