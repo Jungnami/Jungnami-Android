@@ -31,7 +31,8 @@
         <activity android:name=".mypage.FollowingActivity"/>
         <activity android:name=".LegislatorList"/>
         <activity android:name=".legislator_list.SearchActivity"/>
-        <activity android:name=".Login">
+        <activity android:name=".Login"></activity>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,6 +45,7 @@
         <activity android:name=".contents.ContentsCommentActivity"/>
         <activity android:name=".contents.ContentsSearchActivity"/>
         <activity android:name=".legislator_list.SearchRigionActivity"></activity>
+        <activity android:name=".community.CommunitySearchResultActivity"/>
 
         <!--카카오톡 로그인-->
         <meta-data

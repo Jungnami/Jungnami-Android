@@ -1,5 +1,5 @@
 package sopt_jungnami_android.jungnami.Delete
 
-data class DeleteCommendResponse(
+data class DeleteBoardResponse(
         val message : String
 )

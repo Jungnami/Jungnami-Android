@@ -15,12 +15,19 @@ import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.fragment_community.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
+import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.*
+import sopt_jungnami_android.jungnami.Delete.DeleteBoardResponse
 import sopt_jungnami_android.jungnami.Get.GetCommunityFeedResponse
 import sopt_jungnami_android.jungnami.Get.GetCommunitySearchResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
@@ -30,8 +37,21 @@ import sopt_jungnami_android.jungnami.data.Content
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
-class CommunityFragment : Fragment(), View.OnClickListener {
+class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickListener {
     override fun onClick(v: View?) {
+    }
+
+    override fun onLongClick(v: View?): Boolean {
+        val position : Int = community_frag_feed_list_rv.getChildAdapterPosition(v)
+        alert ("삭제하시겠습니까?"){
+            yesButton {
+                deleteCommunityRequest(position)
+            }
+            noButton {
+                toast("취소")
+            }
+        }.show()
+        return true
     }
 
     private val REQUEST_CODE_WRITE = 1001
@@ -44,7 +64,6 @@ class CommunityFragment : Fragment(), View.OnClickListener {
     var alarmcnt: Int = 0
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Log.i("상태 저장 중", "feedDataList 저장!!!")
         outState.putSerializable("feedDataList", feedDataList)
         outState.putString("user_img_url", user_img_url)
         outState.putInt("alarmcnt", alarmcnt)
@@ -68,10 +87,8 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         community_frag_refresh.isRefreshing = true
         if (savedInstanceState == null){
-            Log.i("상태 저장 없다", "feedDataList 새롭게 받는중")
             getCommunityFeed()
         } else {
-            Log.i("상태 저장 꺼내오는중", "feedDataList 꺼내옴!!!!!!")
             feedDataList = savedInstanceState.getSerializable("feedDataList") as ArrayList<Content>
             user_img_url = savedInstanceState.getString("user_img_url")
             alarmcnt = savedInstanceState.getInt("alarmcnt")
@@ -88,9 +105,12 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         }
     }
 
+
+
     private fun setRecyclerViewAdapter() {
         communityRecyclerViewAdapter = CommunityRecyclerViewAdapter(context!!, feedDataList)
         communityRecyclerViewAdapter.setOnItemClickListener(this)
+        communityRecyclerViewAdapter.setOnItemLongClickListener(this)
         community_frag_feed_list_rv.adapter = communityRecyclerViewAdapter
         community_frag_feed_list_rv.layoutManager = LinearLayoutManager(activity)
     }
@@ -133,33 +153,23 @@ class CommunityFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun getCommunitySearchFeed(keyword : String) {
-        val keyword : String = keyword
-        community_frag_top_bar_search_et.hint = keyword
-
-        val GetCommunitySearchResponse = networkService.getCommunitySearchResult(SharedPreferenceController.getAuthorization(context!!), keyword)
-
-        GetCommunitySearchResponse.enqueue(object : Callback<GetCommunitySearchResponse> {
-            override fun onFailure(call: Call<GetCommunitySearchResponse>?, t: Throwable?) {
+    fun deleteCommunityRequest(position : Int){
+        val deleteBoardResponse = networkService.deleteBoardResponse(
+                SharedPreferenceController.getAuthorization(context!!), feedDataList[position].boardid)
+        deleteBoardResponse.enqueue(object : Callback<DeleteBoardResponse>{
+            override fun onFailure(call: Call<DeleteBoardResponse>?, t: Throwable?) {
             }
 
-            override fun onResponse(call: Call<GetCommunitySearchResponse>?, response: Response<GetCommunitySearchResponse>?) {
-                if(response!!.isSuccessful) {
-                    // 300 error No data 일 경우 검색결과 없음을 띄움.
-                    if(response!!.body()!!.message.equals("No data")){
-                        Log.v("xxx","xxx")
-                        community_frag_feed_list_rv.visibility = View.GONE
-                        community_frag_no_search_result_rl.visibility = View.VISIBLE
-                    }else{
-                        SearchFeedDataList = response!!.body()!!.data
-                        setSearchCommunityRecyclerViewAdapter()
-                    }
-
+            override fun onResponse(call: Call<DeleteBoardResponse>?, response: Response<DeleteBoardResponse>?) {
+                if (response!!.isSuccessful){
+                    getCommunityFeed()
+                    toast("글 삭제")
+                } else {
+                    toast("본인 글이 아닙니다.")
                 }
             }
         })
     }
-
     private fun setClickedListener() {
         community_frag_refresh.setOnRefreshListener {
             getCommunityFeed()
