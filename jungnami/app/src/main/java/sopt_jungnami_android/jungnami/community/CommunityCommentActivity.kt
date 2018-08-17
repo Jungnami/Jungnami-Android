@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contents_comment.*
@@ -18,7 +17,7 @@ import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sopt_jungnami_android.jungnami.Delete.DeleteCommendResponse
+import sopt_jungnami_android.jungnami.Delete.DeleteCommunityCommendResponse
 import sopt_jungnami_android.jungnami.Get.GetCommunityCommentResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
@@ -40,7 +39,7 @@ class CommunityCommentActivity : AppCompatActivity(), View.OnLongClickListener{
         val position : Int = contents_comment_act_rv.getChildAdapterPosition(v)
         alert ("댓글을 삭제하시겠습니까?"){
             yesButton {
-                deleteCommendRequest(position)
+                deleteCommunityCommendRequest(position)
             }
             noButton {
                 toast("취소")
@@ -58,7 +57,7 @@ class CommunityCommentActivity : AppCompatActivity(), View.OnLongClickListener{
 
         networkService = ApplicationController.instance.networkService
 
-        getCommunityComment(true)
+        getCommunityComment()
         setClickedListener()
     }
 
@@ -72,6 +71,7 @@ class CommunityCommentActivity : AppCompatActivity(), View.OnLongClickListener{
             // Post 통신코드
             postCommunityComment()
         }
+
 
 
     }
@@ -90,14 +90,14 @@ class CommunityCommentActivity : AppCompatActivity(), View.OnLongClickListener{
                     isStateChange = true
                     contents_comment_act_bottom_bar_edit_text.setText("")
 
-                    getCommunityComment(false)//엔터 후 바로 재요청..
+                    getCommunityComment()//엔터 후 바로 재요청..
                 }
             }
         })
     }
 
 
-    fun getCommunityComment(isinit : Boolean) {
+    fun getCommunityComment() {
         val getCommunityResponse = networkService.getCommunityComment(SharedPreferenceController.getAuthorization(context), board_id!!)
         getCommunityResponse.enqueue(object : Callback<GetCommunityCommentResponse> {
             override fun onFailure(call: Call<GetCommunityCommentResponse>?, t: Throwable?) {
@@ -119,25 +119,27 @@ class CommunityCommentActivity : AppCompatActivity(), View.OnLongClickListener{
             }
         })
     }
-    fun deleteCommendRequest(position : Int){
+    fun deleteCommunityCommendRequest(position : Int){
         networkService = ApplicationController.instance.networkService
-        var deleteCommentResponse = networkService.deleteCommendResponse(SharedPreferenceController.getAuthorization(context),
+        var deleteCommentResponse = networkService.deleteCommunityCommendResponse(SharedPreferenceController.getAuthorization(context),
                 communityCommentItem!![position].commentid)
-        deleteCommentResponse.enqueue(object : Callback<DeleteCommendResponse>{
-            override fun onFailure(call: Call<DeleteCommendResponse>?, t: Throwable?) {
+        deleteCommentResponse.enqueue(object : Callback<DeleteCommunityCommendResponse>{
+            override fun onFailure(call: Call<DeleteCommunityCommendResponse>?, t: Throwable?) {
                 context.toast("댓글 불가")
             }
 
-            override fun onResponse(call: Call<DeleteCommendResponse>?, response: Response<DeleteCommendResponse>?) {
-                toast("메시지는 ${response!!.message()}")
+            override fun onResponse(call: Call<DeleteCommunityCommendResponse>?, responseCommunity: Response<DeleteCommunityCommendResponse>?) {
+                toast("메시지는 ${responseCommunity!!.message()}")
 
-//                if (response.body()!!.message == "Different User"){
+//                if (responseCommunity.body()!!.message == "Different User"){
 //                    context.toast("다른 유저 댓글입니다.")
 //                }
 
-                if (response!!.isSuccessful){
-
-                    context.toast("댓글 삭제 ${response.body()!!.message}")
+                if (responseCommunity!!.isSuccessful){
+                    getCommunityComment()
+                    toast("댓글 삭제")
+                } else {
+                    toast("본인 댓글이 아닙니다.")
                 }
             }
         })

@@ -33,15 +33,23 @@ import javax.security.auth.callback.Callback
 //modify by TakHyeongMin
 class CommunityRecyclerViewAdapter(val ctx: Context ,val dataList: ArrayList<Content>) :RecyclerView.Adapter<CommunityRecyclerViewAdapter.Holder>() {
     private lateinit var onItemClick: View.OnClickListener
+    private lateinit var onItemLongClick : View.OnLongClickListener
     lateinit var networkService: NetworkService
     lateinit var postCommunityLike : PostCommunityLikeRequset
+
+
     fun setOnItemClickListener(l : View.OnClickListener){
         onItemClick = l
     }
+    fun setOnItemLongClickListener(l : View.OnLongClickListener){
+        onItemLongClick = l
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder{
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_feed, parent,false)
         networkService = ApplicationController.instance.networkService
         view.setOnClickListener(onItemClick)
+        view.setOnLongClickListener(onItemLongClick)
         return Holder(view)
     }
 

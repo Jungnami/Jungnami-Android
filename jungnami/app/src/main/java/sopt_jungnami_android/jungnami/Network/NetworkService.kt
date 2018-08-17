@@ -1,9 +1,7 @@
 package sopt_jungnami_android.jungnami.Network
 
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.http.*
 import sopt_jungnami_android.jungnami.Delete.*
 import sopt_jungnami_android.jungnami.Get.*
@@ -287,10 +285,24 @@ interface NetworkService {
 
     //커뮤니티 댓글 삭제
     @DELETE("delete/boardcomment/{boardcommentid}")
-    fun deleteCommendResponse(
+    fun deleteCommunityCommendResponse(
             @Header("authorization") tokenValue : String?,
             @Path("boardcommentid") boardcommentid : Int
-    ) : Call<DeleteCommendResponse>
+    ) : Call<DeleteCommunityCommendResponse>
+
+    //컨텐츠 댓글 삭제
+    @DELETE("delete/contentscomment/{contentscommentid}")
+    fun deleteContentsCommendResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("contentscommentid") contentscommentid : Int
+    ): Call<DeleteContentsCommendResponse>
+
+    //보드 글 삭제
+    @DELETE("delete/board/{boardid}")
+    fun deleteBoardResponse(
+            @Header("authorization") tokenValue : String?,
+            @Path("boardid") boardid : Int
+    ) : Call<DeleteBoardResponse>
 //윤환 라인 종료!
 
 

@@ -16,12 +16,9 @@ import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import sopt_jungnami_android.jungnami.Delete.DeleteCommendResponse
 import sopt_jungnami_android.jungnami.Delete.DeleteContentsLikeResponse
-import sopt_jungnami_android.jungnami.Get.GetCommunityCommentResponse
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
-import sopt_jungnami_android.jungnami.Post.PostCommunityCommentLikeRequset
 import sopt_jungnami_android.jungnami.Post.postCommunityLikeResponse
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.CommunityCommentData
