@@ -10,7 +10,7 @@ import sopt_jungnami_android.jungnami.Post.*
 interface NetworkService {
 //형민이 라인!
     // 1. 팔로잉 보기 made by 형민
-    @GET("user/followinglist/{f_id}")
+    @GET("user/{f_id}/followinglist")
     fun getFollowing(
         @Header("authorization") tokenValue : String?,
             @Path("f_id") f_id : String
@@ -22,31 +22,31 @@ interface NetworkService {
         @Header("authorization") tokenValue : String?
     ) : Call<GetCommunityFeedResponse>
 
-    @GET("search/legislator/{l_name}")
+    @GET("ranking/all/search/{l_name}")
     fun getRankingSearchLegislator(
             @Path("l_name") l_name : String
     ) : Call<GetRankingSearchLegislatorResponse>
 
     // 커뮤니티 좋아요 by 탁형민
-    @POST("board/likeboard")
+    @POST("board/like")
     fun postCommunityLike(
             @Header("authorization") tokenValue : String?,
             @Body postCommunityLikeRequset: PostCommunityLikeRequset
     ) : Call<postCommunityLikeResponse>
     // 정당에서 검색하기 by Tak
-    @GET("search/legislatorparty/{p_name}/{l_name}")
+    @GET("ranking/party/{p_name}/search/{l_name}")
     fun getPartySearchLegislator(
             @Path("p_name") p_name : String,
             @Path("l_name") l_name : String
     ) : Call<GetRankingSearchLegislatorResponse>
     // 지역에서 검색하기 by Tak
-    @GET("search/legislatorregion/{city}/{l_name}")
+    @GET("ranking/city/{city}/search/{l_name}")
     fun getRegionSearchLegislator(
             @Path("city") city : String,
             @Path("l_name") l_name : String
     ) : Call<GetRankingSearchLegislatorResponse>
     // 커뮤니티 댓글 가져오기
-    @GET("board/commentlist/{board_id}")
+    @GET("board/comment/{board_id}")
     fun getCommunityComment(
             @Header("authorization") tokenValue : String?,
             @Path("board_id") board_id: Int
@@ -54,7 +54,7 @@ interface NetworkService {
 
     // 커뮤니티 댓글쓰기 by 탁형민
     @FormUrlEncoded
-    @POST("board/makecomment")
+    @POST("board/comment")
     fun postCommunityComment(
             @Header("authorization") tokenValue : String?,
             @Field("board_id") board_id : Int,
@@ -63,13 +63,13 @@ interface NetworkService {
 
     // 커뮤니티 댓글 좋아요 by 탁형민
     @FormUrlEncoded
-    @POST("board/likecomment")
+    @POST("board/comment/like")
     fun postCommunityCommentLike(
             @Header("authorization") tokenValue : String?,
             @Field("comment_id") comment_id : Int
     ) : Call<postCommunityLikeResponse>
     // 콘텐츠 댓글 가져오기
-    @GET("contents/commentlist/{contents_id}")
+    @GET("contents/comment/{contents_id}")
     fun getContentsComment(
             @Header("authorization") tokenValue : String?,
             @Path("contents_id") contents_id: Int
@@ -78,7 +78,7 @@ interface NetworkService {
     // 콘텐츠 댓글쓰기 by 탁형민
     //붙여야될듯?
     @FormUrlEncoded
-    @POST("contents/makecomment")
+    @POST("contents/comment")
     fun postContentsComment(
             @Header("authorization") tokenValue : String?,
             @Field("contents_id") contents_id : Int,
@@ -87,13 +87,13 @@ interface NetworkService {
 
     // 콘텐츠 댓글 좋아요 by 탁형민
     @FormUrlEncoded
-    @POST("contents/likecomment")
+    @POST("contents/comment/like")
     fun postContentsCommentLike(
             @Header("authorization") tokenValue : String?,
             @Field("comment_id") comment_id : Int
     ) : Call<postCommunityLikeResponse>
     // 팔로워 보기 made by 형민
-    @GET("user/followerlist/{f_id}")
+    @GET("user/{f_id}/followerlist")
     fun getFollower(
             @Header("authorization") tokenValue : String?,
             @Path("f_id") f_id : String
@@ -108,20 +108,20 @@ interface NetworkService {
     ) : Call<PostFollwResponse>
 
     // 팔로우 취소하기
-    @DELETE("user/unfollow/{f_id}")
+    @DELETE("user/follow/{f_id}")
     fun deleteFollow(
             @Header("authorization") tokenValue : String?,
             @Path("f_id") f_id : String
     ) : Call<DeleteFollowResponse>
     // 콘텐츠 검색 결과 보기 made by 형민
-    @GET("search/contents/{keyword}")
+    @GET("contents/search/{keyword}")
     fun getContentsSearchresult(
             @Header("authorization") tokenValue : String?,
             @Path("keyword") keyword : String
     ) : Call<GetContentSearchResponse>
 
     // 커뮤니티 검색
-    @GET("search/board/{keyword}")
+    @GET("board/search/{keyword}")
     fun getCommunitySearchResult(
             @Header("authorization") tokenValue : String?,
             @Path("keyword") keyword : String
@@ -132,21 +132,22 @@ interface NetworkService {
 
 //윤환 라인!
     // 호감/비호감 순위 윤환
-    @GET("ranking/list/{islike}")
+    @GET("ranking/all/{islike}/{pre}")
     fun getRanking(
             @Header("authorization") tokenValue : String?,
-            @Path("islike") islike : Int
+            @Path("islike") islike : Int,
+            @Path("pre") pre : Int
     ) : Call<GetRankingResponse>
 
     // rank탭 투표하기 윤환
-    @GET("legislator/voting")
+    @GET("user/vote")
     fun getMyVotingCount(
             @Header("authorization") tokenValue : String?
     ) : Call<GetVotingResponse>
 
     //투표 완료하기 윤환
     @FormUrlEncoded
-    @POST("legislator/voting")
+    @POST("legislator/vote")
     fun postCompletingVote(
             @Header("authorization") tokenValue : String?,
             @Field("l_id") l_id : Int,
@@ -175,7 +176,7 @@ interface NetworkService {
 
     //로그인 통신
     @FormUrlEncoded
-    @POST("user/kakaologin")
+    @POST("user/login/kakao")
     fun postLoginResponse(
             @Header("authorization") tokenValue : String?,
             @Field("accessToken") accessToken : String,
@@ -200,26 +201,26 @@ interface NetworkService {
     ): Call<PostCoinChargeCompletionResponse>
     //내투표권 변환 확인
     @FormUrlEncoded
-    @POST("user/addvote")
+    @POST("user/vote")
     fun postCoinExchangeResponse(
             @Header("authorization") tokenValue : String?,
             @Field("coin") coin : Int
     ): Call<PostCoinExchangeResponse>
     //카드 컨텐츠 내용물
-    @GET("contents/cardnews/{contents_id}")
+    @GET("contents/detail/{contents_id}")
     fun getDetailedContentsResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contents_id") contents_id : Int
     ): Call<GetDetailedContentsResponse>
     //컨텐츠 스크랩
     @FormUrlEncoded
-    @POST("contents/scrap")
+    @POST("user/scrap")
     fun postContentsScrapAgreeResponse(
             @Header("authorization") tokenValue : String?,
             @Field("contentsid") contentsid : Int
     ) : Call<PostContentsScrapAgreeResponse>
     //스크랩 제거
-    @DELETE("delete/scrap/{contentsid}")
+    @DELETE("user/scrap/{contentsid}")
     fun deleteContentsScrapResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contentsid") contentsid : Int
@@ -232,7 +233,7 @@ interface NetworkService {
             @Field("contents_id") contents_id : Int
     ) : Call<PostContentsLikeResponse>
     //좋아요 삭제
-    @DELETE("delete/contentslike/{contentsid}")
+    @DELETE("contents/like/{contentsid}")
     fun deleteContentsLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contentsid") contentsid : Int
@@ -244,7 +245,7 @@ interface NetworkService {
             @Path("l_id") l_id : Int
     ) : Call<GetLegislatorResponse>
     //후원하기 전 내 코인 받기
-    @GET("legislator/support")
+    @GET("user/point")
     fun getSponseBeforeDataResponse(
             @Header("authorization") tokenValue : String?
     ) : Call<GetSponseBeforeDataResponse>
@@ -257,19 +258,19 @@ interface NetworkService {
             @Field("coin") coin : Int
     ) : Call<PostCompleteSponseCoinResponse>
     //컨텐츠 댓글 좋아요 삭제
-    @DELETE("delete/contentscommentlike/{contentscommentid}")
+    @DELETE("contents/comment/like/{contentscommentid}")
     fun deleteContentsCommendLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contentscommentid") contentscommentid : Int
     ) : Call<DeleteContentsLikeResponse>
     //보드 댓글 좋아요 삭제
-    @DELETE("delete/boardcommentlike/{boardcommentid}")
+    @DELETE("board/comment/like/{boardcommentid}")
     fun deleteCummunityCommendLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Path("boardcommentid") boardcommentid : Int
     ) : Call<DeleteContentsLikeResponse>
     @Multipart
-    @POST("board/postcomplete")
+    @POST("board")
     fun postFeedPostingResponse(
             @Header("authorization") tokenValue : String?,
             @Part ("content") posting_content: String?,
@@ -277,28 +278,28 @@ interface NetworkService {
             @Part("shared") posting_shared: Int
     ) : Call<PostFeedPostingResponse>
     // 커뮤니티 좋아요 삭제
-    @DELETE("delete/boardlike/{boardid}")
+    @DELETE("board/like/{boardid}")
     fun deleteCommunityLikeResponse(
             @Header("authorization") tokenValue : String?,
             @Path("boardid") boardid : Int
     ) : Call<DeleteCommunityLikeResponse>
 
     //커뮤니티 댓글 삭제
-    @DELETE("delete/boardcomment/{boardcommentid}")
+    @DELETE("board/comment/{boardcommentid}")
     fun deleteCommunityCommendResponse(
             @Header("authorization") tokenValue : String?,
             @Path("boardcommentid") boardcommentid : Int
     ) : Call<DeleteCommunityCommendResponse>
 
     //컨텐츠 댓글 삭제
-    @DELETE("delete/contentscomment/{contentscommentid}")
+    @DELETE("contents/comment/{contentscommentid}")
     fun deleteContentsCommendResponse(
             @Header("authorization") tokenValue : String?,
             @Path("contentscommentid") contentscommentid : Int
     ): Call<DeleteContentsCommendResponse>
 
     //보드 글 삭제
-    @DELETE("delete/board/{boardid}")
+    @DELETE("board/{boardid}")
     fun deleteBoardResponse(
             @Header("authorization") tokenValue : String?,
             @Path("boardid") boardid : Int
@@ -310,7 +311,7 @@ interface NetworkService {
 
     //수영 라인!
     // 커뮤니티 글 작성화면 made by SooYoung
-    @GET("board/post")
+    @GET("user/img")
     fun getCommunityPostingResponse(
             @Header("authorization") tokenValue : String?
     ) : Call<GetCommunityPostingResponse>

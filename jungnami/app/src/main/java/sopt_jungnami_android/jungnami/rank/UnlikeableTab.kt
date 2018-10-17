@@ -50,6 +50,8 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
     lateinit var legislatorRankDataList : ArrayList<RankItemData>
     lateinit var unlikeableRankRecyclerViewAdapter: UnlikeableRankRecyclerViewAdapter
 
+    var currentItemsCount : Int = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_unlikeable_tab, container, false)
@@ -81,7 +83,7 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
             if (v!!.getChildAt(v!!.childCount -1) != null){
                 if ((scrollY >= (v.getChildAt(v!!.childCount -1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY){
                     unlikeable_tab_refresh_srl.isRefreshing = true
-                    var currentItemsCount : Int = unlikeableRankRecyclerViewAdapter.itemCount
+                    currentItemsCount = unlikeableRankRecyclerViewAdapter.itemCount
                     val addItems : ArrayList<RankItemData> = ArrayList(legislatorRankDataList.subList(currentItemsCount, currentItemsCount+25))
                     doAsync {
                         unlikeableRankRecyclerViewAdapter.addItem(addItems)
@@ -101,11 +103,10 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
 
         unlikeable_tab_refresh_srl.isRefreshing = true
 
-        val getUnlikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),0)
+        val getUnlikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),0, currentItemsCount)
         getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
-
             }
 
             override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
