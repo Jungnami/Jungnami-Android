@@ -57,6 +57,8 @@ class LikeableTab : Fragment(), View.OnClickListener {
     lateinit var legislatorRankDataList: ArrayList<RankItemData>
     lateinit var likeableRankRecyclerViewAdapter: LikeableRankRecyclerViewAdapter
 
+    var currentItemsCount : Int = 0
+
     private var mainimg_1st: ImageView? = null
     private var mainimg_2st: ImageView? = null
 
@@ -93,25 +95,29 @@ class LikeableTab : Fragment(), View.OnClickListener {
         likeable_tab_nested_scroll_view.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
             if (v!!.getChildAt(v!!.childCount - 1) != null) {
                 if ((scrollY >= (v.getChildAt(v!!.childCount - 1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY) {
+
                     likeable_tab_refresh_srl.isRefreshing = true
-                    var currentItemsCount: Int = likeableRankRecyclerViewAdapter.itemCount
+
+                    currentItemsCount = likeableRankRecyclerViewAdapter.itemCount
+
                     val addItems: ArrayList<RankItemData> = ArrayList(legislatorRankDataList.subList(currentItemsCount, currentItemsCount + 25))
+
                     MoreLoadRecyclerView(addItems, likeable_tab_refresh_srl).execute()
                 }
             }
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.i("상태 저장 중", "legislatorRankDataList 저장!!!")
-        outState.putSerializable("legislatorRankDataList", legislatorRankDataList)
-        super.onSaveInstanceState(outState)
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        Log.i("상태 저장 중", "legislatorRankDataList 저장!!!")
+//        outState.putSerializable("legislatorRankDataList", legislatorRankDataList)
+//        super.onSaveInstanceState(outState)
+//    }
 
     //서버에서 데이터 받기 --> 리플래쉬 전용으로 바꾸기
     fun getRankItemDataAtServer() {
         networkService = ApplicationController.instance.networkService
-        val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!), 1)
+        val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!), 1, currentItemsCount)
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
