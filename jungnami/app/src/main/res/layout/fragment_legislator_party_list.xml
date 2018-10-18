@@ -8,6 +8,7 @@
     <!--Written by SooYoung-->
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/ns_legislator_list_frag_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -2,6 +2,7 @@ package sopt_jungnami_android.jungnami
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,7 @@ import sopt_jungnami_android.jungnami.db.SharedPreferenceController
 import sopt_jungnami_android.jungnami.legislator.LegislatorPageActivity
 
 class LegislatorUnlikabletListFragment : Fragment() {
-
+    var currentItemsCount: Int = 0
     lateinit var networkService: NetworkService
     lateinit var legislatorItems : ArrayList<PartyDistrictLegistlatorListData>
     lateinit var legislatorListViewAdapter: LegislatorListViewAdapter
@@ -34,6 +35,8 @@ class LegislatorUnlikabletListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         networkService = ApplicationController.instance.networkService
         legislatorItems = ArrayList()
+
+        moreLoadListData()
         setAdapter()
         var isParty = (context as LegislatorList).getisParty()
         if (isParty == true){
@@ -129,12 +132,10 @@ class LegislatorUnlikabletListFragment : Fragment() {
     }
 
     private fun getPartyLegislatorUnlikableListResponse() {
-
         var p_name = (context as LegislatorList).getp_name()
-        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!), 0, p_name)
+        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!), 0, p_name, currentItemsCount)
         getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse> {
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
-
             }
             override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
                 var str = response!!.body()!!.message
@@ -149,6 +150,22 @@ class LegislatorUnlikabletListFragment : Fragment() {
             }
         })
     }
+    private fun getMorePartyLegislatorUnlikableListResponse() {
+        var p_name = (context as LegislatorList).getp_name()
+        val getPartyLegislatorListResponse = networkService.getPartyLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!), 0, p_name, currentItemsCount)
+        getPartyLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse> {
+            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
+            }
+            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+                if (response!!.isSuccessful){
+                    val moreDataList = response.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
+                    legislatorListViewAdapter.addItem(moreDataList)
+                    legislatorItems.addAll(moreDataList)
+                    currentItemsCount = legislatorItems.size
+                }
+            }
+        })
+    }
     fun setAdapter(){
         legislatorListViewAdapter = LegislatorListViewAdapter(context!!,legislatorItems,1)
         rv_legislator.layoutManager = LinearLayoutManager(context)
@@ -156,7 +173,7 @@ class LegislatorUnlikabletListFragment : Fragment() {
     }
     private fun getDistrictLegislatorUnlikableListResponse(){
         var region_name = (context as LegislatorList).getregion_name()
-        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),0, region_name)
+        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),0, region_name, currentItemsCount)
         getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
             override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
 
@@ -165,11 +182,40 @@ class LegislatorUnlikabletListFragment : Fragment() {
                 if (response!!.isSuccessful){
                     legislatorItems = response!!.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
                     setAdapter()
-
-
                 }
             }
         })
     }
+    private fun getMoreDistrictLegislatorUnlikableListResponse(){
+        var region_name = (context as LegislatorList).getregion_name()
+        val getDistrictLegislatorListResponse = networkService.getDistrictLegislatorListResponse(SharedPreferenceController.getMyId(this!!.context!!),0, region_name, currentItemsCount)
+        getDistrictLegislatorListResponse.enqueue(object : Callback<GetPartyDistrictLegislatorListResponse>{
+            override fun onFailure(call: Call<GetPartyDistrictLegislatorListResponse>?, t: Throwable?) {
 
+            }
+            override fun onResponse(call: Call<GetPartyDistrictLegislatorListResponse>?, response: Response<GetPartyDistrictLegislatorListResponse>?) {
+                if (response!!.isSuccessful){
+                    val moreDataList = response.body()!!.data as ArrayList<PartyDistrictLegistlatorListData>
+                    legislatorListViewAdapter.addItem(moreDataList)
+                    legislatorItems.addAll(moreDataList)
+                    currentItemsCount = legislatorItems.size
+                }
+            }
+        })
+    }
+    private fun moreLoadListData() {
+        ns_legislator_list_frag_list.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v!!.getChildAt(v!!.childCount - 1) != null) {
+                if ((scrollY >= (v.getChildAt(v!!.childCount - 1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY) {
+                    currentItemsCount = legislatorItems.size
+                    var isParty = (context as LegislatorList).getisParty()
+                    if (isParty == true) {
+                        getMorePartyLegislatorUnlikableListResponse()
+                    } else if (isParty == false) {
+                        getMoreDistrictLegislatorUnlikableListResponse()
+                    }
+                }
+            }
+        }
+    }
 }

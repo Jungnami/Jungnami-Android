@@ -46,6 +46,7 @@ class LikeableRankRecyclerViewAdapter(val ctx : Context, val dataList : ArrayLis
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val rank_number = dataList[position].ranking
+
         when (rank_number){
             "1" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_gold_medal_icon)
             "2" -> holder.rank_number_cover_img.setImageResource(R.drawable.main_silver_medal_icon)

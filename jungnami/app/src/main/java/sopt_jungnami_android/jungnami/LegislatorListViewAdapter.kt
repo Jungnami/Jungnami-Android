@@ -28,6 +28,11 @@ class LegislatorListViewAdapter(var ctx: Context,
 
     override fun getItemCount(): Int = legislatorItems.size
 
+    fun addItem(dataList : ArrayList<PartyDistrictLegistlatorListData>){
+        this.legislatorItems.addAll(dataList)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: Holder, position: Int) {
         if ((position) % 2 == 0) {
             holder.legislator_rvlayout.setBackgroundColor(Color.parseColor("#FFFFFF"))

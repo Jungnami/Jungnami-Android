@@ -62,23 +62,25 @@ class SponsedCoinDialog(val ctx : Context, val l_id : Int) : Dialog(ctx) {
     }
 
     private fun requestCompleteSponse(){
-        val coin = legi_dialog_sponse_coin_count_input_et.text.toString().toInt()
-        networkService = ApplicationController.instance.networkService
-        val postCompleteSponseCoinResponse = networkService.postCompleteSponseCoinResponse(SharedPreferenceController.getAuthorization(ctx),
-                l_id, coin)
-        postCompleteSponseCoinResponse.enqueue(object : Callback<PostCompleteSponseCoinResponse>{
-            override fun onFailure(call: Call<PostCompleteSponseCoinResponse>?, t: Throwable?) {
-            }
-
-            override fun onResponse(call: Call<PostCompleteSponseCoinResponse>?, response: Response<PostCompleteSponseCoinResponse>?) {
-                if (response!!.isSuccessful){
-                    val dialog : Dialog = SponseCompleteDialog(ctx)
-                    dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    dialog.show()
-                    dismiss()
+        if (legi_dialog_sponse_coin_count_input_et.text.isNotEmpty()){
+            val coin = legi_dialog_sponse_coin_count_input_et.text.toString().toInt()
+            networkService = ApplicationController.instance.networkService
+            val postCompleteSponseCoinResponse = networkService.postCompleteSponseCoinResponse(SharedPreferenceController.getAuthorization(ctx),
+                    l_id, coin)
+            postCompleteSponseCoinResponse.enqueue(object : Callback<PostCompleteSponseCoinResponse>{
+                override fun onFailure(call: Call<PostCompleteSponseCoinResponse>?, t: Throwable?) {
                 }
-            }
-        })
+
+                override fun onResponse(call: Call<PostCompleteSponseCoinResponse>?, response: Response<PostCompleteSponseCoinResponse>?) {
+                    if (response!!.isSuccessful){
+                        val dialog : Dialog = SponseCompleteDialog(ctx)
+                        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                        dismiss()
+                    }
+                }
+            })
+        }
     }
 
 //    private fun setView(){

@@ -98,11 +98,9 @@ class LikeableTab : Fragment(), View.OnClickListener {
 
                     likeable_tab_refresh_srl.isRefreshing = true
 
-                    currentItemsCount = likeableRankRecyclerViewAdapter.itemCount
+                    currentItemsCount = legislatorRankDataList.size
 
-                    val addItems: ArrayList<RankItemData> = ArrayList(legislatorRankDataList.subList(currentItemsCount, currentItemsCount + 25))
-
-                    MoreLoadRecyclerView(addItems, likeable_tab_refresh_srl).execute()
+                    getMoreRankItemDataAtServer()
                 }
             }
         }
@@ -121,14 +119,11 @@ class LikeableTab : Fragment(), View.OnClickListener {
         getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
             override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
                 toast("응답 실패")
-
             }
-
             override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
                 if (response!!.isSuccessful) {
                     legislatorRankDataList = response.body()!!.data
                     if (legislatorRankDataList.size > 1) {
-                        //legislatorRankDataList = legislatorRankDataList.take(25) as ArrayList<RankItemData>
                         initSettingView()
                     } else {
                         toast("데이터 수 부족")
@@ -137,17 +132,37 @@ class LikeableTab : Fragment(), View.OnClickListener {
             }
         })
     }
+    fun getMoreRankItemDataAtServer() {
+        networkService = ApplicationController.instance.networkService
+        val getLikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!), 1, currentItemsCount)
+        getLikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
+            override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
+                toast("응답 실패")
 
+            }
+            override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
+                if (response!!.isSuccessful) {
+                    if (response.body()!!.data.size > 0){
+                        legislatorRankDataList.addAll(response.body()!!.data)
+                        likeableRankRecyclerViewAdapter.addItem(response.body()!!.data)
+                        currentItemsCount = legislatorRankDataList.size
+                        likeable_tab_refresh_srl.isRefreshing = false
+                    }
+                }
+            }
+        })
+    }
 
     private fun setClickListener() {
         likeable_tab_refresh_srl.setOnRefreshListener {
+            currentItemsCount = 0
             getRankItemDataAtServer()
         }
         likeable_tab_1st_btn.setOnClickListener {
-            //startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
+            startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[0].l_id)
         }
         likeable_tab_2st_btn.setOnClickListener {
-            //startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[1].l_id)
+            startActivity<LegislatorPageActivity>("l_id" to legislatorRankDataList[1].l_id)
         }
     }
 
