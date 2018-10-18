@@ -77,32 +77,34 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
         return view
     }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putSerializable("recommendDataList", recommendDataList)
-//        outState.putSerializable("tmiOrStoryDataList", tmiOrStoryDataList)
-        outState.putInt("alertCount", alertCount)
-        outState.putSerializable("mainContentData", mainContentData)
-        Log.e("컨텐츠 상태저장 시작", "저장 시작")
-        super.onSaveInstanceState(outState)
-    }
+//
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        outState.putSerializable("recommendDataList", recommendDataList)
+////        outState.putSerializable("tmiOrStoryDataList", tmiOrStoryDataList)
+//        outState.putInt("alertCount", alertCount)
+//        outState.putSerializable("mainContentData", mainContentData)
+//        Log.e("컨텐츠 상태저장 시작", "저장 시작")
+//        super.onSaveInstanceState(outState)
+//    }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setClickListener()
-        if (savedInstanceState != null){
-            Log.e("컨텐츠 상태저장 불러오기", "저장 불러오기")
-            recommendDataList = savedInstanceState.getSerializable("recommendDataList") as ArrayList<Contents>
-            alertCount = savedInstanceState.getInt("alertCount")
-            mainContentData = savedInstanceState.getSerializable("mainContentData") as Contents
-            setMainContentView(mainContentData)
-            changeConetentsRecyclerViewData()
+//        if (savedInstanceState != null){
+//            Log.e("컨텐츠 상태저장 불러오기", "저장 불러오기")
+//            recommendDataList = savedInstanceState.getSerializable("recommendDataList") as ArrayList<Contents>
+//            alertCount = savedInstanceState.getInt("alertCount")
+//            mainContentData = savedInstanceState.getSerializable("mainContentData") as Contents
+//            setMainContentView(mainContentData)
+//            changeConetentsRecyclerViewData()
+//
+//        } else {
+//            Log.e("컨텐츠 상태저장 내용 없음", "저장된 내용 없음")
+//            requestRecommendContentsDataToServer()
+//        }
 
-        } else {
-            Log.e("컨텐츠 상태저장 내용 없음", "저장된 내용 없음")
-            requestRecommendContentsDataToServer()
-        }
+        requestRecommendContentsDataToServer()
     }
     private fun setClickListener(){
         contents_frag_refresh_srl.setOnRefreshListener {

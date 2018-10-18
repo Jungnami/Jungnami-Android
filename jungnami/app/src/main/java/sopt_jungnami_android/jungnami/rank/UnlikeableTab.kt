@@ -52,6 +52,11 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
 
     var currentItemsCount : Int = 0
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        legislatorRankDataList = ArrayList()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_unlikeable_tab, container, false)
@@ -83,25 +88,18 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
             if (v!!.getChildAt(v!!.childCount -1) != null){
                 if ((scrollY >= (v.getChildAt(v!!.childCount -1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY){
                     unlikeable_tab_refresh_srl.isRefreshing = true
-                    currentItemsCount = unlikeableRankRecyclerViewAdapter.itemCount
-                    val addItems : ArrayList<RankItemData> = ArrayList(legislatorRankDataList.subList(currentItemsCount, currentItemsCount+25))
-                    doAsync {
-                        unlikeableRankRecyclerViewAdapter.addItem(addItems)
-                        uiThread {
-                            unlikeable_tab_refresh_srl.isRefreshing = false
-                        }
-                    }
+                    currentItemsCount = legislatorRankDataList.size
+                    getMoreRankItemDataAtServer()
                 }
             }
         }
     }
     //서버에서 데이터 받기
     fun getRankItemDataAtServer() {
-
         networkService = ApplicationController.instance.networkService
-        legislatorRankDataList = ArrayList()
-
-        unlikeable_tab_refresh_srl.isRefreshing = true
+        doAsync {
+            unlikeable_tab_refresh_srl.isRefreshing = true
+        }
 
         val getUnlikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),0, currentItemsCount)
         getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
@@ -116,15 +114,38 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
                         initSettingView()
                     } else {
                         toast("데이터 수 부족")
-
                     }
                 }
             }
         })
     }
+    fun getMoreRankItemDataAtServer() {
+        networkService = ApplicationController.instance.networkService
+        doAsync {
+            unlikeable_tab_refresh_srl.isRefreshing = true
+        }
+        val getUnlikeableRankingResponse = networkService.getRanking(SharedPreferenceController.getAuthorization(context = context!!),0, currentItemsCount)
+        getUnlikeableRankingResponse.enqueue(object : Callback<GetRankingResponse> {
+            override fun onFailure(call: Call<GetRankingResponse>?, t: Throwable?) {
+                toast("응답 실패")
+            }
 
+            override fun onResponse(call: Call<GetRankingResponse>?, response: Response<GetRankingResponse>?) {
+                if (response!!.isSuccessful) {
+                    if (response.body()!!.data.size > 0){
+                        legislatorRankDataList.addAll(response.body()!!.data)
+                        unlikeableRankRecyclerViewAdapter.addItem(response.body()!!.data)
+                        currentItemsCount = legislatorRankDataList.size
+                        unlikeable_tab_refresh_srl.isRefreshing = false
+                    }
+
+                }
+            }
+        })
+    }
     private fun setClickListener(){
         unlikeable_tab_refresh_srl.setOnRefreshListener {
+            currentItemsCount = 0
             getRankItemDataAtServer()
         }
 

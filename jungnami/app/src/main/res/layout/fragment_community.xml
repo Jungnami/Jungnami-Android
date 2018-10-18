@@ -172,6 +172,7 @@
         android:layout_below="@+id/community_frag_top_box_rl">
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/ns_community_frag_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

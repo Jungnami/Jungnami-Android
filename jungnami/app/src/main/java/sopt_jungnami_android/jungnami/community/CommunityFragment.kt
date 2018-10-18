@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,14 +16,12 @@ import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.fragment_community.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
+import kotlinx.android.synthetic.main.fragment_legislator_party_list.*
+import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,20 +54,25 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
     }
 
     private val REQUEST_CODE_WRITE = 1001
-    lateinit var feedDataList: ArrayList<Content>
+    val feedDataList: ArrayList<Content> by lazy {
+        ArrayList<Content>()
+    }
     lateinit var SearchFeedDataList: ArrayList<CommunitySearchData>
-    lateinit var communityRecyclerViewAdapter: CommunityRecyclerViewAdapter
+    val communityRecyclerViewAdapter: CommunityRecyclerViewAdapter by lazy {
+        CommunityRecyclerViewAdapter(context!!, feedDataList)
+    }
     lateinit var communitySearchRecyclerViewAdapter: CommunitySearchRecyclerViewAdapter
     lateinit var networkService: NetworkService
     lateinit var user_img_url : String
     var alarmcnt: Int = 0
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putSerializable("feedDataList", feedDataList)
-        outState.putString("user_img_url", user_img_url)
-        outState.putInt("alarmcnt", alarmcnt)
-        super.onSaveInstanceState(outState)
+    var currentItemsCount : Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        networkService = ApplicationController.instance.networkService
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -83,76 +87,72 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
         } else {
             community_frag_no_login_status_rl.visibility = View.GONE
         }
+
+        setRecyclerViewAdapter()
+
+
         setClickedListener()
-        networkService = ApplicationController.instance.networkService
-        community_frag_refresh.isRefreshing = true
-        if (savedInstanceState == null){
-            getCommunityFeed()
-        } else {
-            feedDataList = savedInstanceState.getSerializable("feedDataList") as ArrayList<Content>
-            user_img_url = savedInstanceState.getString("user_img_url")
-            alarmcnt = savedInstanceState.getInt("alarmcnt")
 
-            Glide.with(context!!)
-                    .load(user_img_url)
-                    .into(community_frag_my_picture_iv)
 
-            community_top_bar_new_post_counter_tv.text = alarmcnt.toString()
+        getCommunityFeed()
 
-            setRecyclerViewAdapter()
-
-            community_frag_refresh.isRefreshing = false
-        }
+        moreLoadListData()
     }
-
-
-
+    
     private fun setRecyclerViewAdapter() {
-        communityRecyclerViewAdapter = CommunityRecyclerViewAdapter(context!!, feedDataList)
         communityRecyclerViewAdapter.setOnItemClickListener(this)
         communityRecyclerViewAdapter.setOnItemLongClickListener(this)
         community_frag_feed_list_rv.adapter = communityRecyclerViewAdapter
         community_frag_feed_list_rv.layoutManager = LinearLayoutManager(activity)
     }
 
-    private fun setSearchCommunityRecyclerViewAdapter() {
-        communitySearchRecyclerViewAdapter = CommunitySearchRecyclerViewAdapter(context!!, SearchFeedDataList)
-        communitySearchRecyclerViewAdapter.setOnItemClickListener(this)
-        community_frag_feed_list_rv.adapter = communitySearchRecyclerViewAdapter
-        community_frag_feed_list_rv.layoutManager = LinearLayoutManager(activity)
-    }
-
-
     fun getCommunityFeed() {
-        val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!))
+        community_frag_refresh.isRefreshing = true
+        val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!), currentItemsCount)
         getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse> {
             override fun onFailure(call: Call<GetCommunityFeedResponse>?, t: Throwable?) {
             }
 
             override fun onResponse(call: Call<GetCommunityFeedResponse>?, response: Response<GetCommunityFeedResponse>?) {
                 if (response!!.isSuccessful) {
-                    user_img_url = response!!.body()!!.data!!.user_img_url
+                    if (feedDataList.size != 0){
+                        feedDataList.clear()
+                        communityRecyclerViewAdapter.dataList.clear()
+                    }
+                    feedDataList.addAll(response!!.body()!!.data!!.content)
+                    communityRecyclerViewAdapter.addItems(feedDataList)
 
+                    currentItemsCount = feedDataList.size
+                    community_frag_refresh.isRefreshing = false
+                    //리사이클러뷰 제외한 다른 UI 데이터 셋팅
+                    user_img_url = response!!.body()!!.data!!.user_img_url
                     Glide.with(context!!)
                             .load(user_img_url)
                             .into(community_frag_my_picture_iv)
-
                     alarmcnt = response!!.body()!!.data!!.alarmcnt
-
                     community_top_bar_new_post_counter_tv.text = alarmcnt.toString()
-
-                    feedDataList = response!!.body()!!.data!!.content
-
-                    setRecyclerViewAdapter()
-
-                    community_frag_refresh.isRefreshing = false
 
                 }
             }
-
         })
     }
-
+    fun getMoreCommunityFeed() {
+        val getCommunityFeedResponse = networkService.getCommunityFeed(SharedPreferenceController.getAuthorization(context!!), currentItemsCount)
+        getCommunityFeedResponse.enqueue(object : Callback<GetCommunityFeedResponse> {
+            override fun onFailure(call: Call<GetCommunityFeedResponse>?, t: Throwable?) {
+                Log.e("more request failed", t.toString())
+            }
+            override fun onResponse(call: Call<GetCommunityFeedResponse>?, response: Response<GetCommunityFeedResponse>?) {
+                if (response!!.isSuccessful) {
+                    //Log.e("데이터 더 있나?", response!!.body()!!.data!!.content.size.toString())
+                    communityRecyclerViewAdapter.addItems(response!!.body()!!.data!!.content)
+                    feedDataList.addAll(response!!.body()!!.data!!.content)
+                    currentItemsCount = feedDataList.size
+                    community_frag_refresh.isRefreshing = false
+                }
+            }
+        })
+    }
     fun deleteCommunityRequest(position : Int){
         val deleteBoardResponse = networkService.deleteBoardResponse(
                 SharedPreferenceController.getAuthorization(context!!), feedDataList[position].boardid)
@@ -172,6 +172,7 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
     }
     private fun setClickedListener() {
         community_frag_refresh.setOnRefreshListener {
+            currentItemsCount = 0
             getCommunityFeed()
         }
         //종
@@ -234,5 +235,19 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
             }
         }
     }
+    private fun moreLoadListData() {
+        ns_community_frag_list.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v!!.getChildAt(v!!.childCount - 1) != null) {
+                if ((scrollY >= (v.getChildAt(v!!.childCount - 1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY) {
+                    Log.e("끝까지 옴", "스크롤 끝까지!")
+                    currentItemsCount = feedDataList.size
+                    doAsync {
+                        community_frag_refresh.isRefreshing = true
+                    }
+                    getMoreCommunityFeed()
 
+                }
+            }
+        }
+    }
 }
