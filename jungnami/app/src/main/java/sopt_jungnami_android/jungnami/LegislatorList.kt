@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -41,8 +42,6 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_legislator_list)
@@ -67,6 +66,25 @@ class LegislatorList : AppCompatActivity(), View.OnClickListener {
             region_name = intent.getStringExtra("region_name")
             isPartyRegionSelected()
         }
+
+        legislator_list_act_top_bar_search_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    Log.v("TAG","눌렸다")
+                    if(isParty){
+                        var l_name : String = legislator_list_act_top_bar_search_et.text.toString()
+                        startActivity<SearchPartyActivity>("p_name" to p_name, "l_name" to l_name)
+                    }else{
+                        var l_name : String = legislator_list_act_top_bar_search_et.text.toString()
+                        startActivity<SearchRigionActivity>("city" to region_name, "l_name" to l_name)
+                    }
+                    return true;
+                }
+                return false;
+            }
+        })
+
     }
     fun setAnimationIcon(isLikeable: Boolean) {
         val interpolator = MyBounceInterpolator(0.2, 20.0)

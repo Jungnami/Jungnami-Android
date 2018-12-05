@@ -8,12 +8,15 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_community_search_result.*
 import kotlinx.android.synthetic.main.fragment_community.*
+import kotlinx.android.synthetic.main.fragment_legislator_list.*
 import kotlinx.android.synthetic.main.fragment_rank.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +27,7 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.contents.ContentsSearchActivity
 import sopt_jungnami_android.jungnami.data.CommunitySearchData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.legislator_list.SearchActivity
 
 class CommunitySearchResultActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -35,7 +39,7 @@ class CommunitySearchResultActivity : AppCompatActivity(), View.OnClickListener 
     lateinit var networkService: sopt_jungnami_android.jungnami.Network.NetworkService
     lateinit var SearchFeedDataList: ArrayList<CommunitySearchData>
     lateinit var communitySearchRecyclerViewAdapter: CommunitySearchRecyclerViewAdapter
-    var context : Context = this
+    var context: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,21 +90,36 @@ class CommunitySearchResultActivity : AppCompatActivity(), View.OnClickListener 
             startActivity(intent)
 
 
-
 //            startActivity<CommunitySearchResultActivity>("keyword" to keyword2)
         }
 
         // 취소 버튼을 눌렀을 때
-        community_search_act_top_bar_search_cancel_btn.setOnClickListener{
+        community_search_act_top_bar_search_cancel_btn.setOnClickListener {
             community_search_act_is_display_search_box_rl.visibility = View.GONE
-            val imm: InputMethodManager = context!!.getSystemService( Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
+        // 엔터리스너
+        community_search_act_top_bar_search_et.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    var keyword2 = community_search_act_top_bar_search_et.text.toString()
 
+                    val intent = Intent(applicationContext, CommunitySearchResultActivity::class.java)
+                    intent.putExtra("keyword", keyword2)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    startActivity(intent)
+                    return true;
+                }
+                return false;
+            }
+        })
 
 
     }
-    fun getCommunitySearchFeed(keyword : String) {
+
+    fun getCommunitySearchFeed(keyword: String) {
 
         community_search_result_act_search_reult_tv.text = keyword
         networkService = ApplicationController.instance.networkService
@@ -112,9 +131,9 @@ class CommunitySearchResultActivity : AppCompatActivity(), View.OnClickListener 
             }
 
             override fun onResponse(call: Call<GetCommunitySearchResponse>?, response: Response<GetCommunitySearchResponse>?) {
-                if(response!!.isSuccessful) {
+                if (response!!.isSuccessful) {
                     // 300 error No data 일 경우 검색결과 없음을 띄움.
-                    if(response!!.body()!!.message.equals("No data")){
+                    if (response!!.body()!!.message.equals("No data")) {
 
                         // 검색 결과 없음 텍스트 띄움
                         community_search_no_result_act_search_rl.visibility = View.VISIBLE
@@ -122,7 +141,7 @@ class CommunitySearchResultActivity : AppCompatActivity(), View.OnClickListener 
                         // 리사이클러 뷰를 GONE 처리
                         community_search_result_act_search_rv.visibility = View.GONE
 
-                    }else{
+                    } else {
                         SearchFeedDataList = response!!.body()!!.data
 
                         // 어뎁터 단
@@ -150,7 +169,6 @@ class CommunitySearchResultActivity : AppCompatActivity(), View.OnClickListener 
             }
         }
     }
-
 
 
 }

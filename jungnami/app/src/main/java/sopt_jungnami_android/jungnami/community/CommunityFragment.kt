@@ -9,11 +9,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.fragment_community.*
 import kotlinx.android.synthetic.main.fragment_legislator_party_list.*
@@ -34,6 +36,8 @@ import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.data.CommunitySearchData
 import sopt_jungnami_android.jungnami.data.Content
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.legislator_list.SearchPartyActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchRigionActivity
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
 class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickListener {
@@ -125,10 +129,12 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
                     currentItemsCount = feedDataList.size
                     community_frag_refresh.isRefreshing = false
                     //리사이클러뷰 제외한 다른 UI 데이터 셋팅
-                    user_img_url = response!!.body()!!.data!!.user_img_url
-                    Glide.with(context!!)
-                            .load(user_img_url)
-                            .into(community_frag_my_picture_iv)
+                    if(!response!!.body()!!.data!!.user_img_url.isNullOrEmpty()){
+                        user_img_url = response!!.body()!!.data!!.user_img_url
+                        Glide.with(context!!)
+                                .load(user_img_url)
+                                .into(community_frag_my_picture_iv)
+                    }
                     alarmcnt = response!!.body()!!.data!!.alarmcnt
                     community_top_bar_new_post_counter_tv.text = alarmcnt.toString()
 
@@ -221,6 +227,22 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
             Log.v("1001000100010", "start")
             startActivity<CommunitySearchResultActivity>("keyword" to keyword)
         }
+
+        // 엔터리스너
+        community_frag_top_bar_search_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    community_frag_is_display_search_rl.visibility = View.GONE
+                    var keyword : String = community_frag_top_bar_search_et.text.toString()
+                    Log.v("1001000100010", "start")
+                    startActivity<CommunitySearchResultActivity>("keyword" to keyword)
+                    return true;
+                }
+                return false;
+            }
+        })
+
 
     }
 

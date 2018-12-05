@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_search_result.*
@@ -66,7 +67,7 @@ class SearchPartyActivity : AppCompatActivity() {
 
             var keyword2 = search_result_act_top_bar_search_et.text.toString()
 
-            val intent = Intent(this, SearchRigionActivity::class.java)
+            val intent = Intent(this, SearchPartyActivity::class.java)
             intent.putExtra("p_name", p_name)
             intent.putExtra("l_name", keyword2)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -74,6 +75,25 @@ class SearchPartyActivity : AppCompatActivity() {
             startActivity(intent)
 //            startActivity<ContentsSearchActivity>("keyword" to keyword2)
         }
+
+        // 엔터리스너
+        search_result_act_search_hint_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    var keyword2 = search_result_act_top_bar_search_et.text.toString()
+
+                    val intent = Intent(applicationContext, SearchPartyActivity::class.java)
+                    intent.putExtra("p_name", p_name)
+                    intent.putExtra("l_name", keyword2)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    startActivity(intent)
+//            startActivity<ContentsSearchActivity>("keyword" to keyword2)
+                    return true;
+                }
+                return false;
+            }
+        })
     }
 
 

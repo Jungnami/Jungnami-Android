@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -151,7 +152,7 @@
                     android:id="@+id/rank_frag_top_bar_search_et"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:background="#00000000"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:hint="'국회의원의 이름을 검색해보세요.'"
                     android:gravity="left|center"
                     android:layout_toRightOf="@+id/rank_frag_top_bar_search_iv"

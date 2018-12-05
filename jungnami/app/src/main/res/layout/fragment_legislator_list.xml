@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                     android:id="@+id/legislator_list_frag_party_title_tv"
                     android:layout_centerInParent="true"
                     android:text="정당"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:textColor="#6B6B6B"
                     android:fontFamily="@font/nanumbarungothic"
                     android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
                     android:id="@+id/legislator_list_frag_region_title_tv"
                     android:layout_centerInParent="true"
                     android:text="지역"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:textColor="#D8D8D8"
                     android:fontFamily="@font/nanumbarungothic"
                     android:layout_width="wrap_content"
@@ -155,7 +156,7 @@
                     android:id="@+id/legislator_list_frag_top_bar_search_et"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:background="#00000000"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:hint="'국회의원의 이름을 검색해보세요.'"
                     android:gravity="left|center"
                     android:layout_toRightOf="@+id/legislator_list_frag_top_bar_search_iv"

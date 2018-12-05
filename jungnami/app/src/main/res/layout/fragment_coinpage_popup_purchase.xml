@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -47,7 +48,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="구매하기"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b" />
 
             <RelativeLayout
@@ -72,7 +73,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="-원"
-                            android:textSize="15sp"
+                            android:textSize="17dp"
                             android:textColor="#757575"/>
 
                         <TextView
@@ -80,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="으로 "
-                            android:textSize="15sp"
+                            android:textSize="17dp"
                             android:textColor="#757575"/>
 
                         <TextView
@@ -89,7 +90,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="-코인"
-                            android:textSize="15sp"
+                            android:textSize="17dp"
                             android:textColor="#757575"/>
 
                         <TextView
@@ -97,7 +98,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="을"
-                            android:textSize="15sp"
+                            android:textSize="17dp"
                             android:textColor="#757575"/>
 
                     </LinearLayout>
@@ -119,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="구매하시겠습니까?"
-                            android:textSize="15sp"
+                            android:textSize="17dp"
                             android:textColor="#757575"/>
 
                     </RelativeLayout>
@@ -159,7 +160,7 @@
                             android:layout_marginLeft="20dp"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="구매조건 확인 및 결제진행 동의"
-                            android:textSize="11sp"
+                            android:textSize="13dp"
                             android:textColor="#c2c2c2"/>
 
                     </RelativeLayout>

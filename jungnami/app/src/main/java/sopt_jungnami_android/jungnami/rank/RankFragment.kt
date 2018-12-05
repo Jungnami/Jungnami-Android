@@ -5,16 +5,22 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.fragment_rank.*
 import kotlinx.android.synthetic.main.tablayout_rank_fragment.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.legislator_list.SearchActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchPartyActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchRigionActivity
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 
 //made by yun hwan
@@ -65,6 +71,20 @@ class RankFragment : Fragment() {
 
             startActivity<SearchActivity>("keyword" to keyword)
         }
+
+        rank_frag_top_bar_search_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    Log.v("TAG","눌렸다")
+                    var keyword: String = rank_frag_top_bar_search_et.text.toString()
+
+                    startActivity<SearchActivity>("keyword" to keyword)
+                    return true;
+                }
+                return false;
+            }
+        })
 
     }
 

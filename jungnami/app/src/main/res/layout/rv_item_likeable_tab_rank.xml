@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
@@ -20,7 +21,7 @@
         android:layout_marginLeft="26dp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/nanumbarungothic"
         android:layout_marginRight="16dp"/>
@@ -44,7 +45,7 @@
                     android:id="@+id/likeable_tab_rv_item_name_tv"
                     android:text=""
                     android:textColor="#6B6B6B"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:fontFamily="@font/nanumbarungothic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -52,7 +53,7 @@
                     android:id="@+id/likeable_tab_rv_item_party_tv"
                     android:text=""
                     android:textColor="#6B6B6B"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -60,7 +61,7 @@
                     android:id="@+id/likeable_tab_rv_item_vote_count_tv"
                     android:text=""
                     android:textColor="#6B6B6B"
-                    android:textSize="10dp"
+                    android:textSize="12dp"
                     android:layout_marginLeft="6dp"
                     android:fontFamily="@font/nanumbarungothic"
                     android:layout_width="wrap_content"

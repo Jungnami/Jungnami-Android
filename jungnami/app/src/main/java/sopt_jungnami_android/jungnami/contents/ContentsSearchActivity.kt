@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_community_search_result.*
 import kotlinx.android.synthetic.main.activity_contents_search.*
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -24,6 +26,8 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.community.CommunitySearchResultActivity
 import sopt_jungnami_android.jungnami.data.ContentsSearchData
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.legislator_list.SearchPartyActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchRigionActivity
 
 class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -157,6 +161,27 @@ class ContentsSearchActivity : AppCompatActivity(), View.OnClickListener {
             val imm: InputMethodManager = context!!.getSystemService( Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
+
+        contents_search_act_top_bar_search_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    Log.v("TAG","눌렸다")
+                    var keyword2 = contents_search_act_top_bar_search_et.text.toString()
+
+                    val intent = Intent(applicationContext, ContentsSearchActivity::class.java)
+                    intent.putExtra("keyword", keyword2)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    startActivity(intent)
+//            startActivity<ContentsSearchActivity>("keyword" to keyword2)
+                    return true;
+                }
+                return false;
+            }
+        })
+
+
 
     }
 

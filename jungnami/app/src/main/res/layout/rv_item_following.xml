@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <!--Written By TakHyeongMin-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="73dp">
@@ -16,7 +17,7 @@
         android:id="@+id/act_following_rv_item_nick_name_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
+        android:textSize="16dp"
         android:fontFamily="@font/nanumbarungothic_normal"
         android:text="강지희"
         android:textColor="#2B2B2B"

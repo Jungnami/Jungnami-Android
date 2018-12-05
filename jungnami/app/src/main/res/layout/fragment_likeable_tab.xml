@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -84,7 +85,7 @@
                                             android:fontFamily="@font/nanumbarungothiclight"
                                             android:text="-"
                                             android:textColor="#E2E2E2"
-                                            android:textSize="8dp"
+                                            android:textSize="10dp"
                                             android:visibility="gone" />
                                     </RelativeLayout>
 
@@ -105,7 +106,7 @@
                                             android:fontFamily="@font/nanumbarungothic"
                                             android:text="1위"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="11dp" />
+                                            android:textSize="13dp" />
 
                                         <TextView
                                             android:id="@+id/likeable_tab_1st_name_tv"
@@ -115,7 +116,7 @@
                                             android:fontFamily="@font/nanumbarungothic"
                                             android:text="-"
                                             android:textColor="#F7F7F7"
-                                            android:textSize="17dp" />
+                                            android:textSize="19dp" />
 
                                         <TextView
                                             android:id="@+id/likeable_tab_1st_party_name_tv"
@@ -125,7 +126,7 @@
                                             android:fontFamily="@font/nanumbarungothiclight"
                                             android:text="-"
                                             android:textColor="#E2E2E2"
-                                            android:textSize="10dp" />
+                                            android:textSize="12dp" />
                                     </LinearLayout>
 
                                 </RelativeLayout>
@@ -171,7 +172,7 @@
                                             android:fontFamily="@font/nanumbarungothiclight"
                                             android:text="-"
                                             android:textColor="#E2E2E2"
-                                            android:textSize="8dp"
+                                            android:textSize="10dp"
                                             android:visibility="gone" />
                                     </RelativeLayout>
 
@@ -193,7 +194,7 @@
                                             android:fontFamily="@font/nanumbarungothic"
                                             android:text="2위"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="11dp" />
+                                            android:textSize="13dp" />
 
                                         <TextView
                                             android:id="@+id/likeable_tab_2st_name_tv"
@@ -203,7 +204,7 @@
                                             android:fontFamily="@font/nanumbarungothic"
                                             android:text="-"
                                             android:textColor="#F7F7F7"
-                                            android:textSize="17dp" />
+                                            android:textSize="19dp" />
 
                                         <TextView
                                             android:id="@+id/likeable_tab_2st_party_name_tv"
@@ -213,7 +214,7 @@
                                             android:fontFamily="@font/nanumbarungothiclight"
                                             android:text="-"
                                             android:textColor="#E2E2E2"
-                                            android:textSize="10dp" />
+                                            android:textSize="12dp" />
                                     </LinearLayout>
                                 </RelativeLayout>
                             </LinearLayout>

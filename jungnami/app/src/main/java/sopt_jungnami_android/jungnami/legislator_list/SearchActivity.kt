@@ -8,10 +8,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_contents_search.*
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.activity_search_result.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,6 +72,26 @@ class SearchActivity : AppCompatActivity(){
             startActivity(intent)
 //            startActivity<ContentsSearchActivity>("keyword" to keyword2)
         }
+
+        // 엔터리스너
+        search_result_act_search_hint_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    var keyword2 = search_result_act_top_bar_search_et.text.toString()
+
+                    val intent = Intent(applicationContext, SearchActivity::class.java)
+//                    val intent = Intent(this, SearchActivity::class.java)
+                    intent.putExtra("keyword", keyword2)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    startActivity(intent)
+//            startActivity<ContentsSearchActivity>("keyword" to keyword2)
+                    return true;
+                }
+                return false;
+            }
+        })
 
     }
 

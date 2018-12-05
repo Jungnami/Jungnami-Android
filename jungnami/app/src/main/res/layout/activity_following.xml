@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--wrriten by HyeongMin-->
+<?xml version="1.0" encoding="utf-8"?>
+<!--wrriten by HyeongMin-->
+<!--글씨크기 + 2 변경완료-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +27,7 @@
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="팔로잉"
             android:textColor="#2B2B2B"
-            android:textSize="16dp" />
+            android:textSize="18dp" />
 
 
     </RelativeLayout>
@@ -46,7 +48,7 @@
         android:fontFamily="@font/nanumbarungothic_normal"
         android:text="사람"
         android:textColor="#2B2B2B"
-        android:textSize="15dp" />
+        android:textSize="17dp" />
 
 
     <android.support.v7.widget.RecyclerView

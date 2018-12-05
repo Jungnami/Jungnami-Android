@@ -5,16 +5,16 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.fragment_legislator_list.*
 import kotlinx.android.synthetic.main.tablayout_legislator_list_frag.*
 import org.jetbrains.anko.sdk25.coroutines.onTouch
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
@@ -88,6 +88,20 @@ class LegislatorListFragment : Fragment() {
             val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
+
+        // 엔터리스너
+        legislator_list_frag_top_bar_search_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    Log.v("TAG","눌렸다")
+                    var keyword : String = legislator_list_frag_top_bar_search_et.text.toString()
+                    startActivity<SearchActivity>("keyword" to keyword)
+                    return true;
+                }
+                return false;
+            }
+        })
     }
 
 

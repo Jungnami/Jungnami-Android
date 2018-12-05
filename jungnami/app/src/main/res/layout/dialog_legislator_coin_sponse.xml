@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--글씨크기 + 2 변경완료-->
 <!--Written by SooYoung-->
 
 <RelativeLayout
@@ -48,7 +49,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="후원하기"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b" />
 
             <LinearLayout
@@ -71,7 +72,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="나의 코인"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:textColor="#757575"/>
 
                     </RelativeLayout>
@@ -88,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic_normal"
                             android:text="-코인"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:textColor="#36c5f1"/>
 
                     </RelativeLayout>
@@ -111,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="후원 코인"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:textColor="#757575"/>
 
                     </RelativeLayout>
@@ -129,7 +130,7 @@
                         android:inputType="number"
                         android:textColor="#36C5F1"
                         android:textColorHint="#D8D8D8"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                 </RelativeLayout>
 

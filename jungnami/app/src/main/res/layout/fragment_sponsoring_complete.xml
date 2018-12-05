@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--written by HyeongMin-->
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:fontFamily="@font/nanumbarungothicbold_normal"
                 android:layout_marginTop="45dp"
                 android:layout_centerHorizontal="true"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#36C5F1"
                 />
             
@@ -49,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:text="김병관"
                     android:fontFamily="@font/nanumbarungothiclight"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:textColor="#6B6B6B"
 
                     />
@@ -60,7 +61,7 @@
                     android:layout_toRightOf="@id/spon_complete_frag_legislator_tv"
                     android:text=" 님께"
                     android:textColor="#6B6B6B"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:fontFamily="@font/nanumbarungothiclight"/>
             </RelativeLayout>
 
@@ -79,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:text="18"
                     android:fontFamily="@font/nanumbarungothiclight"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:textColor="#36C5F1"
                     />
 
@@ -90,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:text=" 코인"
                     android:textColor="#36C5F1"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerHorizontal="true"
 
@@ -102,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:text="을"
                     android:textColor="#6B6B6B"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerHorizontal="true"
 
@@ -127,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="후원하셨습니다."
-                    android:textSize="18sp"
+                    android:textSize="20dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:textColor="#6B6B6B"/>
             </RelativeLayout>
