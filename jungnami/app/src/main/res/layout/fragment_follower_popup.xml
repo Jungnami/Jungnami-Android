@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--written by HyeongMin-->
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="팔로우를 취소 하시겠습니까?"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:textColor="#2B2B2B"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:layout_centerHorizontal="true"/>

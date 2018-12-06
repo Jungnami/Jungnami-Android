@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--글씨크기 + 2 변경완료-->
 <!--written by Tak HyeongMin-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     android:layout_toRightOf="@+id/search_nothing_result_act_search_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="18dp"
                     android:text="김성태"
                     android:layout_centerVertical="true"
                     android:textColor="#2B2B2B"
@@ -72,7 +72,7 @@
                     android:fontFamily="@font/nanumbarungothic_normal"
                     android:hint="'국회의원의 이름을 검색해 보세요'"
                     android:textColor="#2B2B2B"
-                    android:textSize="12sp"
+                    android:textSize="14dp"
                     android:visibility="gone" />
 
 
@@ -102,7 +102,7 @@
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="검색 결과 없음"
             android:textColor="#D8D8D8"
-            android:textSize="24sp" />
+            android:textSize="26dp" />
     </RelativeLayout>
 
 </LinearLayout>

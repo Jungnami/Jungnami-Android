@@ -8,17 +8,16 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_community_search_result.*
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.fragment_contents.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +32,8 @@ import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.community.CommunitySearchResultActivity
 import sopt_jungnami_android.jungnami.data.Contents
 import sopt_jungnami_android.jungnami.db.SharedPreferenceController
+import sopt_jungnami_android.jungnami.legislator_list.SearchPartyActivity
+import sopt_jungnami_android.jungnami.legislator_list.SearchRigionActivity
 import sopt_jungnami_android.jungnami.mypage.MyPageActivity
 import java.io.Serializable
 
@@ -168,7 +169,22 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             startActivity<ContentsSearchActivity>("keyword" to keyword)
 
         }
+        contents_frag_top_bar_search_et.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if ((event!!.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //Enter키눌렀을떄 처리
+                    Log.v("TAG","눌렸다")
+                    var keyword = contents_frag_top_bar_search_et.text.toString()
 
+                    // ContentsSearchActivity에서 백버튼을 눌렀을 때 검색화면 다시 GONE
+                    contents_frag_is_display_search_box_rl.visibility = View.GONE
+
+                    startActivity<ContentsSearchActivity>("keyword" to keyword)
+                    return true;
+                }
+                return false;
+            }
+        })
     }
 
     private fun setMainContentView(mainContent : Contents?){

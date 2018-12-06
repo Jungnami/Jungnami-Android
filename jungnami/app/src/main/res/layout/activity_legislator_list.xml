@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--글씨크기 + 2 변경완료-->
 <!--Written by SooYoung-->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,7 +34,7 @@
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="정당"
             android:textColor="#6b6b6b"
-            android:textSize="16sp"
+            android:textSize="18dp"
             android:visibility="visible" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="지역"
             android:textColor="#6b6b6b"
-            android:textSize="16sp"
+            android:textSize="18dp"
             android:visibility="gone" />
 
         <ImageView
@@ -84,7 +84,7 @@
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="호감"
                 android:textColor="#6B6B6B"
-                android:textSize="16dp" />
+                android:textSize="18dp" />
 
             <View
                 android:id="@+id/legislator_list_act_likable_underbar_line"
@@ -111,7 +111,7 @@
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="비호감"
                 android:textColor="#D8D8D8"
-                android:textSize="16dp" />
+                android:textSize="18dp" />
 
             <View
                 android:id="@+id/legislator_list_act_unlikeable_underbar_line"
@@ -177,8 +177,8 @@
                     android:id="@+id/legislator_list_act_top_bar_search_et"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:background="#00000000"
-                    android:textSize="12dp"
-                    android:hint="'컨텐츠를 검색해보세요.'"
+                    android:textSize="14dp"
+                    android:hint="'국회의원을 검색해보세요.'"
                     android:gravity="left|center"
                     android:layout_toRightOf="@+id/legislator_list_act_top_bar_search_iv"
                     android:layout_toLeftOf="@+id/legislator_list_act_top_bar_search_btn"

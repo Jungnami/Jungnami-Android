@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                         android:text="1코인"
                         android:fontFamily="@font/nanumbarungothic"
                         android:textColor="#36C5F1"
-                        android:textSize="14dp"
+                        android:textSize="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -58,7 +59,7 @@
                         android:text="1투표권"
                         android:fontFamily="@font/nanumbarungothic"
                         android:textColor="#36C5F1"
-                        android:textSize="14dp"
+                        android:textSize="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -87,7 +88,7 @@
                     <TextView
                         android:text="투표권 전환방법!"
                         android:textColor="#707070"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/nanumbarungothic"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -99,14 +100,14 @@
                 </LinearLayout>
                 <TextView
                     android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:textColor="#B7B7B7"
                     android:text="국회의원에게 투표를 하기 위해서는 투표권이 필요합니다."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:textColor="#B7B7B7"
                     android:text="코인을 원하는 개수만큼 투표권으로 전환 할 수 있습니다."
                     android:layout_width="wrap_content"
@@ -125,7 +126,7 @@
             android:layout_height="match_parent">
             <TextView
                 android:text="얼마를 전환하시겠습니까?"
-                android:textSize="16dp"
+                android:textSize="18dp"
                 android:textColor="#6B6B6B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -139,7 +140,7 @@
                 android:inputType="number"
                 android:textColor="#9B9B9B"
                 android:textColorHint="#9B9B9B"
-                android:textSize="15dp" />
+                android:textSize="17dp" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -147,14 +148,14 @@
                 <TextView
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:textColor="#757575"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:text="나의 보유 코인 "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/votecharge_frag_my_having_coin_count_tv"
                     android:fontFamily="@font/nanumbarungothic"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:text="-코인"
                     android:textColor="#36C5F1"
                     android:layout_width="wrap_content"
@@ -176,7 +177,7 @@
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="전환하기"
                 android:textColor="#FFFFFF"
-                android:textSize="17dp"
+                android:textSize="19dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--Written by SooYoung-->
-
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="구매가"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b"/>
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="완료되었습니다!"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b"/>
 
         </RelativeLayout>

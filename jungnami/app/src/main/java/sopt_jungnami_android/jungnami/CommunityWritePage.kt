@@ -3,6 +3,7 @@ package sopt_jungnami_android.jungnami
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -11,6 +12,8 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -40,10 +43,12 @@ import java.io.InputStream
 // Written by SooYoung
 
 class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
-    var isStateChange : Boolean= false
+
+    val My_READ_STORAGE_REQUEST_CODE = 7777
+    var isStateChange: Boolean = false
 
     lateinit var networkService: NetworkService
-    var context : Context = this
+    var context: Context = this
 
     private val REQ_CODE_SELECT_IMAGE = 100
     lateinit var data: Uri
@@ -54,7 +59,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
     var isGIF: Boolean = false
 
 
-    var isShared : Int = 0
+    var isShared: Int = 0
 
     override fun onClick(v: View?) {
         when (v) {
@@ -99,43 +104,19 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         })
 
         community_act_writepage_complete_btn.setOnClickListener {
-            if (community_act_writepage_complete_btn.isSelected){
+            if (community_act_writepage_complete_btn.isSelected) {
                 postCommunityPostingResponse()
             }
         }
+
+        // 사진 버튼
         community_act_writepage_upload_pic_btn.setOnClickListener {
-            changeImage()
+            requestReadExternalStoragePermission(0)
         }
+
+        // GIF 버튼
         community_act_writepage_upload_gif_btn.setOnClickListener {
-            val imageviewGIF: ImageView = findViewById(R.id.community_act_writepage_upload_gif_iv)
-            val imageviewdummyGIF1: ImageView = findViewById(R.id.community_act_writepage_dummy_gif1)
-            val imageviewdummyGIF2: ImageView = findViewById(R.id.community_act_writepage_dummy_gif2)
-            val gifImage = DrawableImageViewTarget(imageviewGIF)
-            Visible(imageviewGIF)
-            Visible(imageviewdummyGIF1)
-            Visible(imageviewdummyGIF2)
-            Glide.with(this).load(R.drawable.dancing_citizen).into(gifImage)
-            community_act_writepage_upload_gif_iv.setOnClickListener {
-                Invisible(imageviewGIF)
-                Invisible(imageviewdummyGIF1)
-                Invisible(imageviewdummyGIF2)
-                Glide.with(this).load(R.drawable.dancing_citizen).into(community_act_writepage_upload_pic_iv)
-                isGIF = true
-                checkUploadedContent()
-            }
-            val options = BitmapFactory.Options()
-            var input: InputStream? = null
-            try{
-                input = contentResolver.openInputStream(this.data)
-            } catch (e : FileNotFoundException){
-                e.printStackTrace()
-            }
-            val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 생성
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
-            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
-            val photo = File(this.data.toString()) // 가져온 파일의 이름
-            image = MultipartBody.Part.createFormData("image", photo.name, photoBody)
+            requestReadExternalStoragePermission(1)
         }
         community_act_writepage_upload_pic_iv.setOnClickListener {
             community_act_writepage_upload_pic_iv.setImageBitmap(null)
@@ -152,7 +133,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
 
     fun getCommunityPostingResponse() {
         val getCommunityPostingResponse = networkService.getCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext))
-        getCommunityPostingResponse.enqueue(object : retrofit2.Callback<GetCommunityPostingResponse>{
+        getCommunityPostingResponse.enqueue(object : retrofit2.Callback<GetCommunityPostingResponse> {
             override fun onFailure(call: Call<GetCommunityPostingResponse>?, t: Throwable?) {
                 toast("error!")
             }
@@ -194,8 +175,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
             if (community_act_writepage_posting_et.text.toString().isEmpty()) {
                 Log.v("E", "null")
                 content = null
-            }
-            else {
+            } else {
                 content = community_act_writepage_posting_et.text.toString()
                 Log.v("test", content)
             }
@@ -208,17 +188,17 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                         Log.v("success", "내가 쓴 글")
 
                         val intent = Intent()
-                        intent.putExtra("isComplete" , true)
+                        intent.putExtra("isComplete", true)
                         setResult(Activity.RESULT_OK, intent)
                         finish()
                     }
                 }
+
                 override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
                     toast("Error!")
                 }
             })
-        }
-        else {
+        } else {
             val postCommunityPostingResponse = networkService.postCommunityPostingResponse(SharedPreferenceController.getAuthorization(context = applicationContext), null, null, isShared)
             postCommunityPostingResponse.enqueue(object : retrofit2.Callback<PostCommunityPostingResponse> {
                 override fun onResponse(call: Call<PostCommunityPostingResponse>?, response: Response<PostCommunityPostingResponse>?) {
@@ -227,6 +207,7 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
                         Log.v("success", "타인이 쓴 글")
                     }
                 }
+
                 override fun onFailure(call: Call<PostCommunityPostingResponse>?, t: Throwable?) {
                     toast("Error!")
                 }
@@ -266,11 +247,11 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
         community_act_writepage_complete_btn.isSelected = isText || isIMG || isGIF
     }
 
-    fun Invisible(v: View?){
+    fun Invisible(v: View?) {
         v!!.visibility = View.INVISIBLE
     }
 
-    fun Visible(v: View?){
+    fun Visible(v: View?) {
         v!!.visibility = View.VISIBLE
     }
 
@@ -338,4 +319,65 @@ class CommunityWritePage : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+    /*
+    Written by Tak
+    저장소 권한 요청
+    */
+    private fun requestReadExternalStoragePermission(gifFlag: Int) {
+        //첫번째 if문을 통해 과거에 이미 권한 메시지에 대한 OK를 했는지 아닌지에 대해 물어봅니다! if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)) { //사용자에게 권한을 왜 허용해야되는지에 메시지를 주기 위한 대한 로직을 추가하려면 이 블락에서 하면됩니다!! //하지만 우리는 그냥 비워놓습니다!! 딱히 줄말 없으면 비워놔도 무관해요!!! 굳이 뭐 안넣어도됩니다!
+        } else {
+            //아래 코드는 권한을 요청하는 메시지를 띄우는 기능을 합니다! 요청에 대한 결과는 callback으로 onRequestPermissionsResult 메소드에서 받습니다!!!
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), My_READ_STORAGE_REQUEST_CODE)
+        }
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)) { //사용자에게 권한을 왜 허용해야되는지에 메시지를 주기 위한 대한 로직을 추가하려면 이 블락에서 하면됩니다!! //하지만 우리는 그냥 비워놓습니다!! 딱히 줄말 없으면 비워놔도 무관해요!!! 굳이 뭐 안넣어도됩니다!
+            } else {
+                //아래 코드는 권한을 요청하는 메시지를 띄우는 기능을 합니다! 요청에 대한 결과는 callback으로 onRequestPermissionsResult 메소드에서 받습니다!!!
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), My_READ_STORAGE_REQUEST_CODE)
+            }
+        } else {
+            //첫번째 if 문의 else 로써, 기존에 이미 권한 메시지를 통해 권한을 허용했다면 아래와 같은 곧바로 앨범을 여는 메소드를 호출 해주면됩니다!!
+            if (gifFlag == 1) {
+                changeGifFile()
+            } else {
+                changeImage()
+            }
+        }
+    }
+
+    private fun changeGifFile() {
+        val imageviewGIF: ImageView = findViewById(R.id.community_act_writepage_upload_gif_iv)
+        val imageviewdummyGIF1: ImageView = findViewById(R.id.community_act_writepage_dummy_gif1)
+        val imageviewdummyGIF2: ImageView = findViewById(R.id.community_act_writepage_dummy_gif2)
+        val gifImage = DrawableImageViewTarget(imageviewGIF)
+        Visible(imageviewGIF)
+        Visible(imageviewdummyGIF1)
+        Visible(imageviewdummyGIF2)
+        Glide.with(this).load(R.drawable.dancing_citizen).into(gifImage)
+        community_act_writepage_upload_gif_iv.setOnClickListener {
+            Invisible(imageviewGIF)
+            Invisible(imageviewdummyGIF1)
+            Invisible(imageviewdummyGIF2)
+            Glide.with(this).load(R.drawable.dancing_citizen).into(community_act_writepage_upload_pic_iv)
+            isGIF = true
+            checkUploadedContent()
+        }
+        val options = BitmapFactory.Options()
+        var input: InputStream? = null
+        try {
+            input = contentResolver.openInputStream(this.data)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+        val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 생성
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
+        val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
+        val photo = File(this.data.toString()) // 가져온 파일의 이름
+        image = MultipartBody.Part.createFormData("image", photo.name, photoBody)
+    }
+
 }

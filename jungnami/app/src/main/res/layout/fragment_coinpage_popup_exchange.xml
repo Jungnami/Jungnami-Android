@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--글씨크기 + 2 변경완료-->
 <!--Written by SooYoung-->
 
 <RelativeLayout
@@ -48,7 +48,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="전환하기"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b" />
 
             <LinearLayout
@@ -71,7 +71,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="차감 코인"
-                            android:textSize="11sp"
+                            android:textSize="13dp"
                             android:textColor="#757575"/>
 
                     </RelativeLayout>
@@ -88,7 +88,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic_normal"
                             android:text="-코인"
-                            android:textSize="11sp"
+                            android:textSize="13dp"
                             android:textColor="#36c5f1"/>
 
                     </RelativeLayout>
@@ -110,7 +110,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothiclight_normal"
                             android:text="투표권 개수"
-                            android:textSize="11sp"
+                            android:textSize="13dp"
                             android:textColor="#757575"/>
 
                     </RelativeLayout>
@@ -127,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbarungothic_normal"
                             android:text="-개"
-                            android:textSize="11sp"
+                            android:textSize="13dp"
                             android:textColor="#36c5f1"/>
 
                     </RelativeLayout>

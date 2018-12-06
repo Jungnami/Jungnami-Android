@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <!--written by Tak HyeongMin-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rv_item_community_contents_comment_btn"
@@ -30,7 +31,7 @@ x
             android:textStyle="bold"
             android:text="동글 문어"
             android:textColor="#000000"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:layout_marginBottom="3dp"/>
 
         <RelativeLayout
@@ -55,7 +56,7 @@ x
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:text="BEST"
-                android:textSize="8dp"
+                android:textSize="10dp"
                 android:fontFamily="@font/nanumbarungothiclight"/>
 
 
@@ -68,7 +69,7 @@ x
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:text="헐랭"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:textColor="#707070"
             android:fontFamily="@font/nanumbarungothic"
             android:layout_below="@id/rv_item_community_contents_comment_name_btn"
@@ -100,14 +101,14 @@ x
             android:text="-시간"
             android:fontFamily="@font/nanumbarungothiclight"
             android:textColor="#D0D0D2"
-            android:textSize="11dp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/rv_item_community_contents_comment_likes_letter_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="좋아요  "
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:fontFamily="@font/nanumbarungothiclight"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_date_tv"
             android:layout_marginLeft="15dp"
@@ -120,7 +121,7 @@ x
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-"
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:fontFamily="@font/nanumbarungothiclight"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_likes_letter_tv"
             android:layout_marginTop="13dp"
@@ -130,7 +131,7 @@ x
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="개"
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:fontFamily="@font/nanumbarungothic"
             android:layout_toRightOf="@id/rv_item_community_contents_comment_likes_num_tv"
             android:layout_marginTop="13dp"

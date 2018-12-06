@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--글씨크기 + 2 변경완료-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
@@ -21,7 +21,7 @@
             android:fontFamily="@font/nanumbarungothic"
             android:text="정당"
             android:textColor="#6B6B6B"
-            android:textSize="16dp" />
+            android:textSize="18dp" />
 
         <View
             android:visibility="gone"
@@ -47,7 +47,7 @@
             android:fontFamily="@font/nanumbarungothic"
             android:text="지역"
             android:textColor="#D8D8D8"
-            android:textSize="16dp" />
+            android:textSize="18dp" />
 
         <View
             android:id="@+id/legislator_list_tablayout_region_underbar_line"

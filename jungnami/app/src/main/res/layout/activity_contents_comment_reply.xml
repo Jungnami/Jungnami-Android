@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--wrriten by HyeongMin-->
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="답글"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:textColor="#2B2B2B"
             android:layout_centerInParent="true"/>
@@ -81,7 +82,7 @@
                 android:id="@+id/contents_comment_act_bottom_bar_edit_text"
                 android:fontFamily="@font/nanumbarungothiclight"
                 android:background="#00000000"
-                android:textSize="9dp"
+                android:textSize="11dp"
                 android:hint="댓글을 입력하세요...."
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"

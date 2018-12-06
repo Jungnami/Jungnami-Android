@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="-"
                 android:textColor="#000000"
-                android:textSize="12dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/userpage_comment_rv_item_date"
@@ -46,7 +47,7 @@
                 android:text="1시간 전"
                 android:layout_marginTop="5dp"
                 android:textColor="#707070"
-                android:textSize="9dp" />
+                android:textSize="11dp" />
 
         </LinearLayout>
         <!--이것도 공유하기 일 시 gone처리-->
@@ -71,7 +72,7 @@
         android:fontFamily="@font/nanumbarungothic_normal"
         android:text="앱잼 가즈아ㅏ~~~"
         android:textColor="#707070"
-        android:textSize="13sp"
+        android:textSize="15dp"
         android:visibility="visible" />
 
     <!--공유하기면 gone처리-->
@@ -113,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="동굴문어"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:textColor="#000000"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:layout_toRightOf="@id/userpage_feed_rv_item_shared_profile_image_btn"
@@ -126,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothiclight_normal"
                 android:text="1시간 전"
-                android:textSize="9dp"
+                android:textSize="11dp"
                 android:layout_below="@id/userpage_feed_rv_item_shared_profile_name_tv"
                 android:layout_toRightOf="@id/userpage_feed_rv_item_shared_profile_image_btn"
                 android:layout_marginLeft="8dp"
@@ -149,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/nanumbarungothic_normal"
-            android:textSize="13sp"
+            android:textSize="15dp"
             android:text="대한민국 정치의 가장 큰 문제점을 찾았습니다. 다들 권력을 쥐고 나서야 강압적 또는 선심쓰듯 대국민 통합을 외치는 겁니다."
             />
 
@@ -187,7 +188,7 @@
             android:layout_marginLeft="6dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="5258명"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <TextView
@@ -195,7 +196,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="이 좋아합니다"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:layout_marginRight="16dp"/>
 
         <ImageView
@@ -211,11 +212,11 @@
             android:layout_marginLeft="6dp"
             android:fontFamily="@font/nanumbarungothic"
             android:text="523"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:textStyle="bold" />
         <TextView
             android:text="개"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:fontFamily="@font/nanumbarungothic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

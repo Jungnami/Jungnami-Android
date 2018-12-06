@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--글씨크기 + 2 변경완료-->
 <!--Written by SooYoung-->
 
 <RelativeLayout
@@ -66,7 +67,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="후원이"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b"/>
 
             <TextView
@@ -76,7 +77,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="완료되었습니다!"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textColor="#6b6b6b"/>
 
         </RelativeLayout>

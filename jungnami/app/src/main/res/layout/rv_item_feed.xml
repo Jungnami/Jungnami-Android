@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--글씨크기 + 2 변경완료-->
 <!--written by Tak HyeongMin-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -24,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="동굴문어"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:textColor="#000000"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_toRightOf="@id/contents_feed_rv_item_shared_profile_image_btn"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumbarungothiclight_normal"
             android:text="1시간 전"
-            android:textSize="9dp"
+            android:textSize="11dp"
             android:layout_below="@id/contents_comment_rv_item_profile_name_tv"
             android:layout_toRightOf="@id/contents_feed_rv_item_shared_profile_image_btn"
             android:layout_marginLeft="8dp"
@@ -60,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/nanumbarungothic_normal"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:text="대한민국 정치의 가장 큰 문제점을 찾았습니다. 다들 권력을 쥐고 나서야 강압적 또는 선심쓰듯 대국민 통합을 외치는 겁니다."
         />
 
@@ -96,7 +97,7 @@
             android:layout_toRightOf="@+id/contents_comment_rv_item_small_heart"
             android:text="5,258"
             android:textStyle="bold"
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_marginLeft="6dp"
             android:layout_width="wrap_content"
@@ -108,7 +109,7 @@
             android:id="@+id/contents_comment_rv_item_heart_num_des_tv"
             android:layout_toRightOf="@+id/contents_comment_rv_item_heart_num_btn"
             android:text="명이 좋아합니다"
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
@@ -128,7 +129,7 @@
             android:id="@+id/contents_comment_rv_item_chat_num_des_btn"
             android:layout_toRightOf="@+id/contents_comment_rv_item_chat_iv"
             android:text="523"
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:textStyle="bold"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
@@ -139,7 +140,7 @@
         <TextView
             android:layout_toRightOf="@+id/contents_comment_rv_item_chat_num_des_btn"
             android:text="개"
-            android:textSize="11dp"
+            android:textSize="13dp"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"

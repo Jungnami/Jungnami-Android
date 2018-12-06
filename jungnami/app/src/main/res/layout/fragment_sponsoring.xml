@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--written by Tak HyeongMin-->
+<!--글씨크기 + 2 변경완료-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +29,7 @@
                 android:fontFamily="@font/nanumbarungothicbold_normal"
                 android:layout_marginTop="44dp"
                 android:layout_centerHorizontal="true"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 android:textColor="#6B6B6B"
                 />
             
@@ -45,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="나의 코인"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerVertical="true"
                     android:textColor="#757575"/>
@@ -55,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100코인"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:textColor="#36C5F1"
                     android:fontFamily="@font/nanumbarungothic_normal"
                     android:layout_alignParentRight="true"
@@ -75,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="후원 코인"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:fontFamily="@font/nanumbarungothiclight"
                     android:layout_centerVertical="true"/>
 
@@ -92,7 +93,7 @@
                         android:fontFamily="@font/nanumbarungothiclight_normal"
                         android:background="#00000000"
                         android:gravity="right"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:hint="입력"
                         android:layout_marginTop="3dp"
                         android:textColor="#757575"
