@@ -167,7 +167,7 @@ class LegislatorUnlikabletListFragment : Fragment() {
         })
     }
     fun setAdapter(){
-        legislatorListViewAdapter = LegislatorListViewAdapter(context!!,legislatorItems,1)
+        legislatorListViewAdapter = LegislatorListViewAdapter(context!!,legislatorItems,0)
         rv_legislator.layoutManager = LinearLayoutManager(context)
         rv_legislator.adapter = legislatorListViewAdapter
     }

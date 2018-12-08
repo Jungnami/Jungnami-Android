@@ -139,61 +139,65 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="11dp" />
 
-            <ImageView
-                android:id="@+id/community_act_writepage_upload_gif_btn"
-                android:src="@drawable/writepage_gif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="50dp"/>
+            <!--움짤 관련 항목 - 기능 삭제-->
+            <!--<ImageView-->
+                <!--android:id="@+id/community_act_writepage_upload_gif_btn"-->
+                <!--android:src="@drawable/writepage_gif"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_marginLeft="50dp"/>-->
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="43dp"
-            android:layout_marginBottom="38dp"
-            android:layout_alignParentBottom="true">
+        <!--움짤 관련 항목 - 기능 삭제-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="43dp"-->
+            <!--android:layout_marginBottom="38dp"-->
+            <!--android:layout_alignParentBottom="true">-->
 
-            <ImageView
-                android:id="@+id/community_act_writepage_gif_bubble_iv"
-                android:src="@drawable/writepage_gif_bubble"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                />
+            <!--<ImageView-->
+                <!--android:id="@+id/community_act_writepage_gif_bubble_iv"-->
+                <!--android:src="@drawable/writepage_gif_bubble"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="15dp"-->
+                <!--/>-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp">
 
-            <ImageView
-                android:id="@+id/community_act_writepage_upload_gif_iv"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"/>
+        <!--움짤 관련 항목 - 기능 삭제-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginBottom="50dp">-->
 
-            <ImageView
-                android:id="@+id/community_act_writepage_dummy_gif1"
-                android:src="@drawable/community_gif_box"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:layout_weight="1"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/community_act_writepage_upload_gif_iv"-->
+                <!--android:layout_width="120dp"-->
+                <!--android:layout_height="120dp"-->
+                <!--android:layout_weight="1"/>-->
 
-            <ImageView
-                android:id="@+id/community_act_writepage_dummy_gif2"
-                android:src="@drawable/community_gif_box"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:layout_weight="1"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/community_act_writepage_dummy_gif1"-->
+                <!--android:src="@drawable/community_gif_box"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:visibility="invisible"-->
+                <!--android:layout_weight="1"/>-->
 
-        </LinearLayout>
+            <!--<ImageView-->
+                <!--android:id="@+id/community_act_writepage_dummy_gif2"-->
+                <!--android:src="@drawable/community_gif_box"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:visibility="invisible"-->
+                <!--android:layout_weight="1"/>-->
+
+        <!--</LinearLayout>-->
 
     </RelativeLayout>
 

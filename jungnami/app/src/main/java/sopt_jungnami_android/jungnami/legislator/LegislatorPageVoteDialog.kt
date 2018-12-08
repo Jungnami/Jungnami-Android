@@ -79,7 +79,7 @@ class LegislatorPageVoteDialog(val ctx : Context, val isLikeable: Int, val l_id 
 
             override fun onResponse(call: Call<GetVotingResponse>?, response: Response<GetVotingResponse>?) {
                 if (response!!.isSuccessful){
-                    myVotingCount = response.body()!!.data.voting_cnt
+                    myVotingCount = response.body()!!.data
                     vote_agree_dialog_myvote_count_tv.text = "나의 보유 투표권 : ${myVotingCount}개"
                 }
             }

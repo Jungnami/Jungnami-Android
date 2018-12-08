@@ -1,6 +1,7 @@
 package sopt_jungnami_android.jungnami.Network
 
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import sopt_jungnami_android.jungnami.Delete.*
@@ -36,14 +37,14 @@ interface NetworkService {
     ): Call<postCommunityLikeResponse>
 
     // 정당에서 검색하기 by Tak
-    @GET("ranking/party/{p_name}/search/{l_name}")
+    @GET("ranking/search/party/{p_name}/{l_name}")
     fun getPartySearchLegislator(
             @Path("p_name") p_name: String,
             @Path("l_name") l_name: String
     ): Call<GetRankingSearchLegislatorResponse>
 
     // 지역에서 검색하기 by Tak
-    @GET("ranking/city/{city}/search/{l_name}")
+    @GET("ranking/search/city/{city}/{l_name}")
     fun getRegionSearchLegislator(
             @Path("city") city: String,
             @Path("l_name") l_name: String
@@ -168,16 +169,18 @@ interface NetworkService {
     ): Call<GetMyPageResponse>
 
     //컨텐츠탭 - recommend 추천!
-    @GET("contents/recommend")
+    @GET("contents/{pre}")
     fun getRecommendContentsResponse(
-            @Header("authorization") tokenValue: String?
+            @Header("authorization") tokenValue: String?,
+            @Path("pre") pre: Int
     ): Call<GetRecommendContentsResponse>
 
     //    컨텐츠텝 TMI STORY
-    @GET("contents/main/{category}")
+    @GET("contents/category/{category}/{pre}")
     fun getTmiStoryContentsResponse(
             @Header("authorization") tokenValue: String?,
-            @Path("category") category: String
+            @Path("category") category: String,
+            @Path("pre") pre: Int
     ): Call<GetTmiStoryContentsResponse>
 
     //로그인 통신
@@ -218,7 +221,7 @@ interface NetworkService {
     ): Call<PostCoinExchangeResponse>
 
     //카드 컨텐츠 내용물
-    @GET("contents/detail/{contents_id}")
+    @GET("contents/{contents_id}/detail")
     fun getDetailedContentsResponse(
             @Header("authorization") tokenValue: String?,
             @Path("contents_id") contents_id: Int
@@ -294,7 +297,7 @@ interface NetworkService {
     @POST("board")
     fun postFeedPostingResponse(
             @Header("authorization") tokenValue: String?,
-            @Part("content") posting_content: String?,
+            @Part("content") posting_content: RequestBody,
             @Part posting_image: MultipartBody.Part?,
             @Part("shared") posting_shared: Int
     ): Call<PostFeedPostingResponse>
@@ -338,11 +341,11 @@ interface NetworkService {
 
     // 커뮤니티 글 작성 완료 made by SooYoung
     @Multipart
-    @POST("board/postcompleteforand")
+    @POST("board")
     fun postCommunityPostingResponse(
             @Header("authorization") tokenValue: String?,
-            @Part("content") posting_content: String?,
-            @Part posting_image: MultipartBody.Part?,
+            @Part("content") posting_content: RequestBody,
+            @Part image: MultipartBody.Part?,
             @Part("shared") posting_shared: Int
     ): Call<PostCommunityPostingResponse>
 

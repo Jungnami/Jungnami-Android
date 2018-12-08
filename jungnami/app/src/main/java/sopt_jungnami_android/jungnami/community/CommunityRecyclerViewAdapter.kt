@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -45,6 +47,12 @@ class CommunityRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Con
 
     fun addItems(dataList: ArrayList<Content>) {
         this.dataList.addAll(dataList)
+        var i = 0
+        while(i < this.dataList.size){
+            Log.e("데이터 더7",this.dataList[i].nickname)
+            i++
+        }
+        Log.v("데이터", "잘들어옴?")
         notifyDataSetChanged()
     }
     fun addNew(dataList: ArrayList<Content>) {
@@ -70,7 +78,7 @@ class CommunityRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Con
         }
 
         // Text없으면 GONE 처리
-        if (dataList[position].content.isEmpty()) {
+        if (dataList[position].content.isNullOrEmpty()) {
             holder.feed_description.visibility = View.GONE
         } else {
             holder.feed_description.setText(dataList[position].content)
@@ -150,8 +158,9 @@ class CommunityRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Con
 
     fun requestCommunityPostingResponse(position: Int, view: ImageView) {
         val networkService = ApplicationController.instance.networkService
+        val contentBody = RequestBody.create(MediaType.parse("text/plain"), " ")
         val postFeedPostingResponse = networkService.postFeedPostingResponse(SharedPreferenceController.getAuthorization(ctx),
-                "", null, dataList[position].boardid)
+                contentBody, null, dataList[position].boardid)
         postFeedPostingResponse.enqueue(object : retrofit2.Callback<PostFeedPostingResponse> {
             override fun onFailure(call: Call<PostFeedPostingResponse>?, t: Throwable?) {
             }

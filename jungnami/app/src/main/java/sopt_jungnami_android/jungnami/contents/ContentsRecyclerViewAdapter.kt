@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import sopt_jungnami_android.jungnami.R
 import sopt_jungnami_android.jungnami.data.Contents
 import android.graphics.drawable.GradientDrawable
-
+import sopt_jungnami_android.jungnami.data.Content
 
 
 class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<Contents>) : RecyclerView.Adapter<ContentsRecyclerViewAdapter.Holder>() {
@@ -56,6 +56,11 @@ class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<Con
                 .thumbnail(0.2f)
                 .into(holder.image)
 
+    }
+
+    fun addItems(dataList: ArrayList<Contents>) {
+        this.dataList.addAll(dataList)
+        notifyDataSetChanged()
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){

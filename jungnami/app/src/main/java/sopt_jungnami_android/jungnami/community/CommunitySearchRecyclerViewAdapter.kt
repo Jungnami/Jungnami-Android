@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.Transition
 import com.kakao.network.NetworkService
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -151,8 +153,9 @@ class CommunitySearchRecyclerViewAdapter(val ctx: Context, val dataList: ArrayLi
 
     fun requestCommunityPostingResponse(board_id : Int){
         val networkService = ApplicationController.instance.networkService
+        val contentBody = RequestBody.create(MediaType.parse("text/plain"), " ")
         val postFeedPostingResponse = networkService.postFeedPostingResponse(SharedPreferenceController.getAuthorization(ctx),
-                "", null, board_id)
+                contentBody, null, board_id)
         postFeedPostingResponse.enqueue(object : retrofit2.Callback<PostFeedPostingResponse>{
             override fun onFailure(call: Call<PostFeedPostingResponse>?, t: Throwable?) {
             }
