@@ -3,7 +3,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="73dp"
+    android:layout_height="80dp"
     android:id="@+id/rv_alarm_item_click_btn"
     android:background="#ffffff">
 

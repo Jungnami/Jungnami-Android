@@ -299,7 +299,6 @@
                         android:fontFamily="@font/nanumbarungothicbold_normal"
                         android:text="관련된 컨텐츠"
                         android:textSize="18dp"
-                        android:textStyle="bold"
                         android:textColor="#2b2b2b"/>
 
                 </RelativeLayout>

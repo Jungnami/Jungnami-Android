@@ -58,13 +58,16 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
     }
 
     private val REQUEST_CODE_WRITE = 1001
-    val feedDataList: ArrayList<Content> by lazy {
-        ArrayList<Content>()
-    }
+    lateinit var feedDataList: ArrayList<Content>
+//    val feedDataList: ArrayList<Content> by lazy {
+//        ArrayList<Content>()
+//    }
     lateinit var SearchFeedDataList: ArrayList<CommunitySearchData>
     val communityRecyclerViewAdapter: CommunityRecyclerViewAdapter by lazy {
         CommunityRecyclerViewAdapter(context!!, feedDataList)
     }
+
+
     lateinit var communitySearchRecyclerViewAdapter: CommunitySearchRecyclerViewAdapter
     lateinit var networkService: NetworkService
     lateinit var user_img_url : String
@@ -75,6 +78,7 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         networkService = ApplicationController.instance.networkService
+        feedDataList = ArrayList()
     }
 
 
@@ -123,7 +127,9 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
                         feedDataList.clear()
                         communityRecyclerViewAdapter.dataList.clear()
                     }
-                    feedDataList.addAll(response!!.body()!!.data!!.content)
+                    feedDataList = response.body()!!.data.content
+
+//                    feedDataList.addAll(response!!.body()!!.data!!.content)
                     communityRecyclerViewAdapter.addItems(feedDataList)
 
                     currentItemsCount = feedDataList.size
@@ -267,7 +273,6 @@ class CommunityFragment : Fragment(), View.OnClickListener, View.OnLongClickList
                         community_frag_refresh.isRefreshing = true
                     }
                     getMoreCommunityFeed()
-
                 }
             }
         }

@@ -70,7 +70,6 @@ class LegislatorListVoteAgreeDialog(val ctx : Context, val isLikeable: Int, val 
 
     private fun requestDataToServer(){
         networkService = ApplicationController.instance.networkService
-
         val getMyVotingResponse = networkService.getMyVotingCount(SharedPreferenceController.getAuthorization(context = context!!))
         getMyVotingResponse.enqueue(object :Callback<GetVotingResponse>{
             override fun onFailure(call: Call<GetVotingResponse>?, t: Throwable?) {
@@ -79,7 +78,7 @@ class LegislatorListVoteAgreeDialog(val ctx : Context, val isLikeable: Int, val 
 
             override fun onResponse(call: Call<GetVotingResponse>?, response: Response<GetVotingResponse>?) {
                 if (response!!.isSuccessful){
-                    myVotingCount = response.body()!!.data.voting_cnt
+                    myVotingCount = response.body()!!.data
                     vote_agree_dialog_myvote_count_tv.text = "나의 보유 투표권 : ${myVotingCount}개"
                 }
             }

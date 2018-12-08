@@ -22,8 +22,8 @@
             android:src="@drawable/alarm_x_btn" />
 
         <TextView
-            android:layout_width="43dp"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/nanumbarungothic_normal"
             android:text="팔로워"

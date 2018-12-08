@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -16,13 +17,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_community_search_result.*
 import kotlinx.android.synthetic.main.activity_legislator_list.*
+import kotlinx.android.synthetic.main.fragment_community.*
 import kotlinx.android.synthetic.main.fragment_contents.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import sopt_jungnami_android.jungnami.Alarm
+import sopt_jungnami_android.jungnami.Get.GetCommunityFeedResponse
 import sopt_jungnami_android.jungnami.Get.GetRecommendContentsResponse
 import sopt_jungnami_android.jungnami.Get.GetTmiStoryContentsResponse
 import sopt_jungnami_android.jungnami.MainActivity
@@ -39,6 +43,15 @@ import java.io.Serializable
 
 //    made by Yunhwan
 class ContentsFragment : Fragment(), View.OnClickListener {
+
+    // 추천 탭에서 밑으로 스크롤 시 10개씩 item 더 가져오기 위한 마지막 item의 id
+    private var preReal : Int = 0
+
+    // TMI 탭에서 밑으로 스크롤 시 10개씩 item 더 가져오기 위한 마지막 item의 id
+    private var preTMIReal : Int = 0
+
+    // Story 탭에서 밑으로 스크롤 시 10개씩 item 더 가져오기 위한 마지막 item의 id
+    private var preStoryReal : Int = 0
 
     override fun onClick(v: View?) {
         when(current_tab_idx){
@@ -105,7 +118,8 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 //            requestRecommendContentsDataToServer()
 //        }
 
-        requestRecommendContentsDataToServer()
+        requestRecommendContentsDataToServer(preReal)
+        moreLoadListData()
     }
     private fun setClickListener(){
         contents_frag_refresh_srl.setOnRefreshListener {
@@ -202,11 +216,11 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun requestRecommendContentsDataToServer(){
+    private fun requestRecommendContentsDataToServer(pre: Int){
         recommendDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
 
-        val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!))
+        val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context = context!!), pre)
         getRecommendContentsResponse.enqueue(object : Callback<GetRecommendContentsResponse>{
             override fun onFailure(call: Call<GetRecommendContentsResponse>?, t: Throwable?) {
             }
@@ -226,6 +240,9 @@ class ContentsFragment : Fragment(), View.OnClickListener {
 
                         //추천 컨텐츠 뿌리기
                         changeConetentsRecyclerViewData()
+
+//                        preReal = recommendDataList.last().contentsid
+                        Log.v("TAGG", preReal.toString())
                     } else {
                         contents_frag_main_content_lr.visibility = View.GONE
 
@@ -234,11 +251,31 @@ class ContentsFragment : Fragment(), View.OnClickListener {
             }
         })
     }
+
+    // 추천 Item 더 가져오기
+    fun getMoreCotentsFeed() {
+        val getRecommendContentsResponse = networkService.getRecommendContentsResponse(SharedPreferenceController.getAuthorization(context!!), preReal)
+        getRecommendContentsResponse.enqueue(object : Callback<GetRecommendContentsResponse> {
+            override fun onFailure(call: Call<GetRecommendContentsResponse>?, t: Throwable?) {
+                Log.e("more request failed", t.toString())
+            }
+            override fun onResponse(call: Call<GetRecommendContentsResponse>?, response: Response<GetRecommendContentsResponse>?) {
+                if (response!!.isSuccessful) {
+                    //Log.e("데이터 더 있나?", response!!.body()!!.data!!.content.size.toString())
+                    contentsRecyclerViewAdapter.addItems(response!!.body()!!.data!!.content)
+//                    recommendDataList.addAll(response!!.body()!!.data!!.content)
+                    preReal = recommendDataList.last().contentsid
+                    contents_frag_refresh_srl.isRefreshing = false
+                }
+            }
+        })
+    }
+
     private fun requestTmiOrStoryDataToServer(category : String){
         tmiOrStoryDataList = ArrayList()
         networkService = ApplicationController.instance.networkService
         Log.e("요청 카테고리는? ", category)
-        val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context = context!!),category)
+        val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context = context!!),category, 0)
         getTmiStoryContentsResponse.enqueue(object : Callback<GetTmiStoryContentsResponse>{
             override fun onFailure(call: Call<GetTmiStoryContentsResponse>?, t: Throwable?) {
                 Log.e("컨텐츠 요청 실패", "컨텐츠 요청 실패!!!!")
@@ -250,17 +287,46 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                         alertCount = response.body()!!.data.alarmcnt
                         setAlertBellView()
                         tmiOrStoryDataList = response.body()!!.data.content
-
                         setMainContentView(tmiOrStoryDataList[0])
                         contents_id = tmiOrStoryDataList[0].contentsid
                         tmiOrStoryDataList.removeAt(0)
 
+                        if(category == "TMI"){
+                            preTMIReal = tmiOrStoryDataList.last().contentsid
+                        }else if(category == "스토리"){
+                            preStoryReal = tmiOrStoryDataList.last().contentsid
+                        }
                         changeConetentsRecyclerViewData()
                     } else {
                         Log.e("컨텐츠 없넹2", "컨텐츠 없넹2")
                         contents_frag_main_content_lr.visibility = View.GONE
                     }
 
+                }
+            }
+        })
+    }
+
+    // TMI 탭 Item 더 가져오기
+    fun getMoreTMICotentsFeed(category: String, pre: Int) {
+        val getTmiStoryContentsResponse = networkService.getTmiStoryContentsResponse(SharedPreferenceController.getAuthorization(context!!), category, pre)
+        getTmiStoryContentsResponse.enqueue(object : Callback<GetTmiStoryContentsResponse> {
+            override fun onFailure(call: Call<GetTmiStoryContentsResponse>?, t: Throwable?) {
+                Log.e("more request failed", t.toString())
+            }
+            override fun onResponse(call: Call<GetTmiStoryContentsResponse>?, response: Response<GetTmiStoryContentsResponse>?) {
+                if (response!!.isSuccessful) {
+                    //Log.e("데이터 더 있나?", response!!.body()!!.data!!.content.size.toString())
+                    contentsRecyclerViewAdapter.addItems(response!!.body()!!.data!!.content)
+
+
+//                    tmiOrStoryDataList.addAll(response!!.body()!!.data!!.content)
+                    if(category == "TMI"){
+                        preTMIReal = tmiOrStoryDataList.last().contentsid
+                    }else if(category == "스토리"){
+                        preStoryReal = tmiOrStoryDataList.last().contentsid
+                    }
+                    contents_frag_refresh_srl.isRefreshing = false
                 }
             }
         })
@@ -329,7 +395,7 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                 current_tab_idx = 0
                 changeSelectedTabView(current_tab_idx)
 
-                requestRecommendContentsDataToServer()
+                requestRecommendContentsDataToServer(0)
             }
             1 -> {
                 changeNonSelectedTabView(current_tab_idx)
@@ -344,6 +410,35 @@ class ContentsFragment : Fragment(), View.OnClickListener {
                 changeSelectedTabView(current_tab_idx)
 
                 requestTmiOrStoryDataToServer("스토리")
+            }
+        }
+    }
+
+    private fun moreLoadListData() {
+        contents_frag_nested_v.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v!!.getChildAt(v!!.childCount - 1) != null) {
+                if ((scrollY >= (v.getChildAt(v!!.childCount - 1).measuredHeight) - v.measuredHeight) && scrollY > oldScrollY) {
+                    Log.e("끝까지 옴", "스크롤 끝까지!")
+                    preReal = recommendDataList.last().contentsid
+                    doAsync {
+                        community_frag_refresh.isRefreshing = true
+                    }
+                    // 추천 탭일 경우
+                    if(current_tab_idx == 0){
+                        getMoreCotentsFeed()
+                    } // TMI 탭일 경우
+                    else if(current_tab_idx == 1){
+                        // TMI 논리처리
+                        Log.v("TAGG", "preTMIReal" + preTMIReal.toString())
+                        getMoreTMICotentsFeed("TMI", preTMIReal)
+                    } // Story 탭일 경우
+                    else if(current_tab_idx == 2){
+                        Log.v("TAGG", "여기도불림?" + preTMIReal.toString())
+                        // Story 논리처리
+                        getMoreTMICotentsFeed("스토리", preStoryReal)
+                    }
+
+                }
             }
         }
     }

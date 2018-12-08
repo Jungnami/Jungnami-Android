@@ -13,6 +13,7 @@ import android.view.View
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.activity_legislator_list.*
 import kotlinx.android.synthetic.main.activity_my_page.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
@@ -26,6 +27,7 @@ import sopt_jungnami_android.jungnami.MainActivity
 import sopt_jungnami_android.jungnami.Network.ApplicationController
 import sopt_jungnami_android.jungnami.Network.NetworkService
 import sopt_jungnami_android.jungnami.R
+import sopt_jungnami_android.jungnami.Terms2Activity
 import sopt_jungnami_android.jungnami.coinpage.CoinPageActivity
 import sopt_jungnami_android.jungnami.contents.ContentsDetail
 import sopt_jungnami_android.jungnami.data.*
@@ -154,6 +156,9 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         }
         mypage_act_top_bar_bell_btn.setOnClickListener {
             startActivity<Alarm>()
+        }
+        mypage_act_private_btn.setOnClickListener {
+            startActivity<Terms2Activity>()
         }
         // tab 이동 관련
         mypage_act_scrap_tab_btn.setOnClickListener {

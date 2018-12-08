@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_legislator_page.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_user_page.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -124,9 +125,10 @@ class LegislatorPageActivity : AppCompatActivity(), View.OnClickListener {
             dialog.show()
         }
         legislator_page_sponsor_btn.setOnClickListener {
-            val dialog : Dialog = SponsedCoinDialog(this, l_id)
-            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.show()
+            toast("서비스 준비중입니다.")
+//            val dialog : Dialog = SponsedCoinDialog(this, l_id)
+//            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            dialog.show()
         }
     }
 

@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_alarm.*
 import kotlinx.android.synthetic.main.activity_follower.*
 import kotlinx.android.synthetic.main.activity_following.*
 import kotlinx.android.synthetic.main.rv_item_alarm.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,13 +68,10 @@ class Alarm : AppCompatActivity(){
                 Log.v("통신 접근", "통신 접근")
                 if(response!!.isSuccessful){
                     alarmItems = response!!.body()!!.data
-                    Log.v("통신 성공?", "통신 성공?")
-                    Log.v("통신 성공?", response.body()!!.data!!.toString())
-                    Log.v("통신 성공?", response.body()!!.data[0].id)
                     alarmAdapter = AlarmViewAdapter(context, alarmItems)
                     rv_alarm.layoutManager = LinearLayoutManager(context)
                     rv_alarm.adapter = alarmAdapter
-                    Log.v("통신 성공!", "통신 성공!")
+                    toast("알림 내용 없음")
                 }
             }
         })

@@ -98,7 +98,9 @@ class ContentsDetail : AppCompatActivity() {
                 Log.e("상세 컨텐츠 보기 데이터 요청 실패", t.toString())
             }
             override fun onResponse(call: Call<GetDetailedContentsResponse>?, response: Response<GetDetailedContentsResponse>?) {
+                Log.v("상세 컨텐츠 보기 데이터 요청 실패", "1")
                 if (response!!.isSuccessful){
+                    Log.v("상세 컨텐츠 보기 데이터 요청 실패", response.body()!!.message)
                     cardViewItemData = response.body()!!.data
                     cardViewInImageList= response.body()!!.data.imagearray
                     //좋아요

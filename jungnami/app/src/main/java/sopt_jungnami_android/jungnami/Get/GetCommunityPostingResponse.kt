@@ -4,5 +4,5 @@ import sopt_jungnami_android.jungnami.data.CommunityPostingPrepareData
 
 data class GetCommunityPostingResponse (
     val message: String,
-    val data: CommunityPostingPrepareData
+    val data: String
 )

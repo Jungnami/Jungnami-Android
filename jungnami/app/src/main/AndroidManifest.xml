@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sopt_jungnami_android.jungnami">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
+        android:icon="@drawable/app_icon"
         android:label="정나미"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:versionCode="2"
+        android:versionName="1.1">
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".CommunityWritePage"
             android:windowSoftInputMode="adjustResize" />
@@ -25,43 +27,43 @@
         <!-- <activity android:name=".LegislatorList"></activity> -->
         <activity android:name=".mypage.UserPageActivity" />
         <activity android:name=".legislator.LegislatorPageActivity" />
-        <activity android:name=".coinpage.CoinPageActivity"></activity>
+        <activity android:name=".coinpage.CoinPageActivity" />
         <activity android:name=".mypage.FollowerActivity" />
-        <activity android:name=".mypage.FollowingActivity"/>
-        <activity android:name=".LegislatorList"/>
-        <activity android:name=".legislator_list.SearchActivity"/>
-        <activity android:name=".Login"></activity>
+        <activity android:name=".mypage.FollowingActivity" />
+        <activity android:name=".LegislatorList" />
+        <activity android:name=".legislator_list.SearchActivity" />
+        <activity android:name=".Login" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".legislator_list.SearchPartyActivity" />
+        <activity android:name="legislator_list.SearchRigionActivity" />
+        <activity android:name=".community.CommunityCommentActivity" />
+        <activity android:name=".contents.ContentsCommentActivity" />
+        <activity android:name=".contents.ContentsSearchActivity" />
+        <activity android:name=".legislator_list.SearchRigionActivity" />
+        <activity android:name=".community.CommunitySearchResultActivity" />
 
-        <activity android:name=".legislator_list.SearchPartyActivity"/>
-        <activity android:name="legislator_list.SearchRigionActivity"/>
-        <activity android:name=".community.CommunityCommentActivity"/>
-        <activity android:name=".contents.ContentsCommentActivity"/>
-        <activity android:name=".contents.ContentsSearchActivity"/>
-        <activity android:name=".legislator_list.SearchRigionActivity"></activity>
-        <activity android:name=".community.CommunitySearchResultActivity"/>
-
-        <!--카카오톡 로그인-->
+        <!-- 카카오톡 로그인 -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
         <activity
             android:name="com.kakao.auth.authorization.authcode.KakaoWebViewActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Terms2Activity"></activity>
     </application>
-
 
 </manifest>

@@ -117,6 +117,7 @@ class Login : AppCompatActivity() {
                     SharedPreferenceController.setAuthorization(context = applicationContext, authorization = auth)
                     SharedPreferenceController.setMyId(context = applicationContext,id = id)
 
+//                    startActivity<Terms2Activity>()
                     startActivity<MainActivity>()
                     finish()
                 }
