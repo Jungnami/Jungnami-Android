@@ -41,6 +41,7 @@ class LegislatorListVoteAgreeDialog(val ctx : Context, val isLikeable: Int, val 
         vote_agree_dialog_no_btn.setOnClickListener {
             dismiss()
         }
+
     }
     private fun requestCompletingVoteToServer(){
         networkService = ApplicationController.instance.networkService
