@@ -32,7 +32,7 @@ class ContentsRecyclerViewAdapter(val ctx :Context, val dataList : ArrayList<Con
     override fun onBindViewHolder(holder: Holder, position: Int) {
         //마진 동적 설정
         val dp = ctx.resources.displayMetrics.density
-        val rootLayoutParams : RelativeLayout.LayoutParams = holder.root_layout.layoutParams as RelativeLayout.LayoutParams
+        val rootLayoutParams = holder.root_layout.layoutParams as RelativeLayout.LayoutParams
         if ((position%2) == 0){
             rootLayoutParams.rightMargin = (6*dp).toInt()
         } else {

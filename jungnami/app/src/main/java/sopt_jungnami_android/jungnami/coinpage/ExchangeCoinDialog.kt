@@ -57,7 +57,7 @@ class ExchangeCoinDialog(val ctx : Context, val coin : String) : Dialog(ctx) {
                 if (response!!.isSuccessful){
                     dismiss()
                     val completeDialog: Dialog = ExchangeCompleteCoinDialog(ctx!!)
-                    completeDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
                     completeDialog.show()
                 }
                 if (response!!.body()!!.message == "No coin"){

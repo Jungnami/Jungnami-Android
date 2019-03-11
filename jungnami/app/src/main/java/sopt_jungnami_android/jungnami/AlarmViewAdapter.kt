@@ -29,6 +29,7 @@ class AlarmViewAdapter (private var context: Context, private var alarmItems : A
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         val alarmView : View = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_alarm, parent, false)
         return AlarmViewHolder(alarmView)
+
     }
 
     override fun getItemCount(): Int = alarmItems.size

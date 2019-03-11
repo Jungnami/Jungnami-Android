@@ -71,8 +71,6 @@ class UnlikeableTab : Fragment() , View.OnClickListener{
         unlikeable_tab_root_rl_to_refreshing.visibility = View.INVISIBLE
         unlikeable_tab_refresh_srl.isRefreshing = true
         getRankItemDataAtServer()
-
-
     }
 
     private fun initSettingView() {
